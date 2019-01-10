@@ -1,0 +1,322 @@
+\documentclass[a4paper,11pt,twoside]{report}
+% KOMPILOWAĆ ZA POMOCĄ pdfLaTeXa, PRZEZ XeLaTeXa MOŻE NIE BYĆ POLSKICH ZNAKÓW
+
+\usepackage{longtable}
+\usepackage{makecell}
+
+% -------------- Kodowanie znaków, język polski -------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[MeX]{polski}
+\usepackage[T1]{fontenc}
+\usepackage[english,polish]{babel}
+
+\usepackage{float}
+
+\usepackage{url}
+
+
+\usepackage{amsmath, amsfonts, amsthm, latexsym} % głównie symbole matematyczne, środowiska twierdzeń
+
+\usepackage[final]{pdfpages} % inputowanie pdfa
+%\usepackage[backend=bibtex, style=verbose-trad2]{biblatex}
+
+
+% ---------------- Marginesy, akapity, interlinia ------------------
+
+
+\usepackage[inner=20mm, outer=20mm, bindingoffset=10mm, top=25mm, bottom=25mm]{geometry}
+
+\renewcommand{\tablename}{Tabela}
+
+\linespread{1.5}
+\allowdisplaybreaks
+
+\usepackage{indentfirst} % opcjonalnie; pierwszy akapit z wcięciem
+\setlength{\parindent}{5mm}
+
+
+%--------------------------- ŻYWA PAGINA ------------------------
+
+\setlength{\headheight}{14pt}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% numery stron: lewa do lewego, prawa do prawego 
+\fancyfoot[LE,RO]{\thepage} 
+% prawa pagina: zawartość \rightmark do lewego, wewnętrznego (marginesu) 
+\fancyhead[LO]{\sc \nouppercase{\rightmark}}
+% lewa pagina: zawartość \leftmark do prawego, wewnętrznego (marginesu) 
+\fancyhead[RE]{\sc \leftmark}
+
+\renewcommand{\chaptermark}[1]{
+\markboth{\thechapter.\ #1}{}}
+
+% kreski oddzielające paginy (górną i dolną):
+\renewcommand{\headrulewidth}{0 pt} % 0 - nie ma, 0.5 - jest linia
+
+
+\fancypagestyle{plain}{% to definiuje wygląd pierwszej strony nowego rozdziału - obecnie tylko numeracja
+  \fancyhf{}%
+  \fancyfoot[LE,RO]{\thepage}%
+  
+  \renewcommand{\headrulewidth}{0pt}% Line at the header invisible
+  \renewcommand{\footrulewidth}{0.0pt}
+}
+
+% ---------------- Kod ------------------------------------
+\usepackage{alltt}
+
+% ---------------- Nagłówki rozdziałów ---------------------
+
+\usepackage{titlesec}
+\titleformat{\chapter}%[display]
+  {\normalfont\Large \bfseries}
+  {\thechapter.}{1ex}{\Large}
+
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection.}{1ex}{}
+\titlespacing{\section}{0pt}{30pt}{20pt} 
+%\titlespacing{\co}{akapit}{ile przed}{ile po} 
+    
+\titleformat{\subsection}
+  {\normalfont \bfseries}
+  {\thesubsection.}{1ex}{}
+
+
+% ----------------------- Spis treści ---------------------------
+\def\cleardoublepage{\clearpage\if@twoside
+\ifodd\c@page\else\hbox{}\thispagestyle{empty}\newpage
+\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+
+
+% kropki dla chapterów
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\l@chapter}
+  {\hfil}
+  {\leaders\hbox{\normalfont$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill}
+  {}{}
+\makeatother
+
+\usepackage{titletoc}
+\makeatletter
+\titlecontents{chapter}% <section-type>
+  [0pt]% <left>
+  {}% <above-code>
+  {\bfseries \thecontentslabel.\quad}% <numbered-entry-format>
+  {\bfseries}% <numberless-entry-format>
+  {\bfseries\leaders\hbox{\normalfont$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill\contentspage}% <filler-page-format>
+
+\titlecontents{section}
+  [1em]
+  {}
+  {\thecontentslabel.\quad}
+  {}
+  {\leaders\hbox{\normalfont$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill\contentspage}
+
+\titlecontents{subsection}
+  [2em]
+  {}
+  {\thecontentslabel.\quad}
+  {}
+  {\leaders\hbox{\normalfont$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill\contentspage}
+\makeatother
+
+
+% Dodawanie pdfów
+\usepackage{pdfpages}
+
+
+% ---------------------- Spisy tabel i obrazków ----------------------
+
+\renewcommand*{\thetable}{\arabic{chapter}.\arabic{table}}
+\renewcommand*{\thefigure}{\arabic{chapter}.\arabic{figure}}
+%\let\c@table\c@figure % jeśli włączone, numeruje tabele i obrazki razem
+
+
+% --------------------- Definicje, twierdzenia etc. ---------------
+
+
+\makeatletter
+\newtheoremstyle{definition}%    % Name
+{3ex}%                          % Space above
+{3ex}%                          % Space below
+{\upshape}%                      % Body font
+{}%                              % Indent amount
+{\bfseries}%                     % Theorem head font
+{.}%                             % Punctuation after theorem head
+{.5em}%                            % Space after theorem head, ' ', or \newline
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%  % Theorem head spec (can be left empty, meaning `normal')
+\makeatother
+
+% ----------------------------- POLSKI --------------------------------
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Twierdzenie}[chapter]
+\newtheorem{lemma}[theorem]{Lemat}
+\newtheorem{example}[theorem]{Przykład}
+\newtheorem{proposition}[theorem]{Stwierdzenie}
+\newtheorem{corollary}[theorem]{Wniosek}
+\newtheorem{definition}[theorem]{Definicja}
+\newtheorem{remark}[theorem]{Uwaga}
+
+
+
+% ----------------------------- Dowód -----------------------------
+
+%\makeatletter
+%\renewenvironment{proof}[1][\proofname]
+%{\par
+%  \vspace{-12pt}% remove the space after the theorem
+%  \pushQED{\qed}%
+%  \normalfont
+%  \topsep0pt \partopsep0pt % no space before
+%  \trivlist
+%  \item[\hskip\labelsep
+%        \sc
+%    #1\@addpunct{:}]\ignorespaces
+%}
+%{%
+%  \popQED\endtrivlist\@endpefalse
+%  \addvspace{20pt} % some space after
+%}
+%
+%\renewcommand{\qedhere}{\hfill \qedsymbol}
+%\makeatother
+
+
+
+
+
+% -------------------------- POCZĄTEK --------------------------
+
+
+% --------------------- Ustawienia użytkownika ------------------
+
+\newcommand{\tytul}{System obliczeń rozproszonych z węzłami działającymi w przeglądarce}
+\renewcommand{\title}{English title}
+\newcommand{\type}{inżyniers} % magisters, licencjac
+\newcommand{\supervisor}{mgr inż. Jan Karwowski}
+
+
+
+\begin{document}
+\sloppy
+
+\includepdf[pages=-]{titlepage}
+
+
+% ------------------ STRONA Z PODPISAMI AUTORA/AUTORÓW I PROMOTORA ------------------
+
+
+% ---------------------------- ABSTRAKTY -----------------------------
+% W PRACY PO POLSKU, NAPIERW STRESZCZENIE PL, POTEM ABSTRACT EN
+
+{
+\begin{abstract}
+
+\begin{center}
+\tytul
+\end{center}
+
+Dokument zawiera dokumentację powykonawczą systemu przygotowanego w ramach tworzonej przez nas pracy inżynierskiej. Zawiera ona opis architektury, wymagania systemowe, użyte biblioteki, instrukcję instalacji, uruchomienia, użycia oraz utrzymania, a także raport odstępstw od specyfikacji i scenariusz testów akceptacyjnych.
+\end{abstract}
+}
+
+
+% --------------------- OŚWIADCZENIE -----------------------------------------
+
+
+% ------------------- 4. Spis treści ---------------------
+\pagenumbering{gobble}
+\tableofcontents
+\thispagestyle{empty}
+
+% \newpage % JEŻELI SPIS TREŚCI MA PARZYSTĄ LICZBĘ STRON, ZAKOMENTOWAĆ
+% ALBO JAK KTOŚ WOLI WTEDY DWIE STRONY ODSTĘPU, DODAĆ \null\newpage
+
+% -------------- 5. ZASADNICZA CZĘŚĆ PRACY --------------------
+\null\thispagestyle{empty}\newpage
+\pagestyle{fancy}
+\pagenumbering{arabic}
+\setcounter{page}{4} % JEŻELI Z POWODU DUŻEJ ILOŚCI STRON W SPISIE TREŚCI SIĘ NIE ZGADZA, TRZEBA ZMODYFIKOWAĆ RĘCZNIE
+        
+\chapter{Wstęp}
+    Opis czego będzie dotyczyła praca inżynierska
+
+\chapter{Analiza problemu}
+    \section{Cel projektu}
+        Opisanie, że aktualnie nie ma na rynku rozwiązań pozwalających na obliczenia rozproszone w przeglądarce.
+    
+    \section{Opis istniejących rozwiązań}
+        Blazor, Bridge.NET, JSIL, inne frameworki do obliczeń rozproszonych
+        Zaznaczenie, że my spinamy te rzeczy w jedno
+        
+    \section{Wymagania funkcjonalne}
+        Jak na dokumentacji z PZ
+        
+    \section{Wymagania niefunkcjonalne}
+        Jak na dokumentacji z PZ
+    
+\chapter{Architektura systemu}
+    Sekcje i treść jak na dokumentacji z PZ
+    Rozdział opisujący system z poziomu zaplanowanej architektury
+
+    \section{Projekt modułów}
+        \subsection{Serwer}
+        \subsection{Panel administracyjny}
+        \subsection{Węzły obliczeniowe}
+    
+    \section{Szczegółowy opis implementacji}
+        \subsection{Serwer}
+        \subsection{Biblioteka do implementacji algorytmów równoległych}
+        \subsection{Panel administracyjny}
+        \subsection{Węzły obliczeniowe}
+    
+    \section{Zabezpieczenia}
+        \subsection{Uwierzytelnianie}
+        \subsection{Ograniczenia przy zwracaniu wyników}
+        \subsection{Poziom zaufania węzłów}
+
+\chapter{Opis aplikacji}
+    Rozdział opisujący to, co stworzyliśmy
+    
+    \section{Wykorzystane biblioteki}
+        \subsection{Biblioteki serwera aplikacyjnego}
+        \subsection{Biblioteki serwera udostępniającego interfejs użytkownika}
+    
+    \section{Platforma docelowa}
+        Wymagania itp.
+    
+    \section{Instrukcje}
+        \subsection{Instrukcja instalacji}
+        \subsection{Instrukcja wdrożenia}
+        \subsection{Instrukcja uruchomienia}
+        \subsection{Instrukcja użycia}
+            W wersji skróconej, a nie takiej jak na dokumentacji z PZ
+    
+    \section{Testy akceptacyjne}
+    
+    \section{Raport z testów akceptacyjnych}
+
+\chapter{Podsumowanie}
+    \section{Własności rozwiązania}
+        Benchmark wydajności C\# w WASM vs C# natywnie
+    
+    \section{Możliwości na rozwój aplikacji}
+    
+    \section{Problemy implementacyjne}
+        Głównie problemy z mono-wasm i zaskoczenie z Dockerem na Arch Linux
+    
+    \section{Wnioski z projektu}
+        
+\chapter{Bibliografia}
+
+\chapter{Wykaz skrótów}
+
+\chapter{Załączniki}
+    Informacje o dołączonych dokumentacjach frontendu, projektu C\# i API.
+
+\end{document}
