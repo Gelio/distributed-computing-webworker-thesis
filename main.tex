@@ -1,19 +1,12 @@
 \documentclass[a4paper,11pt,twoside]{report}
 % KOMPILOWAĆ ZA POMOCĄ pdfLaTeXa, PRZEZ XeLaTeXa MOŻE NIE BYĆ POLSKICH ZNAKÓW
 
-\usepackage{longtable}
-\usepackage{makecell}
-
 % -------------- Kodowanie znaków, język polski -------------
 
 \usepackage[utf8]{inputenc}
 \usepackage[MeX]{polski}
 \usepackage[T1]{fontenc}
 \usepackage[english,polish]{babel}
-
-\usepackage{float}
-
-\usepackage{url}
 
 
 \usepackage{amsmath, amsfonts, amsthm, latexsym} % głównie symbole matematyczne, środowiska twierdzeń
@@ -24,10 +17,8 @@
 
 % ---------------- Marginesy, akapity, interlinia ------------------
 
-
 \usepackage[inner=20mm, outer=20mm, bindingoffset=10mm, top=25mm, bottom=25mm]{geometry}
 
-\renewcommand{\tablename}{Tabela}
 
 \linespread{1.5}
 \allowdisplaybreaks
@@ -38,7 +29,6 @@
 
 %--------------------------- ŻYWA PAGINA ------------------------
 
-\setlength{\headheight}{14pt}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
@@ -64,8 +54,7 @@
   \renewcommand{\footrulewidth}{0.0pt}
 }
 
-% ---------------- Kod ------------------------------------
-\usepackage{alltt}
+
 
 % ---------------- Nagłówki rozdziałów ---------------------
 
@@ -124,9 +113,6 @@
   {\leaders\hbox{\normalfont$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill\contentspage}
 \makeatother
 
-
-% Dodawanie pdfów
-\usepackage{pdfpages}
 
 
 % ---------------------- Spisy tabel i obrazków ----------------------
@@ -195,10 +181,10 @@
 
 % --------------------- Ustawienia użytkownika ------------------
 
-\newcommand{\tytul}{System obliczeń rozproszonych z węzłami działającymi w przeglądarce}
+\newcommand{\tytul}{Tytuł pracy dyplomowej w języku polskim}
 \renewcommand{\title}{English title}
 \newcommand{\type}{inżyniers} % magisters, licencjac
-\newcommand{\supervisor}{mgr inż. Jan Karwowski}
+\newcommand{\supervisor}{dr inż. Promotor X}
 
 
 
@@ -211,6 +197,23 @@
 % ------------------ STRONA Z PODPISAMI AUTORA/AUTORÓW I PROMOTORA ------------------
 
 
+\thispagestyle{empty}\newpage
+\null
+
+\vfill
+
+\begin{center}
+\begin{tabular}[t]{ccc}
+
+............................................. & \hspace*{100pt} & .............................................\\
+podpis promotora & \hspace*{100pt} & podpis autora
+
+
+\end{tabular}
+\end{center}
+
+
+
 % ---------------------------- ABSTRAKTY -----------------------------
 % W PRACY PO POLSKU, NAPIERW STRESZCZENIE PL, POTEM ABSTRACT EN
 
@@ -221,7 +224,28 @@
 \tytul
 \end{center}
 
-Dokument zawiera dokumentację powykonawczą systemu przygotowanego w ramach tworzonej przez nas pracy inżynierskiej. Zawiera ona opis architektury, wymagania systemowe, użyte biblioteki, instrukcję instalacji, uruchomienia, użycia oraz utrzymania, a także raport odstępstw od specyfikacji i scenariusz testów akceptacyjnych.
+Streszczam.
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elit, sed diam nonumyeirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamvoluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\\
+
+\noindent \textbf{Słowa kluczowe:} slowo1, slowo2, ...
+\end{abstract}
+}
+
+\null\thispagestyle{empty}\newpage
+
+{\selectlanguage{english}
+\begin{abstract}
+
+\begin{center}
+\title
+\end{center}
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyeirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamvoluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyeirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamvoluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\\
+
+\noindent \textbf{Keywords:} keyword1, keyword2, ...
 \end{abstract}
 }
 
@@ -229,20 +253,51 @@ Dokument zawiera dokumentację powykonawczą systemu przygotowanego w ramach two
 % --------------------- OŚWIADCZENIE -----------------------------------------
 
 
+\null\thispagestyle{empty}\newpage
+
+\null \hfill Warszawa, dnia ..................\\
+
+\par\vspace{5cm}
+
+\begin{center}
+Oświadczenie
+\end{center}
+
+\indent Oświadczam, że pracę \type ką pod
+tytułem ,,\tytul '', której promotorem jest \supervisor , wykonałam/wykonałem
+samodzielnie, co poświadczam własnoręcznym podpisem.
+\vspace{2cm}
+
+
+\begin{flushright}
+  \begin{minipage}{50mm}
+    \begin{center}
+      ..............................................
+
+    \end{center}
+  \end{minipage}
+\end{flushright}
+
+\thispagestyle{empty}
+\newpage
+
+\null\thispagestyle{empty}\newpage
+
+
 % ------------------- 4. Spis treści ---------------------
 \pagenumbering{gobble}
 \tableofcontents
 \thispagestyle{empty}
 
-% \newpage % JEŻELI SPIS TREŚCI MA PARZYSTĄ LICZBĘ STRON, ZAKOMENTOWAĆ
+\newpage % JEŻELI SPIS TREŚCI MA PARZYSTĄ LICZBĘ STRON, ZAKOMENTOWAĆ
 % ALBO JAK KTOŚ WOLI WTEDY DWIE STRONY ODSTĘPU, DODAĆ \null\newpage
 
 % -------------- 5. ZASADNICZA CZĘŚĆ PRACY --------------------
 \null\thispagestyle{empty}\newpage
 \pagestyle{fancy}
 \pagenumbering{arabic}
-\setcounter{page}{4} % JEŻELI Z POWODU DUŻEJ ILOŚCI STRON W SPISIE TREŚCI SIĘ NIE ZGADZA, TRZEBA ZMODYFIKOWAĆ RĘCZNIE
-        
+\setcounter{page}{11} % JEŻELI Z POWODU DUŻEJ ILOŚCI STRON W SPISIE TREŚCI SIĘ NIE ZGADZA, TRZEBA ZMODYFIKOWAĆ RĘCZNIE
+
 \chapter{Wstęp}
     Opis czego będzie dotyczyła praca inżynierska
 
@@ -312,11 +367,66 @@ Dokument zawiera dokumentację powykonawczą systemu przygotowanego w ramach two
     
     \section{Wnioski z projektu}
         
-\chapter{Bibliografia}
 
-\chapter{Wykaz skrótów}
 
-\chapter{Załączniki}
-    Informacje o dołączonych dokumentacjach frontendu, projektu C\# i API.
+% -------------------- 6. Bibliografia -----------------------
+% Bibliografia leksykograficznie wg nazwisk autorów
+% Dla ambitnych - można skorzystać z BibTeX-a
+
+
+\begin{thebibliography}{20}%jak ktoś ma więcej książek, to niech wpisze większą liczbę
+% \bibitem[numerek]{referencja} Autor, \emph{Tytuł}, Wydawnictwo, rok, strony
+% cytowanie: \cite{referencja1, referencja 2,...}
+
+\bibitem[1]{Ktos} A. Author, \emph{Title of a book}, Publisher, year, page--page.
+\bibitem[2]{Innyktos} J. Bobkowski, S. Dobkowski, Jak stworzyć bibliografię w BibTeX-u, \emph{Czasopismo nr}, rok, strona--strona.
+\bibitem[3]{B} C. Brink, Power structures, \emph{Algebra Universalis 30(2)}, 1993, 177--216.
+\bibitem[4]{H} F. Burris, H. P. Sankappanavar, \emph{A Course of Universal Algebra}, Springer-Verlag, Nowy Jork, 1981.
+\end{thebibliography}
+
+\thispagestyle{empty}
+\pagenumbering{gobble}
+
+
+
+% --- 7. Wykaz symboli i skrótów - jeśli nie ma, zakomentować
+\chapter*{Wykaz symboli i skrótów}
+
+\begin{tabular}{cl}
+nzw. & nadzwyczajny \\
+* & operator gwiazdka \\
+$\widetilde{}$ & tylda
+\end{tabular}
+\\
+Jak nie występują, usunąć.
+\thispagestyle{empty}
+
+
+% ----- 8. Spis rysunków - jeśli nie ma, zakomentować --------
+\listoffigures
+\thispagestyle{empty}
+Jak nie występują, usunąć.
+
+
+% ------------ 9. Spis tabel - jak wyżej ------------------
+\renewcommand{\listtablename}{Spis tabel}
+\listoftables
+\thispagestyle{empty}
+Jak nie występują, usunąć.
+
+
+% 10. Spis załączników - jak nie ma załączników, to zakomentować lub usunąć
+
+\chapter*{Spis załączników}
+
+Informacje o dołączonych dokumentacjach frontendu, projektu C\# i API.
+
+\begin{enumerate}
+\item Załącznik 1
+\item Załącznik 2
+\item Jak nie występują, usunąć rozdział.
+\end{enumerate}
+\thispagestyle{empty}
+
 
 \end{document}
