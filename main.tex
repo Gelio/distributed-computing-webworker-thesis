@@ -79,6 +79,8 @@
   {\normalfont \bfseries}
   {\thesubsection.}{1ex}{}
 
+% Dodawanie pdfów
+\usepackage{pdfpages}
 
 % Dodawanie pdfów
 \usepackage{pdfpages}
@@ -311,18 +313,170 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Opis czego będzie dotyczyła praca inżynierska
 
 \chapter{Analiza problemu}
+
+    Poniższy rozdział opisiuje kluczowe założenia projektu, istnienie podobnych rozwiązań w momencie realizacji projektu oraz wymagania funkcjonalne i niefunkcjonalne, które powinny być spełniane przez tworzony system.
+
     \section{Cel projektu}
-        Opisanie, że aktualnie nie ma na rynku rozwiązań pozwalających na obliczenia rozproszone w przeglądarce.
+        Celem projektu jest zaprojektowanie oraz zaimplementowanie systemu, który pozwoli na realizowanie obliczeń rozproszonych na wielu urządzeniach, na których dostępna jest jedynie przeglądarka internetowa. Tak utworzony system obliczeń rozproszonych powinien zagwarantować bardzo prostą konfigurację oraz szeroką wieloplatformowość. Aby rozwiązanie było konkurencyjne pod względem wydajności zdecydowano, że obliczenia w przeglądarce powinny być wykonywane w technologii \textit{WebAssembly} \cite{webassembly}. 
+        
+        Projekt przewiduje również przygotowanie bibliotek utworzonych w języku \textit{C\#} dostarczanych przez programistów do uruchomienia w \textit{WebAssembly}. Takie rozwiązanie ma na celu zmniejszenie nakładu pracy wymaganej przy dodawaniu nowego algorytmu uruchamianego na węzłach obliczeniowych.
+        
+        Przygotowany system powinien także reagować na odłączanie się węzłów obliczeniowych w trakcie wykonywania zadania oraz umożliwiać wielokrotnie przeprowadzenie tych samych obliczeń w celu wybrania najbardziej wiarygodnego wyniku.
+        
+        Część systemu działająca w przeglądarce internetowej powinna umożliwiać węzłom obliczeniowym delegowanie wielu wątków do wykonywania obliczeń.
     
     \section{Opis istniejących rozwiązań}
-        Blazor, Bridge.NET, JSIL, inne frameworki do obliczeń rozproszonych
-        Zaznaczenie, że my spinamy te rzeczy w jedno
+        W sieci Internet dostępne są obecnie rozwiązania umożliwiające wykonywanie obliczeń rozproszonych w przeglądarce internetowej, ale brakuje rozwiązań umożliwiających implementację algorytmów w języku \textit{C\#}, a następnie wykonywanie obliczeń w przeglądarce internetowej z wykorzystaniem \textit{WebAssembly}.
         
-    \section{Wymagania funkcjonalne}
-        Jak na dokumentacji z PZ
+        W miarę redukcji wymagań można odnaleźć rozwiązania, które częściowo pozwalają na realizację projektu. W momencie, gdy projekt nie wymaga umożliwienia implementacji algorytmów w przestępnym języku, a jedynie dostarczenia plików działających już w \textit{WebAssembly}, to można odnaleźć w sieci systemy, które również starają się rozwiązać ten problem. W chwili powstawania pracy inżynierskiej nie został odnaleziony jednak żaden system, który wyszedłby poza fazę testową i w pełni wspierał wykonywanie obliczeń rozproszonych zgodnie z założeniami projektu.
         
-    \section{Wymagania niefunkcjonalne}
-        Jak na dokumentacji z PZ
+		\section{Wymagania funkcjonalne}
+                
+            Na rysunku nr \ref{use-cases-diagram} przedstawiono w postaci diagramu UML zbiór przypadków użycia systemu dla aktora będącego użytkownikiem zaprojektowanego systemu oraz dla aktora będącego węzłem obliczeniowym.
+            
+            \begin{figure}[htbp]
+                \centering
+                \caption{Diagram przypadków użycia}
+                \label{use-cases-diagram}
+                \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/use-cases.pdf}
+            \end{figure}
+            
+            W tabeli nr \ref{wymagania-funkcjonalne} zebrano opisy poszczególnych przypadków użycia.
+            
+            \pagebreak
+            \begin{center}
+                \begin{longtable}{| p{.15\textwidth} | p{.20\textwidth} | p{.30\textwidth} | p{.30\textwidth} |}
+                    \caption{Wymagania funkcjonalne}
+                    \label{wymagania-funkcjonalne} \\
+                    \hline
+                    Aktor & Nazwa & Opis & Odpowiedź systemu \\ \hline
+                    \endfirsthead
+                    \multicolumn{4}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+                    \hline
+                    Aktor & Nazwa & Opis & Odpowiedź systemu \\ \hline
+                    \endhead
+                    
+                    Użytkownik
+                    & Dodaj definicję zadania
+                    & Dodanie nowej definicji zadania zawierającej dane opisowe oraz wymagane assembly.
+                    & Informacje o dodanej definicji zadania, włącznie z przebiegiem przetwarzania assembly do \foreignlanguage{english}{WebAssembly}. \\ \cline{2-4} 
+                    
+                    & Dodaj zadanie
+                    & Dodanie nowego zadanie na podstawie istniejącej już definicji. Dane wejściowe muszą zostać dostarczone jako plik. & Informacje o utworzonym zadaniu. \\ \cline{2-4} 
+                    
+                    & Zobacz informacje o zadaniu
+                    & Sprawdzenie informacji o zadaniu.
+                    & Informacje o zadaniu wraz z postępem wykonywania przez węzły obliczeniowe. \\ \cline{2-4} 
+                    & Zobacz listę zdefiniowanych zadań & Wyświetlenie skrótu informacji o dodanych definicjach zadań.                                  & Lista zawierająca definicje zadań zawierająca nazwę, opis oraz odnośnik do listy zadań utworzonych z każdej definicji. \\ \cline{2-4} 
+                    
+                    & Zobacz listę wykonywanych zadań   
+                    & Wyświetlenie informacji o zadaniach, które są obecnie wykonywane.                             
+                    & Lista zawierająca obecnie wykonywane zadania wraz z informacjami o postępie. \\ \cline{2-4} 
+                    
+                    & Zobacz listę zakończonych zadań  
+                    & Wyświetlenie informacji o zadaniach, których wykonanie jest już zakończone.
+                    & Lista zawierająca zakończone zadania. \\ \cline{1-4} 
+                    
+                    Użytkownik & Usuń zadanie
+                    & Usunięcie zadania.
+                    & Informacja, czy udało się usunąć zadanie. \\ \cline{2-4} 
+                    
+                    & Usuń definicję zadania
+                    & Usunięcie definicji zadania wraz z wszystkimi zadaniami utworzonymi na jej podstawie.
+                    & Informacja, czy udało się usunąć definicję zadania wraz z zadaniami utworzonymi na jej podstawie. \\ \cline{2-4} 
+                    
+                    & Pobierz wyniki
+                    & Pobranie wyników zakończonego zadania.
+                    & Dane binarne zawierające obliczone zadanie. \\ \cline{1-4} 
+                    
+                    Użytkownik
+                    & Pobierz dane wejściowe zadania
+                    & Pobranie danych wejściowych zadania.
+                    & Dane binarne zawierające plik wejściowy zadania. \\ \cline{2-4} 
+                    
+                    & Edytuj zadanie                 
+                    & Edycja zadania.
+                    & Informacje o  zmodyfikowanym zadaniu. \\ \cline{2-4} 
+                    
+                    & Edytuj definicję zadania
+                    & Edycja definicji zadania.
+                    & Informacje o zmodyfikowanej definicji zadania. \\ \hline
+                    
+                    Węzeł obliczeniowy
+                    & Pobierz nowe zadanie
+                    & Pobranie nowego zadania oczekującego na obliczenie.
+                    & Adres do plików zadania. \\ \cline{2-4} 
+                    
+                    & Dołącz do systemu
+                    & Zarejestrowanie się do listy węzłów obliczeniowych.
+                    & Unikalny token węzła obliczeniowego. \\ \cline{2-4} 
+                    
+                    & Zwróć wynik zadania
+                    & Wyślij wynik obliczonego zadania.
+                    & Adres do plików kolejnego zadania. \\ \hline
+                    
+                \end{longtable}
+            \end{center}
+            
+            
+            \section{Wymagania niefunkcjonalne}
+            
+            W tabeli nr \ref{wymagania-niefunkcjonalne} przedstawiono wymagania niefunkcjonalne pogrupowane w poszczególne kategorie URPS.
+            
+            \begin{center}
+                \begin{longtable}{| p{.20\textwidth} | p{.20\textwidth} | p{.60\textwidth} |}
+                    \caption{Wymagania niefunkcjonalne}
+                    \label{wymagania-niefunkcjonalne}
+                    \\
+                    \hline
+                    Obszar wymagań & Nr wymagania & Opis \\ \hline
+                    \endfirsthead
+                    \multicolumn{3}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+                    \hline
+                    Obszar wymagań & Nr wymagania & Opis \\ \hline
+                    \endhead
+                    \newcounter{WymaganiaNiefunkcjonalne}
+                    \setcounter{WymaganiaNiefunkcjonalne}{0}
+                    
+                    \makecell[l]{Użyteczność \\ (\textit{Usability})}
+                    & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                    & Wszystkie operacje użytkownika powinny być łatwo dostępne w przeglądarce udostępniającej widok posiadający co najmniej 200 znaków szerokości oraz 40 wierszy tekstu. \\ \cline{2-3}
+                    
+                    & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                    & Panel użytkownika powinien być dostępny bez użycia myszki. \\ \cline{2-3}
+                    
+                    & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                    & Część aplikacji dla węzłów obliczeniowych powinna być responsywna i dostosowywać się do wymiarów ekranu. \\ \hline
+                    
+                    \makecell[l]{Niezawodność \\ (\textit{Reliability})}
+                    & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                    & Aplikacja powinna być odporna na błędy pochodzące z programów od użytkownika, zarówno wykonywanych po stronie serwera, jak i węzłów obliczeniowych. \\ \cline{2-3}
+                    
+                    & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                    & Serwer po ponownym uruchomieniu nie powinien utracić dodanych wcześniej danych i kontynuować rozdzielanie zadań.  \\ \cline{2-3}                
+                    
+                    & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                    & Aplikacja powinna wykrywać rozbieżne wyniki podzadania zwrócone przez kilka węzłów obliczeniowych i kierować podzadanie do ponownego wykonania. \\ \hline
+                    
+                    \makecell[l]{Wydajność \\ (\textit{Performance})}
+                    & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                    & Aplikacja powinna obsługiwać każde zapytanie przez mniej niż 5 sekund przy specyfikacji serwera:
+                    
+                    \begin{itemize}
+                        \item Procesor Intel i5-6600, 4 rdzenie, 3.3 GHz
+                        \item 8 GB pamięci RAM
+                    \end{itemize}
+                    
+                    
+                    \\ \hline
+                    
+                    \makecell[l]{Utrzymanie \\ (\textit{Supportability})}
+                    & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                    & Aplikacja powinna zachować wsteczną zgodność z zadaniami zdefiniowanymi przez użytkowników. \\ \hline
+                    
+                \end{longtable}
+            \end{center}
+
     
 \chapter{Architektura systemu}
  Zaprojektowany system składa się z trzech modułów:
