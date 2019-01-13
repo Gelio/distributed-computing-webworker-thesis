@@ -1,0 +1,90 @@
+% !TeX document-id = {e174d913-b5b1-4fc5-b4f7-e69201eb351b}
+% !TeX program = xelatex
+\documentclass[12pt,twoside,a4paper]{article}
+% ten dokument należy kompilować za pomocą XeLaTeX-a
+
+\usepackage{fontspec,newunicodechar}
+\defaultfontfeatures{Ligatures=TeX}
+
+\usepackage{graphicx}
+\usepackage[vmargin = 25mm, hmargin = 20mm, bindingoffset=10mm]{geometry}
+
+\newfontfamily\arial{arial.ttf}
+
+\setlength{\parindent}{0mm}
+\linespread{1.5}
+
+% ----------------------------Do wypełnienia ----------------------
+\newcommand{\discipline}{Informatyka}
+% \newcommand{\spec}{Matematyka w naukach informacyjnych} % jak nie ma, to comment
+\renewcommand{\title}{System obliczeń rozproszonych z węzłami działającymi w przeglądarce}
+\newcommand{\supervisor}{mgr inż. Jan Karwowski}
+\renewcommand{\year}{2018}
+
+\newcommand{\authori}{Przemysław Proszewski}
+\newcommand{\albumi}{276878}
+\newcommand{\authorii}{Grzegorz Rozdzialik}
+\newcommand{\albumii}{276887}
+
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{center}
+
+\includegraphics[scale=1.]{img/politechnika} 
+\vspace{40pt}
+
+\includegraphics[scale=1.]{img/praca_inz}  % lub praca_lic lub praca_mgr
+
+{ \arial na kierunku \discipline
+ % \\ w specjalności \spec % jak nie ma, to comment
+
+\vspace{30pt}
+{\arial \large \title}
+
+\vspace{40pt}
+
+{\arial \huge \authori }
+
+\vspace{5pt}
+
+Numer albumu \albumi
+
+\vspace {20pt}
+{\arial \huge \authorii}
+
+\vspace{5pt}
+
+Numer albumu \albumii
+
+\vspace{40pt}
+
+promotor \\
+{\arial \supervisor}
+
+\vspace{15pt}
+ 
+opiekun naukowy  \\
+{\arial prof. dr hab. inż. Jacek Mańdziuk }
+
+ \vfill
+WARSZAWA \year \\
+}
+\end{center}
+
+
+%\newpage
+%\null
+%
+%\vfill
+%
+%\begin{center}
+%\begin{tabular}[t]{ccc}
+%............................................. & \hspace*{100pt} & .............................................\\
+%podpis promotora & \hspace*{100pt} & podpisy autorów
+%\end{tabular}
+%\end{center}
+
+
+\end{document}
