@@ -365,6 +365,49 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         Głównie problemy z mono-wasm i zaskoczenie z Dockerem na Arch Linux
     
     \section{Wnioski z projektu}
+        W tej sekcji zostaną przedstawione wnioski wyciągnięte z implementacji projektu.
+        
+        \subsection{Współpraca z eksperymentalnymi technologiami}
+            Z uwagi na eksperymentalną naturę projektu \textit{mono-wasm}, jego dokumentacja była niewielka. Dostępny był jeden przykład, za pomocą którego można było rzeczywiście uruchomić metodę z biblioteki DLL zbudowanej z kodu C\#, natomiast jak okazało się później, nie było to wystarczające do pełnego funkcjonowania systemu tworzonego w ramach pracy inżynierskiej.
+            
+            W tej sytuacji wymagany był kontakt z osobami tworzącymi projekt \textit{mono-wasm} oraz czytanie ich otwartego kodu źródłowego.
+            
+            Sam interfejs udostępniany przez projekt \textit{mono-wasm} wydał nam się zawiły. Wymagał on używania zmiennych globalnych oraz wywoływania metod z mało przyjaznymi wartościami parametrów.
+            
+            Brak dokumentacji i większej ilości przykładów sprawił, że nad tą częścią pracy inżynierskiej spędziliśmy spędzili więcej czasu, niż planowaliśmy.
+            
+            W przyszłości wykorzystując eksperymentalne biblioteki warto już na samym starcie dokładnie sprawdzić dokumentację oraz przykłady użycia do tego stopnia, żeby zweryfikować czy wszystkie wymagania projektu będą możliwe do zrealizowania. W razie wątpliwości na początku skontaktować się z twórcami czy poszukać informacji na Internecie zamiast robić to podczas prób implementacji.
+            
+            W tym projekcie wydajność obliczeń na węzłach nie była jednym z wymagań, ale gdyby tak było, to należałoby ją zweryfikować na początku projektu, aby uniknąć niespodzianek w przyszłości. W aktualnym stanie nie moglibyśmy znacznie przyśpieszyć obliczeń w przeglądarce ze względu na wykorzystanie do tego zewnętrznej biblioteki.
+        
+        \subsection{Tworzenie interfejsu użytkownika jest czasochłonne}
+            Planując harmonogram projektu na początku tworzenia pracy inżynierskiej nie wzięliśmy pod uwagę, że część dotycząca interfejsu użytkownika będzie tak czasochłonna, jak okazała się w rzeczywistości.
+            
+            Przy interfejsie użytkownika warto wziąć pod uwagę obsługę błędów. Często jest ona pomijana, a jest jednym z kluczowych praktyk poprawiających zadowolenie użytkownika z korzystania z systemu (ang. \textit{User Experience}).
+            
+            W przypadku podobnie wyglądających tabel, formularzy i innych komponentów warto jest poświęcić czas na stworzenie ogólnych i łatwych do skonfigurowania komponentów, które będą zawierały całą logikę w sobie, a następnie prostego użycia ich w wielu miejscach na stronie.
+            
+            Oprócz spójnego wyglądu tychże komponentów wszystkie zmiany logiki są wymagane wyłącznie w jednym miejscu i nie ma ryzyka, że pewne miejsce w aplikacji zostanie pominięte podczas wprowadzania modyfikacji.
+            
+            Jesteśmy zadowoleni z takiego podejścia zastosowanego przez nas w tej pracy inżynierskiej i stojąc przed podobnym zadaniem w przyszłości ponownie z niego skorzystamy.
+        
+        \subsection{Integracja w środowisku wdrożeniowym}
+            Podczas uruchomienia projektu w środowisku wdrożeniowym mogą pojawić się niespodziewane problemy. Tak było w przypadku tej pracy inżynierskiej.
+            
+            Z uwagi na fakt, że integrację w środowisku wdrożeniowym rozpoczęliśmy na miesiąc przed oddaniem projektu, problemy te można było rozwiązać w spokoju i zgodnie z zaleceniami.
+            
+            Próbując uruchomić system po raz pierwszy w środowisku wdrożeniowym niedługo przed oddaniem projektu mogłoby się okazać, że powstałych problemów nie da się rozwiązać w krótkim czasie, więc oddanie projektu by się opóźniło.
+            
+            Warto zatem próbować uruchomić system na jak największej ilości środowisk docelowych jak najwcześniej.
+            
+        \subsection{Dokładna weryfikacja wymagań}
+            Jednym z początkowych wymagań było uruchamianie kodu użytkownika w środowisku izolowanym na serwerze tak, aby nie mógł wyrządzić on niepożądanych działań w systemie ani nie mógł odczytać plików systemowych.
+            
+            Zweryfikowaliśmy na początku projektu, że takie rozwiązanie jest dostępne w \textit{.NET Standard 2.0}. Wykorzystując \textit{.NET Core 2.2}, który implementuje \textit{.NET Standard 2.0} wywnioskowaliśmy, że będziemy mogli z niego skorzystać w naszym projekcie.
+            
+            Okazało się jednak, że mimo, że takie rozwiązanie (\texttt{AppDomain}) jest w teorii w \textit{.NET Standard 2.0}, to nie jest wspierane w \textit{.NET Core}, zatem musieliśmy zrezygnować z tego wymagania.
+            
+            Na przyszłość warto pamiętać, aby w pełni zweryfikować wymagania na wstępie, szczególnie jeżeli będzie się wykorzystywało mechanizmy, z którymi nie ma się do czynienia na porządku dziennym.
         
 
 
