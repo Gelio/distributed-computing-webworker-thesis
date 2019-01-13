@@ -673,7 +673,14 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         Benchmark wydajności C\# w WASM vs C\# natywnie
     
     \section{Możliwości na rozwój aplikacji}
+        Poniższa sekcja opisuje możliwości dalszego rozwoju aplikacji.
     
+        \subsection{Poprawienie wydajności węzłów obliczeniowych}
+        W ramach dalszego rozwoju utworzonej aplikacji należałoby wykorzystywać kompilację \textit{C\#} do \textit{WebAssembly}, aby zagwarantować wyższą wydajność wykonywanych obliczeń oraz ograniczyć ilość danych przesyłanych do węzłów obliczeń. Kompilacja z wyprzedzeniem jest jednak zależna od dalszego rozwoju biblioteki \textit{mono-wasm}.
+        
+        \subsection{Zmniejszenie obciążenia serwera API}
+        W obecnie przygotowanym systemie część operacji z bibliotek dostarczanych przez użytkowników uruchamiana jest na serwerze odpowiedzialnym za obsługę zapytań z API. Powyższe operacje mogą być potencjalnie obciążające i ograniczać wydajność serwera API. W celu zabezpieczenia wydajności serwera można przenieść wykonywanie wszystkich operacji z bibliotek użytkowników poza serwer API.
+        
     \section{Problemy implementacyjne}
         Poniższa sekcja opisuje problemy implementacyjne napotkane podczas tworzenia aplikacji.
         
