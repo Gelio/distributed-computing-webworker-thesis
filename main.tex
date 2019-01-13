@@ -670,7 +670,16 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 
 \chapter{Podsumowanie}
     \section{Własności rozwiązania}
-        Benchmark wydajności C\# w WASM vs C\# natywnie
+        Poniższa sekcja opisuje wybrane własności utworzonego systemu.
+        
+        \subsection{Wydajność}
+            Wydajność \textit{C\#} uruchamianego w interpreterze w przeglądarce okazała się być krytycznie niska w porównaniu do \textit{C\#} kompilowanego do programu wykonywalnego. Wykonane testy wydajności wykazały, że algorytm napisany w \textit{C\#} uruchamiany natywnie jest aż do 250x szybszy od tego samego algorytmu uruchomionego w interpreterze dostarczonym przez \textit{mono-wasm}.
+            
+            W chwili powstawania tego dokumentu autorzy \textit{mono-wasm} pracują nad kompilacją \textit{C\#} do \textit{WebAssembly}. W momencie, gdy to zadanie się powiedzie, to różnica w wydajności powinna znacznie zmaleć i nie wpływać znacząco na czas wykonywania obliczeń.
+            
+        \subsection{Wieloplatformowość}
+            Dowolne urządzenie wyposażone w przeglądarkę internetową obsługującą \textit{WebAssembly} może zostać węzłem obliczeniowym. W momencie tworzenia powyższego dokumentu wszystkie przeglądarki posiadające conajmniej 1\% udziału w rynku przeglądarek posiadają w pełniu działającą implementację \textit{WebAssembly}. 
+        
     
     \section{Możliwości na rozwój aplikacji}
         Poniższa sekcja opisuje możliwości dalszego rozwoju aplikacji.
