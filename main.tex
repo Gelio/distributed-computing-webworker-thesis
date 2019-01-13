@@ -311,7 +311,21 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 \setcounter{page}{11} % JEŻELI Z POWODU DUŻEJ ILOŚCI STRON W SPISIE TREŚCI SIĘ NIE ZGADZA, TRZEBA ZMODYFIKOWAĆ RĘCZNIE
 
 \chapter{Wstęp}
-    Opis czego będzie dotyczyła praca inżynierska
+
+    Obliczenia rozproszone pozwalają na równoległą pracę wielu niezależnych węzłów obliczeniowych nad częściami tego samego problemu. Tradycyjnie węzłami obliczeniowymi były komputery z systemem operacyjnym, na którym zainstalowana była aplikacja kliencka węzła.
+    % Komunikowała się ona z głównym serwerem, który rozdzielał zadania poszczególnym węzłom, odbierał wyniki oraz scalał je w ostateczny wynik zadania.
+    
+    W ostatnich miesiącach coraz bardziej popularna stawała się technologia {\selectlanguage{english}WebAssembly}, pozwalająca na wykonanie w przeglądarce instrukcji w formacie binarnym o wydajności zbliżonej do natywnej.
+    
+    Stworzenie aplikacji klienckiej działającej w {\selectlanguage{english}WebAssembly} pozwoli na ułatwienie procesu dodawania nowych węzłów obliczeniowych do systemu, ponieważ wymagane będzie jedynie wejście na odpowiednią stronę internetową zamiast instalacji aplikacji klienckiej w systemie, przy jednoczesnym zachowaniu możliwie dużej wydajności z uwagi na wykorzystanie binarnego formatu instrukcji.
+
+    W ramach pracy inżynierskiej stworzony został system do obliczeń rozproszonych pozwalający administratorowi na dodanie nowego zadania, śledzenie postępu w obliczeniach, inspekcję błędów (o ile wystąpiły podczas obliczeń) oraz pobranie wyników. Dla nieautoryzowanych użytkowników pozostaje funkcjonalność uczestniczenia w obliczeniach jako węzeł obliczeniowy.
+
+    Jako język do implementacji algorytmów rozwiązujących problemu został wybrany język C\#. Posiada on dużą ilość pakietów pomocnych przy implementacji operacji matematycznych, a także posiada statyczne typowanie oraz jest językiem wysokiego poziomu, zatem powinien być przystępny dla użytkowników tworzonego systemu.
+    
+    Poza bazową funkcjonalnością jaką jest kontrolowanie obliczeń, stworzony system zawiera środki bezpieczeństwa, które utrudnią bądź zapobiegną szkodliwym akcjom, które mogą chcieć podjąć osoby trzecie, takie jak przesyłanie błędnych wyników obliczeń.
+    
+    
 
 \chapter{Analiza problemu}
 
