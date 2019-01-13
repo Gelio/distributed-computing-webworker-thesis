@@ -25,6 +25,14 @@
 \usepackage{indentfirst} % opcjonalnie; pierwszy akapit z wcięciem
 \setlength{\parindent}{5mm}
 
+%--------------------------- Tabele -----------------------------
+\usepackage{longtable}
+\usepackage{makecell}
+\renewcommand{\tablename}{Tabela}
+
+
+%-------------------------- Kod źródłowy ------------------------
+\usepackage{alltt}
 
 %--------------------------- ŻYWA PAGINA ------------------------
 
@@ -335,25 +343,421 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         \subsection{Poziom zaufania węzłów}
 
 \chapter{Opis aplikacji}
-    Rozdział opisujący to, co stworzyliśmy
+    Poniższy rozdział opisuje przygotowany produkt. Na potrzeby tego rozdziału zostały utworzone: lista wykorzystywanych bibliotek wraz z ich licencjami, instrukcje przydatne podczas pracy z opisywanym systemem oraz lista testów akceptacyjnych wraz z ich rezultatami.
     
     \section{Wykorzystane biblioteki}
+         W tej sekcji zostaną przedstawione wykorzystane biblioteki z podziałem na część serwera aplikacyjnego i część serwera panela administracyjnego.
+        
         \subsection{Biblioteki serwera aplikacyjnego}
+        Tabela \ref{biblioteki-serwer} zawiera biblioteki użyte w serwerze aplikacyjnym wraz z ich licencjami.
+        
+        \begin{center}
+        	\begin{longtable}{| p{.10\textwidth} | p{.20\textwidth} | p{.40\textwidth} | p{.15\textwidth} |}
+        		\caption{Wykorzystane biblioteki w serwerze aplikacyjnym wraz z ich licencjami}
+        		\label{biblioteki-serwer} \\
+        		\hline
+        		nr. & Nazwa i wersja & Opis & Licencja \\ \hline
+        		\endfirsthead
+        		\multicolumn{4}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+        		\hline
+        		nr. & Nazwa i wersja & Opis & Licencja \\ \hline
+        		\endhead
+        		
+        		1 & ASP.NET Core v2.2.0 & Framework do tworzenia serwerów API. & Apache 2.0 \\ \hline
+        		2 & JSON API .NET Core v2.4.0 & Biblioteka pozwalająca na tworzenie kontrolerów API zgodnych ze standardem JSON API. & MIT \\ \hline
+        		3 & Entity Framework Core v2.2.0 & Biblioteka pozwlająca na łatwą komunikację z bazą danych z poziomu kodu. & Apache 2.0 \\ \hline
+        		4 & Npgsql EntityFrameworkCore PostrgreSQL v2.2.0 & Biblioteka pozwalająca na komunikację z bazą danych PostgreSQL. & PostgreSQL \cite{licencja-postgresql} \\ \hline
+        		5 & Mono v5.16.0 & Implementacja .NET Framework działająca w systemie UNIX. & Własna licencja Mono \cite{licencja-mono} \\ \hline
+        		6 & mono-wasm v5.16.0 & Interpreter języka C\# działający w technologii WebAssembly. & Własna licencja Mono \cite{licencja-mono} \\ \hline
+        		7 & NUnit 3.11.0 & Biblioteka do tworzenia i uruchamiania testów jednostkowych. & NUnit License \cite{licencja-nunit} \\ \hline
+        		8 & Moq v4.10.1 & Biblioteka pozwalająca na tworzenie zaślepek podczas testów jednostkowych. & BSD-3-Clause \\ \hline
+        	\end{longtable}
+        \end{center}
+        
         \subsection{Biblioteki serwera udostępniającego interfejs użytkownika}
+        Tabela \ref{biblioteki-frontend} zawiera biblioteki użyte w serwerze budującym i wyświetlającym interfejs użytkownika wraz z ich licencjami.
+        
+        \begin{center}
+        	\begin{longtable}{| p{.10\textwidth} | p{.20\textwidth} | p{.40\textwidth} | p{.15\textwidth} |}
+        		\caption{Wykorzystane biblioteki w serwerze interfejsu użytkownika wraz z ich licencjami}
+        		\label{biblioteki-frontend} \\
+        		\hline
+        		nr. & Nazwa i wersja & Opis & Licencja \\ \hline
+        		\endfirsthead
+        		\multicolumn{4}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+        		\hline
+        		nr. & Nazwa i wersja & Opis & Licencja \\ \hline
+        		\endhead
+        		
+        		1 & date-fns v1.30.1 & Biblioteka do łatwego zarządzania datami & MIT \\ \hline
+        		2 & evergreen-ui v4.0.2 & Biblioteka z komponentami interfejsu użytkownika & MIT \\ \hline
+        		3 & express v4.16.4 & Biblioteka pozwalająca na stworzenie serwera HTTP w Node.js & MIT \\ \hline
+        		4 & formik v1.3.1 & Biblioteka do zarządzania formularzami w aplikacji & MIT \\ \hline
+        		5 & immutable v4.0.0-rc.11 & Biblioteka dostarczająca niezmienne struktury danych & MIT \\ \hline
+        		6 & kitsu v6.4.0 & Biblioteka do komunikacji z JSON API & MIT \\ \hline
+        		7 & next v7.0.2 & Framework do budowania aplikacji w Javascripcie umożliwiający Server-Side Rendering & MIT \\ \hline
+        		8 & normalize.css v8.0.1 & Biblioteka od normalizacji stylowania komponentów w przeglądarce & MIT \\ \hline
+        		9 & path-to-regexp v2.4.0 & Biblioteka pozwalająca na sprawdzenie czy URL pasuje do danej ścieżki na stronie & MIT \\ \hline
+        		10 & ramda v0.25.0 & Biblioteka udostępniająca wiele pomocniczych funkcji & MIT \\ \hline
+        		11 & React v16.5.2 & Framework do wyświetlania interfejsów użytkownika & MIT \\ \hline
+        		12 & React-table v6.8.6 & Biblioteka udostępniająca komponent tabeli & MIT \\ \hline
+        		13 & yup v0.26.6 & Biblioteka udostępniająca narzędzia do budowania walidatorów danych & MIT \\ \hline
+        		14 & jest v23.6.0 & Biblioteka umożliwiająca tworzenie i uruchamianie testów jednostkowych & MIT \\ \hline
+        	\end{longtable}
+        \end{center}
     
     \section{Platforma docelowa}
-        Wymagania itp.
+		Do instalacji i uruchomienia systemu potrzebny wymagany jest system o następujących parametrach:
+		
+		\begin{itemize}
+			\item System operacyjny Arch Linux 
+			\item Minimalnie 2 GB pamięci RAM
+			\item Minimalnie 10 GB pamięci dyskowej
+		\end{itemize}
+		
+		Do uruchomienia systemu potrzebne będą następujące programy:
+		
+		\begin{itemize}
+			\item Docker (w wersji minimalnie 18.09.0)
+			\item Docker-compose (w wersji minimalnie 1.23.2)
+		\end{itemize}
     
     \section{Instrukcje}
-        \subsection{Instrukcja instalacji}
-        \subsection{Instrukcja wdrożenia}
-        \subsection{Instrukcja uruchomienia}
-        \subsection{Instrukcja użycia}
-            W wersji skróconej, a nie takiej jak na dokumentacji z PZ
+        Poniższy rozdział zawiera instrukcje dotyczące instalacji, wdrożenia, uruchomienia, użycia oraz utrzymania systemu.
+    
+	\subsection{Instrukcja instalacji}
+		W celu instalacji wymaganych zależności należy wywołać następujące komendy:
+
+		\begin{alltt}
+	# pacman -S docker
+	# systemctl start docker
+	# pacman -S docker-compose
+		\end{alltt}
+
+		W celu weryfikacji poprawnej instalacji należy wywołać komendy:
+		\begin{alltt}
+	# docker version
+	# docker-compose -v
+		\end{alltt}
+
+		Jeśli powyższe komendy poprawnie wyświetlą zainstalowaną wersję, to znaczy, że instalacja się powiodła. 
+
+	\subsection{Instrukcja wdrożenia}
+	
+		Jeśli projekt jest uruchamiany na serwerze, który nie posiada ograniczeń w dostępie do sieci, to można przejść do podpunktu \ref{start-system}. W przeciwnym wypadku należy zbudować obrazy \textit{Docker} na maszynie z dostępem do sieci, a następnie skopiować przygotowane obrazy na maszynę docelową, na której system ma być uruchomiony.
+		
+		Zakładamy, że katalog zawierający kod źródłowy projektu nazwany jest \texttt{distributed-computing-webworker}. Jeżeli będzie nazwany w inny sposób, poniższe komendy powinny zostać zmodyfikowane, zamieniając \texttt{distributed-computing-webworker} w nazwach obrazów na nazwę katalogu, w którym znajduje się kod źródłowy projektu.
+		
+		W celu zbudowania obrazów \textit{Docker} należy wywołać następujące komendy na maszynie budującej:
+
+		\begin{alltt}
+	# docker-compose -f docker-compose.yml -f docker-compose.prod.yml \textbackslash
+	up --build --no-start
+	# docker save distributed-computing-webworker_backend \textbackslash
+	distributed-computing-webworker_frontend postgres \textbackslash 
+	nginx | gzip > docker_images.tar.gz    
+		\end{alltt}
+
+		Następnym krokiem jest skopiowanie wyeksportowanych obrazów oraz plików \textit{docker-compose.yml}, \textit{docker-compose.prod.yml} na maszynę decelową. Można to wykonać na przykład wykorzystując narzędzie \textit{scp}:
+
+		\begin{alltt}
+	# scp docker_images.tar.gz docker-compose.yml docker-compose.prod.yml \textbackslash
+	username@production:~
+		\end{alltt}
+
+		gdzie \texttt{username} jest nazwą konta użytkownika w systemie maszyny docelowej, a \texttt{production} jest adresem maszyny docelowej.
+		
+		Następnie należy zaimportować skopiowane obrazy do \textit{Docker} uruchomionego na maszynie docelowej wywołując na niej następującą komendę:
+
+		\begin{alltt}
+	# gunzip -c ~/docker_images.tar.gz | docker load
+		\end{alltt}
+
+
+
+	\subsection{Instrukcja uruchomienia}
+		\label{start-system}
+		Aby uruchomić projekt należy z katalogu zawierającego pliki \textit{docker-compose.yml}, \textit{docker-compose.prod.yml} wywołać komendę:
+
+		\begin{alltt}
+	# docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+		\end{alltt}
+
+		Jeśli w systemie nie znajdują się zbudowane obrazy \textit{Docker}, to podczas trwania tej komendy zostaną one zbudowane.
+		
+		Po zakończeniu wykonywania komendy działanie systemu można zweryfikować przez próbę wejścia na adres \url{http://[adres_serwera]}. Jeśli uruchomienie systemu się powiodło, to powinna zostać wyświetlona strona zawierająca informacje o projekcie.
+
+    \subsection{Instrukcja utrzymania}
+
+		Poniższa sekcja zawiera informacje dotyczące zarządzania stanem całego systemu oraz opis tworzenia kopii zapasowej i przywracania jej.
+
+		\subsubsection{Usunięcie systemu}
+
+			Aby skasować system należy użyć komendy:
+
+			\begin{alltt}
+	docker-compose -f docker-compose.yml -f docker-compose.prod.yml down
+			\end{alltt}
+
+			Spowoduje to usunięcie wszystkich kontenerów, na których działał system, wraz z wszelkimi danymi zapisanymi w systemie.
+
+		\subsubsection{Zatrzymanie systemu}
+
+			Aby zatrzymać system zachowując dane należy użyć komendy:
+			
+			\begin{alltt}
+	docker-compose -f docker-compose.yml -f docker-compose.prod.yml stop
+			\end{alltt}
+
+			Ponowne uruchomienie systemu należy wykonać zgodnie z punktem \ref{start-system}.
+
+		\subsubsection{Tworzenie kopii zapasowej}
+
+			Aby utworzyć kopię zapasową należy uruchomić skrypt \textit{backup.sh} znajdujący się w katalogu \textit{scripts} umieszczonym w głównym folderze projektu.
+			
+			Kopia bazy danych oraz definicji zadań zostanie zapisana w pliku \textit{backup\_data.tar.gz}
+
+		\subsubsection{Przywracanie kopii zapasowej}
+
+			Aby przywrócić kopię zapasową należy uruchomić skrypt \textit{restore.sh} podając jako argument nazwę archiwium zawierającego kopię zapasową. Skrypt \textit{restore.sh} znajduje się w katalogu \textit{scripts} w głównym folderze projektu.
+
+    \subsection{Instrukcja użycia}
+		W poniższej sekcji przedstawiono instrukcję użycia produktu z podziałem na etap logowania, dodawania definicji zadania, dodawania zadania, obliczania zadania oraz pobierania wyników.
+		
+		\subsubsection{Logowanie}
+		
+		Po uruchomieniu systemu interfejs użytkownika dostępny jest pod adresem \url{http://[adres_serwera]}. Dostęp do wykonywania obliczeń dostępny jest dla wszystkich użytkowników, a panel administracyjny wymaga zalogowania.
+		Domyślne dane do logowania do panelu administracyjnego:
+
+		\begin{alltt}
+	login: admin
+	hasło: D1stributed\$
+		\end{alltt}
+
+
+		Po pierwszym zalogowaniu należy zmienić domyślne hasło. Opcja zmiany hasła jest dostępna z poziomu paska bocznego.
+		
+		\subsubsection{Dodanie definicji zadania}
+		\label{distributed-task-definition-add-guide}
+		
+		Aby dodać nową definicję zadania należy przejść do zakładki \texttt{Distributed Task Definitions}.
+		
+		Po przejściu do zakładki z definicjami zadań zostanie wyświetlona tabela zawierająca zadania dodane już do systemu. W prawym górnym rogu znajduje się ikona plusa na zielonym tle, po kliknięciu w nią nastąpi przekierowanie do formularza dodawania nowej definicji zadania.
+		
+		
+		Aby dodać nową definicję zadania należy wypełnić wyświetlony formularz.
+		
+		
+		W polu \textit{MainDLL} należy umieścić bibliotekę implementującą interfejs \textit{IProblemPlugin} z biblioteki \textit{DistributedComputingLibrary}. Pole \textit{AdditionalDlls} powinno dostarczyć wszystkie pozostałe biblioteki znajdujące się folderze budowy definicji zadania. Po wypełnieniu wszystkich pól należy wysłać formularz klikająć przycisk \texttt{Submit}.
+		
+		Przykładowe zadania dostępne są w folderze \textit{example-problems} znajdującym się w głównym katalogu projektu.
+		
+		
+		\subsubsection{Dodanie nowego zadania}
+		\label{distributed-task-add-guide}
+		
+		Po dodaniu nowej definicji zadania następuje przekierowanie do strony wyświetlającej szczegóły dodanego zadania. 
+		Z tej strony możemy zlecić obliczenia nowych danych wejściowych. W tym celu należy kliknąć na ikonę plusa na zielonym tle znajdującego się nad tabelą z zadaniami.
+		
+		
+		W celu zlecenia wykonania zadania należy wypełnić widoczny formularz. 
+		
+		
+		Pole \textit{Priority} określa priorytet zadania, im jest wyższy, tym szybciej zostanie ono przekazane do wykonania.
+		
+		Pole \textit{Trust level to complete} określa wymaganą sumę poziomów zaufania węzłów obliczeniowych wykonujących każde z podzadań, aby móc je zakończyć. 
+		
+		W polu \textit{Task input} należy umieścić plik zawierający dane wejściowe.
+		
+		Po wypełnieniu wszystkich pól należy wysłać formularz klikająć w przycisk \texttt{Submit}. Po kliknięciu nastąpi przekierowanie do detali utworzonego zadania. 
+		  
+		
+		W skład detali wchodzą informacje o utworzonym zadaniu oraz status poszczególnych podzadań. W górnej części widocznej strony znajdują się również przciski pozwalające na zarządzanie zadaniem oraz pobranie danych wejściowych.
+		
+		\subsubsection{Rozpoczęcie obliczeń}
+		
+		Aby obliczenia się rozpoczęły do systemu musi dołączyć conajmniej jeden węzęł obliczeniowy. Aby urządzenie chcące zostać węzłem obliczeniowym dołączyło do systemu, musi ono wejść do zakładki \texttt{Worker} dostępnej w pasku bocznym, a następnie kliknąć na przycisk \texttt{Start the worker}. Po kliknięciu w przycisk urządzenie zarejestruje się jako węzeł obliczeniowy i zaczynie odpytywać o nowe zadania. Węzły sieciowe mogą w każdym momencie przerwać obliczenia przez kliknięcie w przycisk \texttt{Stop the worker} oraz dowolnie konfigurować ilość udostępnianych wątków. 
+		
+		
+		Stan węzła obliczeniowego jest dostępny w sekcji \textit{Worker information}, a status użyczonych wątków jest udostępniony do wglądu w tabeli \textit{Individual thread statuses}. W momencie, gdy stan węzła zawiera informację o braku dostępnych zadań do obliczenia wiemy, że nasze zadanie zostało wykonane.
+		
+		
+		\subsubsection{Sprawdzenie wyników}
+		
+		Aby sprawdzić rezultat zleconego zadania należy wybrać opcję \texttt{Distributed Tasks} w panelu bocznym. Po przejściu do sekcji ze zleconymi zadaniami zostanie wyświetlona strona zawierająca zadania znajdujące się już w systemie. Aby sprawdzić wynik dodanego wcześniej zadania należy kliknąć w przycisk \texttt{See details} w wierszu zawierającym to zadanie.
+		
+		
+		Po przekierowaniu do strony zawierającej detale zadania można pobrać plik wynikowy klikając na przycisk \texttt{Download results}.
+
     
     \section{Testy akceptacyjne}
+    	
+    	Testy akceptacyjne zostały podzielone na dwie kategorie ze względu na poziom uprawnień użytkownika.
+    	
+    	\subsection{Użytkownik anonimowy}
+    		Poniższe testy dotyczą użytkownika, który nie jest zalogowany w systemie.
+    	
+    	
+    		\subsubsection{Zalogowanie}	
+    			Użytkownik uzyskuje pełen dostęp do systemu (zostaje mu przyznany poziom uprawnień \textit{Administrator}). 
+    		
+	    		\texttt{Lista kroków}:
+	    		\begin{enumerate}
+	    			\item Przejście do strony logowania
+	    			\item Podanie poprawnych danych logowania w formularzu
+	    			\item Wysłanie formularza
+	    		\end{enumerate}
+	    	
+    		\subsubsection{Uruchomienie węzła obliczeniowego}	
+				Użytkownik zostaje zarejestrowany jako węzęł obliczeniowy i zaczyna odpytywać serwer 
+				
+				\texttt{Lista kroków}:
+				\begin{enumerate}
+					\item Przejście do panelu węzła obliczeniowego
+					\item Kliknięcie w przycisk \texttt{Start the worker}
+				\end{enumerate}
+		    
+        	\subsubsection{Zatrzymanie węzła obliczeniowego}	
+    			Wykonywanie obliczeń zostaje anulowane, a użytkownik może swobodnie opuścić stronę węzła obliczeniowego.
     
+			    \texttt{Lista kroków}:
+			    \begin{enumerate}
+					\item Przejście do panelu węzła obliczeniowego
+					\item Kliknięcie w przycisk \texttt{Start the worker}
+					\item Kliknięcie w przycisk \texttt{Stop the worker}
+			    \end{enumerate}
+
+    		\subsubsection{Zwiększenie ilości wątków}	
+				Węzeł obliczeniowy do obliczania zadań będzie używał o jednego wątku więcej niż poprzednio. 
+
+				\texttt{Lista kroków}:
+				\begin{enumerate}
+					\item Przejście do panelu węzła obliczeniowego
+					\item Kliknięcie w przycisk \texttt{Start the worker}
+					\item Kliknięcie w przycisk z ikoną plusa
+				\end{enumerate}
+
+    		\subsubsection{Zmniejszenie ilości wątków}	
+				Jeśli usuwany wątek wykonywał obliczenie, to system zgłasza do serwera jego anulowanie. Węzeł obliczeniowy do obliczania zadań bedzie teraz używał o jednego wątku mniej niż poprzednio (chyba, że poprzednio używał tylko 1 wątku).
+
+				\texttt{Lista kroków}:
+				\begin{enumerate}
+					\item Przejście do panelu węzła obliczeniowego
+					\item Kliknięcie w przycisk \texttt{Start the worker}
+					\item Kliknięcie w przycisk z ikoną minusa
+				\end{enumerate}
+
+		\subsection{Administrator}
+			Poniższe testy są wykonywane z poziomem uprawnień administratora.
+
+    		\subsubsection{Dodanie definicji zadania}	
+				Zadanie zostaje zapisane w systemie i jest widoczne w tabeli z zadaniami. 
+
+				\texttt{Lista kroków}:
+				\begin{enumerate}
+		            \item Przejście do strony z tabelą zawierającą definicje zadania
+					\item Kliknięcie w ikonę plusa
+					\item Wypełnienie formularza zgodnie z \ref{distributed-task-definition-add-guide}
+					\item Wysłanie formularza
+				\end{enumerate}
+
+    		\subsubsection{Informacje o zadaniu}	
+				Wyświetlona strona zawiera informacje o zadaniu wraz z postępem wykonywania przez węzły obliczeniowe. 
+				
+				\texttt{Lista kroków}:
+				\begin{enumerate}
+					\item Przejście do tabeli z zadaniami
+					\item Kliknięcie w przycisk \texttt{See details} przy dowolnym zadaniu
+				\end{enumerate}
+
+    		\subsubsection{Lista definicji zadań}	
+    			Wyświetlona strona zawiera listę definicji zadań wraz z ich nazwą oraz odnośnikiem do szczegółowych informacji o każdej z definicji.
+
+				\texttt{Lista kroków}:
+				\begin{enumerate}
+	            	\item Przejście do tabeli z definicjami zadań
+				\end{enumerate}
+
+    		\subsubsection{Lista dodanych zadań}	
+				Wyświetlona strona zawiera listę zadań wraz z ich nazwą, odnośnikiem do definicji zadania oraz odnośnikiem do szczegółów zadania.
+				
+				\texttt{Lista kroków}:
+				\begin{enumerate}
+					\item Przejście do tabeli z zadaniami
+				\end{enumerate}
+
+    		\subsubsection{Usunięcie zadania}	
+				Zadanie wraz z podzadaniami zostają usunięte z systemu.
+				
+				\texttt{Lista kroków}:
+				\begin{enumerate}
+					\item Przejście do tabeli z zadaniami
+					\item Kliknięcie w przycisk \texttt{Delete} przy zadaniu
+				\end{enumerate}
+
+    		\subsubsection{Usunięcie definicji zadania}	
+    			Definicja zadania wraz z zadaniami i podzadaniami zostają usunięte z systemu.
+    			
+				\texttt{Lista kroków}:
+				\begin{enumerate}
+					\item Przejście do tabeli z definicjami zadań
+					\item Kliknięcie w przycisk \texttt{Delete} przy definicji zadania
+				\end{enumerate}
+
+    		\subsubsection{Pobieranie wyników}	
+				Po kliknięciu w przycisk zostaje pobrany plik zawierający
+				wynik zadania.
+				
+				\texttt{Lista kroków}:
+				\begin{enumerate}
+					\item Przejście do tabeli z zadaniami
+					\item Kliknięcie w przycisk \texttt{See details} przy zadaniu o statusie \textit{Done}
+					\item Kliknięcie w przycisk \texttt{Download results}
+				\end{enumerate}
+
+    		\subsubsection{Pobieranie danych wejściowych}	
+				Po kliknięciu w przycisk zostaje pobrany plik zawierający dane wejściowe zadania.
+				
+				\texttt{Lista kroków}:
+				\begin{enumerate}
+					\item Przejście do tabeli z zadaniami
+					\item Kliknięcie w przycisk \texttt{See details} przy zadaniu
+					\item Kliknięcie w przycisk \texttt{Download input data}
+				\end{enumerate}
+
+    		\subsubsection{Edycja zadania}	
+				Informacje o zadaniu zostają zmienione.
+				
+				\texttt{Lista kroków}:
+				\begin{enumerate}
+					\item Przejście do tabeli z zadaniami
+					\item Kliknięcie w przycisk \texttt{Edit} przy zadaniu
+					\item Wypełnienie oraz wysłanie formularza
+				\end{enumerate}
+
+    		\subsubsection{Edycja definicji zadania}	
+				Informacje o definicji zadania zostają zmienione.
+				
+				\texttt{Lista kroków}:
+				\begin{enumerate}
+					\item Przejście do tabeli z definicjami zadań
+					\item Kliknięcie w przycisk \texttt{Edit} przy definicji zadania
+					\item Wypełnienie oraz wysłanie formularza
+				\end{enumerate}
+
+    		\subsubsection{Wylogowanie}
+    			Użytkownik zostaje wylogowany i przestaje mieć status administratora.
+
+				\texttt{Lista kroków}:
+				\begin{enumerate}
+					\item Kliknięcie w przycisk \texttt{Logout} z panelu bocznego
+				\end{enumerate}
+
+    		\subsubsection{}	
+    		
     \section{Raport z testów akceptacyjnych}
+    
+    	Wszystkie testy akceptacyjne zostały zakończone sukcesem.
 
 \chapter{Podsumowanie}
     \section{Własności rozwiązania}
