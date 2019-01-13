@@ -334,7 +334,8 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 
 Na rysunku \ref{project-model} znajdują się wyodrębnione moduły wraz z urządzeniami podłączonymi do systemu.
 
-Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet. Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym pliki odpowiedzialne za wyświetlenie interfejsu użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych jak i administratora). Ruch pomiędzy klientami a proxy odbywa się za pośrednictwem protokołu HTTPS, natomiast po przejściu przez proxy ruch do konkretnych serwerów odbywa się za pośrednictwem protokołu HTTP.
+Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet. Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym pliki odpowiedzialne za wyświetlenie interfejsu użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych jak i administratora). Proxy akceptuje jedynie ruch przychodzący na port \textit{80}, HTTPS nie jest zapewniany w ramach przygotowanego systemu.
+
 
 
 \begin{figure}[H] \centering{
