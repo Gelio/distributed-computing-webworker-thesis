@@ -548,6 +548,10 @@ Testy jednostkowe zostały napisane z wykorzystaniem biblioteki \textit{jest}~\c
 
 Poniższa sekcja opisuje zabezpieczenia wykorzystywane w projekcie.
 
+\subsection{Zapytania z innych domen}
+
+Serwer API nie dołącza do odpowiedzi nagłówków modyfikujących politykę \textit{Same--Origin Policy}~\cite{same-origin-policy}. W rezultacie wszelkie próby wysłania zapytań z ciasteczkami podczas znajdowania się na innej domenie, niż domena na której pracuje serwer API zostaną zablokowane przez przeglądarkę. Zapytania nie zawierające ciasteczek nie są blokowane, lecz treść odpowiedzi nie jest możliwa do odczytania, w wyniku czego jedyna możliwa interakcja z serwerem z innej domeny to rejestrowanie nowych węzłów.
+
 \subsection{Uwierzytelnianie} 
 
 Dostęp do panelu administracyjnego wymagania uwierzytelnienia, czyli podania loginu oraz hasła administratora. Jeżeli dane te zgadzają się z danymi zapisanymi w bazie danych, użytkownik dostaje dostęp do panelu.
@@ -1100,6 +1104,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     \bibitem[25]{material-design} Opis dobrych praktyk przy tworzeniu interfejsu użytkownika \emph{Material Design} \url{https://material.io/design}
     \bibitem[26]{can-i-use} Strona zawierająca informacje o wsparciu \textit{WebAssembly} przez przeglądarki --- \emph{Can I use?} \url{https://caniuse.com/#search=webassembly}.
     \bibitem[27]{cypress} Dokumentacja biblioteki do testów end-to-end \emph{Cypress} \url{https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell}.
+    \bibitem[28]{same-origin-policy} Dokumentacja \emph{Same--Origin Policy} \url{https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy}
 \end{thebibliography}
 
 \thispagestyle{empty}
