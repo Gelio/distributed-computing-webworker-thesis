@@ -403,12 +403,10 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
             
         \subsection{Dokładna weryfikacja wymagań}
             Jednym z początkowych wymagań było uruchamianie kodu użytkownika w środowisku izolowanym na serwerze tak, aby nie mógł wyrządzić on niepożądanych działań w systemie ani nie mógł odczytać plików systemowych.
+            Zweryfikowaliśmy na początku projektu, że taka funkcjonalność jest dostępna {\selectlanguage{english}\textit{.NET Standard 2.0}} z użyciem klasy {\selectlanguage{english}\texttt{AppDomain}}. Wykorzystując {\selectlanguage{english}\textit{.NET Core 2.2}}, który implementuje {\selectlanguage{english}\textit{.NET Standard 2.0}} wywnioskowaliśmy, że będziemy mogli z niego skorzystać w naszym projekcie.
+            Ku naszemu zdziwieniu okazało się jednak, że mimo, że takie rozwiązanie ({\selectlanguage{english}\texttt{AppDomain}}) jest w teorii w {\selectlanguage{english}\textit{.NET Standard 2.0}}, to nie jest wspierane w {\selectlanguage{english}\textit{.NET Core}}, zatem musieliśmy zrezygnować z tego wymagania.
             
-            Zweryfikowaliśmy na początku projektu, że takie rozwiązanie jest dostępne w \textit{.NET Standard 2.0}. Wykorzystując \textit{.NET Core 2.2}, który implementuje \textit{.NET Standard 2.0} wywnioskowaliśmy, że będziemy mogli z niego skorzystać w naszym projekcie.
-            
-            Okazało się jednak, że mimo, że takie rozwiązanie (\texttt{AppDomain}) jest w teorii w \textit{.NET Standard 2.0}, to nie jest wspierane w \textit{.NET Core}, zatem musieliśmy zrezygnować z tego wymagania.
-            
-            Na przyszłość warto pamiętać, aby w pełni zweryfikować wymagania na wstępie, szczególnie jeżeli będzie się wykorzystywało mechanizmy, z którymi nie ma się do czynienia na porządku dziennym.
+            Na przyszłość warto pamiętać, aby w pełni zweryfikować wymagania na wstępie, szczególnie jeżeli będzie się wykorzystywało mechanizmy, z którymi nie ma się do czynienia na porządku dziennym. Dyskusja o zmianie wymagań jest zdecydowanie bardziej mile widziana na początku projektu, w porównaniu z propozycjami zmian w momencie, gdy projekt ma kilka miesięcy.
         
 
 
