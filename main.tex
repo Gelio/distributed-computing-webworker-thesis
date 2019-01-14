@@ -332,7 +332,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     \item Interfejsu dla węzłów obliczeniowych
 \end{itemize}
 
-Na rysunku \ref{project-model} znajdują się wyodrębnione moduły wraz z urządzeniami podłączonymi do systemu.
+Na rysunku~\ref{project-model} znajdują się wyodrębnione moduły wraz z urządzeniami podłączonymi do systemu.
 
 Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet. Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym interfejs użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych, jak i administratora). Proxy akceptuje jedynie protokół HTTP (port \textit{80}). Protokół HTTPS (port \textit{443}) nie jest zapewniany w ramach przygotowanego systemu.
 
@@ -351,7 +351,7 @@ W tej sekcji znajdują się opisy poszczególnych modułów wraz z ich podziałe
 
 Serwer stanowi główny komponent całego systemu obliczeń rozproszonych. Do jego zadań należy między innymi zarządzanie encjami w bazie danych, przygotowanie bibliotek utworzonych w \textit{.NET Standard 2.0}~\cite{dotnet-standard} do uruchomienia w \textit{WebAssembly}~\cite{webassembly} oraz dystrybucja zadań pomiędzy węzłami obliczeniowymi. Serwer udostępnia także API zgodne ze standardem \textit{JSON API}~\cite{jsonapi}.
 
-Komponenty składowe serwera zostały przedstawione na rysunku \ref{server-model}.
+Komponenty składowe serwera zostały przedstawione na rysunku~\ref{server-model}.
 
 \begin{figure}[ht] \centering{
         \includegraphics[scale=0.75]{images/moduly-serwera.pdf}}
@@ -363,7 +363,7 @@ Komponenty składowe serwera zostały przedstawione na rysunku \ref{server-model
 
 Panel administracyjny umożliwia użytkownikom zarządzanie dodanymi bibliotekami oraz zadaniami za pomocą przejrzystego interfejsu użytkownika. Dostęp do tego modułu jest dostępny po uprzedniej autoryzacji za pomocą hasła. 
 
-Komponenty, które tworzą panel administracyjny zostały przedstawione na rysunku \ref{admin-panel-model}. 
+Komponenty, które tworzą panel administracyjny zostały przedstawione na rysunku~\ref{admin-panel-model}. 
 
 \begin{figure}[ht] \centering{
         \includegraphics[scale=0.75]{images/moduly-panelu-administracyjnego.pdf}}
@@ -375,7 +375,7 @@ Komponenty, które tworzą panel administracyjny zostały przedstawione na rysun
 
 Węzły obliczeniowe są odpowiedzialne za wykonywanie zadanych im obliczeń, a następnie zgłaszanie ich rezultatów. Węzeł obliczeniowy posiada również prosty interfejs graficzny pozwalający na zarządzanie jego pracą.
 
-Podział węzłów obliczeniowych na moduły znajduje się na rysunku \ref{node-model}.
+Podział węzłów obliczeniowych na moduły znajduje się na rysunku~\ref{node-model}.
 
 \begin{figure}[ht] \centering{
         \includegraphics[scale=0.75]{images/moduly-wezla-obliczeniowego.pdf}}
@@ -393,7 +393,7 @@ Poniższa sekcja zawiera szczegółowy opis implementacji z podziałem na poszcz
 
 Serwer składa się z kontrolerów API działających w oparciu o \textit{ASP.NET Core 2.2}~\cite{aspnet-core}. Obsługują one zapytania dotyczące wszystkich encji na serwerze i wywołują odpowiednie metody serwisów odpowiadających encji (są to serwisy implementujące \textit{EntityResourceService}).
 
-Do wywoływania metod z assembly użytkowników (z klasy implementującej interfejs \textit{IProblemPlugin} opisanej w sekcji \ref{biblioteka-szczegoly}) została wykorzystana klasa \textit{ProblemPluginFacade}. Do utworzenia obiektu tej klasy wykorzystana jest klasa \textit{ProblemPluginFacadeFactory}, której odpowiedzialnością jest wytworzenie takiego obiektu z wejściowego assembly.
+Do wywoływania metod z assembly użytkowników (z klasy implementującej interfejs \textit{IProblemPlugin} opisanej w sekcji~\ref{biblioteka-szczegoly}) została wykorzystana klasa \textit{ProblemPluginFacade}. Do utworzenia obiektu tej klasy wykorzystana jest klasa \textit{ProblemPluginFacadeFactory}, której odpowiedzialnością jest wytworzenie takiego obiektu z wejściowego assembly.
 
 W projekcie serwera pojawiają się też klasy odpowiadające modelom w bazie danych. Są to \textit{ProblemPluginInfo}, \textit{DistributedNode}, \textit{Subtask}, \textit{SubtaskInProgress}, \textit{DistributedTask} oraz \textit{DistributedTaskDefinition}.
 
@@ -408,7 +408,7 @@ Podczas implementacji serwera zostały zastosowane następujące wzorce projekto
     \item Wstrzykiwanie zależności (ang. \textit{dependency injection}) -- wzorzec ten pozwala na ekstrakcję logiki do pobocznych klas oraz wstrzykiwanie ich automatycznie jako parametry konstruktorów. Główną zaletą takiego podejścia jest łatwość testowania, ponieważ wszystkie zależności komponentu są podane w konstruktorze i w testach można wykorzystać zaślepki.
 \end{itemize}
 
-Projekt klas serwera znajduje się na rysunkach \ref{server-class-1}, \ref{server-class-2}.
+Projekt klas serwera znajduje się na rysunkach~\ref{server-class-1},~\ref{server-class-2}.
 
 \begin{figure}[H] \centering{
         \includegraphics[scale=0.80]{images/server-class-diagram-1.pdf}}
@@ -422,7 +422,7 @@ Projekt klas serwera znajduje się na rysunkach \ref{server-class-1}, \ref{serve
     \label{server-class-2}
 \end{figure}
 
-Schemat bazy danych działającej na serwerze został przedstwiony na rysunku \ref{database-schema}.
+Schemat bazy danych działającej na serwerze został przedstwiony na rysunku~\ref{database-schema}.
 
 Opis tabel wykorzystanych w bazie danych:
 \begin{description}
@@ -441,7 +441,7 @@ Opis tabel wykorzystanych w bazie danych:
 \end{figure}
 
 
-Rysunek \ref{task-state-diagram} przedstawia diagram stanów dla zadań.
+Rysunek~\ref{task-state-diagram} przedstawia diagram stanów dla zadań.
 
 Zadanie (\texttt{DistributedTask}) początkowo znajduje się w stanie \textit{W trakcie wykonania}. W miarę wykonywania jego podzadań (\texttt{Subtask}) zadanie albo będzie pozostawało w stanie \textit{W trakcie wykonania} jeżeli będą podzadania, które nie zostały jeszcze wykonane, albo przejdzie do stanu \textit{Wykonane}, jeżeli nie będzie już podzadań do wykonania. Wtedy serwer scali wyniki podzadań w wynik zadania i zapisze je w bazie danych. W przypadku gdy którekolwiek z podzadań zakończy się błędem, całe zadanie zostaje oznaczone jako \textit{Zakończone błędem}.
 
@@ -452,9 +452,9 @@ Zadanie (\texttt{DistributedTask}) początkowo znajduje się w stanie \textit{W 
     \label{task-state-diagram}
 \end{figure}
 
-Rysunek \ref{subtask-state-diagram} przedstawia diagram stanów dla podzadań.
+Rysunek~\ref{subtask-state-diagram} przedstawia diagram stanów dla podzadań.
 
-Podzadanie po utworzeniu oczekuje na wykonanie przez pewne węzły. Gdy zadanie zostaje przydzielone pewnemu węzłowi, przechodzi one do stanu \textit{W trakcie obliczeń}. Z uwagi na poziomy zaufania węzłów (opisane w sekcji \ref{poziom-zaufania-wezlow}) podzadanie może zostać wykonane przez kilka węzłów. Do zamodelowania obliczania danego podzadania przez konkretny węzeł służy klasa \texttt{SubtaskInProgress}. W trakcie obliczania wyniku przez węzeł może pojawić się błąd. W takim przypadku w zależności od tego czy limit prób został już wyczerpany czy nie, podzadanie odpowiednio przechodzi do stanu \textit{Zakończone błędem} lub pozostaje w stanie \textit{W trakcie obliczeń}. Jeżeli obliczenie przebiegnie bezbłędnie, zadanie przechodzi do stanu \textit{Wykonane}. Wynik podzadania zostanie zapisany w bazie danych.
+Podzadanie po utworzeniu oczekuje na wykonanie przez pewne węzły. Gdy zadanie zostaje przydzielone pewnemu węzłowi, przechodzi one do stanu \textit{W trakcie obliczeń}. Z uwagi na poziomy zaufania węzłów (opisane w sekcji~\ref{poziom-zaufania-wezlow}) podzadanie może zostać wykonane przez kilka węzłów. Do zamodelowania obliczania danego podzadania przez konkretny węzeł służy klasa \texttt{SubtaskInProgress}. W trakcie obliczania wyniku przez węzeł może pojawić się błąd. W takim przypadku w zależności od tego czy limit prób został już wyczerpany czy nie, podzadanie odpowiednio przechodzi do stanu \textit{Zakończone błędem} lub pozostaje w stanie \textit{W trakcie obliczeń}. Jeżeli obliczenie przebiegnie bezbłędnie, zadanie przechodzi do stanu \textit{Wykonane}. Wynik podzadania zostanie zapisany w bazie danych.
 
 \begin{figure}[H] \centering{
         \includegraphics[scale=0.65]{images/subtask-state-diagram.pdf}}
@@ -463,7 +463,7 @@ Podzadanie po utworzeniu oczekuje na wykonanie przez pewne węzły. Gdy zadanie 
 \end{figure}
 
 
-Na rysunku \ref{task-definition-sequence-diagram} został przedstawiony diagram sekwencji dla dodawania nowej definicji zadania z wykorzystaniem API udostępnianego przez serwer.
+Na rysunku~\ref{task-definition-sequence-diagram} został przedstawiony diagram sekwencji dla dodawania nowej definicji zadania z wykorzystaniem API udostępnianego przez serwer.
 
 Na początku użytkownik przesyła assembly, w którym istnieje klasa implementująca wspomniany już interfejs \textit{IProblemPlugin}. Dodatkowo użytkownik powinien załączyć pozostałe biblioteki wykorzystywane w projekcie. Po przesłaniu tych plików na serwer zostają one zapisane na dysku, po czym assembly zawierające implementację interfejsu \textit{IProblemPlugin} zostaje wczytane i przeanalizowane pod kątem poprawności. Jeżeli assembly jest poprawne, informacje o nowej definicji zadania zostają dodane do bazy danych, a informacja o sukcesie zostaje zwrócona użytkownikowi.
 
@@ -485,7 +485,7 @@ Testy jednostkowe zostały napisane z wykorzystaniem bibliotek \textit{NUnit} or
 \subsection{Biblioteka do implementacji algorytmów rozproszonych}
 \label{biblioteka-szczegoly}
 
-Projekt klas biblioteki ułatwiającej tworzenie algorytmów rozproszonych znajduje się na rysunku \ref{library-class}.
+Projekt klas biblioteki ułatwiającej tworzenie algorytmów rozproszonych znajduje się na rysunku~\ref{library-class}.
 
 Interfejs \textit{IProblemPlugin} wymaga implementacji:
 \begin{itemize}
@@ -514,7 +514,7 @@ Biblioteka do implementacji algorytmów rozproszonych została zaimplementowana 
 
 Węzły obliczeniowe składają się z panelu sterowania węzłem, kontrolera działającego po stronie przeglądarki (napisanego w języku \textit{Typescript}) oraz wątków wykonujących faktyczne obliczenia.
 
-Diagram stanów węzła obliczeniowego został przedstawiony na rysunku \ref{node-state}.
+Diagram stanów węzła obliczeniowego został przedstawiony na rysunku~\ref{node-state}.
 
 Węzeł początkowo jest nieaktywny. Po naciśnięciu przycisku zostaje on aktywny -- rejestruje się na serwerze oraz próbuje otrzymać nowe zadania. W momencie otrzymania nowego zadania pobiera on kod oraz dane wejściowe potrzebne do jego obliczenia. Jeżeli podczas obliczeń wystąpił błąd, zostaje o tym powiadomiony serwer, a węzeł ponownie pyta o nowe zadania.
 
@@ -589,7 +589,7 @@ Każde z podzadań utworzonych na podstawie zadania będzie uznawane za zakończ
 
 Wynikiem każdego z podzadań będzie wynik, dla którego suma poziomów zaufania węzłów, które go zwróciły, była maksymalna.
 
-Dla przykładu przyjmijmy, że mamy w systemie zadanie z zdefiniowanym wymaganym poziomie zaufania 5. W tabeli \ref{trust-level-example} zostały przedstawione węzły wykonujące jedno z podzadań tego zadania wraz z wynikami oraz ich poziomem zaufania.
+Dla przykładu przyjmijmy, że mamy w systemie zadanie z zdefiniowanym wymaganym poziomie zaufania 5. W tabeli~\ref{trust-level-example} zostały przedstawione węzły wykonujące jedno z podzadań tego zadania wraz z wynikamchk i oraz ich poziomem zaufania.
 
 \begin{table}[ht]
     \centering
