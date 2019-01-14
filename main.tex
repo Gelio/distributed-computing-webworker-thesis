@@ -456,10 +456,11 @@ Rysunek~\ref{subtask-state-diagram} przedstawia diagram stanów dla podzadań. P
 \end{figure}
 
 
-Na rysunku~\ref{task-definition-sequence-diagram} został przedstawiony diagram sekwencji dodawania nowej definicji zadania z wykorzystaniem API udostępnianego przez serwer. Na początku użytkownik przesyła assembly, w którym istnieje klasa implementująca wspomniany już interfejs \textit{IProblemPlugin}. Dodatkowo użytkownik powinien załączyć pozostałe biblioteki wykorzystywane w projekcie. Po przesłaniu tych plików na serwer zostają one zapisane na dysku, po czym assembly zawierające implementację interfejsu \textit{IProblemPlugin} zostaje wczytane i przeanalizowane pod kątem poprawności. Jeżeli assembly jest poprawne, informacje o nowej definicji zadania zostają dodane do bazy danych, a informacja o sukcesie zostaje zwrócona użytkownikowi.
+Na rysunku~\ref{task-definition-sequence-diagram} został przedstawiony diagram sekwencji dodawania nowej definicji zadania z wykorzystaniem API udostępnianego przez serwer. 
+Na początku użytkownik przesyła assembly, w którym istnieje klasa implementująca wspomniany już interfejs \textit{IProblemPlugin}. Dodatkowo użytkownik powinien załączyć pozostałe biblioteki wykorzystywane w projekcie. Po przesłaniu tych plików na serwer zostają one zapisane na dysku, po czym assembly zawierające implementację interfejsu \textit{IProblemPlugin} zostaje wczytane i przeanalizowane pod kątem poprawności. Jeżeli assembly jest poprawne, informacje o nowej definicji zadania zostają dodane do bazy danych, a informacja o sukcesie zostaje zwrócona użytkownikowi.
 
 \begin{figure} \centering{
-        \includegraphics[scale=0.75]{images/sequence-diagram.pdf}}
+        \includegraphics[scale=0.64]{images/sequence-diagram.pdf}}
     \caption{Diagram sekwencji dla dodawania nowej definicji zadania.}
     \label{task-definition-sequence-diagram}
 \end{figure}
@@ -512,7 +513,7 @@ W dowolnym momencie osoba posiadająca dostęp do interfejsu węzła (określana
 Ponadto, właściciel węzła może skonfigurować ile zadań może być jednocześnie obliczanych w różnych wątkach na tym węźle.
 
 \begin{figure} \centering{
-        \includegraphics[scale=0.8]{images/node-state-diagram.pdf}}
+        \includegraphics[scale=0.6]{images/node-state-diagram.pdf}}
     \caption{Diagram stanów węzła obliczeniowego.}
     \label{node-state}
 \end{figure}
