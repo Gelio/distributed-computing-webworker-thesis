@@ -334,8 +334,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 
 Na rysunku \ref{project-model} znajdują się wyodrębnione moduły wraz z urządzeniami podłączonymi do systemu.
 
-Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet. Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym pliki odpowiedzialne za wyświetlenie interfejsu użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych jak i administratora). Proxy akceptuje jedynie ruch przychodzący na port \textit{80}, HTTPS nie jest zapewniany w ramach przygotowanego systemu.
-
+Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet. Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym interfejs użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych, jak i administratora). Proxy akceptuje jedynie protokół HTTP (port \textit{80}). Protokół HTTPS (port \textit{443}) nie jest zapewniany w ramach przygotowanego systemu.
 
 
 \begin{figure}[H] \centering{
@@ -360,9 +359,9 @@ Komponenty składowe serwera zostały przedstawione na rysunku \ref{server-model
     \label{server-model}
 \end{figure}
 
-\subsection{Panel administarcyjny}
+\subsection{Panel administracyjny}
 
-Panel administarcyjny umożliwia użytkownikom zarządzanie dodanymi bibliotekami oraz zadaniami za pomocą przejrzystego interfejsu użytkownika. Dostęp do tego modułu jest dostępny po uprzedniej autoryzacji za pomocą hasła. 
+Panel administracyjny umożliwia użytkownikom zarządzanie dodanymi bibliotekami oraz zadaniami za pomocą przejrzystego interfejsu użytkownika. Dostęp do tego modułu jest dostępny po uprzedniej autoryzacji za pomocą hasła. 
 
 Komponenty, które tworzą panel administracyjny zostały przedstawione na rysunku \ref{admin-panel-model}. 
 
@@ -374,7 +373,7 @@ Komponenty, które tworzą panel administracyjny zostały przedstawione na rysun
 
 \subsection{Węzły obliczeniowe}
 
-Węzły obliczeniowe są odpowiedzialne za wykonywanie zadanych im obliczeń, a następnie zgłaszanie ich rezultatów. Węzęł obliczeniowy posiada również prosty interfejs graficzny pozwalający na zarządzanie jego pracą.
+Węzły obliczeniowe są odpowiedzialne za wykonywanie zadanych im obliczeń, a następnie zgłaszanie ich rezultatów. Węzeł obliczeniowy posiada również prosty interfejs graficzny pozwalający na zarządzanie jego pracą.
 
 Podział węzłów obliczeniowych na moduły znajduje się na rysunku \ref{node-model}.
 
@@ -392,11 +391,11 @@ Poniższa sekcja zawiera szczegółowy opis implementacji z podziałem na poszcz
 
 \subsection{Serwer}
 
-Serwer składa się z kontrolerów API działających w oparciu o \textit{ASP.NET Core} \cite{aspnet-core}. Obsługują one zapytania dotyczące wszystkich encji na serwerze i wywołują odpowiednie metody serwisów odpowiadających encji (są to serwisy implementujące \textit{EntityResourceService}).
+Serwer składa się z kontrolerów API działających w oparciu o \textit{ASP.NET Core 2.2} \cite{aspnet-core}. Obsługują one zapytania dotyczące wszystkich encji na serwerze i wywołują odpowiednie metody serwisów odpowiadających encji (są to serwisy implementujące \textit{EntityResourceService}).
 
 Do wywoływania metod z assembly użytkowników (z klasy implementującej interfejs \textit{IProblemPlugin} opisanej w sekcji \ref{biblioteka-szczegoly}) została wykorzystana klasa \textit{ProblemPluginFacade}. Do utworzenia obiektu tej klasy wykorzystana jest klasa \textit{ProblemPluginFacadeFactory}, której odpowiedzialnością jest wytworzenie takiego obiektu z wejściowego assembly.
 
-W projekcie serwera pojawiają się też klasy odpowiadające modelom w bazie danych. Są to \textit{ProblemPluginInfo}, \textit{DistributedNode}, \textit{Subtask}, \textit{SubtaskInProgress}, \textit{DistributedTask}, \textit{DistributedTaskDefinition} oraz \textit{User}.
+W projekcie serwera pojawiają się też klasy odpowiadające modelom w bazie danych. Są to \textit{ProblemPluginInfo}, \textit{DistributedNode}, \textit{Subtask}, \textit{SubtaskInProgress}, \textit{DistributedTask} oraz \textit{DistributedTaskDefinition}.
 
 \textit{DistributedTaskDefinition} jest obiektem odpowiadającym dodanemu problemowi. Jego konkretne instancje z konkretnymi danymi wejściowymi to \textit{DistributedTask}. Każde takie zadanie zostaje rozbite na, z reguły, wiele podzadań (\textit{Subtask}). W momencie, gdy zarejestrowany węzeł obliczeniowy (\textit{DistributedNode}) pyta o nowe zadanie, serwer może przydzielić mu jedno z nieukończonych jeszcze podzadań. Wtedy zostaje utworzona encja \textit{SubtaskInProgress}.
 
@@ -426,14 +425,14 @@ Projekt klas serwera znajduje się na rysunkach \ref{server-class-1}, \ref{serve
 Schemat bazy danych działającej na serwerze został przedstwiony na rysunku \ref{database-schema}.
 
 Opis tabel wykorzystanych w bazie danych:
-\begin{itemize}
-    \item DistributedTaskDefinitions -- zawiera informacje o dodanych definicjach zadań.
-    \item DistributedTasks -- zawiera informacje o zadaniach utworzonych na podstawie definicji zadania. Dane wejściowe oraz wynik są przechowywane w postaci binarnej.
-    \item Subtasks -- przechowuje podzadania związane z instancjami zadań.
-    \item SubtasksInProgress -- przechowuje uruchomione obliczenia podzadań. Podzadanie może być uruchomione wielokrotnie, zależnie od zadanego poziomu zaufania dla całego zadania.
-    \item DistributedNodes -- przechowuje informacje o węzłach obliczeniowych.
-    \item AspNetUsers -- tabela zawiera informacje o użytkownikach, którzy mają dostęp do systemu. 
-\end{itemize}
+\begin{description}
+    \item [DistributedTaskDefinitions] --- zawiera informacje o dodanych definicjach zadań.
+    \item [DistributedTasks] --- zawiera informacje o zadaniach utworzonych na podstawie definicji zadania. Dane wejściowe oraz wynik są przechowywane w postaci binarnej.
+    \item [Subtasks] --- przechowuje podzadania związane z instancjami zadań.
+    \item [SubtasksInProgress] --- przechowuje uruchomione obliczenia podzadań. Podzadanie może być uruchomione wielokrotnie, zależnie od zadanego poziomu zaufania dla całego zadania.
+    \item [DistributedNodes] --- przechowuje informacje o węzłach obliczeniowych.
+    \item [AspNetUsers] --- tabela zawiera informacje o użytkownikach, którzy mają dostęp do systemu. 
+\end{description}
 
 \begin{figure}[H] \centering{
         \includegraphics[scale=0.75,page=1]{images/database-schema.pdf}}
@@ -444,7 +443,7 @@ Opis tabel wykorzystanych w bazie danych:
 
 Rysunek \ref{task-state-diagram} przedstawia diagram stanów dla zadań.
 
-Zadanie początkowo znajduje się w stanie \textit{W trakcie wykonania}. W miarę wykonywania jego podzadań zadanie albo będzie pozostawało w stanie \textit{W trakcie wykonania} jeżeli będą podzadania, które nie zostały jeszcze wykonane, albo przejdzie do stanu \textit{Wykonane}, jeżeli nie będzie już podzadań do wykonania. Wtedy serwer scali wyniki podzadań w wynik zadania i zapisze je w bazie danych. W przypadku gdy którekolwiek z podzadań zakończy się błędem, całe zadanie zostaje oznaczone jako \textit{Zakończone błędem}.
+Zadanie (\texttt{DistributedTask}) początkowo znajduje się w stanie \textit{W trakcie wykonania}. W miarę wykonywania jego podzadań (\texttt{Subtask}) zadanie albo będzie pozostawało w stanie \textit{W trakcie wykonania} jeżeli będą podzadania, które nie zostały jeszcze wykonane, albo przejdzie do stanu \textit{Wykonane}, jeżeli nie będzie już podzadań do wykonania. Wtedy serwer scali wyniki podzadań w wynik zadania i zapisze je w bazie danych. W przypadku gdy którekolwiek z podzadań zakończy się błędem, całe zadanie zostaje oznaczone jako \textit{Zakończone błędem}.
 
 
 \begin{figure}[H] \centering{
@@ -455,7 +454,7 @@ Zadanie początkowo znajduje się w stanie \textit{W trakcie wykonania}. W miar�
 
 Rysunek \ref{subtask-state-diagram} przedstawia diagram stanów dla podzadań.
 
-Podzadanie po utworzeniu oczekuje na wykonanie przez pewne węzły. Gdy zadanie zostaje przydzielone pewnemu węzłowi, przechodzi one do stanu \textit{W trakcie obliczeń}. Z uwagi na poziomy zaufania węzłów (opisane w sekcji \ref{poziom-zaufania-wezlow}) podzadanie może zostać wykonane przez kilka węzłów. W trakcie obliczania wyniku przez węzeł może pojawić się błąd. W takim przypadku w zależności od tego czy limit prób został już wyczerpany czy nie, podzadanie odpowiednio przechodzi do stanu \textit{Zakończone błędem} lub pozostaje w stanie \textit{W trakcie obliczeń}. Jeżeli obliczenie przebiegnie bezbłędnie, zadanie przechodzi do stanu \textit{Wykonane}. Wynik podzadania zostanie zapisany w bazie danych.
+Podzadanie po utworzeniu oczekuje na wykonanie przez pewne węzły. Gdy zadanie zostaje przydzielone pewnemu węzłowi, przechodzi one do stanu \textit{W trakcie obliczeń}. Z uwagi na poziomy zaufania węzłów (opisane w sekcji \ref{poziom-zaufania-wezlow}) podzadanie może zostać wykonane przez kilka węzłów. Do zamodelowania obliczania danego podzadania przez konkretny węzeł służy klasa \texttt{SubtaskInProgress}. W trakcie obliczania wyniku przez węzeł może pojawić się błąd. W takim przypadku w zależności od tego czy limit prób został już wyczerpany czy nie, podzadanie odpowiednio przechodzi do stanu \textit{Zakończone błędem} lub pozostaje w stanie \textit{W trakcie obliczeń}. Jeżeli obliczenie przebiegnie bezbłędnie, zadanie przechodzi do stanu \textit{Wykonane}. Wynik podzadania zostanie zapisany w bazie danych.
 
 \begin{figure}[H] \centering{
         \includegraphics[scale=0.65]{images/subtask-state-diagram.pdf}}
@@ -466,7 +465,7 @@ Podzadanie po utworzeniu oczekuje na wykonanie przez pewne węzły. Gdy zadanie 
 
 Na rysunku \ref{task-definition-sequence-diagram} został przedstawiony diagram sekwencji dla dodawania nowej definicji zadania z wykorzystaniem API udostępnianego przez serwer.
 
-Na początku użytkownik przesyła bibliotekę DLL zawierającą główne assembly, w którym istnieje klasa implementująca wspomniany już interfejs \textit{IProblemPlugin}. Dodatkowo użytkownik powinien załączyć biblioteki DLL zawierające inne assembly wykorzystywane w projekcie. Po przesłaniutych plików na serwer zostają one zapisane na dysku, po czym główne assembly zostaje wczytane i przeanalizowane pod kątem poprawności. Jeżeli assembly jest poprawne, informacje o nowej definicji zadania zostają dodane do bazy danych, a informacja o sukcesie zostaje zwrócona użytkownikowi.
+Na początku użytkownik przesyła assembly, w którym istnieje klasa implementująca wspomniany już interfejs \textit{IProblemPlugin}. Dodatkowo użytkownik powinien załączyć pozostałe biblioteki wykorzystywane w projekcie. Po przesłaniu tych plików na serwer zostają one zapisane na dysku, po czym assembly zawierające implementację interfejsu \textit{IProblemPlugin} zostaje wczytane i przeanalizowane pod kątem poprawności. Jeżeli assembly jest poprawne, informacje o nowej definicji zadania zostają dodane do bazy danych, a informacja o sukcesie zostaje zwrócona użytkownikowi.
 
 \begin{figure}[H] \centering{
         \includegraphics[scale=0.75]{images/sequence-diagram.pdf}}
@@ -475,41 +474,41 @@ Na początku użytkownik przesyła bibliotekę DLL zawierającą główne assemb
 \end{figure}
 
 \subsubsection{Wykorzystane technologie}
-Serwer został zaimplementowany wykorzystując w języku C\# technologię \textit{.NET Core 2.2} \cite{dotnet-core} oraz \textit{ASP.NET Core} \cite{aspnet-core}. Jako baza danych wykorzystana została baza \textit{PostgreSQL} \cite{postgresql}. Do komunikacji z bazą danych wykorzystano \textit{Entity Framework Core} \cite{ef-core}.
+Serwer został zaimplementowany w języku C\# wykorzystując technologię \textit{.NET Core 2.2} \cite{dotnet-core} oraz \textit{ASP.NET Core} \cite{aspnet-core}. Jako baza danych wykorzystana została baza \textit{PostgreSQL} \cite{postgresql}. Do komunikacji z bazą danych wykorzystano \textit{Entity Framework Core} \cite{ef-core}.
 
-Standardem formatu przesyłu danych do API oraz z API jest standard \textit{JSON API} \cite{jsonapi}. W celu zgodności z tym standardem wykorzystano bibliotekę \textit{JSON API .NET Core} \cite{jsonapi-dotnet-core}.
+Standardem formatu przesyłu danych do API oraz odbioru odpowiedzi z API jest standard \textit{JSON API} \cite{jsonapi}. W celu zgodności z tym standardem wykorzystano bibliotekę \textit{JSON API .NET Core} \cite{jsonapi-dotnet-core}. Użyta biblioteka udostępnia generyczne kontrolery, które implementują wszystkie akcje wymagane przez standard \textit{JSON API} po podaniu modelu obsługiwanego przez kontroler. Wykorzystanie tak utworzonych kontrolerów pozwoliło na zaoszczędzenie czasu podczas tworzenia API.
 
-Do przekształcenia \textit{assembly} użytkownika do wersji uruchamialnej w \textit{WebAssembly} wykorzystano \textit{Software Development Kit} (SDK) \textit{mono-wasm} \cite{mono-wasm}.
+Do przekształcenia assembly użytkownika do wersji możliwej do uruchomienia w \textit{WebAssembly} wykorzystano \textit{Software Development Kit} (SDK) \textit{mono-wasm} \cite{mono-wasm}.
 
 Testy jednostkowe zostały napisane z wykorzystaniem bibliotek \textit{NUnit} oraz \textit{Moq}.
 
-\subsection{Biblioteka do implementacji algorytmów równoległych}
+\subsection{Biblioteka do implementacji algorytmów rozproszonych}
 \label{biblioteka-szczegoly}
 
-Projekt klas biblioteki ułatwiającej tworzenie algorytmów równoległych znajduje się na rysunku \ref{library-class}.
+Projekt klas biblioteki ułatwiającej tworzenie algorytmów rozproszonych znajduje się na rysunku \ref{library-class}.
 
 Interfejs \textit{IProblemPlugin} wymaga implementacji:
 \begin{itemize}
-    \item Metody \textit{DivideTask} -- przyjmuje ona zadanie wejściowe i dzieli je na mniejsze podzadania. Metoda jest uruchamiana na serwerze.
-    \item Metody \textit{JoinSubtaskResults} -- przyjmuje ona kolekcję składającą się z wyników obliczonych podzadań i zwraca wyznaczony wynik końcowy. Metoda ta również uruchamiana jest na serwerze.
-    \item Metody \textit{Compute} -- przyjmuje ona dane wejściowe dla podzadania i wykonuje na ich podstawie obliczenia. Metoda jest uruchamiana na węzłach obliczeniowych.
-    \item Czterech obiektów implementujących interfejs \textit{IDataFormatter} pozwalających na serializację oraz deserializację typów \textit{TTask, TTaskResult, TSubtask, TSubtaskResult}.
+    \item Metody \textit{DivideTask} --- przyjmuje ona zadanie wejściowe i dzieli je na podzadania. Metoda jest uruchamiana na serwerze.
+    \item Metody \textit{Compute} --- przyjmuje ona dane wejściowe dla podzadania i wykonuje na ich podstawie obliczenia, zwracając ostatecznie wynik. Metoda jest uruchamiana na węzłach obliczeniowych.
+    \item Metody \textit{JoinSubtaskResults} --- przyjmuje ona kolekcję składającą się z wyników obliczonych podzadań i zwraca wyznaczony wynik końcowy. Metoda ta uruchamiana jest na serwerze.
+    \item Czterech obiektów implementujących interfejs \textit{IDataFormatter} pozwalających na serializację oraz deserializację danych wejściowych oraz wyników zadania i podzadania (klasy \textit{TTask, TTaskResult, TSubtask, TSubtaskResult}).
     
     Dane serializowane i deserializowane są w następujący sposób. Po przesłaniu pliku zawierającego zserializowane zadanie \textit{TTask}, zadanie to zostaje zdeserializowane na serwerze i za pomocą metody \textit{DivideTask} podzielone na podzadania \textit{TSubtask}, po czym podzadania te zostają zserializowane i zapisane w bazie danych.
     
-    Następnie po przydzieleniu podzadania do konkretnego węzła i pobraniu tego zserializowanego podzadania, węzęł deserializuje to podzadanie, po czym oblicza jego wynik metodą \textit{Compute}. Wynik \textit{TSubtaskResult} jest serializowany i przesyłany na serwer, który umieszcza wynik w bazie danych.
+    Następnie po przydzieleniu podzadania do konkretnego węzła i pobraniu tego zserializowanego podzadania, węzeł deserializuje to podzadanie, po czym oblicza jego wynik metodą \textit{Compute}. Wynik \textit{TSubtaskResult} jest serializowany i przesyłany na serwer, który umieszcza wynik w bazie danych.
     
     W momencie, gdy ostatnie podzadanie zostaje ukończone, wyniki wszystkich podzadań \textit{TSubtaskResult} są pobierane przez serwer z bazy danych, następnie uruchamiana jest metoda \textit{JoinSubtaskResults}, po czym wynik zadania \textit{TTaskResult} jest zapisywany przez serwer w bazie danych.
 \end{itemize}
 
 \begin{figure}[H] \centering{
         \includegraphics{images/library-class-diagram.pdf}}
-    \caption{Diagram klas biblioteki wspomagającej tworzenie algorytmów równoległych.}
+    \caption{Diagram klas biblioteki wspomagającej tworzenie algorytmów rozproszonych.}
     \label{library-class}
 \end{figure}
 
 \subsubsection{Wykorzystane technologie}
-Biblioteka do implementacji algorytmów równoległych została zaimplementowana w języku C\# w technologii \textit{.NET Standard 2.0} \cite{dotnet-standard}.
+Biblioteka do implementacji algorytmów rozproszonych została zaimplementowana w języku C\# w technologii \textit{.NET Standard 2.0} \cite{dotnet-standard}.
 
 \subsection{Węzły obliczeniowe}
 
@@ -517,13 +516,13 @@ Węzły obliczeniowe składają się z panelu sterowania węzłem, kontrolera dz
 
 Diagram stanów węzła obliczeniowego został przedstawiony na rysunku \ref{node-state}.
 
-Węzeł początkowo jest nieaktywny. Po naciśnięciu przycisku zostaje on aktywny -- rejestruje się na serwerze oraz próbuje otrzymać nowe zadania. W momencie otrzymania nowego zadania pobiera on kod oraz dane wejściowe potrzebne do jego obliczenia. Jeżeli podczas obliczeń wystąpił błąd, zostaje o tym powiadomiony serwer, a węzęł ponownie pyta o nowe zadania.
+Węzeł początkowo jest nieaktywny. Po naciśnięciu przycisku zostaje on aktywny -- rejestruje się na serwerze oraz próbuje otrzymać nowe zadania. W momencie otrzymania nowego zadania pobiera on kod oraz dane wejściowe potrzebne do jego obliczenia. Jeżeli podczas obliczeń wystąpił błąd, zostaje o tym powiadomiony serwer, a węzeł ponownie pyta o nowe zadania.
 
 W momencie, gdy obliczenie zostało zakończone sukcesem, wynik zostaje zwrócony do serwera, a węzeł pyta o nowe zadania.
 
 W dowolnym momencie osoba posiadająca dostęp do interfejsu węzła (określana dalej jako właściciel węzła) może zdecydować o zakończeniu obliczeń. Wtedy węzeł wraca do stanu \textit{Nieaktywny}. W tej sytuacji węzeł powiadamia serwer, że wszystkie zadania obliczane przez niego w tym momencie powinny być uznane jako anulowane.
 
-Ponadto, właściciel węzła może skonfigurować ile zadań może być jednocześnie obliczanych na tym węźle.
+Ponadto, właściciel węzła może skonfigurować ile zadań może być jednocześnie obliczanych w różnych wątkach na tym węźle.
 
 \begin{figure}[ht] \centering{
         \includegraphics[scale=0.8]{images/node-state-diagram.pdf}}
@@ -544,13 +543,13 @@ Wykorzystano również komponenty interfejsu użytkownika z biblioteki \textit{e
 
 Uprzednio skompilowany kod wykonujący obliczenia rozproszone jest uruchamiany w środowisku \textit{WebAssembly}.
 
-Testy jednostkowe zostały napisane z wykorzystaniem biblioteki \textit{jest} \cite{jest}.
+Testy jednostkowe zostały napisane z wykorzystaniem biblioteki \textit{jest} \cite{jest}. Podczas testów end-to-end został wykorzystany framework \textit{Cypress} \cite{cypress}.
 
 \subsection{Panel administracyjny}
 
 Panel administracyjny umożliwia uwierzytelnienie, a po jego dokonaniu zarządzanie systemem. Obsługiwany jest poprzez aplikację internetową działającą w przeglądarce.
 
-Podczas implementacji panelu administracyjnego wielokrotnie wykorzystany został wzorzec \textit{dekorator}. Stosowaniu dekoratorów pozwaliło na rozszerzenie możliwości oferowanych przez uniwersalne komponenty i dostosowywanie ich do poszczególnych widoków w taki sposób, żeby nie powielać kodu.
+Podczas implementacji panelu administracyjnego wielokrotnie wykorzystany został wzorzec \textit{dekorator}. Stosowaniu dekoratorów pozwaliło na rozszerzenie możliwości oferowanych przez uniwersalne komponenty interfejsu i dostosowywanie ich do poszczególnych widoków w taki sposób, żeby nie powielać kodu.
 
 
 \subsubsection{Wykorzystane technologie}
@@ -577,20 +576,20 @@ Jedyne operacje, które są dostępne publicznie, to zarejestrowanie urządzenia
 
 \subsection{Ograniczenia przy zwracaniu wyników}
 
-Każdy węzeł posiada unikatowy identyfikator przyznany mu w momencie rejestracji. Podczas zwracaniu wyników obliczeń lub informacji o błędzie serwer sprawdzi czy identyfikator węzła zwracającego wynik zgadza się z identifykatorem węzła przypisanego do zadania. Jeżeli nie, serwer nie przyjmie wyników.
+Każdy węzeł posiada unikatowy identyfikator przyznany mu w momencie rejestracji. Podczas anulowania zadania, zwracania wyników obliczeń lub informacji o błędzie serwer sprawdzi czy identyfikator węzła wysyłającego żądanie zgadza się z identifykatorem węzła przypisanego do aktualizowanego zadania. Jeżeli nie, serwer nie zmieni statusu zadania.
 
 \subsection{Poziom zaufania węzłów}
 \label{poziom-zaufania-wezlow}
 
-Może zdarzyć się taka sytaucja, że jako węzły obliczeniowe dołączą urządzania, które celowo będą wysyłały niepoprawne wyniki obliczeń.
+Może zdarzyć się taka sytaucja, że jako węzły obliczeniowe dołączą urządzenia, które celowo będą wysyłały niepoprawne wyniki obliczeń.
 
-Aby nie zakłóciło to natychmiast pracy systemu z każdym węzłem obliczeniowym jest powiązany jego \textit{poziom zaufania}. Tworząc nowe zadanie z konkretnymi danymi wejściowymi administrator ustawi wymagany poziom zaufania do zakończenia zadania.
+Aby nie zakłóciło to natychmiast pracy systemu z każdym węzłem obliczeniowym jest powiązany jego \textit{poziom zaufania}. Tworząc nowe zadanie z konkretnymi danymi wejściowymi administrator ustawi wymagany poziom zaufania do zakończenia obliczeń podzadań.
 
-Zadanie będzie uznawane za zakończone, gdy suma poziomów zaufania węzłów, które zwróciły wyniki przekroczy wymagany poziom zaufania zadania.
+Każde z podzadań utworzonych na podstawie zadania będzie uznawane za zakończone, gdy suma poziomów zaufania węzłów, które zwróciły wyniki przekroczy wymagany poziom zaufania zadania.
 
-Wynikiem tego zadania będzie wynik, dla którego suma poziomów zaufania węzłów, które go zwróciły, była największa.
+Wynikiem każdego z podzadań będzie wynik, dla którego suma poziomów zaufania węzłów, które go zwróciły, była maksymalna.
 
-Dla przykładu przyjmijmy, że mamy w systemie zadanie z zdefiniowanym wymaganym poziomie zaufania 5. W tabeli \ref{trust-level-example} zostały przedstawione węzły wykonujące to zadanie wraz z wynikami oraz ich poziomem zaufania.
+Dla przykładu przyjmijmy, że mamy w systemie zadanie z zdefiniowanym wymaganym poziomie zaufania 5. W tabeli \ref{trust-level-example} zostały przedstawione węzły wykonujące jedno z podzadań tego zadania wraz z wynikami oraz ich poziomem zaufania.
 
 \begin{table}[ht]
     \centering
@@ -605,9 +604,9 @@ Dla przykładu przyjmijmy, że mamy w systemie zadanie z zdefiniowanym wymaganym
     \end{tabular}
 \end{table}
 
-Zadanie zostanie zakończone, ponieważ suma poziomów zaufania jest większa od wymaganego poziomu zaufania:
+Podzadanie zostanie zakończone, ponieważ suma poziomów zaufania jest większa od wymaganego poziomu zaufania:
 
-$$2.5 + 1 + 2 > 5$$
+$$2.5 + 1 + 2 = 5,5 > 5$$
 
 Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez węzły o sumarycznym poziomie zaufania 3.5, podczas gdy wynik 5 został zwrócony przez węzły o sumarycznym poziomie zaufania 2.
 
@@ -1118,6 +1117,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     \bibitem[24]{visual-studio} Strona produktu \emph{Visual Studio} \url{https://visualstudio.microsoft.com/}.
     \bibitem[25]{material-design} Opis dobrych praktyk przy tworzeniu interfejsu użytkownika \emph{Material Design} \url{https://material.io/design}
     \bibitem[26]{can-i-use} Strona zawierająca informacje o wsparciu \textit{WebAssembly} przez przeglądarki --- \emph{Can I use?} \url{https://caniuse.com/#search=webassembly}.
+    \bibitem[27]{cypress} Dokumentacja biblioteki do testów end-to-end \emph{Cypress} \url{https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell}.
 \end{thebibliography}
 
 \thispagestyle{empty}
@@ -1133,6 +1133,10 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     & Application Programming Interface, w kontekście tego projektu jest to udostępnienie możliwości komunikacji panelu administracyjnego z serwerem za pomocą protokołu HTTP i formatu JSON \\
     JSON
     & Javascript Object Notation, format serializacji danych przypominające objekty języka Javascript \\
+    DLL
+    & Biblioteka dołączana dynamicznie, w kontekście tego projektu dotyczy to plików \textit{.dll} utworzonych w procesie kompilacji projektu napisanego w języku C\# \\
+    Assembly
+    & Biblioteka DLL lub plik wykonywalny utworzony w procesie kompilacji projektu napisanego w języku C\# \\
     MIT
     & Massachusetts Institute of Technology, użyte w tym dokumencie w kontekście licencji wolnego oprogramowania dającej możliwość pełnego używania, kopiowania i modyfikacji produktu. Licencja dostępna jest pod adresem \newline
     \url{https://opensource.org/licenses/MIT} \\
