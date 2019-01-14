@@ -368,17 +368,18 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         W tej sekcji zostaną przedstawione wnioski wyciągnięte z implementacji projektu.
         
         \subsection{Współpraca z eksperymentalnymi technologiami}
-            Z uwagi na eksperymentalną naturę projektu \textit{mono-wasm}, jego dokumentacja była niewielka. Dostępny był jeden przykład, za pomocą którego można było rzeczywiście uruchomić metodę z biblioteki DLL zbudowanej z kodu C\#, natomiast jak okazało się później, nie było to wystarczające do pełnego funkcjonowania systemu tworzonego w ramach pracy inżynierskiej.
+            Z uwagi na eksperymentalną naturę projektu \textit{mono-wasm}, jego dokumentacja była niewielka. Dostępny był jeden przykład wykorzystania przedstawiający uruchomienie metody z biblioteki DLL zbudowanej z kodu C\#, która zwracała wynik dodawania dwóch liczb podanych jako parametry.
+            Wywoływana metoda była statyczna i nie było jasne jak dokładnie utworzyć instancję obiektu, a także jak przekazywać bardziej złożone parametry do wywołań oraz jak odbierać wyniki. Brakujących informacji początkowo szukaliśmy w otwartym kodzie źródłowym projektu \textit{mono-wasm}, a gdy to się nie powiodło, skontaktowaliśmy się z osobami pracującymi nad tym projektem. Z ich odpowiedzi wynikało, że wymagane jest użycie metod statycznych zwracających instancje obiektów.
+            Ponowne wątpliwości pojawiły się w momencie przesyłania zserializowanych danych wejściowych podzadania (\texttt{TSubtask}) oraz odbierania wyników (\texttt{TSubtaskResult}). Obsługa tablic bajtów jako parametry pojawiła się w \textit{mono-wasm} dopiero w październiku 2018 roku, zatem już podczas tworzenia pracy inżynierskiej.
+            Gdyby ta funkcjonalność nie została dodana, to musielibyśmy wybrać inny sposób przesyłu danych, co mogłoby wprowadzić opóźnienia oraz skomplikować działanie systemu.
             
-            W tej sytuacji wymagany był kontakt z osobami tworzącymi projekt \textit{mono-wasm} oraz czytanie ich otwartego kodu źródłowego.
+            Sam interfejs do komunikacji z assembly C\# udostępniany przez projekt \textit{mono-wasm} wydał nam się skomplikowany. Przede wszystkim narzucał on definiowanie globalnych funkcji typu \textit{callback}, które wywoływane były podczas działania aplikacji. Ponadto, nazwy funkcji służących do wywoływania metod z kodu C\# były dość długie (na przykład \texttt{Module.BINDING.call\_static\_method}). Nazwy statycznych metod, które chcemy wywołać należało przekazywać w ściśle ustalonym formacie tekstowym, który początkowo nie był dla nas do końca jasny.
             
-            Sam interfejs udostępniany przez projekt \textit{mono-wasm} wydał nam się zawiły. Wymagał on używania zmiennych globalnych oraz wywoływania metod z mało przyjaznymi wartościami parametrów.
+            W tym projekcie wydajność obliczeń wykonywanych w węzłach nie była jednym z wymagań, ale gdyby tak było, to należałoby ją zweryfikować na początku projektu, aby uniknąć niespodzianek w przyszłości. W aktualnym stanie nie moglibyśmy znacznie przyśpieszyć obliczeń w przeglądarce ze względu na wykorzystanie do tego zewnętrznej biblioteki. Wtedy należałoby rozważyć skorzystanie z innych rozwiązań pozwalających na kompilację kodu C\# do postaci dającej się wykonać w przeglądarce.
             
-            Brak dokumentacji i większej ilości przykładów sprawił, że nad tą częścią pracy inżynierskiej spędziliśmy spędzili więcej czasu, niż planowaliśmy.
-            
-            W przyszłości wykorzystując eksperymentalne biblioteki warto już na samym starcie dokładnie sprawdzić dokumentację oraz przykłady użycia do tego stopnia, żeby zweryfikować czy wszystkie wymagania projektu będą możliwe do zrealizowania. W razie wątpliwości na początku skontaktować się z twórcami czy poszukać informacji na Internecie zamiast robić to podczas prób implementacji.
-            
-            W tym projekcie wydajność obliczeń na węzłach nie była jednym z wymagań, ale gdyby tak było, to należałoby ją zweryfikować na początku projektu, aby uniknąć niespodzianek w przyszłości. W aktualnym stanie nie moglibyśmy znacznie przyśpieszyć obliczeń w przeglądarce ze względu na wykorzystanie do tego zewnętrznej biblioteki.
+            Brak dokumentacji i większej ilości przykładów sprawił, że nad wykorzystaniem biblioteki \textit{mono-wasm} spędziliśmy więcej czasu, niż początkowo planowaliśmy.
+            W przyszłości wykorzystując eksperymentalne biblioteki warto już na samym starcie dokładnie sprawdzić dokumentację oraz przykłady użycia do tego stopnia, żeby zweryfikować czy wszystkie wymagania projektu będą możliwe do zrealizowania. W razie wątpliwości należy na początku skontaktować się z twórcami czy poszukać informacji na Internecie zamiast robić to podczas prób implementacji.
+            Jeżeli wydajność programu jest jednym z wymagań, należy na początku przeprowadzić eksperymenty zbliżone do warunków wdrożeniowych aby w razie potrzeb móc zmodyfikować lub przedyskutować ponownie wymagania dotyczące wydajności.
         
         \subsection{Tworzenie interfejsu użytkownika jest czasochłonne}
             Planując harmonogram projektu na początku tworzenia pracy inżynierskiej nie wzięliśmy pod uwagę, że część dotycząca interfejsu użytkownika będzie tak czasochłonna, jak okazała się w rzeczywistości.
