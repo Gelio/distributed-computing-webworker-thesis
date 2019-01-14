@@ -359,7 +359,7 @@ Komponenty składowe serwera zostały przedstawione na rysunku~\ref{server-model
 
 \paragraph{Panel administracyjny}
 
-umożliwia użytkownikom zarządzanie dodanymi bibliotekami oraz zadaniami za pomocą przejrzystego interfejsu użytkownika. Dostęp do tego modułu jest dostępny po uprzedniej autoryzacji za pomocą hasła. 
+umożliwia użytkownikom zarządzanie dodanymi zadaniami za pomocą przejrzystego interfejsu użytkownika. Dostęp do tego modułu jest dostępny po uprzedniej autoryzacji za pomocą hasła. 
 
 Komponenty, które tworzą panel administracyjny zostały przedstawione na rysunku~\ref{admin-panel-model}. 
 
@@ -389,11 +389,11 @@ Poniższa sekcja zawiera szczegółowy opis implementacji z podziałem na poszcz
 
 \subsection{Serwer}
 
-Serwer składa się z kontrolerów API działających w oparciu o \textit{ASP.NET Core 2.2}~\cite{aspnet-core}. Obsługują one zapytania dotyczące wszystkich encji na serwerze i wywołują odpowiednie metody serwisów odpowiadających encji. Wywoływane serwisy implementują \textit{EntityResourceService} i pozwalają na umieszczanie dodatkowej logiki pomiędzy kontrolerem, a warstwą dostępu do danych.
+Serwer składa się z kontrolerów API działających w oparciu o \textit{ASP.NET Core 2.2}~\cite{aspnet-core}. Obsługują one zapytania dotyczące wszystkich encji na serwerze i wywołują odpowiednie metody serwisów odpowiadających encji. Serwisy te implementują \texttt{EntityResourceService} i pozwalają na umieszczanie dodatkowej logiki pomiędzy kontrolerem, a warstwą dostępu do danych.
 
-Do wywoływania metod użytkowników z klasy implementującej interfejs \textit{IProblemPlugin} (opisanej w sekcji~\ref{biblioteka-szczegoly}) została wykorzystana klasa \textit{ProblemPluginFacade}. Instancje tej klasy są tworzone za pomocą klasy \textit{ProblemPluginFacadeFactory}, której odpowiedzialnością jest wytworzenie takiego obiektu na podstawie assembly dostarczonego przez użytkownika.
+Do wywoływania metod użytkowników z klasy implementującej interfejs \texttt{IProblemPlugin} (opisanej w sekcji~\ref{biblioteka-szczegoly}) została wykorzystana klasa \texttt{ProblemPluginFacade}. Wykorzystanie wzorca \textit{fasada} pozwoliło na uproszczenie logiki związanej z podzieleniem zadania na podzadania lub scalenia wyników podzadań. Instancje tej klasy są tworzone za pomocą klasy \texttt{ProblemPluginFacadeFactory}, której odpowiedzialnością jest wytworzenie takiego obiektu na podstawie assembly dostarczonego przez użytkownika.
 
-W projekcie serwera pojawiają się też klasy odpowiadające modelom w bazie danych. Są to \textit{ProblemPluginInfo}, \textit{DistributedNode}, \textit{Subtask}, \textit{SubtaskInProgress}, \textit{DistributedTask} oraz \textit{DistributedTaskDefinition}.
+W projekcie serwera pojawiają się też klasy odpowiadające modelom w bazie danych. Są to \texttt{ProblemPluginInfo}, \texttt{DistributedNode}, \texttt{Subtask}, \texttt{SubtaskInProgress}, \texttt{DistributedTask} oraz \texttt{DistributedTaskDefinition}.
 
 \textit{DistributedTaskDefinition} jest obiektem odpowiadającym dodanemu problemowi. Jego konkretne instancje z konkretnymi danymi wejściowymi to \textit{DistributedTask}. Każde takie zadanie zostaje rozbite na, z reguły, wiele podzadań (\textit{Subtask}). W momencie, gdy zarejestrowany węzeł obliczeniowy (\textit{DistributedNode}) pyta o nowe zadanie, serwer może przydzielić mu jedno z nieukończonych jeszcze podzadań. Wtedy zostaje utworzona encja \textit{SubtaskInProgress}.
 
@@ -457,7 +457,7 @@ Rysunek~\ref{subtask-state-diagram} przedstawia diagram stanów dla podzadań. P
 
 
 Na rysunku~\ref{task-definition-sequence-diagram} został przedstawiony diagram sekwencji dodawania nowej definicji zadania z wykorzystaniem API udostępnianego przez serwer. 
-Na początku użytkownik przesyła assembly, w którym istnieje klasa implementująca wspomniany już interfejs \textit{IProblemPlugin}. Dodatkowo użytkownik powinien załączyć pozostałe biblioteki wykorzystywane w projekcie. Po przesłaniu tych plików na serwer zostają one zapisane na dysku, po czym assembly zawierające implementację interfejsu \textit{IProblemPlugin} zostaje wczytane i przeanalizowane pod kątem poprawności. Jeżeli assembly jest poprawne, informacje o nowej definicji zadania zostają dodane do bazy danych, a informacja o sukcesie zostaje zwrócona użytkownikowi.
+Na początku użytkownik przesyła assembly, w którym istnieje klasa implementująca wspomniany już interfejs \texttt{IProblemPlugin}. Dodatkowo użytkownik powinien załączyć pozostałe biblioteki wykorzystywane w projekcie. Po przesłaniu tych plików na serwer zostają one zapisane na dysku, po czym assembly zawierające implementację interfejsu \texttt{IProblemPlugin} zostaje wczytane i przeanalizowane pod kątem poprawności. Jeżeli assembly jest poprawne, informacje o nowej definicji zadania zostają dodane do bazy danych, a informacja o sukcesie zostaje zwrócona użytkownikowi.
 
 \begin{figure} \centering{
         \includegraphics[scale=0.64]{images/sequence-diagram.pdf}}
@@ -481,18 +481,18 @@ Testy jednostkowe zostały napisane z wykorzystaniem bibliotek \textit{NUnit} or
 
 Projekt klas biblioteki ułatwiającej tworzenie algorytmów rozproszonych znajduje się na rysunku~\ref{library-class}.
 
-Interfejs \textit{IProblemPlugin} wymaga implementacji:
+Interfejs \texttt{IProblemPlugin} wymaga implementacji:
 \begin{itemize}
-    \item Metody \textit{DivideTask} --- przyjmuje ona zadanie wejściowe i dzieli je na podzadania. Metoda jest uruchamiana na serwerze.
-    \item Metody \textit{Compute} --- przyjmuje ona dane wejściowe dla podzadania i wykonuje na ich podstawie obliczenia, zwracając ostatecznie wynik. Metoda jest uruchamiana na węzłach obliczeniowych.
-    \item Metody \textit{JoinSubtaskResults} --- przyjmuje ona kolekcję składającą się z wyników obliczonych podzadań i zwraca wyznaczony wynik końcowy. Metoda ta uruchamiana jest na serwerze.
-    \item Czterech obiektów implementujących interfejs \textit{IDataFormatter} pozwalających na serializację oraz deserializację danych wejściowych oraz wyników zadania i podzadania (klasy \textit{TTask, TTaskResult, TSubtask, TSubtaskResult}).
+    \item Metody \texttt{DivideTask} --- przyjmuje ona zadanie wejściowe i dzieli je na podzadania. Metoda jest uruchamiana na serwerze.
+    \item Metody \texttt{Compute} --- przyjmuje ona dane wejściowe dla podzadania i wykonuje na ich podstawie obliczenia, zwracając ostatecznie wynik. Metoda jest uruchamiana na węzłach obliczeniowych.
+    \item Metody \texttt{JoinSubtaskResults} --- przyjmuje ona kolekcję składającą się z wyników obliczonych podzadań i zwraca wyznaczony wynik końcowy. Metoda ta uruchamiana jest na serwerze.
+    \item Czterech obiektów implementujących interfejs \texttt{IDataFormatter} pozwalających na serializację oraz deserializację danych wejściowych oraz wyników zadania i podzadania (klasy \texttt{TTask, TTaskResult, TSubtask, TSubtaskResult}).
     
-    Dane serializowane i deserializowane są w następujący sposób. Po przesłaniu pliku zawierającego zserializowane zadanie \textit{TTask}, zadanie to zostaje zdeserializowane na serwerze i za pomocą metody \textit{DivideTask} podzielone na podzadania \textit{TSubtask}, po czym podzadania te zostają zserializowane i zapisane w bazie danych.
+    Dane serializowane i deserializowane są w następujący sposób. Po przesłaniu pliku zawierającego zserializowane zadanie \texttt{TTask}, zadanie to zostaje zdeserializowane na serwerze i za pomocą metody \texttt{DivideTask} podzielone na podzadania \texttt{TSubtask}, po czym podzadania te zostają zserializowane i zapisane w bazie danych.
     
-    Następnie po przydzieleniu podzadania do konkretnego węzła i pobraniu tego zserializowanego podzadania, węzeł deserializuje to podzadanie, po czym oblicza jego wynik metodą \textit{Compute}. Wynik \textit{TSubtaskResult} jest serializowany i przesyłany na serwer, który umieszcza wynik w bazie danych.
+    Następnie po przydzieleniu podzadania do konkretnego węzła i pobraniu tego zserializowanego podzadania, węzeł deserializuje to podzadanie, po czym oblicza jego wynik metodą \texttt{Compute}. Wynik \texttt{TSubtaskResult} jest serializowany i przesyłany na serwer, który umieszcza wynik w bazie danych.
     
-    W momencie, gdy ostatnie podzadanie zostaje ukończone, wyniki wszystkich podzadań \textit{TSubtaskResult} są pobierane przez serwer z bazy danych, następnie uruchamiana jest metoda \textit{JoinSubtaskResults}, po czym wynik zadania \textit{TTaskResult} jest zapisywany przez serwer w bazie danych.
+    W momencie, gdy ostatnie podzadanie zostaje ukończone, wyniki wszystkich podzadań \texttt{TSubtaskResult} są pobierane przez serwer z bazy danych, następnie uruchamiana jest metoda \texttt{JoinSubtaskResults}, po czym wynik zadania \texttt{TTaskResult} jest zapisywany przez serwer w bazie danych.
 \end{itemize}
 
 \begin{figure} \centering{
