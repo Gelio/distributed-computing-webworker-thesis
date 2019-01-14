@@ -349,7 +349,7 @@ W tej sekcji znajdują się opisy poszczególnych modułów wraz z ich podziałe
 
 \subsection{Serwer}
 
-Serwer stanowi główny komponent całego systemu obliczeń rozproszonych. Do jego zadań należy między innymi zarządzanie encjami w bazie danych, przygotowanie bibliotek utworzonych w \textit{.NET Standard 2.0} \cite{dotnet-standard} do uruchomienia w \textit{WebAssembly} \cite{webassembly} oraz dystrybucja zadań pomiędzy węzłami obliczeniowymi. Serwer udostępnia także API zgodne ze standardem \textit{JSON API} \cite{jsonapi}.
+Serwer stanowi główny komponent całego systemu obliczeń rozproszonych. Do jego zadań należy między innymi zarządzanie encjami w bazie danych, przygotowanie bibliotek utworzonych w \textit{.NET Standard 2.0}~\cite{dotnet-standard} do uruchomienia w \textit{WebAssembly}~\cite{webassembly} oraz dystrybucja zadań pomiędzy węzłami obliczeniowymi. Serwer udostępnia także API zgodne ze standardem \textit{JSON API}~\cite{jsonapi}.
 
 Komponenty składowe serwera zostały przedstawione na rysunku \ref{server-model}.
 
@@ -391,7 +391,7 @@ Poniższa sekcja zawiera szczegółowy opis implementacji z podziałem na poszcz
 
 \subsection{Serwer}
 
-Serwer składa się z kontrolerów API działających w oparciu o \textit{ASP.NET Core 2.2} \cite{aspnet-core}. Obsługują one zapytania dotyczące wszystkich encji na serwerze i wywołują odpowiednie metody serwisów odpowiadających encji (są to serwisy implementujące \textit{EntityResourceService}).
+Serwer składa się z kontrolerów API działających w oparciu o \textit{ASP.NET Core 2.2}~\cite{aspnet-core}. Obsługują one zapytania dotyczące wszystkich encji na serwerze i wywołują odpowiednie metody serwisów odpowiadających encji (są to serwisy implementujące \textit{EntityResourceService}).
 
 Do wywoływania metod z assembly użytkowników (z klasy implementującej interfejs \textit{IProblemPlugin} opisanej w sekcji \ref{biblioteka-szczegoly}) została wykorzystana klasa \textit{ProblemPluginFacade}. Do utworzenia obiektu tej klasy wykorzystana jest klasa \textit{ProblemPluginFacadeFactory}, której odpowiedzialnością jest wytworzenie takiego obiektu z wejściowego assembly.
 
@@ -474,11 +474,11 @@ Na początku użytkownik przesyła assembly, w którym istnieje klasa implementu
 \end{figure}
 
 \subsubsection{Wykorzystane technologie}
-Serwer został zaimplementowany w języku C\# wykorzystując technologię \textit{.NET Core 2.2} \cite{dotnet-core} oraz \textit{ASP.NET Core} \cite{aspnet-core}. Jako baza danych wykorzystana została baza \textit{PostgreSQL} \cite{postgresql}. Do komunikacji z bazą danych wykorzystano \textit{Entity Framework Core} \cite{ef-core}.
+Serwer został zaimplementowany w języku C\# wykorzystując technologię \textit{.NET Core 2.2}~\cite{dotnet-core} oraz \textit{ASP.NET Core}~\cite{aspnet-core}. Jako baza danych wykorzystana została baza \textit{PostgreSQL}~\cite{postgresql}. Do komunikacji z bazą danych wykorzystano \textit{Entity Framework Core}~\cite{ef-core}.
 
-Standardem formatu przesyłu danych do API oraz odbioru odpowiedzi z API jest standard \textit{JSON API} \cite{jsonapi}. W celu zgodności z tym standardem wykorzystano bibliotekę \textit{JSON API .NET Core} \cite{jsonapi-dotnet-core}. Użyta biblioteka udostępnia generyczne kontrolery, które implementują wszystkie akcje wymagane przez standard \textit{JSON API} po podaniu modelu obsługiwanego przez kontroler. Wykorzystanie tak utworzonych kontrolerów pozwoliło na zaoszczędzenie czasu podczas tworzenia API.
+Standardem formatu przesyłu danych do API oraz odbioru odpowiedzi z API jest standard \textit{JSON API}~\cite{jsonapi}. W celu zgodności z tym standardem wykorzystano bibliotekę \textit{JSON API .NET Core}~\cite{jsonapi-dotnet-core}. Użyta biblioteka udostępnia generyczne kontrolery, które implementują wszystkie akcje wymagane przez standard \textit{JSON API} po podaniu modelu obsługiwanego przez kontroler. Wykorzystanie tak utworzonych kontrolerów pozwoliło na zaoszczędzenie czasu podczas tworzenia API.
 
-Do przekształcenia assembly użytkownika do wersji możliwej do uruchomienia w \textit{WebAssembly} wykorzystano \textit{Software Development Kit} (SDK) \textit{mono-wasm} \cite{mono-wasm}.
+Do przekształcenia assembly użytkownika do wersji możliwej do uruchomienia w \textit{WebAssembly} wykorzystano \textit{Software Development Kit} (SDK) \textit{mono-wasm}~\cite{mono-wasm}.
 
 Testy jednostkowe zostały napisane z wykorzystaniem bibliotek \textit{NUnit} oraz \textit{Moq}.
 
@@ -508,7 +508,7 @@ Interfejs \textit{IProblemPlugin} wymaga implementacji:
 \end{figure}
 
 \subsubsection{Wykorzystane technologie}
-Biblioteka do implementacji algorytmów rozproszonych została zaimplementowana w języku C\# w technologii \textit{.NET Standard 2.0} \cite{dotnet-standard}.
+Biblioteka do implementacji algorytmów rozproszonych została zaimplementowana w języku C\# w technologii \textit{.NET Standard 2.0}~\cite{dotnet-standard}.
 
 \subsection{Węzły obliczeniowe}
 
@@ -531,19 +531,19 @@ Ponadto, właściciel węzła może skonfigurować ile zadań może być jednocz
 \end{figure}
 
 \subsubsection{Wykorzystane technologie}
-Węzły obliczeniowe zostały zaimplementowane w języku \textit{Typescript} \cite{typescript} wykorzystując framework \textit{React} \cite{react} we wzorcu MVVM (\textit{Model, View, ViewModel}) \cite{mvvm}. 
+Węzły obliczeniowe zostały zaimplementowane w języku \textit{Typescript}~\cite{typescript} wykorzystując framework \textit{React}~\cite{react} we wzorcu MVVM (\textit{Model, View, ViewModel})~\cite{mvvm}.
 
 Wzorzec ten zakłada, że dane (\textit{Model}) i ich prezentacja (\textit{View}) są od siebie oddzielone, a warstwą komunikującą jest \textit{ViewModel}, który jest również oddzielnym komponentem.
 
 Wykorzystanie wzorca MVVM zapewnia niezależność logiki od interfejsu użytkownika oraz pozwala na łatwe przeprowadzanie testów jednostkowych.
 
-Celem uzyskania generowania kodu HTML po stronie serwera (z angielskiego \textit{Server Side Rendering} - SSR) wykorzystano bibliotekę \textit{next.js} \cite{next.js}.
+Celem uzyskania generowania kodu HTML po stronie serwera (z angielskiego \textit{Server Side Rendering} - SSR) wykorzystano bibliotekę \textit{next.js}~\cite{next.js}.
 
-Wykorzystano również komponenty interfejsu użytkownika z biblioteki \textit{evergreen} \cite{evergreen}.
+Wykorzystano również komponenty interfejsu użytkownika z biblioteki \textit{evergreen}~\cite{evergreen}.
 
 Uprzednio skompilowany kod wykonujący obliczenia rozproszone jest uruchamiany w środowisku \textit{WebAssembly}.
 
-Testy jednostkowe zostały napisane z wykorzystaniem biblioteki \textit{jest} \cite{jest}. Podczas testów end-to-end został wykorzystany framework \textit{Cypress} \cite{cypress}.
+Testy jednostkowe zostały napisane z wykorzystaniem biblioteki \textit{jest}~\cite{jest}. Podczas testów end-to-end został wykorzystany framework \textit{Cypress}~\cite{cypress}.
 
 \subsection{Panel administracyjny}
 
@@ -553,13 +553,13 @@ Podczas implementacji panelu administracyjnego wielokrotnie wykorzystany został
 
 
 \subsubsection{Wykorzystane technologie}
-Panel administracyjny, podobnie do węzłów obliczeniowych, został zaimplementowany w języku \textit{Typescript} \cite{typescript} z użyciem frameworka \textit{React} \cite{react} oraz \textit{next.js} \cite{next.js} zapewniającego generowanie kodu HTML po stronie serwera. Wykorzystany został wzorzec MVVM \cite{mvvm}.
+Panel administracyjny, podobnie do węzłów obliczeniowych, został zaimplementowany w języku \textit{Typescript}~\cite{typescript} z użyciem frameworka \textit{React}~\cite{react} oraz \textit{next.js}~\cite{next.js} zapewniającego generowanie kodu HTML po stronie serwera. Wykorzystany został wzorzec MVVM~\cite{mvvm}.
 
-Do elementów interfejsu użytkownika poza wspomniano poprzednio biblioteką \textit{evergreen} \cite{evergreen} wykorzsystano bibliotekę \textit{react-table} \cite{react-table} do wyświetlania tabel oraz bibliotekę \textit{formik} \cite{formik} do wyświetlania i zarządzania formularzami.
+Do elementów interfejsu użytkownika poza wspomniano poprzednio biblioteką \textit{evergreen}~\cite{evergreen} wykorzsystano bibliotekę \textit{react-table}~\cite{react-table} do wyświetlania tabel oraz bibliotekę \textit{formik}~\cite{formik} do wyświetlania i zarządzania formularzami.
 
-Aby ułatwić pracę ze standardem \textit{JSON API} wykorzystano bibliotekę \textit{kitsu} \cite{kitsu}.
+Aby ułatwić pracę ze standardem \textit{JSON API} wykorzystano bibliotekę \textit{kitsu}~\cite{kitsu}.
 
-Testy jednostkowe zostały napisane z wykorzystaniem biblioteki \textit{jest} \cite{jest}.
+Testy jednostkowe zostały napisane z wykorzystaniem biblioteki \textit{jest}~\cite{jest}.
 
 
 \section{Zabezpieczenia}
