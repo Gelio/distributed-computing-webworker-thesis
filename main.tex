@@ -381,16 +381,20 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
             W przyszłości wykorzystując eksperymentalne biblioteki warto już na samym starcie dokładnie sprawdzić dokumentację oraz przykłady użycia do tego stopnia, żeby zweryfikować czy wszystkie wymagania projektu będą możliwe do zrealizowania. W razie wątpliwości należy na początku skontaktować się z twórcami czy poszukać informacji na Internecie zamiast robić to podczas prób implementacji.
             Jeżeli wydajność programu jest jednym z wymagań, należy na początku przeprowadzić eksperymenty zbliżone do warunków wdrożeniowych aby w razie potrzeb móc zmodyfikować lub przedyskutować ponownie wymagania dotyczące wydajności.
         
-        \subsection{Tworzenie interfejsu użytkownika jest czasochłonne}
+        \subsection{Tworzenie interfejsu użytkownika}
+            Tworząc interfejs użytkownika warto wykorzystać gotowe komponenty stworzone i udostępnione w ramach zasad wolnego oprogramowania, które zazwyczaj przy okazji wyglądają estetycznie i spójnie. Wybierając takie rozwiązanie często unikamy problemu implementowania części logiki samemu oraz problemów związanych z dostosowaniem danego elementu w zakresie dostępności oraz szeroko pojętego zadowolenia użytkownika (ang. {\selectlanguage{english}\textit{User Experience})}.
+            
+            Ponadto, w tym projekcie sprawdziło się podejście, w którym na początku zidentyfikowaliśmy powtarzalne elementy interfejsu, a następnie zaprojektowaliśmy i zaimplementowaliśmy ogólne, konfigurowalne wersje tych komponentów, które później mogliśmy wykorzystać w ramach konkretnych funkcjonalności dostosowując jedynie konfigurację takiego elementu.
+            Przykładowymi powtarzalnymi częściami zidentyfikowanymi przez nas na początku były tabela oraz formularz. Dodatkowo, chcąc zmienić wygląd czy działanie takiego komponentu zmiany należy wprowadzić jedynie w jednym miejscu, a nie w każdej funkcjonalności oddzielnie.
+        
             Planując harmonogram projektu na początku tworzenia pracy inżynierskiej nie wzięliśmy pod uwagę, że część dotycząca interfejsu użytkownika będzie tak czasochłonna, jak okazała się w rzeczywistości.
+            Oprócz tworzenia estetycznie wyglądającej strony internetowej musieliśmy sprawdzać różne przypadki jej uruchomienia i działania, także na innych urządzeniach, takich jak telefony komórkowe, oraz różnych przeglądarkach i wielkościach ekranu. To sprawiło, że czas potrzebny na zaimplementowanie funkcjonalności panelu administracyjnego oraz panelu dla węzła obliczeniowego wydłużył się.
             
-            Przy interfejsie użytkownika warto wziąć pod uwagę obsługę błędów. Często jest ona pomijana, a jest jedną z kluczowych praktyk poprawiających zadowolenie użytkownika z korzystania z systemu (ang. \textit{User Experience}).
+            Nietrywialne okazało się testowanie wizualne wytwarzanych komponentów. W przeciwieństwie do logiki aplikacji dającej się zweryfikować przy użyciu testów jednostkowych, aspekty estetyczne nie były tak łatwe. Nie pomagał również fakt, że komponenty były zależne od siebie i czasem dobry wygląd jednego z nich był warunkowany poprawnym wyświetleniem się innego.
+            Z tych powodów zdecydowaliśmy się na skorzystanie z narzędzia, za pomocą którego byliśmy stanie sprawdzić wygląd poszczególnych komponentów w izolacji. Taka weryfikacja musiała być wykonywana manualnie, natomiast okazała się łatwiejsza od sprawdzania właściwości elementów działającej strony.
             
-            W przypadku podobnie wyglądających tabel, formularzy i innych komponentów warto jest poświęcić czas na stworzenie ogólnych i łatwych do skonfigurowania komponentów, które będą zawierały całą logikę w sobie, a następnie prostego użycia ich w wielu miejscach na stronie.
-            
-            Oprócz spójnego wyglądu tychże komponentów wszystkie zmiany logiki są wymagane wyłącznie w jednym miejscu i nie ma ryzyka, że pewne miejsce w aplikacji zostanie pominięte podczas wprowadzania modyfikacji.
-            
-            Jesteśmy zadowoleni z takiego podejścia zastosowanego przez nas w tej pracy inżynierskiej i stojąc przed podobnym zadaniem w przyszłości ponownie z niego skorzystamy.
+            Podsumowując, praktyki takie jak wykorzystanie gotowych komponentów, stworzenie ogólnych i konfigurowalnych elementów interfejsu użytkownika, a także testowanie ich w izolacji znacznie przyśpieszyło proces wytwarzania pracy inżynierskiej.
+            Stojąc w przyszłości przed zadaniem stworzenia aplikacji internetowej ponownie skorzystalibyśmy z podobnych kroków w celu uzyskania spójnego i łatwego w rozszerzeniu oraz modyfikacji systemu.
         
         \subsection{Integracja w środowisku wdrożeniowym}
             Podczas uruchomienia projektu w środowisku wdrożeniowym mogą pojawić się niespodziewane problemy. Tak było w przypadku tej pracy inżynierskiej.
