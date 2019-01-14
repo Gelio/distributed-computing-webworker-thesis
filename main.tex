@@ -681,6 +681,36 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         \subsection{Zmniejszenie obciążenia serwera API}
         W obecnie przygotowanym systemie część operacji z bibliotek dostarczanych przez użytkowników uruchamiana jest na serwerze odpowiedzialnym za obsługę zapytań z API. Powyższe operacje mogą być potencjalnie obciążające i ograniczać wydajność serwera API. W celu zabezpieczenia wydajności serwera można przenieść wykonywanie wszystkich operacji z bibliotek użytkowników poza serwer API. W tym celu należałoby przygotować serwer, który wykonywałby operacje żądane przez serwer API i zwracał stosowne wyniki.
         
+        \subsection{Udostępnienie DistributedComputingLibrary w menadżerze pakietów}
+        W celu ułatwienia dodawania do projektów przygotowanej w ramach projektu biblioteki do obliczeń rozproszonych można opublikować ją w menadżerze pakietów \textit{NuGet}~\cite{nuget}. Po opublikowaniu biblioteki w ramach repozytorium \textit{NuGet} będzie ona dostępna do instalacji z poziomu terminala lub interfejsu graficznego udostępnianego przez \textit{Visual Studio}~\cite{visual-studio}.
+        
+        \subsection{Dodanie poleceń interfejsu wiersza poleceń}
+        Kolejnym możliwym ułatwieniem dla programistów jest dodanie zestawu poleceń interfejsu wiersza poleceń (ang. \textit{CLI}) ułatwiających zarządzanie utworzonymi projektami implementującymi bibliotekę \textit{DistributedComputingLibrary}. Poniżej znajdują się przykładowe funkcje, które mogłoby udostępniać takie narzędzie:
+        
+        \begin{itemize}
+            \item Sprawdzanie poprawności projektu --- weryfikacja poprawności generowanego assembly, analogiocznie do procesu analizy assembly odbywającej się podczas dodawania nowej definicji zadania na serwer.
+            \item Dodawanie definicji zadania na serwer API
+            \item Dodawanie nowych zadań na serwer API
+            \item Pobieranie wyniku zadania o zadanej nazwie
+        \end{itemize}
+        
+        \subsection{Zapisywanie informacji o węzłach obliczeniowych}
+        Zbieranie informacji o węzłach obliczeniowych umożliwiłoby osobom zaangażowanym w projekt analizę dostępnej mocy obliczeniowej. 
+        Dodatkowo dalsze poprawki mogłyby pozwolić na przydzielanie bardziej wymagających zadań węzłom o większej wydajności, podczas gdy mniej wydaje węzły mogłyby rozwiązywać zadania nie wymagające tak dużej mocy obliczeniowej.
+        Optymalne dobieranie zadań do mocy węzłów oblieczniowych pozwoliłoby na skrócenie czasu wykonywania najbardziej wymagających zadań.
+        
+        \subsection{Powiadomienia o zakończeniu obliczeń}
+        Z uwagi na potencjalnie długi czas wykonywania obliczeń ciężko jest oszacować kiedy należy sprawdzić dostępność wyników, dlatego wysyłanie użytkownikom powiadomień w postaci wiadomości e--mail oszczędziłoby im konieczności odwiedzania interfejsu użytkownika w celu sprawdzenia stanu zleconego zadania.
+        
+        \subsection{Uruchamianie kodu użytkowników w środowisku izolowanym}
+        Z uwagi na istniejące ryzyko znalezienia się złośliwego kodu w kodzie użytkownika warto rozważyć uruchamianie kodu użytkownika w środowisku izolowanym. Kod użytkownika uruchamiany na węzłach obliczeniowych jest już uruchamiany w środowisku izolowanym, jednakże metody zaimplementowane w ramach bibliotek użytkownika uruchamiane na serwerze nadal stanowią ryzyko.
+        W sekcji %TODO: uzupełnić \ref{label}
+        opisano problemy napotkane podczas próby wprowadzenia uruchamiania kodu użytkownika działającego w ramach serwera w środowisku izolowanym. 
+        Zalecanym sposobem na zarządzanie uprawnieniami obcego kodu uruchamianego w ramach naszego systemu jest uruchamianie go w osobnym procesie z uprawnieniami ograniczonymi przez system operacyjny.
+        
+        \subsection{Umożliwienie pobierania częściowych wyników}
+        Udostępnienie użytkownikom możliwości pobierania wyników podzadań powinno umożliwić im szybsze oraz precyzyjniejsze identyfikowanie błędów w algorytmach. 
+        
     \section{Problemy implementacyjne}
         Poniższa sekcja opisuje problemy implementacyjne napotkane podczas tworzenia aplikacji.
         
@@ -784,6 +814,8 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     \bibitem[20]{licencja-mono} Licencja \emph{Mono} \url{https://github.com/mono/mono/blob/master/LICENSE}
     \bibitem[21]{licencja-postgresql} Licencja \emph{PostgreSQL} \url{https://github.com/npgsql/Npgsql.EntityFrameworkCore.PostgreSQL/blob/dev/LICENSE}
     \bibitem[22]{licencja-nunit} Licencja \emph{NUnit} \url{https://github.com/nunit/docs/wiki/License}
+    \bibitem[23]{nuget} Wprowadzenie do menadżera pakietów \emph{NuGet} \url{https://docs.microsoft.com/pl-pl/nuget/what-is-nuget}.
+    \bibitem[24]{visual-studio} Strona produktu \emph{Visual Studio} \url{https://visualstudio.microsoft.com/}.
 \end{thebibliography}
 
 \thispagestyle{empty}
