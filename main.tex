@@ -403,9 +403,9 @@ W projekcie serwera pojawiają się też klasy odpowiadające modelom w bazie da
 
 Podczas implementacji serwera zostały zastosowane następujące wzorce projektowe:
 \begin{itemize}
-    \item Fabryka -- wzorzec fabryki pojawia się w projekcie wielokrotnie. Został on zastosowany aby ułatwić wstrzykiwanie zależności do klas oraz uprościć testowanie projektu.
-    \item Fasada -- wzorzec fasady został wykorzystany podczas wywoływania metod z assembly dostarczanych przez użytkowników systemu. Interfejs \textit{IProblemPluginFacade} udostępnia  uproszczoną listę metod możliwych do wykonania na otrzymanym assembly.
-    \item Wstrzykiwanie zależności (ang. \textit{dependency injection}) -- wzorzec ten pozwala na ekstrakcję logiki do pobocznych klas oraz wstrzykiwanie ich automatycznie jako parametry konstruktorów. Główną zaletą takiego podejścia jest łatwość testowania, ponieważ wszystkie zależności komponentu są podane w konstruktorze i w testach można wykorzystać zaślepki.
+    \item Fabryka --- wzorzec fabryki pojawia się w projekcie wielokrotnie. Został on zastosowany aby ułatwić wstrzykiwanie zależności do klas oraz uprościć testowanie projektu.
+    \item Fasada --- wzorzec fasady został wykorzystany podczas wywoływania metod z assembly dostarczanych przez użytkowników systemu. Interfejs \textit{IProblemPluginFacade} udostępnia  uproszczoną listę metod możliwych do wykonania na otrzymanym assembly.
+    \item Wstrzykiwanie zależności (ang. \textit{dependency injection}) --- wzorzec ten pozwala na ekstrakcję logiki do pobocznych klas oraz wstrzykiwanie ich automatycznie jako parametry konstruktorów. Główną zaletą takiego podejścia jest łatwość testowania, ponieważ wszystkie zależności komponentu są podane w konstruktorze i w testach można wykorzystać zaślepki.
 \end{itemize}
 
 Projekt klas serwera znajduje się na rysunkach~\ref{server-class-1},~\ref{server-class-2}.
@@ -537,7 +537,7 @@ Wzorzec ten zakłada, że dane (\textit{Model}) i ich prezentacja (\textit{View}
 
 Wykorzystanie wzorca MVVM zapewnia niezależność logiki od interfejsu użytkownika oraz pozwala na łatwe przeprowadzanie testów jednostkowych.
 
-Celem uzyskania generowania kodu HTML po stronie serwera (z angielskiego \textit{Server Side Rendering} - SSR) wykorzystano bibliotekę \textit{next.js}~\cite{next.js}.
+Celem uzyskania generowania kodu HTML po stronie serwera (z angielskiego \textit{Server Side Rendering} -- SSR) wykorzystano bibliotekę \textit{next.js}~\cite{next.js}.
 
 Wykorzystano również komponenty interfejsu użytkownika z biblioteki \textit{evergreen}~\cite{evergreen}.
 
@@ -606,7 +606,7 @@ Dla przykładu przyjmijmy, że mamy w systemie zadanie z zdefiniowanym wymaganym
 
 Podzadanie zostanie zakończone, ponieważ suma poziomów zaufania jest większa od wymaganego poziomu zaufania:
 
-$$2.5 + 1 + 2 = 5,5 > 5$$
+\[2.5 + 1 + 2 = 5,5 > 5\]
 
 Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez węzły o sumarycznym poziomie zaufania 3.5, podczas gdy wynik 5 został zwrócony przez węzły o sumarycznym poziomie zaufania 2.
 
