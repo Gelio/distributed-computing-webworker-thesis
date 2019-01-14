@@ -364,25 +364,28 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     \section{Problemy implementacyjne}
         Poniższa sekcja opisuje problemy implementacyjne napotkane podczas wykonywania aplikacji.
         
-        \subsection{Izolacja kodu użytkownika}
+        \paragraph{Izolacja kodu użytkownika}\mbox{}\\
             Podczas wykonywania aplikacji zapadła decyzja o rezygnacji z izolacji kodu użytkownika uruchamianego po stronie serwera API. Mechanizm \textit{AppDomain} pozwalający na zarządzanie uprawnieniami wykonywanego kodu nie jest wspierany przez środowisko .NET Core 2.2, w którym został utworzony serwer aplikacyjny. 
             
             Z uwagi na fakt uruchamiania serwera aplikacyjnego w oddzielnym kontenerze programu Docker, kod użytkownika nie jest w stanie wyrządzić szkód w głównym systemie plików, a jedynie wewnątrz kontenera.
             
             Jednym z możliwych rozwiązań powyższego problemu byłoby uruchamianie kodu użytkownika w osobnym procesie jako użytkownik z uprawnieniami ograniczonymi przez system operacyjny.
-        
-        
-        \subsection{mono-wasm}
+            
+        \paragraph{Korzystanie z mono-wasm}\mbox{}\\
             W czasie przygotowywania systemu biblioteka \textit{mono-wasm} znajdowała się w eksperymentalnej fazie rozwoju, co przyczyniło się do problemów podczas implementacji systemu.
             
-            Przygotowany przez nas dowód poprawności koncepcji (ang. \textit{Proof of concept}) okazał się niewystarczający, w wyniku czego na późnym etapie projektu spotkaliśmy się z brakiem możliwości wywoływania funkcji C\# z poziomu przeglądarki z parametrami bardziej skomplikowanymi, niż typy proste. Biblioteka \textit{mono-wasm} udostępniła brakujące wymaganie podczas trwania projektu, jednakże powyższy problem wprowadził opóźnienie.
+            Przygotowany przez nas prototyp sprawdzający działanie biblioteki okazał się niewystarczający, w wyniku czego na późnym etapie projektu spotkaliśmy się z brakiem możliwości wywoływania funkcji C\# z poziomu przeglądarki z parametrami bardziej skomplikowanymi, niż typy proste. Biblioteka \textit{mono-wasm} udostępniła brakujące wymaganie podczas trwania projektu, jednakże powyższy problem wprowadził opóźnienie.
             
             Podczas tworzenia projektu biblioteka \textit{mono-wasm} nie oferowała żadnej dokumentacji oraz testów, a jedyny udostępniony przykład użycia obejmował tylko wywołanie bezparametrowej funkcji z biblioteki napisanej w języku C\# z poziomu przeglądarki. W wyniku powyższych braków konieczna była analiza kodu źródłowego biblioteki w celu zapoznania się z możliwymi przypadkami użycia.
         
-        \subsection{Arch Linux oraz Docker}
-            W momencie wdrożenia aplikacji na serwerze docelowym okazało się, że przygotowane do tego momentu rozwiązanie nie jest kompatybilne z systemem operacyjnym \textit{Arch Linux}. Po uruchomieniu przygotowanego rozwiązania na docelowym systemie operacyjnym okazało się, że niedostępna jest komunikacja pomiędzy aplikacjami działającymi wewnątrz kontenerów docker, a aplikacjami uruchomionymi bezpośrednio w systemie operacyjnym.
+        \paragraph{Arch Linux oraz Docker}\mbox{}\\
+            W momencie wdrożenia aplikacji na serwerze docelowym okazało się, że przygotowane do tego momentu rozwiązanie nie jest kompatybilne z systemem operacyjnym \textit{Arch Linux}. Po uruchomieniu przygotowanego rozwiązania na docelowym systemie operacyjnym okazało się, że niedostępna jest komunikacja pomiędzy aplikacjami działającymi wewnątrz kontenerów Docker, a aplikacjami uruchomionymi bezpośrednio w systemie operacyjnym.
             
-            W związku z pojawieniem się powyższego problemu wszystkie moduły przygotowane w ramach rozwiązania zostały przeniesione do kontenerów docker.
+            W związku z pojawieniem się powyższego problemu wszystkie moduły przygotowane w ramach rozwiązania zostały przeniesione do kontenerów Docker, co spowodowało opóźnienie i wymagało dodatkowej pracy, a także wymusiło stosowanie oddzielnej konfiguracji dla środowiska wdrożeniowego.
+        \paragraph{Brakujące ciasteczka}\mbox{}\\
+            Podczas przeprowadzania testów przygotowanego systemu okazało się, że niektóre przeglądarki internetowe nie wysyłają ciasteczek pomimo otrzymania ich po zalogowaniu.
+            Konsekwencją nieprzesyłania ciasteczek do serwera API jest brak dostępu do panelu administracyjnego. Po analizie problemu okazało się, że w przeszłości funkcja \textit{fetch} domyślnie nie wysyłała ciasteczek. W celu zadbania o kompatybilność ze starszymi przeglądarkami zdecydowaliśmy się na dodanie odpowiednich parametrów do komponentów odpowiedzialnych za komunikację sieciową.
+    
     
     \section{Wnioski z projektu}
         
