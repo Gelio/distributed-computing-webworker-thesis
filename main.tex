@@ -332,9 +332,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     \item Interfejsu dla węzłów obliczeniowych
 \end{itemize}
 
-Na rysunku~\ref{project-model} znajdują się wyodrębnione moduły wraz z urządzeniami podłączonymi do systemu.
-
-Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet. Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym interfejs użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych, jak i administratora). Proxy akceptuje jedynie protokół HTTP (port \textit{80}). Protokół HTTPS (port \textit{443}) nie jest zapewniany w ramach przygotowanego systemu.
+Na rysunku~\ref{project-model} znajdują się wyodrębnione moduły wraz z urządzeniami podłączonymi do systemu. Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet. Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym interfejs użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych, jak i administratora). Proxy akceptuje jedynie protokół HTTP (port \textit{80}). Protokół HTTPS (port \textit{443}) nie jest zapewniany w ramach przygotowanego systemu.
 
 
 \begin{figure} \centering{
@@ -450,9 +448,7 @@ Zadanie (\texttt{DistributedTask}) początkowo znajduje się w stanie \textit{W 
     \label{task-state-diagram}
 \end{figure}
 
-Rysunek~\ref{subtask-state-diagram} przedstawia diagram stanów dla podzadań.
-
-Podzadanie po utworzeniu oczekuje na wykonanie przez węzły. Gdy zadanie zostaje przydzielone węzłowi, przechodzi one do stanu \textit{W trakcie obliczeń}. Z uwagi na poziomy zaufania węzłów (opisane w sekcji~\ref{poziom-zaufania-wezlow}) podzadanie może zostać wykonane przez kilka węzłów. Do zamodelowania obliczania danego podzadania przez konkretny węzeł służy klasa \texttt{SubtaskInProgress}. W trakcie obliczania wyniku przez węzeł może pojawić się błąd. W takim przypadku w zależności od tego czy limit prób został już wyczerpany czy nie, podzadanie odpowiednio przechodzi do stanu \textit{Zakończone błędem} lub pozostaje w stanie \textit{W trakcie obliczeń}. Jeżeli obliczenie przebiegnie bezbłędnie, zadanie przechodzi do stanu \textit{Wykonane}. Wynik podzadania zostanie zapisany w bazie danych.
+Rysunek~\ref{subtask-state-diagram} przedstawia diagram stanów dla podzadań. Podzadanie po utworzeniu oczekuje na wykonanie przez węzły. Gdy zadanie zostaje przydzielone węzłowi, przechodzi one do stanu \textit{W trakcie obliczeń}. Z uwagi na poziomy zaufania węzłów (opisane w sekcji~\ref{poziom-zaufania-wezlow}) podzadanie może zostać wykonane przez kilka węzłów. Do zamodelowania obliczania danego podzadania przez konkretny węzeł służy klasa \texttt{SubtaskInProgress}. W trakcie obliczania wyniku przez węzeł może pojawić się błąd. W takim przypadku w zależności od tego czy limit prób został już wyczerpany czy nie, podzadanie odpowiednio przechodzi do stanu \textit{Zakończone błędem} lub pozostaje w stanie \textit{W trakcie obliczeń}. Jeżeli obliczenie przebiegnie bezbłędnie, zadanie przechodzi do stanu \textit{Wykonane}. Wynik podzadania zostanie zapisany w bazie danych.
 
 \begin{figure} \centering{
         \includegraphics[scale=0.65]{images/subtask-state-diagram.pdf}}
@@ -470,7 +466,7 @@ Na rysunku~\ref{task-definition-sequence-diagram} został przedstawiony diagram 
 \end{figure}
 
 \subsubsection{Wykorzystane technologie}
-Serwer został zaimplementowany w języku C\# wykorzystując technologię \textit{.NET Core 2.2}~\cite{dotnet-core} oraz \textit{ASP.NET Core}~\cite{aspnet-core}. Jako baza danych wykorzystana została baza \textit{PostgreSQL}~\cite{postgresql}. Do komunikacji z bazą danych wykorzystano \textit{Entity Framework Core}~\cite{ef-core}.
+Serwer został zaimplementowany w języku C\# wykorzystując technologię \textit{.NET Core 2.2}~\cite{dotnet-core} oraz \textit{ASP.NET Core}~\cite{aspnet-core}. Jako baza danych wykorzystana została baza \textit{PostgreSQL}~\cite{postgresql}. Do komunikacji z bazą danych wykorzystano \textit{Entity Framework Core}~\cite{ef-core}. Motywacją do wyboru powyższego zestawu technologii do implemencji serwera jest wieloplatformowość uzyskanego rozwiązania. Dodatkowym atutem wymienionych technologii jest ich obszerna dokumentacja oraz fakt, że ich kod źródlowy jest otwarty.
 
 Standardem formatu przesyłu danych do API oraz odbioru odpowiedzi z API jest standard \textit{JSON API}~\cite{jsonapi}. W celu zgodności z tym standardem wykorzystano bibliotekę \textit{JSON API .NET Core}~\cite{jsonapi-dotnet-core}. Użyta biblioteka udostępnia generyczne kontrolery, które implementują wszystkie akcje wymagane przez standard \textit{JSON API} po podaniu modelu obsługiwanego przez kontroler. Wykorzystanie tak utworzonych kontrolerów pozwoliło na zaoszczędzenie czasu podczas tworzenia API.
 
@@ -521,11 +517,7 @@ Ponadto, właściciel węzła może skonfigurować ile zadań może być jednocz
 \end{figure}
 
 \subsubsection{Wykorzystane technologie}
-Węzły obliczeniowe zostały zaimplementowane w języku \textit{Typescript}~\cite{typescript} wykorzystując framework \textit{React}~\cite{react} we wzorcu MVVM (\textit{Model, View, ViewModel})~\cite{mvvm}.
-
-Wzorzec ten zakłada, że dane (\textit{Model}) i ich prezentacja (\textit{View}) są od siebie oddzielone, a warstwą komunikującą jest \textit{ViewModel}, który jest również oddzielnym komponentem.
-
-Wykorzystanie wzorca MVVM zapewnia niezależność logiki od interfejsu użytkownika oraz pozwala na łatwe przeprowadzanie testów jednostkowych.
+Węzły obliczeniowe zostały zaimplementowane w języku \textit{Typescript}~\cite{typescript} wykorzystując framework \textit{React}~\cite{react} we wzorcu MVVM (\textit{Model, View, ViewModel})~\cite{mvvm}. Wzorzec ten zakłada, że dane (\textit{Model}) i ich prezentacja (\textit{View}) są od siebie oddzielone, a warstwą komunikującą jest \textit{ViewModel}, który jest również oddzielnym komponentem. Wykorzystanie wzorca MVVM zapewnia niezależność logiki od interfejsu użytkownika oraz pozwala na łatwe przeprowadzanie testów jednostkowych.
 
 Celem uzyskania generowania kodu HTML po stronie serwera (z angielskiego \textit{Server Side Rendering} -- SSR) wykorzystano bibliotekę \textit{next.js}~\cite{next.js}.
 
