@@ -337,7 +337,7 @@ Na rysunku~\ref{project-model} znajdują się wyodrębnione moduły wraz z urzą
 Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet. Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym interfejs użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych, jak i administratora). Proxy akceptuje jedynie protokół HTTP (port \textit{80}). Protokół HTTPS (port \textit{443}) nie jest zapewniany w ramach przygotowanego systemu.
 
 
-\begin{figure}[H] \centering{
+\begin{figure} \centering{
         \includegraphics[scale=0.75]{images/project-model.pdf}}
     \caption{Moduły systemu.}
     \label{project-model}
@@ -353,7 +353,7 @@ Serwer stanowi główny komponent całego systemu obliczeń rozproszonych. Do je
 
 Komponenty składowe serwera zostały przedstawione na rysunku~\ref{server-model}.
 
-\begin{figure}[ht] \centering{
+\begin{figure} \centering{
         \includegraphics[scale=0.75]{images/moduly-serwera.pdf}}
     \caption{Moduły serwera.}
     \label{server-model}
@@ -365,7 +365,7 @@ Panel administracyjny umożliwia użytkownikom zarządzanie dodanymi bibliotekam
 
 Komponenty, które tworzą panel administracyjny zostały przedstawione na rysunku~\ref{admin-panel-model}. 
 
-\begin{figure}[ht] \centering{
+\begin{figure} \centering{
         \includegraphics[scale=0.75]{images/moduly-panelu-administracyjnego.pdf}}
     \caption{Moduły panelu administracyjnego.}
     \label{admin-panel-model}
@@ -377,7 +377,7 @@ Węzły obliczeniowe są odpowiedzialne za wykonywanie zadanych im obliczeń, a 
 
 Podział węzłów obliczeniowych na moduły znajduje się na rysunku~\ref{node-model}.
 
-\begin{figure}[ht] \centering{
+\begin{figure} \centering{
         \includegraphics[scale=0.75]{images/moduly-wezla-obliczeniowego.pdf}}
     \caption{Moduły węzłów obliczeniowych.}
     \label{node-model}
@@ -410,13 +410,13 @@ Podczas implementacji serwera zostały zastosowane następujące wzorce projekto
 
 Projekt klas serwera znajduje się na rysunkach~\ref{server-class-1},~\ref{server-class-2}.
 
-\begin{figure}[H] \centering{
+\begin{figure} \centering{
         \includegraphics[scale=0.80]{images/server-class-diagram-1.pdf}}
     \caption{Diagram klas serwera.}
     \label{server-class-1}
 \end{figure}
 
-\begin{figure}[H] \centering{
+\begin{figure} \centering{
         \includegraphics[scale=0.80]{images/server-class-diagram-2.pdf}}
     \caption{Diagram klas serwera dotyczących modeli i bazy danych.}
     \label{server-class-2}
@@ -434,7 +434,7 @@ Opis tabel wykorzystanych w bazie danych:
     \item [AspNetUsers] --- tabela zawiera informacje o użytkownikach, którzy mają dostęp do systemu. 
 \end{description}
 
-\begin{figure}[H] \centering{
+\begin{figure} \centering{
         \includegraphics[scale=0.75,page=1]{images/database-schema.pdf}}
     \caption{Schemat bazy danych działającej na serwerze.}
     \label{database-schema}
@@ -446,7 +446,7 @@ Rysunek~\ref{task-state-diagram} przedstawia diagram stanów dla zadań.
 Zadanie (\texttt{DistributedTask}) początkowo znajduje się w stanie \textit{W trakcie wykonania}. W miarę wykonywania jego podzadań (\texttt{Subtask}) zadanie albo będzie pozostawało w stanie \textit{W trakcie wykonania} jeżeli będą podzadania, które nie zostały jeszcze wykonane, albo przejdzie do stanu \textit{Wykonane}, jeżeli nie będzie już podzadań do wykonania. Wtedy serwer scali wyniki podzadań w wynik zadania i zapisze je w bazie danych. W przypadku gdy którekolwiek z podzadań zakończy się błędem, całe zadanie zostaje oznaczone jako \textit{Zakończone błędem}.
 
 
-\begin{figure}[H] \centering{
+\begin{figure} \centering{
         \includegraphics[scale=0.75]{images/task-state-diagram.pdf}}
     \caption{Diagram stanów dla zadania.}
     \label{task-state-diagram}
@@ -456,7 +456,7 @@ Rysunek~\ref{subtask-state-diagram} przedstawia diagram stanów dla podzadań.
 
 Podzadanie po utworzeniu oczekuje na wykonanie przez pewne węzły. Gdy zadanie zostaje przydzielone pewnemu węzłowi, przechodzi one do stanu \textit{W trakcie obliczeń}. Z uwagi na poziomy zaufania węzłów (opisane w sekcji~\ref{poziom-zaufania-wezlow}) podzadanie może zostać wykonane przez kilka węzłów. Do zamodelowania obliczania danego podzadania przez konkretny węzeł służy klasa \texttt{SubtaskInProgress}. W trakcie obliczania wyniku przez węzeł może pojawić się błąd. W takim przypadku w zależności od tego czy limit prób został już wyczerpany czy nie, podzadanie odpowiednio przechodzi do stanu \textit{Zakończone błędem} lub pozostaje w stanie \textit{W trakcie obliczeń}. Jeżeli obliczenie przebiegnie bezbłędnie, zadanie przechodzi do stanu \textit{Wykonane}. Wynik podzadania zostanie zapisany w bazie danych.
 
-\begin{figure}[H] \centering{
+\begin{figure} \centering{
         \includegraphics[scale=0.65]{images/subtask-state-diagram.pdf}}
     \caption{Diagram stanów dla podzadania.}
     \label{subtask-state-diagram}
@@ -467,7 +467,7 @@ Na rysunku~\ref{task-definition-sequence-diagram} został przedstawiony diagram 
 
 Na początku użytkownik przesyła assembly, w którym istnieje klasa implementująca wspomniany już interfejs \textit{IProblemPlugin}. Dodatkowo użytkownik powinien załączyć pozostałe biblioteki wykorzystywane w projekcie. Po przesłaniu tych plików na serwer zostają one zapisane na dysku, po czym assembly zawierające implementację interfejsu \textit{IProblemPlugin} zostaje wczytane i przeanalizowane pod kątem poprawności. Jeżeli assembly jest poprawne, informacje o nowej definicji zadania zostają dodane do bazy danych, a informacja o sukcesie zostaje zwrócona użytkownikowi.
 
-\begin{figure}[H] \centering{
+\begin{figure} \centering{
         \includegraphics[scale=0.75]{images/sequence-diagram.pdf}}
     \caption{Diagram sekwencji dla dodawania nowej definicji zadania.}
     \label{task-definition-sequence-diagram}
@@ -501,7 +501,7 @@ Interfejs \textit{IProblemPlugin} wymaga implementacji:
     W momencie, gdy ostatnie podzadanie zostaje ukończone, wyniki wszystkich podzadań \textit{TSubtaskResult} są pobierane przez serwer z bazy danych, następnie uruchamiana jest metoda \textit{JoinSubtaskResults}, po czym wynik zadania \textit{TTaskResult} jest zapisywany przez serwer w bazie danych.
 \end{itemize}
 
-\begin{figure}[H] \centering{
+\begin{figure} \centering{
         \includegraphics{images/library-class-diagram.pdf}}
     \caption{Diagram klas biblioteki wspomagającej tworzenie algorytmów rozproszonych.}
     \label{library-class}
@@ -524,7 +524,7 @@ W dowolnym momencie osoba posiadająca dostęp do interfejsu węzła (określana
 
 Ponadto, właściciel węzła może skonfigurować ile zadań może być jednocześnie obliczanych w różnych wątkach na tym węźle.
 
-\begin{figure}[ht] \centering{
+\begin{figure} \centering{
         \includegraphics[scale=0.8]{images/node-state-diagram.pdf}}
     \caption{Diagram stanów węzła obliczeniowego.}
     \label{node-state}
