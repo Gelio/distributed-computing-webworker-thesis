@@ -398,7 +398,6 @@ W projekcie serwera pojawiają się też klasy odpowiadające modelom w bazie da
 \textit{DistributedTaskDefinition} jest obiektem odpowiadającym dodanemu problemowi. Jego konkretne instancje z konkretnymi danymi wejściowymi to \textit{DistributedTask}. Każde takie zadanie zostaje rozbite na, z reguły, wiele podzadań (\textit{Subtask}). W momencie, gdy zarejestrowany węzeł obliczeniowy (\textit{DistributedNode}) pyta o nowe zadanie, serwer może przydzielić mu jedno z nieukończonych jeszcze podzadań. Wtedy zostaje utworzona encja \textit{SubtaskInProgress}.
 
 
-
 Podczas implementacji serwera zostały zastosowane następujące wzorce projektowe:
 \begin{itemize}
     \item Fabryka --- wzorzec fabryki pojawia się w projekcie wielokrotnie. Został on zastosowany aby ułatwić wstrzykiwanie zależności do klas oraz uprościć testowanie projektu.
@@ -428,7 +427,7 @@ Poniżej zostały opisane tabele wykorzystane w bazie danych:
     \item [Subtasks] --- przechowuje podzadania związane z instancjami zadań.
     \item [SubtasksInProgress] --- przechowuje uruchomione obliczenia podzadań. Podzadanie może być uruchomione wielokrotnie, zależnie od zadanego poziomu zaufania dla całego zadania.
     \item [DistributedNodes] --- przechowuje informacje o węzłach obliczeniowych.
-    \item [AspNetUsers] --- tabela zawiera informacje o użytkownikach, którzy mają dostęp do systemu. 
+    \item [AspNetUsers] --- tabela zawiera informacje o użytkownikach, którzy mają dostęp do systemu.
 \end{description}
 
 \begin{figure} \centering{
@@ -467,6 +466,8 @@ Na rysunku~\ref{task-definition-sequence-diagram} został przedstawiony diagram 
 
 \subsubsection{Wykorzystane technologie}
 Serwer został zaimplementowany w języku C\# wykorzystując technologię \textit{.NET Core 2.2}~\cite{dotnet-core} oraz \textit{ASP.NET Core}~\cite{aspnet-core}. Jako baza danych wykorzystana została baza \textit{PostgreSQL}~\cite{postgresql}. Do komunikacji z bazą danych wykorzystano \textit{Entity Framework Core}~\cite{ef-core}. Motywacją do wyboru powyższego zestawu technologii do implemencji serwera jest wieloplatformowość uzyskanego rozwiązania. Dodatkowym atutem wymienionych technologii jest ich obszerna dokumentacja oraz fakt, że ich kod źródlowy jest otwarty.
+
+Do procesu uwierzytelniania został wykorzystany system \textit{ASP.NET Core Identity}, który dostarcza możliwość logowania za pomocą loginu i hasła wraz z  możliwością zakończenia sesji lub zmiany hasła.
 
 Standardem formatu przesyłu danych do API oraz odbioru odpowiedzi z API jest standard \textit{JSON API}~\cite{jsonapi}. W celu zgodności z tym standardem wykorzystano bibliotekę \textit{JSON API .NET Core}~\cite{jsonapi-dotnet-core}. Użyta biblioteka udostępnia generyczne kontrolery, które implementują wszystkie akcje wymagane przez standard \textit{JSON API} po podaniu modelu obsługiwanego przez kontroler. Wykorzystanie tak utworzonych kontrolerów pozwoliło na zaoszczędzenie czasu podczas tworzenia API.
 
