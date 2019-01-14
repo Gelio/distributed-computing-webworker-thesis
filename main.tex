@@ -391,7 +391,7 @@ Poniższa sekcja zawiera szczegółowy opis implementacji z podziałem na poszcz
 
 \subsection{Serwer}
 
-Serwer składa się z kontrolerów API działających w oparciu o \textit{ASP.NET Core 2.2}~\cite{aspnet-core}. Obsługują one zapytania dotyczące wszystkich encji na serwerze i wywołują odpowiednie metody serwisów odpowiadających encji (są to serwisy implementujące \textit{EntityResourceService}).
+Serwer składa się z kontrolerów API działających w oparciu o \textit{ASP.NET Core 2.2}~\cite{aspnet-core}. Obsługują one zapytania dotyczące wszystkich encji na serwerze i wywołują odpowiednie metody serwisów odpowiadających encji. Wywoływane serwisy implementują \textit{EntityResourceService} i pozwalają na umieszczanie dodatkowej logiki pomiędzy kontrolerem, a warstwą dostępu do danych.
 
 Do wywoływania metod z assembly użytkowników (z klasy implementującej interfejs \textit{IProblemPlugin} opisanej w sekcji~\ref{biblioteka-szczegoly}) została wykorzystana klasa \textit{ProblemPluginFacade}. Do utworzenia obiektu tej klasy wykorzystana jest klasa \textit{ProblemPluginFacadeFactory}, której odpowiedzialnością jest wytworzenie takiego obiektu z wejściowego assembly.
 
