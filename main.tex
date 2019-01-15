@@ -31,8 +31,6 @@
 \renewcommand{\tablename}{Tabela}
 
 
-%-------------------------- Kod źródłowy ------------------------
-\usepackage{alltt}
 
 %--------------------------- ŻYWA PAGINA ------------------------
 
@@ -343,10 +341,10 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         \subsection{Poziom zaufania węzłów}
 
 \chapter{Opis aplikacji}
-    Poniższy rozdział opisuje przygotowany produkt. Na potrzeby tego rozdziału zostały utworzone: lista wykorzystywanych bibliotek wraz z ich licencjami, instrukcje przydatne podczas pracy z opisywanym systemem oraz lista testów akceptacyjnych wraz z ich rezultatami.
+    Poniższy rozdział opisuje przygotowane rozwiązanie. Na potrzeby tego rozdziału zostały utworzone: lista wykorzystywanych bibliotek wraz z ich licencjami, instrukcje przydatne podczas pracy z opisywanym systemem oraz lista testów akceptacyjnych wraz z ich rezultatami.
     
     \section{Wykorzystane biblioteki}
-         W tej sekcji zostaną przedstawione wykorzystane biblioteki z podziałem na część serwera aplikacyjnego i część serwera panela administracyjnego.
+         W tej sekcji zostaną przedstawione wykorzystane biblioteki z podziałem na część serwera aplikacyjnego i część udostępniającą interfejs użytkownika.
         
         \subsection{Biblioteki serwera aplikacyjnego}
         Tabela \ref{biblioteki-serwer} zawiera biblioteki użyte w serwerze aplikacyjnym wraz z ich licencjami.
@@ -365,7 +363,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
                 
                 1 & ASP.NET Core v2.2.0 & Framework do tworzenia serwerów API. & Apache 2.0 \\ \hline
                 2 & JSON API .NET Core v2.4.0 & Biblioteka pozwalająca na tworzenie kontrolerów API zgodnych ze standardem JSON API. & MIT \\ \hline
-                3 & Entity Framework Core v2.2.0 & Biblioteka pozwlająca na łatwą komunikację z bazą danych z poziomu kodu. & Apache 2.0 \\ \hline
+                3 & Entity Framework Core v2.2.0 & Biblioteka pozwalająca na łatwą komunikację z bazą danych z poziomu kodu. & Apache 2.0 \\ \hline
                 4 & Npgsql EntityFrameworkCore PostrgreSQL v2.2.0 & Biblioteka pozwalająca na komunikację z bazą danych PostgreSQL. & PostgreSQL \cite{licencja-postgresql} \\ \hline
                 5 & Mono v5.16.0 & Implementacja .NET Framework działająca w systemie UNIX. & Własna licencja Mono \cite{licencja-mono} \\ \hline
                 6 & mono-wasm v5.16.0 & Interpreter języka C\# działający w technologii WebAssembly. & Własna licencja Mono \cite{licencja-mono} \\ \hline
@@ -395,7 +393,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
                 4 & formik v1.3.1 & Biblioteka do zarządzania formularzami w aplikacji & MIT \\ \hline
                 5 & immutable v4.0.0-rc.11 & Biblioteka dostarczająca niezmienne struktury danych & MIT \\ \hline
                 6 & kitsu v6.4.0 & Biblioteka do komunikacji z JSON API & MIT \\ \hline
-                7 & next v7.0.2 & Framework do budowania aplikacji w Javascripcie umożliwiający Server-Side Rendering & MIT \\ \hline
+                7 & next v7.0.2 & Framework do budowania aplikacji przeglądarkowych w React umożliwiający Server-Side Rendering & MIT \\ \hline
                 8 & normalize.css v8.0.1 & Biblioteka od normalizacji stylowania komponentów w przeglądarce & MIT \\ \hline
                 9 & path-to-regexp v2.4.0 & Biblioteka pozwalająca na sprawdzenie czy URL pasuje do danej ścieżki na stronie & MIT \\ \hline
                 10 & ramda v0.25.0 & Biblioteka udostępniająca wiele pomocniczych funkcji & MIT \\ \hline
@@ -407,7 +405,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         \end{center}
     
     \section{Platforma docelowa}
-        Do instalacji i uruchomienia systemu potrzebny wymagany jest system o następujących parametrach:
+        Do instalacji i uruchomienia projektu wymagany jest system o następujących parametrach:
         
         \begin{itemize}
             \item System operacyjny Arch Linux 
@@ -422,23 +420,26 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
             \item Docker-compose (w wersji minimalnie 1.23.2)
         \end{itemize}
     
+        Instrukcja instalacji wymienionych aplikacji dostępna jest w sekcji \ref{installation-instruction}.
+    
     \section{Instrukcje}
         Poniższy rozdział zawiera instrukcje dotyczące instalacji, wdrożenia, uruchomienia, użycia oraz utrzymania systemu.
     
     \subsection{Instrukcja instalacji}
+        \label{installation-instruction}
         W celu instalacji wymaganych zależności należy wywołać następujące komendy:
 
-        \begin{alltt}
+        \begin{verbatim}
     # pacman -S docker
     # systemctl start docker
     # pacman -S docker-compose
-        \end{alltt}
+        \end{verbatim}
 
         W celu weryfikacji poprawnej instalacji należy wywołać komendy:
-        \begin{alltt}
+        \begin{verbatim}
     # docker version
     # docker-compose -v
-        \end{alltt}
+        \end{verbatim}
 
         Jeśli powyższe komendy poprawnie wyświetlą zainstalowaną wersję, to znaczy, że instalacja się powiodła. 
 
@@ -446,45 +447,40 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     
         Jeśli projekt jest uruchamiany na serwerze, który nie posiada ograniczeń w dostępie do sieci, to można przejść do podpunktu \ref{start-system}. W przeciwnym wypadku należy zbudować obrazy \textit{Docker} na maszynie z dostępem do sieci, a następnie skopiować przygotowane obrazy na maszynę docelową, na której system ma być uruchomiony.
         
-        Zakładamy, że katalog zawierający kod źródłowy projektu nazwany jest \texttt{distributed-computing-webworker}. Jeżeli będzie nazwany w inny sposób, poniższe komendy powinny zostać zmodyfikowane, zamieniając \texttt{distributed-computing-webworker} w nazwach obrazów na nazwę katalogu, w którym znajduje się kod źródłowy projektu.
-        
+        Zakładamy, że katalog zawierający kod źródłowy projektu nazwany jest \texttt{distributed-computing-webworker}. Jeżeli będzie nazwany w inny sposób, poniższe komendy powinny zostać zmodyfikowane, zamieniając \texttt{distributed-computing-webworker} w nazwach obrazów na nazwę katalogu, w którym znajduje się kod źródłowy projektu. 
         W celu zbudowania obrazów \textit{Docker} należy wywołać następujące komendy na maszynie budującej:
 
-        \begin{alltt}
-    # docker-compose -f docker-compose.yml -f docker-compose.prod.yml \textbackslash
-    up --build --no-start
-    # docker save distributed-computing-webworker_backend \textbackslash
-    distributed-computing-webworker_frontend postgres \textbackslash 
-    nginx | gzip > docker_images.tar.gz    
-        \end{alltt}
+        \begin{verbatim}
+    # docker-compose -f docker-compose.yml -f docker-compose.prod.yml \
+        up --build --no-start
+    # docker save distributed-computing-webworker_backend \
+        distributed-computing-webworker_frontend postgres \
+        nginx | gzip > docker_images.tar.gz    
+        \end{verbatim}
 
-        Następnym krokiem jest skopiowanie wyeksportowanych obrazów oraz plików \textit{docker-compose.yml}, \textit{docker-compose.prod.yml} na maszynę decelową. Można to wykonać na przykład wykorzystując narzędzie \textit{scp}:
+        Następnym krokiem jest skopiowanie wyeksportowanych obrazów oraz plików \textit{docker-compose.yml}, \textit{docker-compose.prod.yml} na maszynę docelową. Można to wykonać na przykład wykorzystując narzędzie \textit{scp}:
 
-        \begin{alltt}
-    # scp docker_images.tar.gz docker-compose.yml docker-compose.prod.yml \textbackslash
-    username@production:~
-        \end{alltt}
+        \begin{verbatim}
+    # scp docker_images.tar.gz docker-compose.yml docker-compose.prod.yml \
+        username@production:~
+        \end{verbatim}
 
         gdzie \texttt{username} jest nazwą konta użytkownika w systemie maszyny docelowej, a \texttt{production} jest adresem maszyny docelowej.
-        
         Następnie należy zaimportować skopiowane obrazy do \textit{Docker} uruchomionego na maszynie docelowej wywołując na niej następującą komendę:
 
-        \begin{alltt}
+        \begin{verbatim}
     # gunzip -c ~/docker_images.tar.gz | docker load
-        \end{alltt}
-
-
+        \end{verbatim}
 
     \subsection{Instrukcja uruchomienia}
         \label{start-system}
         Aby uruchomić projekt należy z katalogu zawierającego pliki \textit{docker-compose.yml}, \textit{docker-compose.prod.yml} wywołać komendę:
 
-        \begin{alltt}
+        \begin{verbatim}
     # docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
-        \end{alltt}
+        \end{verbatim}
 
         Jeśli w systemie nie znajdują się zbudowane obrazy \textit{Docker}, to podczas trwania tej komendy zostaną one zbudowane.
-        
         Po zakończeniu wykonywania komendy działanie systemu można zweryfikować przez próbę wejścia na adres \url{http://[adres_serwera]}. Jeśli uruchomienie systemu się powiodło, to powinna zostać wyświetlona strona zawierająca informacje o projekcie.
 
     \subsection{Instrukcja utrzymania}
@@ -493,34 +489,32 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 
         \subsubsection{Usunięcie systemu}
 
-            Aby skasować system należy użyć komendy:
+            Aby skasować system wraz z wszelkimi danymi zawartymi w nim należy użyć komendy:
 
-            \begin{alltt}
-    docker-compose -f docker-compose.yml -f docker-compose.prod.yml down
-            \end{alltt}
+            \begin{verbatim}
+   # docker-compose -f docker-compose.yml -f docker-compose.prod.yml down
+            \end{verbatim}
 
-            Spowoduje to usunięcie wszystkich kontenerów, na których działał system, wraz z wszelkimi danymi zapisanymi w systemie.
 
         \subsubsection{Zatrzymanie systemu}
 
             Aby zatrzymać system zachowując dane należy użyć komendy:
             
-            \begin{alltt}
-    docker-compose -f docker-compose.yml -f docker-compose.prod.yml stop
-            \end{alltt}
+            \begin{verbatim}
+   # docker-compose -f docker-compose.yml -f docker-compose.prod.yml stop
+            \end{verbatim}
 
             Ponowne uruchomienie systemu należy wykonać zgodnie z punktem \ref{start-system}.
 
         \subsubsection{Tworzenie kopii zapasowej}
 
-            Aby utworzyć kopię zapasową należy uruchomić skrypt \textit{backup.sh} znajdujący się w katalogu \textit{scripts} umieszczonym w głównym folderze projektu.
-            
+            Aby utworzyć kopię zapasową należy uruchomić skrypt \textit{backup.sh} znajdujący się w katalogu \textit{scripts} umieszczonym w głównym folderze projektu. 
             Kopia bazy danych oraz definicji zadań zostanie zapisana w pliku \textit{backup\_data.tar.gz}
-
+            
         \subsubsection{Przywracanie kopii zapasowej}
 
-            Aby przywrócić kopię zapasową należy uruchomić skrypt \textit{restore.sh} podając jako argument nazwę archiwium zawierającego kopię zapasową. Skrypt \textit{restore.sh} znajduje się w katalogu \textit{scripts} w głównym folderze projektu.
-
+            Aby przywrócić kopię zapasową należy uruchomić skrypt \textit{restore.sh} podając jako argument nazwę archiwium zawierającego kopię zapasową, stworzonego za pomocą skryptu z poprzedniego kroku. Skrypt \textit{restore.sh} znajduje się w katalogu \textit{scripts} w głównym folderze projektu.
+            
     \subsection{Instrukcja użycia}
         W poniższej sekcji przedstawiono instrukcję użycia produktu z podziałem na etap logowania, dodawania definicji zadania, dodawania zadania, obliczania zadania oraz pobierania wyników.
         
@@ -529,10 +523,10 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         Po uruchomieniu systemu interfejs użytkownika dostępny jest pod adresem \url{http://[adres_serwera]}. Dostęp do wykonywania obliczeń dostępny jest dla wszystkich użytkowników, a panel administracyjny wymaga zalogowania.
         Domyślne dane do logowania do panelu administracyjnego:
 
-        \begin{alltt}
+        \begin{verbatim}
     login: admin
-    hasło: D1stributed\$
-        \end{alltt}
+    hasło: D1stributed$
+        \end{verbatim}
 
 
         Po pierwszym zalogowaniu należy zmienić domyślne hasło. Opcja zmiany hasła jest dostępna z poziomu paska bocznego.
@@ -540,15 +534,13 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         \subsubsection{Dodanie definicji zadania}
         \label{distributed-task-definition-add-guide}
         
-        Aby dodać nową definicję zadania należy przejść do zakładki \texttt{Distributed Task Definitions}.
-        
-        Po przejściu do zakładki z definicjami zadań zostanie wyświetlona tabela zawierająca zadania dodane już do systemu. W prawym górnym rogu znajduje się ikona plusa na zielonym tle, po kliknięciu w nią nastąpi przekierowanie do formularza dodawania nowej definicji zadania.
-        
-        
+        Aby dodać nową definicję zadania należy przejść do zakładki \texttt{Distributed Task Definitions}. 
+        Po przejściu do zakładki z definicjami zadań zostanie wyświetlona tabela zawierająca zadania dodane już do systemu. 
+        W prawym górnym rogu znajduje się ikona plusa na zielonym tle, po kliknięciu w nią nastąpi przekierowanie do formularza dodawania nowej definicji zadania.
         Aby dodać nową definicję zadania należy wypełnić wyświetlony formularz.
         
         
-        W polu \textit{MainDLL} należy umieścić bibliotekę implementującą interfejs \textit{IProblemPlugin} z biblioteki \textit{DistributedComputingLibrary}. Pole \textit{AdditionalDlls} powinno dostarczyć wszystkie pozostałe biblioteki znajdujące się folderze budowy definicji zadania. Po wypełnieniu wszystkich pól należy wysłać formularz klikająć przycisk \texttt{Submit}.
+        W polu \textit{MainDLL} należy umieścić bibliotekę implementującą interfejs \textit{IProblemPlugin} z biblioteki \textit{DistributedComputingLibrary}. W polu \textit{AdditionalDlls} powinny zostać wybrane wszystkie pozostałe biblioteki znajdujące się folderze budowy definicji zadania. Po wypełnieniu wszystkich pól należy wysłać formularz klikająć przycisk \texttt{Submit}. Po dodaniu nowej definicji zadania następuje przekierowanie do strony wyświetlającej szczegóły dodanego zadania. 
         
         Przykładowe zadania dostępne są w folderze \textit{example-problems} znajdującym się w głównym katalogu projektu.
         
@@ -556,27 +548,22 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         \subsubsection{Dodanie nowego zadania}
         \label{distributed-task-add-guide}
         
-        Po dodaniu nowej definicji zadania następuje przekierowanie do strony wyświetlającej szczegóły dodanego zadania. 
-        Z tej strony możemy zlecić obliczenia nowych danych wejściowych. W tym celu należy kliknąć na ikonę plusa na zielonym tle znajdującego się nad tabelą z zadaniami.
-        
-        
-        W celu zlecenia wykonania zadania należy wypełnić widoczny formularz. 
-        
+        Aby dodać nowe zadanie należy przejść do zakładki \texttt{Distributed Task Definitions}, a następnie kliknąć w przycisk z napisem \texttt{See details} przy wybranej definicji zadania.
+        Z tej strony możemy zlecić obliczenia nowych danych wejściowych.
+        W tym celu należy kliknąć na ikonę plusa na zielonym tle znajdującego się nad tabelą z zadaniami.
+        W celu zlecenia wykonania zadania należy wypełnić widoczny formularz.
         
         Pole \textit{Priority} określa priorytet zadania, im jest wyższy, tym szybciej zostanie ono przekazane do wykonania.
-        
         Pole \textit{Trust level to complete} określa wymaganą sumę poziomów zaufania węzłów obliczeniowych wykonujących każde z podzadań, aby móc je zakończyć. 
-        
         W polu \textit{Task input} należy umieścić plik zawierający dane wejściowe.
-        
-        Po wypełnieniu wszystkich pól należy wysłać formularz klikająć w przycisk \texttt{Submit}. Po kliknięciu nastąpi przekierowanie do detali utworzonego zadania. 
-          
-        
-        W skład detali wchodzą informacje o utworzonym zadaniu oraz status poszczególnych podzadań. W górnej części widocznej strony znajdują się również przciski pozwalające na zarządzanie zadaniem oraz pobranie danych wejściowych.
+        Po wypełnieniu wszystkich pól należy wysłać formularz klikając w przycisk \texttt{Submit}. Po kliknięciu nastąpi przekierowanie do detali utworzonego zadania. 
+        W skład detali wchodzą informacje o utworzonym zadaniu oraz status poszczególnych podzadań. W górnej części widocznej strony znajdują się również przyciski pozwalające na zarządzanie zadaniem oraz pobranie danych wejściowych.
         
         \subsubsection{Rozpoczęcie obliczeń}
         
-        Aby obliczenia się rozpoczęły do systemu musi dołączyć conajmniej jeden węzęł obliczeniowy. Aby urządzenie chcące zostać węzłem obliczeniowym dołączyło do systemu, musi ono wejść do zakładki \texttt{Worker} dostępnej w pasku bocznym, a następnie kliknąć na przycisk \texttt{Start the worker}. Po kliknięciu w przycisk urządzenie zarejestruje się jako węzeł obliczeniowy i zaczynie odpytywać o nowe zadania. Węzły sieciowe mogą w każdym momencie przerwać obliczenia przez kliknięcie w przycisk \texttt{Stop the worker} oraz dowolnie konfigurować ilość udostępnianych wątków. 
+        Aby obliczenia się rozpoczęły do systemu musi dołączyć co najmniej jeden węzeł obliczeniowy. Aby urządzenie chcące zostać węzłem obliczeniowym dołączyło do systemu, musi ono wejść do zakładki \texttt{Worker} dostępnej w pasku bocznym, a następnie kliknąć na przycisk \texttt{Start the worker}.
+        Po kliknięciu w przycisk urządzenie zaczynie odpytywać o nowe zadania.
+        Węzły sieciowe mogą w każdym momencie przerwać obliczenia przez kliknięcie w przycisk \texttt{Stop the worker} oraz dowolnie konfigurować ilość udostępnianych wątków. 
         
         
         Stan węzła obliczeniowego jest dostępny w sekcji \textit{Worker information}, a status użyczonych wątków jest udostępniony do wglądu w tabeli \textit{Individual thread statuses}. W momencie, gdy stan węzła zawiera informację o braku dostępnych zadań do obliczenia wiemy, że nasze zadanie zostało wykonane.
@@ -584,9 +571,9 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         
         \subsubsection{Sprawdzenie wyników}
         
-        Aby sprawdzić rezultat zleconego zadania należy wybrać opcję \texttt{Distributed Tasks} w panelu bocznym. Po przejściu do sekcji ze zleconymi zadaniami zostanie wyświetlona strona zawierająca zadania znajdujące się już w systemie. Aby sprawdzić wynik dodanego wcześniej zadania należy kliknąć w przycisk \texttt{See details} w wierszu zawierającym to zadanie.
-        
-        
+        Aby sprawdzić rezultat zleconego zadania należy wybrać opcję \texttt{Distributed Tasks} w panelu bocznym.
+        Strona ta zawiera zadania znajdujące się w systemie.
+        Aby sprawdzić wynik dodanego wcześniej zadania należy kliknąć w przycisk \texttt{See details} w wierszu zawierającym to zadanie.
         Po przekierowaniu do strony zawierającej detale zadania można pobrać plik wynikowy klikając na przycisk \texttt{Download results}.
 
     
@@ -609,7 +596,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
                 \end{enumerate}
             
             \subsubsection{Uruchomienie węzła obliczeniowego} 
-                Użytkownik zostaje zarejestrowany jako węzęł obliczeniowy i zaczyna odpytywać serwer 
+                Użytkownik zostaje zarejestrowany jako węzeł obliczeniowy i zaczyna odpytywać serwer 
                 
                 \texttt{Lista kroków}:
                 \begin{enumerate}
@@ -655,7 +642,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 
                 \texttt{Lista kroków}:
                 \begin{enumerate}
-                    \item Przejście do strony z tabelą zawierającą definicje zadania
+                    \item Przejście do strony z tabelą zawierającą definicje zadań
                     \item Kliknięcie w ikonę plusa
                     \item Wypełnienie formularza zgodnie z \ref{distributed-task-definition-add-guide}
                     \item Wysłanie formularza
