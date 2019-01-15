@@ -588,51 +588,27 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
             \subsubsection{Zalogowanie} 
                 Użytkownik uzyskuje pełen dostęp do systemu (zostaje mu przyznany poziom uprawnień \textit{Administrator}). 
             
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do strony logowania
-                    \item Podanie poprawnych danych logowania w formularzu
-                    \item Wysłanie formularza
-                \end{enumerate}
-            
-            \subsubsection{Uruchomienie węzła obliczeniowego} 
-                Użytkownik zostaje zarejestrowany jako węzeł obliczeniowy i zaczyna odpytywać serwer 
+                W celu zalogowania należy przejść do strony logowania. Kolejnymi krokami są wypełnienie formularza poprawnymi danymi oraz wysłanie go.
                 
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do panelu węzła obliczeniowego
-                    \item Kliknięcie w przycisk \texttt{Start the worker}
-                \end{enumerate}
-            
+            \subsubsection{Uruchomienie węzła obliczeniowego} 
+                Użytkownik zostaje zarejestrowany jako węzeł obliczeniowy i zaczyna odpytywać serwer.
+                
+                W celu uruchomienia węzła obliczeniowego należy przejść do panelu węzła obliczeniowego, a następnie kliknąć w przycisk \texttt{Start the worker}. 
+                
             \subsubsection{Zatrzymanie węzła obliczeniowego}  
                 Wykonywanie obliczeń zostaje anulowane, a użytkownik może swobodnie opuścić stronę węzła obliczeniowego.
     
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do panelu węzła obliczeniowego
-                    \item Kliknięcie w przycisk \texttt{Start the worker}
-                    \item Kliknięcie w przycisk \texttt{Stop the worker}
-                \end{enumerate}
-
+                W celu zatrzymania węzła obliczeniowego należy po uprzednim uruchomieniu go kliknąć w przycisk \texttt{Stop the worker}.
+                
             \subsubsection{Zwiększenie ilości wątków}   
                 Węzeł obliczeniowy do obliczania zadań będzie używał o jednego wątku więcej niż poprzednio. 
 
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do panelu węzła obliczeniowego
-                    \item Kliknięcie w przycisk \texttt{Start the worker}
-                    \item Kliknięcie w przycisk z ikoną plusa
-                \end{enumerate}
+                Aby zwiększyć ilość wątków dostępnych do wykonywania obliczeń należy po uprzednim uruchomieniu węzła obliczeniowego kliknąć w przycisk z ikoną plusa.
 
             \subsubsection{Zmniejszenie ilości wątków}   
                 Jeśli usuwany wątek wykonywał obliczenie, to system zgłasza do serwera jego anulowanie. Węzeł obliczeniowy do obliczania zadań bedzie teraz używał o jednego wątku mniej niż poprzednio (chyba, że poprzednio używał tylko 1 wątku).
 
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do panelu węzła obliczeniowego
-                    \item Kliknięcie w przycisk \texttt{Start the worker}
-                    \item Kliknięcie w przycisk z ikoną minusa
-                \end{enumerate}
+                Aby zmniejszyć ilość wątków dostępnych do wykonywania obliczeń należy po uprzednim uruchomieniu węzła obliczeniowego oraz zwiększenu liczby używanych wątków kliknąć w przycisk z ikoną minusa.
 
         \subsection{Administrator}
             Poniższe testy są wykonywane z poziomem uprawnień administratora.
@@ -640,105 +616,59 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
             \subsubsection{Dodanie definicji zadania}   
                 Zadanie zostaje zapisane w systemie i jest widoczne w tabeli z zadaniami. 
 
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do strony z tabelą zawierającą definicje zadań
-                    \item Kliknięcie w ikonę plusa
-                    \item Wypełnienie formularza zgodnie z \ref{distributed-task-definition-add-guide}
-                    \item Wysłanie formularza
-                \end{enumerate}
+                Aby dodać nową definicję zadania do systemu należy przejść do strony zawierającej tabelę z definicjami zadań. Kolejnym krokiem jest kliknięcie w ikonę plusa, która przekieruje użytkownika do formularza dodawania nowego zadania. Formularz należy wypełnić zgodnie z \ref{distributed-task-definition-add-guide}, a następnie wysłać.
 
             \subsubsection{Informacje o zadaniu}    
                 Wyświetlona strona zawiera informacje o zadaniu wraz z postępem wykonywania przez węzły obliczeniowe. 
                 
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do tabeli z zadaniami
-                    \item Kliknięcie w przycisk \texttt{See details} przy dowolnym zadaniu
-                \end{enumerate}
-
+                Aby wyświetlić szczegółowe informacje o zadaniu należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk texttt{See details} przy dowolnym zadaniu.
+                
             \subsubsection{Lista definicji zadań}  
                 Wyświetlona strona zawiera listę definicji zadań wraz z ich nazwą oraz odnośnikiem do szczegółowych informacji o każdej z definicji.
 
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do tabeli z definicjami zadań
-                \end{enumerate}
+                Aby wyświetlić stronę zawierającą listę definicji zadań należy wybrać opcję \texttt{Distributed Task Definitions} z panelu bocznego.
 
             \subsubsection{Lista dodanych zadań}   
                 Wyświetlona strona zawiera listę zadań wraz z ich nazwą, odnośnikiem do definicji zadania oraz odnośnikiem do szczegółów zadania.
                 
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do tabeli z zadaniami
-                \end{enumerate}
+                Aby wyświetlić stronę zawierającą listę zadań należy wybrać opcję \texttt{Distributed Tasks} z panelu bocznego.
 
             \subsubsection{Usunięcie zadania}  
                 Zadanie wraz z podzadaniami zostają usunięte z systemu.
                 
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do tabeli z zadaniami
-                    \item Kliknięcie w przycisk \texttt{Delete} przy zadaniu
-                \end{enumerate}
+                Aby usunąć zadanie należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk \texttt{Delete} przy wybranym zadaniu.
 
             \subsubsection{Usunięcie definicji zadania}    
                 Definicja zadania wraz z zadaniami i podzadaniami zostają usunięte z systemu.
                 
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do tabeli z definicjami zadań
-                    \item Kliknięcie w przycisk \texttt{Delete} przy definicji zadania
-                \end{enumerate}
+                Aby usunąć definicję zadania należy przejść do tabeli zawierającej definicje zadania, a następnie kliknąć w przycisk \texttt{Delete} przy wybranej definicji zadania. 
 
             \subsubsection{Pobieranie wyników} 
                 Po kliknięciu w przycisk zostaje pobrany plik zawierający
                 wynik zadania.
                 
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do tabeli z zadaniami
-                    \item Kliknięcie w przycisk \texttt{See details} przy zadaniu o statusie \textit{Done}
-                    \item Kliknięcie w przycisk \texttt{Download results}
-                \end{enumerate}
+                Aby pobrać wyniki zadania należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk \texttt{See details} przy zadaniu o statusie \textit{Done}. Po przekierowaniu na stronę z detalami zadania należy kliknąć w przycisk \texttt{Download results}.
 
             \subsubsection{Pobieranie danych wejściowych}  
                 Po kliknięciu w przycisk zostaje pobrany plik zawierający dane wejściowe zadania.
                 
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do tabeli z zadaniami
-                    \item Kliknięcie w przycisk \texttt{See details} przy zadaniu
-                    \item Kliknięcie w przycisk \texttt{Download input data}
-                \end{enumerate}
+                Aby pobrać dane wejściowe zadania należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk \texttt{See details} przy dowolnym zadaniu. Po przekierowaniu na stronę z detalami zadania należy kliknąć w przycisk \texttt{Download input data}.
 
             \subsubsection{Edycja zadania}  
                 Informacje o zadaniu zostają zmienione.
                 
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do tabeli z zadaniami
-                    \item Kliknięcie w przycisk \texttt{Edit} przy zadaniu
-                    \item Wypełnienie oraz wysłanie formularza
-                \end{enumerate}
+                Aby edytować zadanie należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk \texttt{Edit} przy dowolnym zadaniu. Po przekierowaniu należy wypełnić formularz, a następnie go wysłać.
 
             \subsubsection{Edycja definicji zadania}    
                 Informacje o definicji zadania zostają zmienione.
                 
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Przejście do tabeli z definicjami zadań
-                    \item Kliknięcie w przycisk \texttt{Edit} przy definicji zadania
-                    \item Wypełnienie oraz wysłanie formularza
-                \end{enumerate}
+                Aby edytować definicję zadania należy przejść do tabeli zawierającej definicje zadań, a następnie kliknąć w przycisk \texttt{Edit} przy dowolnej definicji zadania. Po przekierowaniu należy wypełnić formularz, a następnie go wysłać.
 
             \subsubsection{Wylogowanie}
                 Użytkownik zostaje wylogowany i przestaje mieć status administratora.
 
-                \texttt{Lista kroków}:
-                \begin{enumerate}
-                    \item Kliknięcie w przycisk \texttt{Logout} z panelu bocznego
-                \end{enumerate}
+                W celu wylogowania należy kliknąć w przycisk \texttt{Logout} z panelu bocznego
+
 
             \subsubsection{}    
             
