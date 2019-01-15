@@ -458,15 +458,8 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         nginx | gzip > docker_images.tar.gz    
         \end{verbatim}
 
-        Następnym krokiem jest skopiowanie wyeksportowanych obrazów oraz plików \textit{docker-compose.yml}, \textit{docker-compose.prod.yml} na maszynę docelową. Można to wykonać na przykład wykorzystując narzędzie \textit{scp}:
-
-        \begin{verbatim}
-    # scp docker_images.tar.gz docker-compose.yml docker-compose.prod.yml \
-        username@production:~
-        \end{verbatim}
-
-        gdzie \texttt{username} jest nazwą konta użytkownika w systemie maszyny docelowej, a \texttt{production} jest adresem maszyny docelowej.
-        Następnie należy zaimportować skopiowane obrazy do \textit{Docker} uruchomionego na maszynie docelowej wywołując na niej następującą komendę:
+        Następnym krokiem jest skopiowanie wyeksportowanych obrazów oraz plików \textit{docker-compose.yml}, \textit{docker-compose.prod.yml} na maszynę docelową. Można to wykonać na przykład wykorzystując narzędzie \textit{scp}.
+        Po zakończeniu kopiowania należy zaimportować skopiowane obrazy do \textit{Docker} uruchomionego na maszynie docelowej wywołując na niej następującą komendę:
 
         \begin{verbatim}
     # gunzip -c ~/docker_images.tar.gz | docker load
