@@ -572,6 +572,7 @@ Poniższa sekcja opisuje zabezpieczenia wykorzystywane w projekcie.
 
 Serwer API nie dołącza do odpowiedzi nagłówków modyfikujących politykę \textit{Same--Origin Policy}~\cite{same-origin-policy}. W rezultacie wszelkie próby wysłania zapytań z ciasteczkami podczas znajdowania się na innej domenie, niż domena, na której pracuje serwer API, zostaną zablokowane przez przeglądarkę. 
 Zapytania nie zawierające ciasteczek nie są blokowane, lecz treść odpowiedzi nie jest możliwa do odczytania, w wyniku czego jedyna możliwa interakcja z serwerem z innej domeny to rejestrowanie nowych węzłów.
+Formularze wysyłane z innych domen, niż domena, na której uruchomiony jest serwer API wyślą żądania do serwera API, ale nie załączą ciasteczek, zatem ponownie jedyną możliwą interakcją jest zarejestrowanie nowego węzła sieciowego.
 Opisane zabezpieczenie pozwala nam na uniknięcie sytuacji, w których zalogowany administrator po wejściu na stronę zawierającą złośliwy kod udostępniłby atakującemu możliwość interakcji z panelem administracyjnym.
 
 \subsection{Uwierzytelnianie} 
