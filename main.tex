@@ -682,20 +682,22 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         W obecnie przygotowanym systemie część operacji z bibliotek dostarczanych przez użytkowników uruchamiana jest na serwerze odpowiedzialnym za obsługę zapytań z API. Powyższe operacje mogą być potencjalnie obciążające i ograniczać wydajność serwera API. W celu zabezpieczenia wydajności serwera można przenieść wykonywanie wszystkich operacji z bibliotek użytkowników poza serwer API. W tym celu należałoby przygotować serwer, który wykonywałby operacje żądane przez serwer API i zwracał stosowne wyniki.
         
         \subsection{Udostępnienie DistributedComputingLibrary w menadżerze pakietów}
-        W celu ułatwienia dodawania do projektów przygotowanej w ramach projektu biblioteki do obliczeń rozproszonych można opublikować ją w menadżerze pakietów \textit{NuGet}~\cite{nuget}. Po opublikowaniu biblioteki w ramach repozytorium \textit{NuGet} będzie ona dostępna do instalacji z poziomu terminala lub interfejsu graficznego udostępnianego przez \textit{Visual Studio}~\cite{visual-studio}.
+        W celu ułatwienia dodawania do projektów przygotowanej w ramach projektu biblioteki do obliczeń rozproszonych można opublikować ją w menadżerze pakietów \textit{NuGet}~\cite{nuget}. Po opublikowaniu biblioteki w ramach repozytorium \textit{NuGet} będzie ona dostępna do instalacji z poziomu linii poleceń lub interfejsu graficznego udostępnianego przez \textit{Visual Studio}~\cite{visual-studio}. Dzięki takiemu postępowaniu administrator systemu nie musiałby przechowywać na swoim komputerze kopii biblioteki DLL, a mógłby w każdym nowo utworzonym projekcie jedynie odnieść się do łatwo dostępnego pakietu.
         
         \subsection{Dodanie poleceń interfejsu wiersza poleceń}
-        Kolejnym możliwym ułatwieniem dla programistów jest dodanie zestawu poleceń interfejsu wiersza poleceń (ang. \textit{CLI}) ułatwiających zarządzanie utworzonymi projektami implementującymi bibliotekę \textit{DistributedComputingLibrary}. Poniżej znajdują się przykładowe funkcje, które mogłoby udostępniać takie narzędzie:
+        Kolejnym możliwym ułatwieniem dla programistów jest dodanie zestawu poleceń interfejsu wiersza poleceń (ang. \textit{CLI}) ułatwiających zarządzanie utworzonymi projektami wykorzystującymi bibliotekę \textit{DistributedComputingLibrary}. Poniżej znajdują się przykładowe funkcje, które mogłoby udostępniać takie narzędzie:
         
         \begin{itemize}
-            \item Sprawdzanie poprawności projektu --- weryfikacja poprawności generowanego assembly, analogiocznie do procesu analizy assembly odbywającej się podczas dodawania nowej definicji zadania na serwer.
+            \item Sprawdzanie poprawności projektu --- weryfikacja poprawności generowanego assembly, analogiocznie do procesu analizy assembly odbywającej się podczas dodawania nowej definicji zadania na serwer. Dzięki lokalnie przeprowadzonej analizie programista mógłby dowiadywać się o nieprawidłowościach w wykorzystaniu biblioteki przez próbą dodania nowej definicji zadania na serwerze.
             \item Dodawanie definicji zadania na serwer API
             \item Dodawanie nowych zadań na serwer API
-            \item Pobieranie wyniku zadania o zadanej nazwie
+            \item Pobieranie wyniku zadania o podanej nazwie
         \end{itemize}
         
-        \subsection{Zapisywanie informacji o węzłach obliczeniowych}
-        Zbieranie informacji o węzłach obliczeniowych umożliwiłoby osobom zaangażowanym w projekt analizę dostępnej mocy obliczeniowej. 
+        Dodanie interfejsu wiersza poleceń jako alternatywy do interfejsu graficznego powinno usprawnić pracę użytkownikom często korzystającym z zaprojektowanego systemu.
+        
+        \subsection{Zapisywanie w bazie danych informacji o węzłach obliczeniowych}
+        Zapisywanie w bazie danych informacji o węzłach obliczeniowych umożliwiłoby osobom zaangażowanym w projekt analizę dostępnej mocy obliczeniowej. 
         Dodatkowo dalsze poprawki mogłyby pozwolić na przydzielanie bardziej wymagających zadań węzłom o większej wydajności, podczas gdy mniej wydaje węzły mogłyby rozwiązywać zadania nie wymagające tak dużej mocy obliczeniowej.
         Optymalne dobieranie zadań do mocy węzłów oblieczniowych pozwoliłoby na skrócenie czasu wykonywania najbardziej wymagających zadań.
         
