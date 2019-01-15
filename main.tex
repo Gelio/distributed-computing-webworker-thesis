@@ -670,16 +670,25 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 
 \chapter{Podsumowanie}
     \section{Własności rozwiązania}
-        Poniższa sekcja opisuje wybrane własności utworzonego systemu.
+        Poniższa sekcja opisuje kwestie wydajności, wieloplatformości, prostoty obsługi oraz bezpieczeństwa utworzonego systemu.
         
         \subsection{Wydajność}
-            Wydajność \textit{C\#} uruchamianego w interpreterze w przeglądarce okazała się być krytycznie niska w porównaniu do \textit{C\#} kompilowanego do programu wykonywalnego. Wykonane testy wydajności wykazały, że algorytm napisany w \textit{C\#} uruchamiany natywnie jest aż do 250x szybszy od tego samego algorytmu uruchomionego w interpreterze dostarczonym przez \textit{mono-wasm}.
+            Wydajność \textit{C\#} uruchamianego w interpreterze w przeglądarce okazała się być niska w porównaniu do \textit{C\#} kompilowanego do programu wykonywalnego.
+            Wykonane testy wydajności wykazały, że algorytm napisany w \textit{C\#} uruchamiany natywnie jest aż do $250\times$ szybszy od tego samego algorytmu uruchomionego w interpreterze dostarczonym przez \textit{mono-wasm}.
             
-            W chwili powstawania tego dokumentu autorzy \textit{mono-wasm} pracują nad kompilacją \textit{C\#} do \textit{WebAssembly}. W momencie, gdy to zadanie się powiedzie, to różnica w wydajności powinna znacznie zmaleć i nie wpływać znacząco na czas wykonywania obliczeń.
+            W chwili tworzenia pracy inżynierskiej autorzy \textit{mono-wasm} pracowali nad kompilacją \textit{C\#} do \textit{WebAssembly}. W momencie, gdy to zadanie się powiedzie, różnica w wydajności powinna zmaleć i nie wpływać znacząco na czas wykonywania obliczeń.
             
         \subsection{Wieloplatformowość}
-            Dowolne urządzenie wyposażone w przeglądarkę internetową obsługującą \textit{WebAssembly} może zostać węzłem obliczeniowym. W momencie tworzenia powyższego dokumentu wszystkie przeglądarki posiadające conajmniej 1\% udziału w rynku przeglądarek posiadają w pełniu działającą implementację \textit{WebAssembly}. 
+            Dowolne urządzenie wyposażone w przeglądarkę internetową obsługującą \textit{WebAssembly} może zostać węzłem obliczeniowym. W momencie tworzenia powyższego dokumentu wszystkie przeglądarki posiadające co najmniej $5\%$ udziału w rynku przeglądarek posiadają w pełni działającą implementację \textit{WebAssembly}. Podczas testów przygotowanego rozwiązania węzły obliczeniowe zostały z powodzeniem uruchomione na komputerach pracujących z systemami operacyjnymi \textit{Windows 10} oraz \textit{Ubuntu}, a także na telefonach komórkowych działających z systemami \textit{Android} oraz \textit{iOS}.
         
+        \subsection{Prostota obsługi}
+            Interfejs graficzny udostępniany użytkownikom jest intuicyjny i pozwala na korzystanie z systemu bez zastanawiania się jaki powinien być kolejny krok.
+            Na prostotę postawiono w szczególności w części interfejsu odpowiedzialnej za węzły obliczeniowe, aby rozpocząć obliczenia należy jedynie wejść na odpowiednią stronę i kliknąć w jeden przycisk.
+            Podczas wątpliwości przy tworzeniu elementów interfejsu graficznego kierowaliśmy się zaleceniami zaproponowanymi na stronie z dobrymi wzorcami do wykorzystania w interfejsie użytkownika --- \textit{Material Design}~\cite{material-design}.
+        
+        \subsection{Bezpieczeństwo}
+            Podczas opracowywania systemu tworzonego w ramach tej pracy inżynierskiej dużo czasu zostało poświęcone przemyśleniu kwestii bezpieczeństwa tak, aby zminimalizować ryzyko wykonania akcji w panelu administracyjnym przez nieautoryzowaną osobę.
+            Sekcja TODO szczegółowo opisuje zabezpieczenia wykorzystane w systemie, a w paragrafie TODO opisano możliwe dalsze usprawnienia polityki bezpieczeństwa tak, aby utrudnić negatywne oddziaływanie na serwer API nawet osobie mającej uprawnienia administratora.
     
     \section{Możliwości na rozwój aplikacji}
         Poniższa sekcja opisuje możliwości dalszego rozwoju aplikacji.
@@ -832,6 +841,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     \bibitem[22]{licencja-nunit} Licencja \emph{NUnit} \url{https://github.com/nunit/docs/wiki/License}
     \bibitem[23]{nuget} Wprowadzenie do menadżera pakietów \emph{NuGet} \url{https://docs.microsoft.com/pl-pl/nuget/what-is-nuget}.
     \bibitem[24]{visual-studio} Strona produktu \emph{Visual Studio} \url{https://visualstudio.microsoft.com/}.
+    \bibitem[25]{material-design} Opis dobrych praktyk przy tworzeniu interfejsu użytkownika \emph{Material Design} \url{https://material.io/design}
 \end{thebibliography}
 
 \thispagestyle{empty}
