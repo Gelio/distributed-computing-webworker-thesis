@@ -8,6 +8,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[english,polish]{babel}
 
+
 \usepackage{amsmath, amsfonts, amsthm, latexsym} % głównie symbole matematyczne, środowiska twierdzeń
 
 \usepackage[final]{pdfpages} % inputowanie pdfa
@@ -332,7 +333,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     \item Interfejsu dla węzłów obliczeniowych
 \end{itemize}
 
-Na rysunku~\ref{project-model} znajdują się wyodrębnione moduły wraz z urządzeniami podłączonymi do systemu. Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet. Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym interfejs użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych, jak i administratora). Proxy akceptuje jedynie protokół HTTP (port \textit{80}). Protokół HTTPS (port \textit{443}) nie jest zapewniany w ramach przygotowanego systemu.
+Na rysunku~\ref{project-model} znajdują się wyodrębnione moduły wraz z urządzeniami podłączonymi do systemu. Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet. Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym interfejs użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych, jak i administratora). Proxy akceptuje jedynie protokół HTTP (port 80). Protokół HTTPS (port 443) nie jest zapewniany w ramach przygotowanego systemu.
 
 
 \begin{figure} \centering{
@@ -483,9 +484,6 @@ Do przekształcenia assembly użytkownika do wersji możliwej do uruchomienia w 
 
 Testy jednostkowe zostały napisane z wykorzystaniem bibliotek \textit{NUnit} oraz \textit{Moq}. Wybór bibliotek odbył się na podstawie ich popularności, dostępności dokumentacji, a także doświadczeń autorów powyższego systemu w pracy z zastosowanymi bibliotekami.
 
-Motywacją do wyboru wymienionych bibliotek podczas testów serwera była ich popularność 
- wcześniejsze doświadczenie autorów w pracy z nimi oraz obszerna ilość informacji dostępnych na ich temat w Internecie.
-
 \subsection{Biblioteka do implementacji algorytmów rozproszonych}
 \label{biblioteka-szczegoly}
 
@@ -497,13 +495,13 @@ Interfejs \texttt{IProblemPlugin} wymaga implementacji:
     \item Metody \texttt{Compute} --- przyjmuje ona dane wejściowe dla podzadania i wykonuje na ich podstawie obliczenia, zwracając ostatecznie wynik. Metoda jest uruchamiana na węzłach obliczeniowych.
     \item Metody \texttt{JoinSubtaskResults} --- przyjmuje ona kolekcję składającą się z wyników obliczonych podzadań i zwraca wyznaczony wynik końcowy. Metoda ta uruchamiana jest na serwerze.
     \item Czterech obiektów implementujących interfejs \texttt{IDataFormatter} pozwalających na serializację oraz deserializację danych wejściowych oraz wyników zadania i podzadania (klasy \texttt{TTask, TTaskResult, TSubtask, TSubtaskResult}).
-    
-    Dane serializowane i deserializowane są w następujący sposób. Po przesłaniu pliku zawierającego zserializowane zadanie \texttt{TTask}, zadanie to zostaje zdeserializowane na serwerze i za pomocą metody \texttt{DivideTask} podzielone na podzadania \texttt{TSubtask}, po czym podzadania te zostają zserializowane i zapisane w bazie danych.
-    
-    Następnie po przydzieleniu podzadania do konkretnego węzła i pobraniu tego zserializowanego podzadania, węzeł deserializuje to podzadanie, po czym oblicza jego wynik metodą \texttt{Compute}. Wynik \texttt{TSubtaskResult} jest serializowany i przesyłany na serwer, który umieszcza wynik w bazie danych.
-    
-    W momencie, gdy ostatnie podzadanie zostaje ukończone, wyniki wszystkich podzadań \texttt{TSubtaskResult} są pobierane przez serwer z bazy danych, następnie uruchamiana jest metoda \texttt{JoinSubtaskResults}, po czym wynik zadania \texttt{TTaskResult} jest zapisywany przez serwer w bazie danych.
 \end{itemize}
+
+Dane serializowane i deserializowane są w następujący sposób. Po przesłaniu pliku zawierającego zserializowane zadanie \texttt{TTask}, zadanie to zostaje zdeserializowane na serwerze i za pomocą metody \texttt{DivideTask} podzielone na podzadania \texttt{TSubtask}, po czym podzadania te zostają zserializowane i zapisane w bazie danych.
+
+Następnie po przydzieleniu podzadania do konkretnego węzła i pobraniu tego zserializowanego podzadania, węzeł deserializuje to podzadanie, po czym oblicza jego wynik metodą \texttt{Compute}. Wynik \texttt{TSubtaskResult} jest serializowany i przesyłany na serwer, który umieszcza wynik w bazie danych.
+
+W momencie, gdy ostatnie podzadanie zostaje ukończone, wyniki wszystkich podzadań \texttt{TSubtaskResult} są pobierane przez serwer z bazy danych, następnie uruchamiana jest metoda \texttt{JoinSubtaskResults}, po czym wynik zadania \texttt{TTaskResult} jest zapisywany przez serwer w bazie danych.
 
 \begin{figure} \centering{
         \includegraphics{images/library-class-diagram.pdf}}
@@ -537,14 +535,14 @@ Węzły obliczeniowe zostały zaimplementowane w języku \textit{Typescript}~\ci
 Wzorzec ten zakłada, że dane (\textit{Model}) i ich prezentacja (\textit{View}) są od siebie oddzielone, a warstwą komunikującą jest \textit{ViewModel}, który jest również oddzielnym komponentem.
 Wykorzystanie wzorca MVVM zapewnia niezależność logiki od interfejsu użytkownika oraz pozwala na łatwe przeprowadzanie testów jednostkowych.
 Framework \textit{React} został wybrany ze względu na popularność, która przekłada się na ilość dostępnych komponentów interfejsu użytkownika.
-Podczas realizacji interfejsu użytkownika węzła obliczeniwoego zostały wykorzystane komponenty dostarczane przez bibliotekę \textit{evergreen}~\cite{evergreen}.
-Motywacją do wybrania języka \textit{TypeScript} podczas pisania kodu źródłowego części klienckiej jest oferowane przez niego statyczne typowanie oraz wykrywanie błędów już na etapie kompilacji.
+Podczas realizacji interfejsu użytkownika węzła obliczeniowego zostały wykorzystane komponenty dostarczane przez bibliotekę \textit{evergreen}~\cite{evergreen}.
+Motywacją do wybrania języka \textit{Typescript} podczas pisania kodu źródłowego części klienckiej jest oferowane przez niego statyczne typowanie oraz wykrywanie błędów już na etapie kompilacji.
 
-Celem uzyskania generowania kodu HTML po stronie serwera (z angielskiego \textit{Server Side Rendering} -- SSR) wykorzystano bibliotekę \textit{next.js}~\cite{next.js}. W utworzonym projekcie biblioteka \textit{next.js} jest również odpowiedzialna za udostępnianie interfejsu użytkownika, umożliwiając przy tym optymalizację plików wysyłanych do przeglądarki.
+Celem uzyskania generowania kodu HTML po stronie serwera (z angielskiego \textit{Server Side Rendering} --- SSR) wykorzystano bibliotekę \textit{next.js}~\cite{next.js}. W utworzonym projekcie biblioteka \textit{next.js} jest również odpowiedzialna za udostępnianie interfejsu użytkownika, umożliwiając przy tym optymalizację plików wysyłanych do przeglądarki.
 
 Uprzednio skompilowany kod wykonujący obliczenia rozproszone jest uruchamiany w środowisku \textit{WebAssembly}.
 
-Testy jednostkowe zostały napisane z wykorzystaniem biblioteki \textit{jest}~\cite{jest}. Podczas testów end-to-end został wykorzystany framework \textit{Cypress}~\cite{cypress}. Technologie wykorzystywane podczas testów zostały wybrane ze względu na popularność, prostotę użycia oraz ilość dostępnej dokumentacji.
+Testy jednostkowe zostały napisane z wykorzystaniem biblioteki \textit{jest}~\cite{jest}. Podczas testów \textit{end-to-end} został wykorzystany framework \textit{Cypress}~\cite{cypress}. Technologie wykorzystywane podczas testów zostały wybrane ze względu na popularność, prostotę użycia oraz ilość dostępnej dokumentacji.
 
 \subsection{Panel administracyjny}
 
@@ -556,7 +554,7 @@ Podczas implementacji panelu administracyjnego wielokrotnie wykorzystany został
 \subsubsection{Wykorzystane technologie}
 Panel administracyjny, podobnie do węzłów obliczeniowych, został zaimplementowany w języku \textit{Typescript}~\cite{typescript} z użyciem frameworka \textit{React}~\cite{react} oraz \textit{next.js}~\cite{next.js} zapewniającego generowanie kodu HTML po stronie serwera. Wykorzystany został wzorzec MVVM~\cite{mvvm}.
 
-Do elementów interfejsu użytkownika poza wspomniano poprzednio biblioteką \textit{evergreen}~\cite{evergreen} wykorzystano bibliotekę \textit{react-table}~\cite{react-table} do wyświetlania tabel oraz bibliotekę \textit{formik}~\cite{formik} do wyświetlania i zarządzania formularzami. Biblioteki \textit{formik} oraz \textit{react-table} zostały wybrane ze względu na ilość dostępnych funkcjonalności oraz prostotę użycia.
+Do elementów interfejsu użytkownika poza wspomnianą poprzednio biblioteką \textit{evergreen}~\cite{evergreen} wykorzystano bibliotekę \textit{react-table}~\cite{react-table} do wyświetlania tabel oraz bibliotekę \textit{formik}~\cite{formik} do wyświetlania i zarządzania formularzami. Biblioteki \textit{formik} oraz \textit{react-table} zostały wybrane ze względu na ilość dostępnych funkcjonalności oraz prostotę użycia.
 
 Aby ułatwić pracę ze standardem \textit{JSON API} wykorzystano bibliotekę \textit{kitsu}~\cite{kitsu}.
 Dzięki wykorzystaniu biblioteki, która pokrywa wymagania stawiane przez \textit{JSON API}, nie musieliśmy zawierać w projekcie kodu związanego z przetwarzaniem danych przesyłanych i odbieranych z API.
@@ -580,7 +578,6 @@ Opisane zabezpieczenie pozwala nam na uniknięcie sytuacji, w których zalogowan
 Dostęp do panelu administracyjnego wymagania uwierzytelnienia, czyli podania loginu oraz hasła administratora. Jeżeli dane te zgadzają się z danymi zapisanymi w bazie danych, użytkownik dostaje dostęp do panelu.
 
 W przeciwnym wypadku użytkownik nie będzie miał możliwości pobrania żadnych danych ani wykonania jakichkolwiek operacji na encjach.
-
 Jedyne operacje, które są dostępne publicznie, to zarejestrowanie urządzenia jako węzeł obliczeniowy, żądanie przydzielenia nowego zadania, zwrócenie wyniku lub informacji o błędzie. Są to operacje wymagane do prawidłowego funkcjonowania węzłów obliczeniowych. Wszystkie inne operacje są dostępne dopiero po uwierzytelnieniu.
 
 \subsection{Ograniczenia przy zwracaniu wyników}
@@ -598,9 +595,9 @@ Wynikiem każdego z podzadań będzie wynik, dla którego suma poziomów zaufani
 Dla przykładu przyjmijmy, że mamy w systemie zadanie z zdefiniowanym wymaganym poziomie zaufania 5. W tabeli~\ref{trust-level-example} zostały przedstawione węzły wykonujące jedno z podzadań tego zadania wraz z wynikami oraz ich poziomem zaufania.
 Podzadanie zostanie zakończone, ponieważ suma poziomów zaufania jest większa od wymaganego poziomu zaufania:
 
-\[2.5 + 1 + 2 = 5,5 > 5\]
+\[2,5 + 1 + 2 = 5,5 > 5\]
 
-Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez węzły o sumarycznym poziomie zaufania 3.5, podczas gdy wynik 5 został zwrócony przez węzły o sumarycznym poziomie zaufania 2.
+Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez węzły o sumarycznym poziomie zaufania 3,5, podczas gdy wynik 5 został zwrócony przez węzły o sumarycznym poziomie zaufania 2.
 
 \begin{table}
     \centering
