@@ -395,7 +395,8 @@ Serwer składa się z kontrolerów API działających w oparciu o \textit{ASP.NE
 Podczas działania serwera konieczne jest uruchamianie metod użytkownika z klasy implementującej interfejs \texttt{IProblemPlugin} (opisanej w sekcji~\ref{biblioteka-szczegoly}) aby móc uzyskać ostateczny wynik obliczeń lub podzielić zadanie na podzadania na podstawie danych wejściowych.
 Aby uprościć logikę związaną z wykonywaniem opisanych akcji wykorzystany został wzorzec projektowy --- fasada.
 Realizacja wzorca odbyła się przez utworzenie klasy \texttt{ProblemPluginFacade}, która udostępnia jedynie metody wymagane do podzielenia zadania oraz scalenia wyników, a sama wykonuje logikę związaną z konwersją danych oraz wywoływaniem odpowiednich metod zaimplementowanych przez użytkownika.
-Ze względu na zależność \texttt{ProblemPluginFacade} od assembly użytkownika został dodatkowo wykorzystany wzorzec fabryki. Klasa \texttt{ProblemPluginFacadeFactory} jest odpowiedzialna za utworzenie instancji \texttt{ProblemPluginFacade} na podstawie assembly dostarczonego przez użytkownika.
+Aby utworzyć instancję \texttt{ProblemPluginFacade} konieczne jest wykorzystanie refleksji oraz aplikowanie typów generycznych do interfejsów, z tego powodu został wykorzystany wzorzec fabryki.
+Klasa \texttt{ProblemPluginFacadeFactory} jest odpowiedzialna za utworzenie instancji \texttt{ProblemPluginFacade} na podstawie assembly dostarczonego przez użytkownika.
 
 W projekcie serwera pojawiają się też klasy odpowiadające modelom w bazie danych.
 Są to \texttt{ProblemPluginInfo}, \texttt{DistributedNode}, \texttt{Subtask}, \texttt{SubtaskInProgress}, \texttt{DistributedTask} oraz \texttt{DistributedTaskDefinition}.
