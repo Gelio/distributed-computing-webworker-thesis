@@ -1,0 +1,38 @@
+[1mdiff --git a/main.tex b/main.tex[m
+[1mindex 6eefca0..67608cf 100644[m
+[1m--- a/main.tex[m
+[1m+++ b/main.tex[m
+[36m@@ -375,18 +375,18 @@[m [msamodzielnie, co poświadczam własnoręcznym podpisem.[m
+         Kolejnym możliwym ułatwieniem dla programistów jest dodanie zestawu poleceń interfejsu wiersza poleceń (ang. \textit{CLI}) ułatwiających zarządzanie utworzonymi projektami wykorzystującymi bibliotekę \textit{DistributedComputingLibrary}. Poniżej znajdują się przykładowe funkcje, które mogłoby udostępniać takie narzędzie:[m
+         [m
+         \begin{itemize}[m
+[31m-            \item Sprawdzanie poprawności projektu --- weryfikacja poprawności generowanego assembly, analogiocznie do procesu analizy assembly odbywającej się podczas dodawania nowej definicji zadania na serwer. Dzięki lokalnie przeprowadzonej analizie programista mógłby dowiadywać się o nieprawidłowościach w wykorzystaniu biblioteki zanim jeszcze prześle definicję zadania na serwer.[m
+[31m-            \item Dodawanie definicji zadania na serwer API[m
+[31m-            \item Dodawanie nowych zadań na serwer API[m
+[31m-            \item Pobieranie wyniku zadania o podanej nazwie[m
+[32m+[m[32m            \item Sprawdzanie poprawności projektu --- weryfikacja poprawności generowanego assembly, analogicznie do procesu analizy assembly odbywającej się podczas dodawania nowej definicji zadania na serwer. Dzięki lokalnie przeprowadzonej analizie programista mógłby dowiadywać się o nieprawidłowościach w wykorzystaniu biblioteki zanim jeszcze prześle definicję zadania na serwer.[m
+[32m+[m[32m            \item Dodawanie definicji zadania na serwer API.[m
+[32m+[m[32m            \item Dodawanie nowych zadań na serwer API.[m
+[32m+[m[32m            \item Pobieranie wyniku zadania o podanej nazwie.[m
+         \end{itemize}[m
+         [m
+         Dodanie interfejsu wiersza poleceń jako alternatywy do interfejsu graficznego powinno usprawnić pracę użytkownikom często korzystającym z zaprojektowanego systemu.[m
+         [m
+         \subsection{Zapisywanie w bazie danych informacji o węzłach obliczeniowych}[m
+         Zapisywanie w bazie danych informacji o węzłach obliczeniowych umożliwiłoby osobom zaangażowanym w projekt analizę dostępnej mocy obliczeniowej. [m
+[31m-        Dodatkowo dalsze poprawki mogłyby pozwolić na przydzielanie bardziej wymagających zadań węzłom o większej wydajności, podczas gdy mniej wydaje węzły mogłyby rozwiązywać zadania nie wymagające tak dużej mocy obliczeniowej.[m
+[31m-        Optymalne dobieranie zadań do mocy węzłów oblieczniowych pozwoliłoby na skrócenie czasu wykonywania najbardziej wymagających zadań.[m
+[32m+[m[32m        Dodatkowo dalsze poprawki mogłyby pozwolić na przydzielanie bardziej wymagających zadań węzłom o większej wydajności, podczas gdy mniej wydajne węzły mogłyby rozwiązywać zadania nie wymagające tak dużej mocy obliczeniowej.[m
+[32m+[m[32m        Optymalne dobieranie zadań do mocy węzłów obliczeniowych pozwoliłoby na skrócenie czasu wykonywania najbardziej wymagających zadań.[m
+         [m
+         \subsection{Powiadomienia o zakończeniu obliczeń}[m
+         Z uwagi na potencjalnie długi czas wykonywania obliczeń ciężko jest oszacować kiedy należy sprawdzić dostępność wyników, dlatego wysyłanie użytkownikom powiadomień w postaci wiadomości e--mail oszczędziłoby im konieczności odwiedzania interfejsu użytkownika w celu sprawdzenia stanu zleconego zadania.[m
+[36m@@ -401,7 +401,7 @@[m [msamodzielnie, co poświadczam własnoręcznym podpisem.[m
+         Udostępnienie użytkownikom możliwości pobierania wyników podzadań powinno umożliwić im szybsze oraz precyzyjniejsze identyfikowanie błędów w algorytmach.[m
+ [m
+         \subsection{Umożliwienie wykorzystywania częściowych wyników podczas obliczeń}[m
+[31m-        Podczas wykonywania niektórych zadań mogą zdarzyć się sytuacje, gdy obliczane podzadanie nie ma możliwości wpłynięcia na wynik końcowy i dałoby się je pominąć znająć wyniki podzadań, które zostały zakończone do momentu rozpoczęcia jego obliczeń. [m
+[32m+[m[32m        Podczas wykonywania niektórych zadań mogą zdarzyć się sytuacje, gdy obliczane podzadanie nie ma możliwości wpłynięcia na wynik końcowy i dałoby się je pominąć znając wyniki podzadań, które zostały zakończone do momentu rozpoczęcia jego obliczeń.[m[41m [m
+         Aby umożliwić opisaną optymalizację algorytmów umieszczanych w ramach systemu obliczeń rozproszonych można umożliwić programistom dostęp do najlepszego uzyskanego wyniku do momentu uruchomienia podzadania.[m
+         Taka zmiana wymagałaby modyfikacji zarówno po stronie serwera API, jak i biblioteki do obliczeń rozproszonych, ale korzystnie wpłynęłaby na obciążenie systemu.[m
+         [m
