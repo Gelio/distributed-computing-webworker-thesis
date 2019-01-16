@@ -688,7 +688,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         Kolejnym możliwym ułatwieniem dla programistów jest dodanie zestawu poleceń interfejsu wiersza poleceń (ang. \textit{CLI}) ułatwiających zarządzanie utworzonymi projektami wykorzystującymi bibliotekę \textit{DistributedComputingLibrary}. Poniżej znajdują się przykładowe funkcje, które mogłoby udostępniać takie narzędzie:
         
         \begin{itemize}
-            \item Sprawdzanie poprawności projektu --- weryfikacja poprawności generowanego assembly, analogiocznie do procesu analizy assembly odbywającej się podczas dodawania nowej definicji zadania na serwer. Dzięki lokalnie przeprowadzonej analizie programista mógłby dowiadywać się o nieprawidłowościach w wykorzystaniu biblioteki przez próbą dodania nowej definicji zadania na serwerze.
+            \item Sprawdzanie poprawności projektu --- weryfikacja poprawności generowanego assembly, analogiocznie do procesu analizy assembly odbywającej się podczas dodawania nowej definicji zadania na serwer. Dzięki lokalnie przeprowadzonej analizie programista mógłby dowiadywać się o nieprawidłowościach w wykorzystaniu biblioteki zanim jeszcze prześle definicję zadania na serwer.
             \item Dodawanie definicji zadania na serwer API
             \item Dodawanie nowych zadań na serwer API
             \item Pobieranie wyniku zadania o podanej nazwie
@@ -711,7 +711,12 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         Zalecanym sposobem na zarządzanie uprawnieniami obcego kodu uruchamianego w ramach naszego systemu jest uruchamianie go w osobnym procesie z uprawnieniami ograniczonymi przez system operacyjny.
         
         \subsection{Umożliwienie pobierania częściowych wyników}
-        Udostępnienie użytkownikom możliwości pobierania wyników podzadań powinno umożliwić im szybsze oraz precyzyjniejsze identyfikowanie błędów w algorytmach. 
+        Udostępnienie użytkownikom możliwości pobierania wyników podzadań powinno umożliwić im szybsze oraz precyzyjniejsze identyfikowanie błędów w algorytmach.
+
+        \subsection{Umożliwienie wykorzystywania częściowych wyników podczas obliczeń}
+        Podczas wykonywania niektórych zadań mogą zdarzyć się sytuacje, gdy obliczane podzadanie nie ma możliwości wpłynięcia na wynik końcowy i dałoby się je pominąć znająć wyniki podzadań, które zostały zakończone do momentu rozpoczęcia jego obliczeń. 
+        Aby umożliwić opisaną optymalizację algorytmów umieszczanych w ramach systemu obliczeń rozproszonych można umożliwić programistom dostęp do najlepszego uzyskanego wyniku do momentu uruchomienia podzadania.
+        Taka zmiana wymagałaby modyfikacji zarówno po stronie serwera API, jak i biblioteki do obliczeń rozproszonych, ale korzystnie wpłynęłaby na obciążenie systemu.
         
     \section{Problemy implementacyjne}
         Poniższa sekcja opisuje problemy implementacyjne napotkane podczas tworzenia aplikacji.
