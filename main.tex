@@ -525,7 +525,8 @@ Diagram stanów węzła obliczeniowego został przedstawiony na rysunku~\ref{nod
 Początkowo węzeł jest nieaktywny, nie odpytuje serwera o nowe zadania.
 Po naciśnięciu przycisku zostaje on aktywny --- próbuje otrzymać nowe zadania.
 W momencie otrzymania nowego zadania pobiera on kod programu rozwiązującego to zadanie oraz dane wejściowe potrzebne do jego obliczenia. Jeżeli podczas obliczeń wystąpił błąd, zostaje o tym powiadomiony serwer, a węzeł ponownie pyta o nowe zadania.
-W momencie, gdy obliczenie zostało zakończone sukcesem, wynik zostaje zwrócony do serwera, a węzeł pyta o nowe zadania. \linebreak
+W momencie, gdy obliczenie zostało zakończone sukcesem, wynik zostaje zwrócony do serwera, a węzeł pyta o nowe zadania.
+
 W dowolnym momencie osoba posiadająca dostęp do interfejsu węzła (określana dalej jako właściciel węzła) może zdecydować o zakończeniu obliczeń. Wtedy węzeł wraca do stanu \textit{Nieaktywny}. W tej sytuacji węzeł powiadamia serwer, że wszystkie zadania obliczane przez niego w tym momencie powinny być uznane jako anulowane.
 Ponadto, właściciel węzła może skonfigurować ile zadań może być jednocześnie obliczanych w różnych wątkach na tym węźle.
 
@@ -547,7 +548,7 @@ Celem uzyskania generowania kodu HTML po stronie serwera (z angielskiego \textit
 
 Uprzednio skompilowany kod wykonujący obliczenia rozproszone jest uruchamiany w środowisku \textit{WebAssembly}.
 
-Testy jednostkowe zostały napisane z wykorzystaniem biblioteki \textit{jest}~\cite{jest}. Podczas testów \textit{end-to-end} został wykorzystany framework \textit{Cypress}~\cite{cypress}. Technologie wykorzystywane podczas testów zostały wybrane ze względu na popularność, prostotę użycia oraz ilość dostępnej dokumentacji.
+Testy jednostkowe zostały napisane z wykorzystaniem biblioteki \textit{jest}~\cite{jest}. Podczas testów integracyjnych całego systemu (ang. \textit{end-to-end}) został wykorzystany framework \textit{Cypress}~\cite{cypress}. Technologie wykorzystywane podczas testów zostały wybrane ze względu na popularność, prostotę użycia oraz ilość dostępnej dokumentacji.
 
 \subsection{Panel administracyjny}
 
@@ -585,7 +586,6 @@ Opisane zabezpieczenie pozwala nam na uniknięcie sytuacji, w których zalogowan
 \subsection{Uwierzytelnianie} 
 
 Dostęp do panelu administracyjnego wymagania uwierzytelnienia, czyli podania loginu oraz hasła administratora. Jeżeli dane te zgadzają się z danymi zapisanymi w bazie danych, użytkownik dostaje dostęp do panelu.
-
 W przeciwnym wypadku użytkownik nie będzie miał możliwości pobrania żadnych danych ani wykonania jakichkolwiek operacji na encjach.
 Jedyne operacje, które są dostępne publicznie, to zarejestrowanie urządzenia jako węzeł obliczeniowy, żądanie przydzielenia nowego zadania, zwrócenie wyniku lub informacji o błędzie. Są to operacje wymagane do prawidłowego funkcjonowania węzłów obliczeniowych. Wszystkie inne operacje są dostępne dopiero po uwierzytelnieniu.
 
