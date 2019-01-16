@@ -674,13 +674,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         
         \subsection{Wydajność}
             Wydajność C\# uruchamianego w interpreterze w przeglądarce okazała się być niska w porównaniu do C\# kompilowanego do programu wykonywalnego.
-            Wykonane testy wydajności wykazały, że algorytm napisany w C\# uruchamiany natywnie jest aż do $250\times$ szybszy od tego samego algorytmu uruchomionego w interpreterze dostarczonym przez \textit{mono-wasm}. Wykres obrazujący czas wykonania kodu podczas testów w obu środowiskach został przedstawiony na rysunku~\ref{benchmark}. 
-            
-            \begin{figure} \centering{
-                    \includegraphics[scale=0.4]{images/benchmark.png}}
-                \caption{Porównanie wydajności kodu C\# uruchamianego natywnie oraz w interpretowanego w \textit{WebAssembly}}
-                \label{benchmark}
-            \end{figure}
+            Wykonane testy wydajności wykazały, że algorytm napisany w C\# uruchamiany natywnie jest aż do $250\times$ szybszy od tego samego algorytmu uruchomionego w interpreterze dostarczonym przez \textit{mono-wasm}.
             
             W chwili tworzenia pracy inżynierskiej autorzy \textit{mono-wasm} pracowali nad kompilacją \textit{C\#} do \textit{WebAssembly}. W momencie, gdy to zadanie się powiedzie, różnica w wydajności powinna zmaleć i nie wpływać znacząco na czas wykonywania obliczeń.
             
