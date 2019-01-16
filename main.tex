@@ -365,6 +365,48 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         Głównie problemy z mono-wasm i zaskoczenie z Dockerem na Arch Linux
     
     \section{Wnioski z projektu}
+        W tej sekcji zostaną przedstawione wnioski wyciągnięte z implementacji projektu.
+        
+        \subsection{Współpraca z eksperymentalnymi technologiami}
+            Z uwagi na eksperymentalną naturę projektu \textit{mono-wasm}, jego dokumentacja była niewielka. Dostępny był jeden przykład wykorzystania przedstawiający uruchomienie metody z biblioteki DLL zbudowanej z kodu C\#, która zwracała wynik dodawania dwóch liczb podanych jako parametry.
+            Wywoływana metoda była statyczna i nie było jasne jak dokładnie utworzyć instancję obiektu, a także jak przekazywać bardziej złożone parametry do wywołań oraz jak odbierać wyniki. Brakujących informacji początkowo szukaliśmy w otwartym kodzie źródłowym projektu \textit{mono-wasm}, a gdy to się nie powiodło, skontaktowaliśmy się z osobami pracującymi nad tym projektem. Z ich odpowiedzi wynikało, że wymagane jest użycie metod statycznych zwracających instancje obiektów.
+            Ponowne wątpliwości pojawiły się w momencie przesyłania zserializowanych danych wejściowych podzadania (\texttt{TSubtask}) oraz odbierania wyników (\texttt{TSubtaskResult}). Obsługa tablic bajtów jako parametry pojawiła się w \textit{mono-wasm} dopiero w październiku 2018 roku, zatem już podczas tworzenia pracy inżynierskiej.
+            Gdyby ta funkcjonalność nie została dodana, to musielibyśmy wybrać inny sposób przesyłu danych, co mogłoby wprowadzić opóźnienia oraz skomplikować działanie systemu.
+            
+            Sam interfejs do komunikacji z assembly C\# udostępniany przez projekt \textit{mono-wasm} wydał nam się skomplikowany. Przede wszystkim narzucał on definiowanie globalnych funkcji typu \textit{callback}, które wywoływane były podczas działania aplikacji. Ponadto, nazwy funkcji służących do wywoływania metod z kodu C\# były dość długie (na przykład \texttt{Module.BINDING.call\_static\_method}). Nazwy statycznych metod, które chcemy wywołać należało przekazywać w ściśle ustalonym formacie tekstowym, który początkowo nie był dla nas do końca jasny.
+            
+            W tym projekcie wydajność obliczeń wykonywanych w węzłach nie była jednym z wymagań, ale gdyby tak było, to należałoby ją zweryfikować na początku projektu, aby uniknąć niespodzianek w przyszłości. W aktualnym stanie nie moglibyśmy znacznie przyśpieszyć obliczeń w przeglądarce ze względu na wykorzystanie do tego zewnętrznej biblioteki. Wtedy należałoby rozważyć skorzystanie z innych rozwiązań pozwalających na kompilację kodu C\# do postaci dającej się wykonać w przeglądarce.
+            
+            Brak dokumentacji i większej ilości przykładów sprawił, że nad wykorzystaniem biblioteki \textit{mono-wasm} spędziliśmy więcej czasu, niż początkowo planowaliśmy.
+            W przyszłości wykorzystując eksperymentalne biblioteki warto już na samym starcie dokładnie sprawdzić dokumentację oraz przykłady użycia do tego stopnia, żeby zweryfikować czy wszystkie wymagania projektu będą możliwe do zrealizowania. W razie wątpliwości należy na początku skontaktować się z twórcami czy poszukać informacji na Internecie zamiast robić to podczas prób implementacji.
+            Jeżeli wydajność programu jest jednym z wymagań, należy na początku przeprowadzić eksperymenty zbliżone do warunków wdrożeniowych aby w razie potrzeb móc zmodyfikować lub przedyskutować ponownie wymagania dotyczące wydajności.
+        
+        \subsection{Tworzenie interfejsu użytkownika}
+            Tworząc interfejs użytkownika warto wykorzystać gotowe komponenty stworzone i udostępnione w ramach zasad wolnego oprogramowania, które zazwyczaj przy okazji wyglądają estetycznie i spójnie. Wybierając takie rozwiązanie często unikamy problemu implementowania części logiki samemu oraz problemów związanych z dostosowaniem danego elementu w zakresie dostępności oraz szeroko pojętego zadowolenia użytkownika (ang. {\selectlanguage{english}\textit{User Experience})}.
+            
+            Ponadto, w tym projekcie sprawdziło się podejście, w którym na początku zidentyfikowaliśmy powtarzalne elementy interfejsu, a następnie zaprojektowaliśmy i zaimplementowaliśmy ogólne, konfigurowalne wersje tych komponentów, które później mogliśmy wykorzystać w ramach konkretnych funkcjonalności dostosowując jedynie konfigurację takiego elementu.
+            Przykładowymi powtarzalnymi częściami zidentyfikowanymi przez nas na początku były tabela oraz formularz. Dodatkowo, chcąc zmienić wygląd czy działanie takiego komponentu zmiany należy wprowadzić jedynie w jednym miejscu, a nie w każdej funkcjonalności oddzielnie.
+        
+            Planując harmonogram projektu na początku tworzenia pracy inżynierskiej nie wzięliśmy pod uwagę, że część dotycząca interfejsu użytkownika będzie tak czasochłonna, jak okazała się w rzeczywistości.
+            Oprócz tworzenia estetycznie wyglądającej strony internetowej musieliśmy sprawdzać różne przypadki jej uruchomienia i działania, także na innych urządzeniach, takich jak telefony komórkowe, oraz różnych przeglądarkach i wielkościach ekranu. To sprawiło, że czas potrzebny na zaimplementowanie funkcjonalności panelu administracyjnego oraz panelu dla węzła obliczeniowego wydłużył się.
+            
+            Nietrywialne okazało się testowanie wizualne wytwarzanych komponentów. W przeciwieństwie do logiki aplikacji dającej się zweryfikować przy użyciu testów jednostkowych, aspekty estetyczne nie były tak łatwe. Nie pomagał również fakt, że komponenty były zależne od siebie i czasem dobry wygląd jednego z nich był warunkowany poprawnym wyświetleniem się innego.
+            Z tych powodów zdecydowaliśmy się na skorzystanie z narzędzia, za pomocą którego byliśmy stanie sprawdzić wygląd poszczególnych komponentów w izolacji. Taka weryfikacja musiała być wykonywana manualnie, natomiast okazała się łatwiejsza od sprawdzania właściwości elementów działającej strony.
+            
+            Podsumowując, praktyki takie jak wykorzystanie gotowych komponentów, stworzenie ogólnych i konfigurowalnych elementów interfejsu użytkownika, a także testowanie ich w izolacji znacznie przyśpieszyło proces wytwarzania pracy inżynierskiej.
+            Stojąc w przyszłości przed zadaniem stworzenia aplikacji internetowej ponownie skorzystalibyśmy z podobnych kroków w celu uzyskania spójnego i łatwego w rozszerzeniu oraz modyfikacji systemu.
+        
+        \subsection{Integracja w środowisku wdrożeniowym}
+            Podczas uruchomienia projektu w środowisku wdrożeniowym mogą pojawić się niespodziewane problemy. Tak było w przypadku tej pracy inżynierskiej. Z uwagi na fakt, że integrację w środowisku wdrożeniowym rozpoczęliśmy na miesiąc przed oddaniem projektu, problemy te można było rozwiązać w spokoju i zgodnie z dobrymi praktykami.
+            Próbując uruchomić system po raz pierwszy w środowisku wdrożeniowym niedługo przed oddaniem projektu mogłoby się okazać, że powstałych problemów nie da się rozwiązać w krótkim czasie, więc oddanie projektu by się opóźniło.
+            Warto zatem próbować uruchomić system na jak największej ilości środowisk docelowych jak najwcześniej.
+            
+        \subsection{Dokładna weryfikacja wymagań}
+            Jednym z początkowych wymagań było uruchamianie kodu użytkownika w środowisku izolowanym na serwerze tak, aby nie mógł wyrządzić on niepożądanych działań w systemie ani nie mógł odczytać plików systemowych.
+            Zweryfikowaliśmy na początku projektu, że taka funkcjonalność jest dostępna {\selectlanguage{english}\textit{.NET Standard 2.0}} z użyciem klasy {\selectlanguage{english}\texttt{AppDomain}}. Wykorzystując {\selectlanguage{english}\textit{.NET Core 2.2}}, który implementuje {\selectlanguage{english}\textit{.NET Standard 2.0}} wywnioskowaliśmy, że będziemy mogli z niego skorzystać w naszym projekcie.
+            Ku naszemu zdziwieniu okazało się jednak, że mimo, że takie rozwiązanie ({\selectlanguage{english}\texttt{AppDomain}}) jest w teorii w {\selectlanguage{english}\textit{.NET Standard 2.0}}, to nie jest wspierane w {\selectlanguage{english}\textit{.NET Core}}, zatem musieliśmy zrezygnować z tego wymagania.
+            
+            Na przyszłość warto pamiętać, aby w pełni zweryfikować wymagania na wstępie, szczególnie jeżeli będzie się wykorzystywało mechanizmy, z którymi nie ma się do czynienia na porządku dziennym. Dyskusja o zmianie wymagań jest zdecydowanie bardziej mile widziana na początku projektu, w porównaniu z propozycjami zmian w momencie, gdy projekt ma kilka miesięcy.
         
 
 
