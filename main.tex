@@ -670,7 +670,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 
 \chapter{Podsumowanie}
     \section{Własności rozwiązania}
-        Poniższa sekcja opisuje kwestie wydajności, wieloplatformości, prostoty obsługi oraz bezpieczeństwa utworzonego systemu.
+        Poniższa sekcja opisuje kwestie wydajności, wieloplatformowości, prostoty obsługi oraz bezpieczeństwa utworzonego systemu.
         
         \subsection{Wydajność}
             Wydajność C\# uruchamianego w interpreterze w przeglądarce okazała się być niska w porównaniu do C\# kompilowanego do programu wykonywalnego.
@@ -679,7 +679,11 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
             W chwili tworzenia pracy inżynierskiej autorzy \textit{mono-wasm} pracowali nad kompilacją \textit{C\#} do \textit{WebAssembly}. W momencie, gdy to zadanie się powiedzie, różnica w wydajności powinna zmaleć i nie wpływać znacząco na czas wykonywania obliczeń.
             
         \subsection{Wieloplatformowość}
-            Dowolne urządzenie wyposażone w przeglądarkę internetową obsługującą \textit{WebAssembly} może zostać węzłem obliczeniowym. W momencie tworzenia powyższego dokumentu zgodnie z danymi pobranymi ze strony \textit{Can I use?}~\cite{can-i-use} $80,76\%$ użytkowników sieci Internet korzysta z przeglądarek posiadających w pełni działającą implementację \textit{WebAssembly}. Podczas testów przygotowanego rozwiązania węzły obliczeniowe zostały z powodzeniem uruchomione na komputerach pracujących z systemami operacyjnymi \textit{Windows 10} oraz \textit{Ubuntu}, a także na telefonach komórkowych działających z systemami \textit{Android} oraz \textit{iOS}.
+            Dowolne urządzenie wyposażone w przeglądarkę internetową obsługującą \textit{WebAssembly} może zostać węzłem obliczeniowym.
+            W momencie tworzenia powyższego dokumentu zgodnie z danymi pobranymi ze strony \textit{Can I use?}~\cite{can-i-use} $80,76\%$ użytkowników sieci Internet korzysta z przeglądarek posiadających w pełni działającą implementację \textit{WebAssembly}.
+            Podczas testów przygotowanego rozwiązania węzły obliczeniowe zostały z powodzeniem uruchomione na komputerach pracujących z systemami operacyjnymi \textit{Windows 10} oraz \textit{Ubuntu}, a także na telefonach komórkowych działających z systemami \textit{Android} oraz \textit{iOS}.
+            
+            Dzięki zastosowaniu kontenerów \textit{Docker} do uruchamiania aplikacji przygotowany system może zostać wdrożony na dowolnym systemie operacyjnym posiadającym wsparcie dla aplikacji \textit{Docker} oraz \textit{docker-compose}.
         
         \subsection{Prostota obsługi}
             Interfejs graficzny udostępniany użytkownikom jest intuicyjny i pozwala na korzystanie z systemu bez zastanawiania się jaki powinien być kolejny krok.
