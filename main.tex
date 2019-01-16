@@ -433,13 +433,12 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     # systemctl start docker
         \end{verbatim}
 
-        W celu weryfikacji poprawnej instalacji należy wywołać komendy:
+        W celu weryfikacji działania serwisu \textit{docker} należy wywołać komendę:
         \begin{verbatim}
-    # docker version
-    # docker-compose -v
+    # docker ps
         \end{verbatim}
 
-        Jeśli powyższe komendy poprawnie wyświetlą zainstalowaną wersję, to znaczy, że instalacja się powiodła. 
+        Jeśli po uruchomieniu powyższej komendy pojawi się tabelka, to znaczy, że instalacja się powiodła.
 
     \subsection{Instrukcja wdrożenia}
     
@@ -504,7 +503,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
             
         \subsubsection{Przywracanie kopii zapasowej}
 
-            Aby przywrócić kopię zapasową należy uruchomić skrypt \textit{restore.sh} podając jako argument nazwę archiwium zawierającego kopię zapasową, stworzonego za pomocą skryptu z poprzedniego kroku. Skrypt \textit{restore.sh} znajduje się w katalogu \textit{scripts} w głównym folderze projektu.
+            Aby przywrócić kopię zapasową należy uruchomić skrypt \textit{restore.sh} podając jako argument nazwę archiwum zawierającego kopię zapasową, stworzonego za pomocą skryptu z poprzedniego kroku. Skrypt \textit{restore.sh} znajduje się w katalogu \textit{scripts} w głównym folderze projektu.
             
     \subsection{Instrukcja użycia}
         W poniższej sekcji przedstawiono instrukcję użycia produktu z podziałem na etap logowania, dodawania definicji zadania, dodawania zadania, obliczania zadania oraz pobierania wyników.
@@ -530,8 +529,10 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         W prawym górnym rogu znajduje się ikona plusa na zielonym tle, po kliknięciu w nią nastąpi przekierowanie do formularza dodawania nowej definicji zadania.
         Aby dodać nową definicję zadania należy wypełnić wyświetlony formularz.
         
-        
-        W polu \textit{MainDLL} należy umieścić bibliotekę implementującą interfejs \textit{IProblemPlugin} z biblioteki \textit{DistributedComputingLibrary}. W polu \textit{AdditionalDlls} powinny zostać wybrane wszystkie pozostałe biblioteki znajdujące się folderze budowy definicji zadania. Po wypełnieniu wszystkich pól należy wysłać formularz klikająć przycisk \texttt{Submit}. Po dodaniu nowej definicji zadania następuje przekierowanie do strony wyświetlającej szczegóły dodanego zadania. 
+        W polu \textit{MainDLL} należy umieścić bibliotekę implementującą interfejs \textit{IProblemPlugin} z biblioteki \textit{DistributedComputingLibrary}.
+        W polu \textit{AdditionalDlls} powinny zostać wybrane wszystkie pozostałe biblioteki znajdujące się w folderze wynikowym zbudowanej definicji zadania.
+        Po wypełnieniu wszystkich pól należy wysłać formularz klikając przycisk \texttt{Submit}.
+        Po dodaniu nowej definicji zadania następuje przekierowanie do strony wyświetlającej szczegóły dodanego zadania. 
         
         Przykładowe zadania dostępne są w folderze \textit{example-problems} znajdującym się w głównym katalogu projektu.
         
@@ -576,86 +577,86 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
             Poniższe testy dotyczą użytkownika, który nie jest zalogowany w systemie.
         
         
-            \subsubsection{Zalogowanie} 
+            \paragraph{Zalogowanie.} 
                 \noindent Użytkownik uzyskuje pełen dostęp do systemu (zostaje mu przyznany poziom uprawnień \textit{Administrator}). 
             
                 W celu zalogowania należy przejść do strony logowania. Kolejnymi krokami są wypełnienie formularza poprawnymi danymi oraz wysłanie go.
                 
-            \subsubsection{Uruchomienie węzła obliczeniowego} 
+            \paragraph{Uruchomienie węzła obliczeniowego.} 
                 \noindent Użytkownik zostaje zarejestrowany jako węzeł obliczeniowy i zaczyna odpytywać serwer.
                 
                 W celu uruchomienia węzła obliczeniowego należy przejść do panelu węzła obliczeniowego, a następnie kliknąć w przycisk \texttt{Start the worker}. 
                 
-            \subsubsection{Zatrzymanie węzła obliczeniowego}  
+            \paragraph{Zatrzymanie węzła obliczeniowego.}  
                 \noindent Wykonywanie obliczeń zostaje anulowane, a użytkownik może swobodnie opuścić stronę węzła obliczeniowego.
     
                 W celu zatrzymania węzła obliczeniowego należy po uprzednim uruchomieniu go kliknąć w przycisk \texttt{Stop the worker}.
                 
-            \subsubsection{Zwiększenie ilości wątków}   
+            \paragraph{Zwiększenie ilości wątków.}   
                 \noindent Węzeł obliczeniowy do obliczania zadań będzie używał o jednego wątku więcej niż poprzednio. 
 
                 Aby zwiększyć ilość wątków dostępnych do wykonywania obliczeń należy po uprzednim uruchomieniu węzła obliczeniowego kliknąć w przycisk z ikoną plusa.
 
-            \subsubsection{Zmniejszenie ilości wątków}   
-                \noindent Jeśli usuwany wątek wykonywał obliczenie, to system zgłasza do serwera jego anulowanie. Węzeł obliczeniowy do obliczania zadań bedzie teraz używał o jednego wątku mniej niż poprzednio (chyba, że poprzednio używał tylko 1 wątku).
+            \paragraph{Zmniejszenie ilości wątków.}   
+                \noindent Jeśli usuwany wątek wykonywał obliczenie, to system zgłasza do serwera jego anulowanie. Węzeł obliczeniowy do obliczania zadań będzie teraz używał o jednego wątku mniej niż poprzednio (chyba, że poprzednio używał tylko 1 wątku).
 
-                Aby zmniejszyć ilość wątków dostępnych do wykonywania obliczeń należy po uprzednim uruchomieniu węzła obliczeniowego oraz zwiększenu liczby używanych wątków kliknąć w przycisk z ikoną minusa.
+                Aby zmniejszyć ilość wątków dostępnych do wykonywania obliczeń należy po uprzednim uruchomieniu węzła obliczeniowego oraz zwiększeniu liczby używanych wątków kliknąć w przycisk z ikoną minusa.
 
         \subsection{Administrator}
             Poniższe testy są wykonywane z poziomem uprawnień administratora.
 
-            \subsubsection{Dodanie definicji zadania}   
+            \paragraph{Dodanie definicji zadania.}   
                 \noindent Zadanie zostaje zapisane w systemie i jest widoczne w tabeli z zadaniami. 
 
                 Aby dodać nową definicję zadania do systemu należy przejść do strony zawierającej tabelę z definicjami zadań. Kolejnym krokiem jest kliknięcie w ikonę plusa, która przekieruje użytkownika do formularza dodawania nowego zadania. Formularz należy wypełnić zgodnie z \ref{distributed-task-definition-add-guide}, a następnie wysłać.
 
-            \subsubsection{Informacje o zadaniu}    
+            \paragraph{Informacje o zadaniu.}    
                 \noindent Wyświetlona strona zawiera informacje o zadaniu wraz z postępem wykonywania przez węzły obliczeniowe. 
                 
-                Aby wyświetlić szczegółowe informacje o zadaniu należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk texttt{See details} przy dowolnym zadaniu.
+                Aby wyświetlić szczegółowe informacje o zadaniu należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk \texttt{See details} przy dowolnym zadaniu.
                 
-            \subsubsection{Lista definicji zadań}  
+            \paragraph{Lista definicji zadań.}  
                 \noindent Wyświetlona strona zawiera listę definicji zadań wraz z ich nazwą oraz odnośnikiem do szczegółowych informacji o każdej z definicji.
 
                 Aby wyświetlić stronę zawierającą listę definicji zadań należy wybrać opcję \texttt{Distributed Task Definitions} z panelu bocznego.
 
-            \subsubsection{Lista dodanych zadań}   
+            \paragraph{Lista dodanych zadań.}   
                 \noindent Wyświetlona strona zawiera listę zadań wraz z ich nazwą, odnośnikiem do definicji zadania oraz odnośnikiem do szczegółów zadania.
                 
                 Aby wyświetlić stronę zawierającą listę zadań należy wybrać opcję \texttt{Distributed Tasks} z panelu bocznego.
 
-            \subsubsection{Usunięcie zadania}  
+            \paragraph{Usunięcie zadania.}  
                 \noindent Zadanie wraz z podzadaniami zostają usunięte z systemu.
                 
                 Aby usunąć zadanie należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk \texttt{Delete} przy wybranym zadaniu.
 
-            \subsubsection{Usunięcie definicji zadania}    
+            \paragraph{Usunięcie definicji zadania.}    
                 \noindent Definicja zadania wraz z zadaniami i podzadaniami zostają usunięte z systemu.
                 
                 Aby usunąć definicję zadania należy przejść do tabeli zawierającej definicje zadania, a następnie kliknąć w przycisk \texttt{Delete} przy wybranej definicji zadania. 
 
-            \subsubsection{Pobieranie wyników} 
+            \paragraph{Pobieranie wyników.} 
                 \noindent Po kliknięciu w przycisk zostaje pobrany plik zawierający
                 wynik zadania.
                 
                 Aby pobrać wyniki zadania należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk \texttt{See details} przy zadaniu o statusie \textit{Done}. Po przekierowaniu na stronę z detalami zadania należy kliknąć w przycisk \texttt{Download results}.
 
-            \subsubsection{Pobieranie danych wejściowych}  
+            \paragraph{Pobieranie danych wejściowych.}  
                 \noindent Po kliknięciu w przycisk zostaje pobrany plik zawierający dane wejściowe zadania.
                 
                 Aby pobrać dane wejściowe zadania należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk \texttt{See details} przy dowolnym zadaniu. Po przekierowaniu na stronę z detalami zadania należy kliknąć w przycisk \texttt{Download input data}.
 
-            \subsubsection{Edycja zadania}  
+            \paragraph{Edycja zadania.}  
                 \noindent Informacje o zadaniu zostają zmienione.
                 
                 Aby edytować zadanie należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk \texttt{Edit} przy dowolnym zadaniu. Po przekierowaniu należy wypełnić formularz, a następnie go wysłać.
 
-            \subsubsection{Edycja definicji zadania}    
+            \paragraph{Edycja definicji zadania.}    
                 \noindent Informacje o definicji zadania zostają zmienione.
                 
                 Aby edytować definicję zadania należy przejść do tabeli zawierającej definicje zadań, a następnie kliknąć w przycisk \texttt{Edit} przy dowolnej definicji zadania. Po przekierowaniu należy wypełnić formularz, a następnie go wysłać.
 
-            \subsubsection{Wylogowanie}
+            \paragraph{Wylogowanie.}
                 \noindent Użytkownik zostaje wylogowany i przestaje mieć status administratora.
 
                 W celu wylogowania należy kliknąć w przycisk \texttt{Logout} z panelu bocznego
