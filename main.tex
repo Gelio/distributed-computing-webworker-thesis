@@ -393,7 +393,7 @@ Poniższa sekcja zawiera szczegółowy opis implementacji z podziałem na poszcz
 Serwer składa się z kontrolerów API działających w oparciu o \textit{ASP.NET Core 2.2}~\cite{aspnet-core}. Obsługują one zapytania dotyczące wszystkich encji na serwerze i wywołują odpowiednie metody serwisów odpowiadających encji. Serwisy pośredniczące w akcjach wywoływanych przez kontrolery są odpowiedzialne za wywoływanie dodatkowej logiki umieszczonej pomiędzy kontrolerami, a warstwą dostępu do danych. Każdy z tych serwisów implementuje \texttt{EntityResourceService} i pozwala zarówno na wpłynięcie na odpowiedź kontrolera po otrzymaniu zapytania \textit{HTTP}, jak i uruchamianie dodatkowej, całkowicie niepowiązanej z kontrolerami logiki.
 
 Podczas działania serwera konieczne jest uruchamianie metod użytkownika z klasy implementującej interfejs \texttt{IProblemPlugin} (opisanej w sekcji~\ref{biblioteka-szczegoly}) aby móc uzyskać ostateczny wynik obliczeń lub podzielić zadanie na podzadania na podstawie danych wejściowych.
-Aby uprościć logikę związanej z wykonywaniem opisanych akcji wykorzystany został wzorzec projektowy --- fasada.
+Aby uprościć logikę związaną z wykonywaniem opisanych akcji wykorzystany został wzorzec projektowy --- fasada.
 Realizacja wzorca odbyła się przez utworzenie klasy \texttt{ProblemPluginFacade}, która udostępnia jedynie metody wymagane do podzielenia zadania oraz scalenia wyników, a sama wykonuje logikę związaną z konwersją danych oraz wywoływaniem odpowiednich metod zaimplementowanych przez użytkownika.
 Ze względu na zależność \texttt{ProblemPluginFacade} od assembly użytkownika został dodatkowo wykorzystany wzorzec fabryki. Klasa \texttt{ProblemPluginFacadeFactory} jest odpowiedzialna za utworzenie instancji \texttt{ProblemPluginFacade} na podstawie assembly dostarczonego przez użytkownika.
 
@@ -476,12 +476,12 @@ Jeżeli assembly jest poprawne, informacje o nowej definicji zadania zostają do
 
 \subsubsection{Wykorzystane technologie}
 Serwer został zaimplementowany w języku C\# wykorzystując technologię \textit{.NET Core 2.2}~\cite{dotnet-core} oraz \textit{ASP.NET Core}~\cite{aspnet-core}. Jako baza danych wykorzystana została baza \textit{PostgreSQL}~\cite{postgresql}. Do komunikacji z bazą danych wykorzystano \textit{Entity Framework Core}~\cite{ef-core}. 
-Motywacją do wyboru powyższego zestawu technologii do implemencji serwera jest wieloplatformowość uzyskanego rozwiązania. 
+Motywacją do wyboru powyższego zestawu technologii do implementacji serwera jest wieloplatformowość uzyskanego rozwiązania. 
 Projekt daje się z sukcesem uruchomić zarówno na systemie Windows, jak i wielu dystrybucjach systemu Linux. 
-Dodatkowymi atutami wymienionych technologii są ich popularność, obszerna dokumentacja oraz fakt, że ich kod źródlowy jest otwarty. Napotykając problemy podczas pracy można często w łatwy sposób znaleźć ich rozwiązanie w sieci Internet.
+Dodatkowymi atutami wymienionych technologii są ich popularność, obszerna dokumentacja oraz fakt, że ich kod źródłowy jest otwarty. Napotykając problemy podczas pracy można często w łatwy sposób znaleźć ich rozwiązanie w sieci Internet.
 
 Do procesu uwierzytelniania został wykorzystany system \textit{ASP.NET Core Identity}, który dostarcza możliwość logowania za pomocą loginu i hasła wraz z możliwością zakończenia sesji lub zmiany hasła. Zastosowane rozwiązanie zapewnia możliwość konfiguracji nawet szczegółowych parametrów i posiada dokładną dokumentację. 
-Wdrożenie uwierzytelniania okozało się nie być czasochłonne dzięki dobrej konfiguracji początkowej systemu \textit{ASP.NET Core Identity}, która wymagała jedynie pojedyńczych zmian.
+Wdrożenie uwierzytelniania okazało się nie być czasochłonne dzięki dobrej konfiguracji początkowej systemu \textit{ASP.NET Core Identity}, która wymagała jedynie pojedynczych zmian.
 
 Standardem formatu przesyłu danych do API oraz odbioru odpowiedzi z API jest standard \textit{JSON API}~\cite{jsonapi}. W celu zgodności z tym standardem wykorzystano bibliotekę \textit{JSON API .NET Core}~\cite{jsonapi-dotnet-core}. Użyta biblioteka udostępnia uniwersalne kontrolery, które implementują wszystkie akcje wymagane przez standard \textit{JSON API} po podaniu modelu obsługiwanego przez kontroler. Wykorzystanie gotowych kontrolerów pozwoliło na zaoszczędzenie czasu podczas tworzenia API, szczególnie w kontekście implementowania funkcji takich jak wyszukiwanie lub filtrowanie, które wydawały się niepotrzebne na początku projektu, jednak okazały się przydatne w jego ostatecznej wersji.
 
@@ -554,7 +554,7 @@ Testy jednostkowe zostały napisane z wykorzystaniem biblioteki \textit{jest}~\c
 
 Panel administracyjny umożliwia uwierzytelnienie, a po jego dokonaniu zarządzanie systemem. Obsługiwany jest poprzez aplikację internetową działającą w przeglądarce.
 
-Podczas implementacji panelu administracyjnego wielokrotnie wykorzystany został wzorzec \textit{dekorator}. Stosowaniu dekoratorów pozwaliło na rozszerzenie możliwości oferowanych przez uniwersalne komponenty interfejsu i dostosowywanie ich do poszczególnych widoków w taki sposób, żeby nie powielać kodu.
+Podczas implementacji panelu administracyjnego wielokrotnie wykorzystany został wzorzec \textit{dekorator}. Stosowanie dekoratorów pozwoliło na rozszerzenie możliwości oferowanych przez uniwersalne komponenty interfejsu i dostosowywanie ich do poszczególnych widoków w taki sposób, żeby nie powielać kodu.
 
 
 \subsubsection{Wykorzystane technologie}
@@ -574,9 +574,9 @@ Poniższa sekcja opisuje zabezpieczenia wykorzystywane w projekcie.
 
 \subsection{Zapytania z innych domen}
 
-Konfiguracja ciasteczek wysyłanych do przeglądarki sprawia, że przeglądarka może załączyć ciastka podczas żądań z innych domen jedynie wtedy, gdy zapytanie przekierowuje na nową stronę oraz metoda użyta podczas zapytania jest uważana za bezpieczną zgodnie z dokumententacją protokołu HTTP~\cite{rfc-7231}.
+Konfiguracja ciasteczek wysyłanych do przeglądarki sprawia, że przeglądarka może załączyć ciastka podczas żądań z innych domen jedynie wtedy, gdy zapytanie przekierowuje na nową stronę oraz metoda użyta podczas zapytania jest uważana za bezpieczną zgodnie z dokumentacją protokołu HTTP~\cite{rfc-7231}.
 
-Ponadto Serwer API nie dołącza do odpowiedzi nagłówków modyfikujących politykę \textit{Same--Origin Policy}~\cite{same-origin-policy}. W rezultacie wszelkie próby wysłania zapytań z ciasteczkami podczas znajdowania się na innej domenie, niż domena, na której pracuje serwer API, zostaną zablokowane przez przeglądarkę. 
+Ponadto, serwer API nie dołącza do odpowiedzi nagłówków modyfikujących politykę \textit{Same--Origin Policy}~\cite{same-origin-policy}. W rezultacie wszelkie próby wysłania zapytań z ciasteczkami podczas znajdowania się na innej domenie, niż domena, na której pracuje serwer API, zostaną zablokowane przez przeglądarkę. 
 Zapytania nie zawierające ciasteczek nie są blokowane przez serwer API, lecz treść odpowiedzi nie jest możliwa do odczytania, w wyniku czego jedyna możliwa interakcja z serwerem z innej domeny to rejestrowanie nowych węzłów.
 Formularze wysyłane z innych domen, niż domena, na której uruchomiony jest serwer API wyślą żądania do serwera API, ale ciasteczka ze względu na ich konfigurację zostaną dołączone jedynie w przypadku wysłania formularza metodą \textit{GET}.
 Wszystkie zapytania \textit{GET} obsługiwane przez serwer API pozwalają jedynie na odczyt danych, a w przypadku formularza uzyskana odpowiedź nie jest możliwa do przechwycenia.
@@ -585,18 +585,23 @@ Opisane zabezpieczenie pozwala nam na uniknięcie sytuacji, w których zalogowan
 
 \subsection{Uwierzytelnianie} 
 
-Dostęp do panelu administracyjnego wymagania uwierzytelnienia, czyli podania loginu oraz hasła administratora. Jeżeli dane te zgadzają się z danymi zapisanymi w bazie danych, użytkownik dostaje dostęp do panelu.
+Dostęp do panelu administracyjnego wymagania uwierzytelnienia, czyli podania loginu oraz hasła administratora.
+Jeżeli dane te zgadzają się z danymi zapisanymi w bazie danych, użytkownik dostaje dostęp do panelu.
 W przeciwnym wypadku użytkownik nie będzie miał możliwości pobrania żadnych danych ani wykonania jakichkolwiek operacji na encjach.
-Jedyne operacje, które są dostępne publicznie, to zarejestrowanie urządzenia jako węzeł obliczeniowy, żądanie przydzielenia nowego zadania, zwrócenie wyniku lub informacji o błędzie. Są to operacje wymagane do prawidłowego funkcjonowania węzłów obliczeniowych. Wszystkie inne operacje są dostępne dopiero po uwierzytelnieniu.
+Jedyne operacje, które są dostępne publicznie, to zarejestrowanie urządzenia jako węzeł obliczeniowy, żądanie przydzielenia nowego zadania, zwrócenie wyniku lub informacji o błędzie.
+Są to operacje wymagane do prawidłowego funkcjonowania węzłów obliczeniowych. Wszystkie inne operacje są dostępne dopiero po uwierzytelnieniu.
 
 \subsection{Ograniczenia przy zwracaniu wyników}
 
-Każdy węzeł posiada unikatowy identyfikator przyznany mu w momencie rejestracji. Podczas anulowania zadania, zwracania wyników obliczeń lub informacji o błędzie serwer sprawdzi czy identyfikator węzła wysyłającego żądanie zgadza się z identifykatorem węzła przypisanego do aktualizowanego zadania. Jeżeli nie, serwer nie zmieni statusu zadania. Powyższe zabezpieczenie sprawia, że węzły nie są w stanie manipulować rezultatami obliczeń rozpoczętych przez inne węzły.
+Każdy węzeł posiada unikatowy identyfikator przyznany mu w momencie rejestracji.
+Podczas anulowania zadania, zwracania wyników obliczeń lub informacji o błędzie serwer sprawdzi czy identyfikator węzła wysyłającego żądanie zgadza się z identyfikatorem węzła przypisanego do aktualizowanego zadania.
+Jeżeli nie, serwer nie zmieni statusu zadania.
+Powyższe zabezpieczenie sprawia, że węzły nie są w stanie manipulować rezultatami obliczeń rozpoczętych przez inne węzły.
 
 \subsection{Poziom zaufania węzłów}
 \label{poziom-zaufania-wezlow}
 
-Może zdarzyć się taka sytaucja, że jako węzły obliczeniowe dołączą urządzenia, które celowo będą wysyłały niepoprawne wyniki obliczeń. 
+Może zdarzyć się taka sytuacja, że jako węzły obliczeniowe dołączą urządzenia, które celowo będą wysyłały niepoprawne wyniki obliczeń. 
 Aby nie zakłóciło to natychmiast pracy systemu z każdym węzłem obliczeniowym jest powiązany jego \textit{poziom zaufania}. Tworząc nowe zadanie z konkretnymi danymi wejściowymi administrator ustawi wymagany poziom zaufania do zakończenia obliczeń podzadań.
 Każde z podzadań utworzonych na podstawie zadania będzie uznawane za zakończone, gdy suma poziomów zaufania węzłów, które zwróciły wyniki przekroczy wymagany poziom zaufania zadania.
 Wynikiem każdego z podzadań będzie wynik, dla którego suma poziomów zaufania węzłów, które go zwróciły, była maksymalna.
