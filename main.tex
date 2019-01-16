@@ -573,9 +573,13 @@ Poniższa sekcja opisuje zabezpieczenia wykorzystywane w projekcie.
 
 \subsection{Zapytania z innych domen}
 
-Serwer API nie dołącza do odpowiedzi nagłówków modyfikujących politykę \textit{Same--Origin Policy}~\cite{same-origin-policy}. W rezultacie wszelkie próby wysłania zapytań z ciasteczkami podczas znajdowania się na innej domenie, niż domena, na której pracuje serwer API, zostaną zablokowane przez przeglądarkę. 
-Zapytania nie zawierające ciasteczek nie są blokowane, lecz treść odpowiedzi nie jest możliwa do odczytania, w wyniku czego jedyna możliwa interakcja z serwerem z innej domeny to rejestrowanie nowych węzłów.
-Formularze wysyłane z innych domen, niż domena, na której uruchomiony jest serwer API wyślą żądania do serwera API, ale nie załączą ciasteczek, zatem ponownie jedyną możliwą interakcją jest zarejestrowanie nowego węzła sieciowego.
+Konfiguracja ciasteczek wysyłanych do przeglądarki sprawia, że przeglądarka może załączyć ciastka podczas żądań z innych domen jedynie wtedy, gdy zapytanie przekierowuje na nową stronę oraz metoda użyta podczas zapytania jest uważana za bezpieczną zgodnie z dokumententacją protokołu HTTP~\cite{rfc-7231}.
+
+Ponadto Serwer API nie dołącza do odpowiedzi nagłówków modyfikujących politykę \textit{Same--Origin Policy}~\cite{same-origin-policy}. W rezultacie wszelkie próby wysłania zapytań z ciasteczkami podczas znajdowania się na innej domenie, niż domena, na której pracuje serwer API, zostaną zablokowane przez przeglądarkę. 
+Zapytania nie zawierające ciasteczek nie są blokowane przez serwer API, lecz treść odpowiedzi nie jest możliwa do odczytania, w wyniku czego jedyna możliwa interakcja z serwerem z innej domeny to rejestrowanie nowych węzłów.
+Formularze wysyłane z innych domen, niż domena, na której uruchomiony jest serwer API wyślą żądania do serwera API, ale ciasteczka ze względu na ich konfigurację zostaną dołączone jedynie w przypadku wysłania formularza metodą \textit{GET}.
+Wszystkie zapytania \textit{GET} obsługiwane przez serwer API pozwalają jedynie na odczyt danych, a w przypadku formularza uzyskana odpowiedź nie jest możliwa do przechwycenia.
+
 Opisane zabezpieczenie pozwala nam na uniknięcie sytuacji, w których zalogowany administrator po wejściu na stronę zawierającą złośliwy kod udostępniłby atakującemu możliwość interakcji z panelem administracyjnym.
 
 \subsection{Uwierzytelnianie} 
@@ -1126,6 +1130,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     \bibitem[26]{can-i-use} Strona zawierająca informacje o wsparciu \textit{WebAssembly} przez przeglądarki --- \emph{Can I use?} \url{https://caniuse.com/#search=webassembly}.
     \bibitem[27]{cypress} Dokumentacja biblioteki do testów end-to-end \emph{Cypress} \url{https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell}.
     \bibitem[28]{same-origin-policy} Dokumentacja \emph{Same--Origin Policy} \url{https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy}
+    \bibitem[29]{rfc-7231} Dokumentacja HTTP, opis metod HTTP uważanych za bezpieczne \url{https://tools.ietf.org/html/rfc7231#section-4.2.1}.
 \end{thebibliography}
 
 \thispagestyle{empty}
