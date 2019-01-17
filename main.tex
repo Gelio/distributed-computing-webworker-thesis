@@ -675,16 +675,16 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     \section{Możliwości na rozwój aplikacji}
         Poniższa sekcja opisuje możliwości dalszego rozwoju aplikacji.
     
-        \subsection{Poprawienie wydajności węzłów obliczeniowych}
+        \paragraph{Poprawienie wydajności węzłów obliczeniowych.}
         W ramach dalszego rozwoju utworzonej aplikacji należałoby wykorzystywać kompilację \textit{C\#} do \textit{WebAssembly}, aby zagwarantować wyższą wydajność wykonywanych obliczeń oraz ograniczyć ilość danych przesyłanych do węzłów obliczeń. Kompilacja z wyprzedzeniem (ang. \textit{Ahead-Of-Time compilation}) jest jednak zależna od dalszego rozwoju biblioteki \textit{mono-wasm}. Dopiero w momencie, gdy taki rodzaj kompilacji będzie wspierany przez \textit{mono-wasm}, ten projekt będzie mógł z niej skorzystać.
         
-        \subsection{Zmniejszenie obciążenia serwera API}
+        \paragraph{Zmniejszenie obciążenia serwera API.}
         W obecnie przygotowanym systemie część operacji z bibliotek dostarczanych przez użytkowników uruchamiana jest na serwerze odpowiedzialnym za obsługę zapytań z API. Powyższe operacje mogą być potencjalnie obciążające i ograniczać wydajność serwera API. W celu zabezpieczenia wydajności serwera można przenieść wykonywanie wszystkich operacji z bibliotek użytkowników poza serwer API. W tym celu należałoby przygotować serwer, który wykonywałby operacje żądane przez serwer API i zwracał stosowne wyniki.
         
-        \subsection{Udostępnienie DistributedComputingLibrary w menadżerze pakietów}
+        \paragraph{Udostępnienie DistributedComputingLibrary w menadżerze pakietów.}
         W celu ułatwienia dodawania do projektów przygotowanej w ramach projektu biblioteki do obliczeń rozproszonych można opublikować ją w menadżerze pakietów \textit{NuGet}~\cite{nuget}. Po opublikowaniu biblioteki w ramach repozytorium \textit{NuGet} będzie ona dostępna do instalacji z poziomu linii poleceń lub interfejsu graficznego udostępnianego przez \textit{Visual Studio}~\cite{visual-studio}. Dzięki takiemu postępowaniu administrator systemu nie musiałby przechowywać na swoim komputerze kopii biblioteki DLL, a mógłby w każdym nowo utworzonym projekcie jedynie odnieść się do łatwo dostępnego pakietu.
         
-        \subsection{Dodanie poleceń interfejsu wiersza poleceń}
+        \paragraph{Dodanie poleceń interfejsu wiersza poleceń.}
         Kolejnym możliwym ułatwieniem dla programistów jest dodanie zestawu poleceń interfejsu wiersza poleceń (ang. \textit{CLI}) ułatwiających zarządzanie utworzonymi projektami wykorzystującymi bibliotekę \textit{DistributedComputingLibrary}. Poniżej znajdują się przykładowe funkcje, które mogłoby udostępniać takie narzędzie:
         
         \begin{itemize}
@@ -696,26 +696,26 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         
         Dodanie interfejsu wiersza poleceń jako alternatywy do interfejsu graficznego powinno usprawnić pracę użytkownikom często korzystającym z zaprojektowanego systemu.
         
-        \subsection{Zapisywanie w bazie danych informacji o węzłach obliczeniowych}
+        \paragraph{Zapisywanie w bazie danych informacji o węzłach obliczeniowych.}
         Zapisywanie w bazie danych informacji o węzłach obliczeniowych umożliwiłoby osobom zaangażowanym w projekt analizę dostępnej mocy obliczeniowej. 
         Dodatkowo dalsze poprawki mogłyby pozwolić na przydzielanie bardziej wymagających zadań węzłom o większej wydajności, podczas gdy mniej wydajne węzły mogłyby rozwiązywać zadania nie wymagające tak dużej mocy obliczeniowej.
         Optymalne dobieranie zadań do mocy węzłów obliczeniowych pozwoliłoby na skrócenie czasu wykonywania najbardziej wymagających zadań.
         
-        \subsection{Powiadomienia o zakończeniu obliczeń}
+        \paragraph{Powiadomienia o zakończeniu obliczeń.}
         Z uwagi na potencjalnie długi czas wykonywania obliczeń ciężko jest oszacować kiedy należy sprawdzić dostępność wyników, dlatego wysyłanie użytkownikom powiadomień w postaci wiadomości e--mail oszczędziłoby im konieczności odwiedzania interfejsu użytkownika w celu sprawdzenia stanu zleconego zadania.
         
-        \subsection{Uruchamianie kodu użytkowników w środowisku izolowanym}
+        \paragraph{Uruchamianie kodu użytkowników w środowisku izolowanym.}
         Z uwagi na istniejące ryzyko znalezienia się złośliwego kodu w kodzie użytkownika warto rozważyć uruchamianie kodu użytkownika w środowisku izolowanym. Kod użytkownika uruchamiany na węzłach obliczeniowych jest już uruchamiany w środowisku izolowanym, jednakże metody zaimplementowane w ramach bibliotek użytkownika uruchamiane na serwerze nadal stanowią ryzyko.
         W sekcji %TODO: uzupełnić \ref{label}
         opisano problemy napotkane podczas próby wprowadzenia uruchamiania kodu użytkownika działającego w ramach serwera w środowisku izolowanym. 
         Zalecanym sposobem na zarządzanie uprawnieniami obcego kodu uruchamianego w ramach naszego systemu jest uruchamianie go w osobnym procesie z uprawnieniami ograniczonymi przez system operacyjny.
         
-        \subsection{Umożliwienie pobierania częściowych wyników}
+        \paragraph{Umożliwienie pobierania częściowych wyników.}
         Udostępnienie użytkownikom możliwości pobierania wyników podzadań powinno umożliwić im szybsze oraz precyzyjniejsze identyfikowanie błędów w algorytmach.
 
-        \subsection{Umożliwienie wykorzystywania częściowych wyników podczas obliczeń}
+        \paragraph{Umożliwienie wykorzystywania częściowych wyników podczas obliczeń.}
         Podczas wykonywania niektórych zadań mogą zdarzyć się sytuacje, gdy obliczane podzadanie nie ma możliwości wpłynięcia na wynik końcowy i dałoby się je pominąć znając wyniki podzadań, które zostały zakończone do momentu rozpoczęcia jego obliczeń.
-        Aby umożliwić opisaną optymalizację algorytmów umieszczanych w ramach systemu obliczeń rozproszonych można umożliwić programistom dostęp do najlepszego uzyskanego wyniku do momentu uruchomienia podzadania.
+        Aby umożliwić opisaną optymalizację algorytmów umieszczanych w ramach systemu obliczeń rozproszonych można umożliwić programistom dostęp do agregacji wyników uzyskanych do momentu uruchomienia podzadania.
         Taka zmiana wymagałaby modyfikacji zarówno po stronie serwera API, jak i biblioteki do obliczeń rozproszonych, ale korzystnie wpłynęłaby na obciążenie systemu.
         
     \section{Problemy implementacyjne}
