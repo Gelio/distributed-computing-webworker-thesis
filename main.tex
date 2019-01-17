@@ -320,8 +320,11 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     \section{Cel projektu}
         Celem projektu jest zaprojektowanie oraz zaimplementowanie systemu, który pozwoli na realizowanie obliczeń rozproszonych na wielu urządzeniach, na których dostępna jest jedynie przeglądarka internetowa.
         Tak utworzony system obliczeń rozproszonych powinien zagwarantować bardzo prostą konfigurację oraz szeroką wieloplatformowość.
-        Aby rozwiązanie było konkurencyjne pod względem wydajności zdecydowano, że obliczenia w przeglądarce powinny być wykonywane w technologii \textit{WebAssembly} \cite{webassembly}. 
-        Projekt przewiduje również przygotowanie biblioteki w języku C\# ułatwiającej tworzenie nowych projektów uruchamianych w ramach systemu obliczeń rozproszonych.
+        Aby rozwiązanie było konkurencyjne pod względem wydajności zdecydowano, że obliczenia w przeglądarce powinny być wykonywane w technologii \textit{WebAssembly} \cite{webassembly}.
+        Projekt przewiduje również przygotowanie biblioteki w języku C\# ułatwiającej tworzenie nowych projektów uruchamianych w ramach systemu obliczeń rozproszonych. 
+        Motywacją do tworzenia biblioteki w języku C\# była chęć umożliwienia tworzenia projektów w dojrzałym, statycznie typowanym oraz obiektowym języku, który pozwala na identyfikację błędów już na etapie kompilacji kodu. 
+        Wykrywanie błędów na wczesnym etapie jest szczególnie ważna dla projektów uruchamianych w ramach utworzonej platformy.
+        W przypadku wykrycia błędów dopiero podczas obliczeń konieczne są dodatkowe iteracje dodawania projektu na serwer, co prowadzi do niezadowolenia oraz straty czasu użytkownika.
         W celu utworzenia nowego projektu zgodnego z zaplanowaną platformą konieczne będzie jedyne zaimportowanie biblioteki, a następnie implementacja wskazanego interfejsu.
         Dzięki takiemu rozwiązaniu programista będzie wiedział co musi zaimplementować, aby projekt był zgodny z zaprojektowanym rozwiązaniem, a dokumentacja dołączona do biblioteki pomoże w razie wątpliwości.
         Przygotowany system powinien także reagować na odłączanie się węzłów obliczeniowych w trakcie wykonywania zadań oraz umożliwiać wielokrotnie przeprowadzenie tych samych obliczeń w celu wybrania najbardziej wiarygodnego wyniku w razie rozbieżności.
