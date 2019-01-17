@@ -29,6 +29,7 @@
 %--------------------------- Tabele -----------------------------
 \usepackage{longtable}
 \usepackage{makecell}
+\usepackage{calc}
 \renewcommand{\tablename}{Tabela}
 
 
@@ -317,7 +318,9 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Poniższy rozdział opisiuje kluczowe założenia projektu, istnienie podobnych rozwiązań w momencie realizacji projektu oraz wymagania funkcjonalne i niefunkcjonalne, które powinny być spełniane przez tworzony system.
 
     \section{Cel projektu}
-        Celem projektu jest zaprojektowanie oraz zaimplementowanie systemu, który pozwoli na realizowanie obliczeń rozproszonych na wielu urządzeniach, na których dostępna jest jedynie przeglądarka internetowa. Tak utworzony system obliczeń rozproszonych powinien zagwarantować bardzo prostą konfigurację oraz szeroką wieloplatformowość. Aby rozwiązanie było konkurencyjne pod względem wydajności zdecydowano, że obliczenia w przeglądarce powinny być wykonywane w technologii \textit{WebAssembly} \cite{webassembly}. 
+        Celem projektu jest zaprojektowanie oraz zaimplementowanie systemu, który pozwoli na realizowanie obliczeń rozproszonych na wielu urządzeniach, na których dostępna jest jedynie przeglądarka internetowa.
+        Tak utworzony system obliczeń rozproszonych powinien zagwarantować bardzo prostą konfigurację oraz szeroką wieloplatformowość.
+        Aby rozwiązanie było konkurencyjne pod względem wydajności zdecydowano, że obliczenia w przeglądarce powinny być wykonywane w technologii \textit{WebAssembly} \cite{webassembly}. 
         
         Projekt przewiduje również przygotowanie biblioteki utworzonej w języku C\# ułatwiającej tworzenie nowych projektów uruchamianych w ramach systemu obliczeń rozproszonych.
         Takie rozwiązanie ma na celu zmniejszenie nakładu pracy wymaganej przy dodawaniu nowego algorytmu uruchamianego na węzłach obliczeniowych.
@@ -329,26 +332,29 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     \section{Opis istniejących rozwiązań}
         W sieci Internet dostępne są obecnie rozwiązania umożliwiające wykonywanie obliczeń rozproszonych w przeglądarce internetowej, ale brakuje rozwiązań umożliwiających implementację algorytmów w języku C\#, a następnie wykonywanie obliczeń w przeglądarce internetowej z wykorzystaniem \textit{WebAssembly}.
         
-        W miarę redukcji wymagań można odnaleźć rozwiązania, które częściowo pozwalają na realizację projektu. W momencie, gdy projekt nie wymaga umożliwienia implementacji algorytmów w przestępnym języku, a jedynie dostarczenia plików działających już w \textit{WebAssembly}, to można odnaleźć w sieci systemy, które również starają się rozwiązać ten problem. W chwili powstawania pracy inżynierskiej nie został odnaleziony jednak żaden system, który wyszedłby poza fazę testową i w pełni wspierał wykonywanie obliczeń rozproszonych zgodnie z założeniami projektu.
+        Istnieją podobne rozwiązania, które spełniają część założonych wymagań.
+        W momencie, gdy projekt nie wymaga umożliwienia implementacji algorytmów w przystępnym języku, a jedynie dostarczenia plików działających już w \textit{WebAssembly}, to można odnaleźć w sieci systemy, które również starają się rozwiązać ten problem.
+        W chwili powstawania pracy inżynierskiej nie został odnaleziony jednak żaden system, który wyszedłby poza fazę testową i w pełni wspierał wykonywanie obliczeń rozproszonych zgodnie z założeniami projektu.
         
-        W chwili powstawania powyższego dokumentu jedynie biblioteka \textit{mono-wasm} umożliwiała uruchamianie kodu napisanego w języku C\# w \textit{WebAssembly}. Ze względu na eksperymentalny stan tej biblioteki kompilacja C\# do \textit{WebAssembly} nie była możliwa, lecz \textit{mono-wasm} udostępniało interpreter C\# działający w \textit{WebAssembly}.
+        W chwili powstawania pracy inżynierskiej jedynie biblioteka \textit{mono-wasm} umożliwiała uruchamianie kodu napisanego w języku C\# w \textit{WebAssembly}.
+        Ze względu na wczesną fazę rozwoju tej biblioteki kompilacja C\# do \textit{WebAssembly} nie była możliwa, lecz \textit{mono-wasm} udostępniało interpreter C\# działający w \textit{WebAssembly}.
         
 		\section{Wymagania funkcjonalne}
                 
-            Na rysunku nr \ref{use-cases-diagram} przedstawiono w postaci diagramu UML zbiór przypadków użycia systemu dla aktora będącego użytkownikiem zaprojektowanego systemu oraz dla aktora będącego węzłem obliczeniowym.
+            Na rysunku~\ref{use-cases-diagram} przedstawiono w postaci diagramu UML zbiór przypadków użycia systemu dla aktora będącego administratorem zaprojektowanego systemu oraz dla aktora będącego węzłem obliczeniowym.
             
-            \begin{figure}[htbp]
+            \begin{figure}
                 \centering
                 \caption{Diagram przypadków użycia}
                 \label{use-cases-diagram}
                 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/use-cases.pdf}
             \end{figure}
             
-            W tabeli nr \ref{wymagania-funkcjonalne} zebrano opisy poszczególnych przypadków użycia.
+            W tabeli~\ref{wymagania-funkcjonalne} zebrano opisy poszczególnych przypadków użycia.
             
             \pagebreak
             \begin{center}
-                \begin{longtable}{| p{.15\textwidth} | p{.20\textwidth} | p{.30\textwidth} | p{.30\textwidth} |}
+                \begin{longtable}{| p{.20\textwidth-2\tabcolsep} | p{.20\textwidth-2\tabcolsep} | p{.30\textwidth-2\tabcolsep} | p{.30\textwidth-2\tabcolsep} |}
                     \caption{Wymagania funkcjonalne}
                     \label{wymagania-funkcjonalne} \\
                     \hline
@@ -424,10 +430,10 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
             
             \section{Wymagania niefunkcjonalne}
             
-            W tabeli nr \ref{wymagania-niefunkcjonalne} przedstawiono wymagania niefunkcjonalne pogrupowane w poszczególne kategorie URPS.
+            W tabeli~\ref{wymagania-niefunkcjonalne} przedstawiono wymagania niefunkcjonalne pogrupowane w poszczególne kategorie URPS.
             
             \begin{center}
-                \begin{longtable}{| p{.20\textwidth} | p{.20\textwidth} | p{.60\textwidth} |}
+                \begin{longtable}{| p{.20\textwidth-2\tabcolsep} | p{.20\textwidth-2\tabcolsep} | p{.60\textwidth-2\tabcolsep} |}
                     \caption{Wymagania niefunkcjonalne}
                     \label{wymagania-niefunkcjonalne}
                     \\
@@ -459,7 +465,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
                     & Serwer po ponownym uruchomieniu nie powinien utracić dodanych wcześniej danych i kontynuować rozdzielanie zadań.  \\ \cline{2-3}                
                     
                     & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
-                    & Aplikacja powinna wykrywać rozbieżne wyniki podzadania zwrócone przez kilka węzłów obliczeniowych i kierować podzadanie do ponownego wykonania. \\ \hline
+                    & Aplikacja powinna wykrywać rozbieżne wyniki podzadania zwrócone przez kilka węzłów obliczeniowych i zwracać wynik obliczony przez najbardziej zaufane węzły. \\ \hline
                     
                     \makecell[l]{Wydajność \\ (\textit{Performance})}
                     & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
@@ -475,7 +481,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
                     
                     \makecell[l]{Utrzymanie \\ (\textit{Supportability})}
                     & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
-                    & Aplikacja powinna zachować wsteczną zgodność z zadaniami zdefiniowanymi przez użytkowników. \\ \hline
+                    & W razie wydania nowego standardu definicji zadań, aplikacja powinna nadal wspierać poprzednio dodane definicje. \\ \hline
                     
                 \end{longtable}
             \end{center}
