@@ -323,23 +323,24 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         Aby rozwiązanie było konkurencyjne pod względem wydajności zdecydowano, że obliczenia w przeglądarce powinny być wykonywane w technologii \textit{WebAssembly} \cite{webassembly}.
         Projekt przewiduje również przygotowanie biblioteki w języku C\# ułatwiającej tworzenie nowych projektów uruchamianych w ramach systemu obliczeń rozproszonych. 
         Motywacją do tworzenia biblioteki w języku C\# była chęć umożliwienia tworzenia projektów w dojrzałym, statycznie typowanym oraz obiektowym języku, który pozwala na identyfikację błędów już na etapie kompilacji kodu. 
-        Wykrywanie błędów na wczesnym etapie jest szczególnie ważna dla projektów uruchamianych w ramach utworzonej platformy.
+        Wykrywanie błędów na wczesnym etapie jest szczególnie ważne dla projektów uruchamianych w ramach utworzonej platformy.
         W przypadku wykrycia błędów dopiero podczas obliczeń konieczne są dodatkowe iteracje dodawania projektu na serwer, co prowadzi do niezadowolenia oraz straty czasu użytkownika.
-        W celu utworzenia nowego projektu zgodnego z zaplanowaną platformą konieczne będzie jedyne zaimportowanie biblioteki, a następnie implementacja wskazanego interfejsu.
+        W celu utworzenia nowego projektu zgodnego z zaplanowaną platformą konieczne będzie jedynie zaimportowanie biblioteki, a następnie utworzenie klasy implementującej wskazany interfejs.
         Dzięki takiemu rozwiązaniu programista będzie wiedział co musi zaimplementować, aby projekt był zgodny z zaprojektowanym rozwiązaniem, a dokumentacja dołączona do biblioteki pomoże w razie wątpliwości.
         Przygotowany system powinien także reagować na odłączanie się węzłów obliczeniowych w trakcie wykonywania zadań oraz umożliwiać wielokrotnie przeprowadzenie tych samych obliczeń w celu wybrania najbardziej wiarygodnego wyniku w razie rozbieżności.
         W momencie otrzymania różnych wyników dla tego samego podzadania platforma powinna wybierać rozwiązanie zaproponowane przez najbardziej zaufaną grupę węzłów.
         Część systemu działająca w przeglądarce internetowej powinna umożliwiać węzłom obliczeniowym delegowanie wielu wątków do wykonywania obliczeń.
     
     \section{Opis istniejących rozwiązań}
-        W sieci Internet dostępne są podobne rozwiązania, które spełniają część założonych wymagań.
+        Istnieją podobne rozwiązania, które spełniają część założonych wymagań.
         W momencie, gdy projekt nie wymaga umożliwienia implementacji algorytmów w przystępnym języku, a jedynie dostarczenia plików działających już w \textit{WebAssembly}, to można odnaleźć w sieci systemy, które również starają się rozwiązać ten problem.
-        W chwili powstawania pracy inżynierskiej nie został odnaleziony jednak żaden system, który wyszedłby poza fazę testową i w pełni wspierał wykonywanie obliczeń rozproszonych zgodnie z założeniami projektu. Poniżej została przedstawiona lista zbliżonych projektów:
+        Zgodnie z posiadaną przez nas wiedzą nie istnieje żaden system, który wyszedłby poza fazę testową i w pełni wspierał wykonywanie obliczeń rozproszonych zgodnie z założeniami projektu.
+        Poniżej zostały przedstawione znalezione przez nas projekty zajmujące się podobnym problemem:
         
         \begin{description}
             \item[Distributed Compute Labs~\cite{distributed-compute-labs}] --- rozwiązanie pozwalające na uruchamianie obliczeń rozproszonych w przeglądarce w technologiach \textit{WebAssembly} oraz \textit{WebGL}. Na stronie rozwiązania brakuje informacji o formacie dostarczanych do wykonania zadań i znajduje się ono w fazie testów. W ramach zachęty do obliczeń autorzy udostępniają gry, w których konto użytkownika rozwija się na skutek wykonywania obliczeń rozproszonych.
-            \item[dis.io~\cite{dis-io}] --- platforma pozwalająca na uruchomienie obliczeń rozproszonych w przeglądarce w technologii \textit{JavaScript}. Projekt wygląda na porzucony, ostatnie zmiany w kodzie źródłowym miały miejsce kilka lat temu.
-            \item[Distri.js~\cite{distri-js}] --- projekt pozwala na uruchamianie obliczeń rozproszonych w przeglądarce w technologii \textit{JavaScript}, prawdopodobnie jest porzucony.
+            \item[dis.io~\cite{dis-io}] --- platforma pozwalająca na uruchomienie obliczeń rozproszonych w przeglądarce w technologii \textit{Javascript}. Projekt wygląda na porzucony, ostatnie zmiany w kodzie źródłowym miały miejsce kilka lat temu.
+            \item[Distri.js~\cite{distri-js}] --- projekt pozwala na uruchamianie obliczeń rozproszonych w przeglądarce w technologii \textit{Javascript}, prawdopodobnie jest porzucony.
         \end{description}
         
         
