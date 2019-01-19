@@ -399,14 +399,20 @@ Przykładem logiki wykonywanej w opisanych serwisach jest weryfikacja unikalnoś
 Podczas działania serwera konieczne jest uruchamianie metod użytkownika z klasy implementującej interfejs \texttt{IProblemPlugin} (opisanej w sekcji~\ref{biblioteka-szczegoly}) aby móc uzyskać ostateczny wynik obliczeń lub podzielić zadanie na podzadania na podstawie danych wejściowych.
 Aby uprościć logikę związaną z wykonywaniem opisanych akcji wykorzystany został wzorzec projektowy --- fasada.
 Realizacja wzorca odbyła się przez utworzenie klasy \texttt{ProblemPluginFacade}, która udostępnia jedynie metody wymagane do podzielenia zadania oraz scalenia wyników, a sama wykonuje logikę związaną z konwersją danych oraz wywoływaniem odpowiednich metod zaimplementowanych przez użytkownika.
-Aby utworzyć instancję \texttt{ProblemPluginFacade} konieczne jest wykorzystanie refleksji oraz aplikowanie typów generycznych do interfejsów. Z tego powodu został wykorzystany wzorzec fabryki.
+Aby utworzyć instancję \texttt{ProblemPluginFacade} konieczne jest wykorzystanie refleksji oraz aplikowanie typów generycznych nieznanych na etapie kompilacji.
+Z uwagi na brak możliwości rzutowania na typy nieznane na etapie kompilacji podczas tego procesu zostaje utworzona instancja klasy \texttt{ProblemPluginFacade}, a następnie jest ona rzutowana na interfejs odpowiadający tej klasie, lecz nie zawierający generycznych parametrów.
+Z tego powodu został wykorzystany wzorzec fabryki.
 Klasa \texttt{ProblemPluginFacadeFactory} jest odpowiedzialna za utworzenie instancji \texttt{ProblemPluginFacade} na podstawie assembly dostarczonego przez użytkownika.
 
 W projekcie serwera pojawiają się też klasy odpowiadające modelom w bazie danych.
 Są to \texttt{ProblemPluginInfo}, \texttt{DistributedNode}, \texttt{Subtask}, \texttt{SubtaskInProgress}, \texttt{DistributedTask} oraz \texttt{DistributedTaskDefinition}.
 Na podstawie tych klas \textit{Entity Framework Core} generuje strukturę bazy danych oraz zapewnia mapowanie relacyjno-obiektowe między encjami w bazie a modelami w programie.
 
-\texttt{DistributedTaskDefinition} jest obiektem odpowiadającym dodanemu problemowi. Jego konkretne instancje z konkretnymi danymi wejściowymi to \texttt{DistributedTask}. Każde takie zadanie zostaje rozbite na, z reguły, wiele podzadań (\texttt{Subtask}). W momencie, gdy zarejestrowany węzeł obliczeniowy (\texttt{DistributedNode}) pyta o nowe zadanie, serwer może przydzielić mu jedno z nieukończonych jeszcze podzadań. Wtedy zostaje utworzona encja \texttt{SubtaskInProgress}.
+\texttt{DistributedTaskDefinition} jest obiektem odpowiadającym dodanemu problemowi.
+Jego konkretne instancje z konkretnymi danymi wejściowymi to \texttt{DistributedTask}.
+Każde takie zadanie zostaje rozbite na, z reguły, wiele podzadań (\texttt{Subtask}).
+W momencie, gdy zarejestrowany węzeł obliczeniowy (\texttt{DistributedNode}) pyta o nowe zadanie, serwer może przydzielić mu jedno z nieukończonych jeszcze podzadań.
+Wtedy zostaje utworzona encja \texttt{SubtaskInProgress}.
 
 
 Podczas implementacji serwera zostały zastosowane następujące wzorce projektowe:
