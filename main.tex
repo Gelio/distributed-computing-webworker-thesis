@@ -315,7 +315,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 
 \chapter{Analiza problemu}
 
-    Poniższy rozdział opisiuje kluczowe założenia projektu, istnienie podobnych rozwiązań w momencie realizacji projektu oraz wymagania funkcjonalne i niefunkcjonalne, które powinny być spełniane przez tworzony system.
+    Poniższy rozdział opisuje kluczowe założenia projektu, istnienie podobnych rozwiązań w momencie realizacji projektu oraz wymagania funkcjonalne i niefunkcjonalne, które powinny być spełniane przez tworzony system.
 
     \section{Cel projektu}
         Celem projektu jest zaprojektowanie oraz zaimplementowanie systemu, który pozwoli na realizowanie obliczeń rozproszonych na wielu urządzeniach, na których dostępna jest jedynie przeglądarka internetowa.
@@ -352,9 +352,9 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
             
             \begin{figure}
                 \centering
+                \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/use-cases.pdf}
                 \caption{Diagram przypadków użycia}
                 \label{use-cases-diagram}
-                \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/use-cases.pdf}
             \end{figure}
         
             \pagebreak
@@ -372,15 +372,19 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
                 Użytkownik
                 & Dodaj definicję zadania
                 & Dodanie nowej definicji zadania zawierającej dane opisowe oraz wymagane assembly.
-                & Informacje o dodanej definicji zadania, włącznie z przebiegiem przetwarzania assembly do \foreignlanguage{english}{WebAssembly}. \\ \cline{2-4} 
+                & Informacje o dodanej definicji zadania. \\ \cline{2-4} 
                 
                 & Dodaj zadanie
-                & Dodanie nowego zadanie na podstawie istniejącej już definicji. Dane wejściowe muszą zostać dostarczone jako plik. & Informacje o utworzonym zadaniu. \\ \cline{2-4} 
+                & Dodanie nowego zadanie na podstawie istniejącej już definicji. Dane wejściowe muszą zostać dostarczone jako plik.
+                & Informacje o utworzonym zadaniu. \\ \cline{2-4} 
                 
                 & Zobacz informacje o zadaniu
                 & Sprawdzenie informacji o zadaniu.
                 & Informacje o zadaniu wraz z postępem wykonywania przez węzły obliczeniowe. \\ \cline{2-4} 
-                & Zobacz listę zdefiniowanych zadań & Wyświetlenie skrótu informacji o dodanych definicjach zadań.                                  & Lista zawierająca definicje zadań zawierająca nazwę, opis oraz odnośnik do listy zadań utworzonych z każdej definicji. \\ \cline{2-4} 
+
+                & Zobacz listę zdefiniowanych zadań
+                & Wyświetlenie skrótu informacji o dodanych definicjach zadań.
+                & Lista zawierająca definicje zadań zawierająca nazwę, opis oraz odnośnik do listy zadań utworzonych z każdej definicji. \\ \cline{2-4} 
                 
                 & Zobacz listę wykonywanych zadań   
                 & Wyświetlenie informacji o zadaniach, które są obecnie wykonywane.                             
@@ -409,7 +413,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
                 
                 & Edytuj zadanie                 
                 & Edycja zadania.
-                & Informacje o  zmodyfikowanym zadaniu. \\ \cline{2-4} 
+                & Informacje o zmodyfikowanym zadaniu. \\ \cline{2-4} 
                 
                 & Edytuj definicję zadania
                 & Edycja definicji zadania.
