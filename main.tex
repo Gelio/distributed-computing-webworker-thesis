@@ -394,7 +394,7 @@ Serwer składa się z kontrolerów API działających w oparciu o \textit{ASP.NE
 Obsługują one zapytania dotyczące wszystkich encji na serwerze i wywołują odpowiednie metody serwisów odpowiadających encji.
 Serwisy pośredniczące w akcjach wywoływanych przez kontrolery są odpowiedzialne za wywoływanie dodatkowej logiki umieszczonej pomiędzy kontrolerami, a warstwą dostępu do danych.
 Każdy z tych serwisów implementuje \texttt{EntityResourceService} i pozwala zarówno na wpłynięcie na odpowiedź kontrolera po otrzymaniu zapytania \textit{HTTP}, jak i uruchamianie dodatkowej, całkowicie niepowiązanej z kontrolerami logiki.
-Przykładem logiki wykonywanej w opisanych serwisach jest weryfikacja, czy nazwa dodawanego zadania jest unikatowa.
+Przykładem logiki wykonywanej w opisanych serwisach jest weryfikacja unikalności nazwy dodawanego zadania.
 
 Podczas działania serwera konieczne jest uruchamianie metod użytkownika z klasy implementującej interfejs \texttt{IProblemPlugin} (opisanej w sekcji~\ref{biblioteka-szczegoly}) aby móc uzyskać ostateczny wynik obliczeń lub podzielić zadanie na podzadania na podstawie danych wejściowych.
 Aby uprościć logikę związaną z wykonywaniem opisanych akcji wykorzystany został wzorzec projektowy --- fasada.
