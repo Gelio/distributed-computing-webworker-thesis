@@ -586,9 +586,13 @@ Poniższa sekcja opisuje zabezpieczenia wykorzystywane w projekcie.
 \subsection{Zapytania z innych domen}
 
 Konfiguracja ciasteczek wysyłanych do przeglądarki sprawia, że przeglądarka może załączyć ciastka podczas żądań z innych domen jedynie wtedy, gdy zapytanie przekierowuje na nową stronę oraz metoda użyta podczas zapytania jest uważana za bezpieczną zgodnie z dokumentacją protokołu HTTP~\cite{rfc-7231}.
+Zostało to zrealizowane za pomocą parametru ciasteczek --- \textit{SameSite} ustawionego na wartość \textit{lax}.
 
 Ponadto, serwer API nie dołącza do odpowiedzi nagłówków modyfikujących politykę \textit{Same--Origin Policy}~\cite{same-origin-policy}. W rezultacie wszelkie próby wysłania zapytań z ciasteczkami podczas znajdowania się na innej domenie, niż domena, na której pracuje serwer API, zostaną zablokowane przez przeglądarkę. 
 Zapytania nie zawierające ciasteczek nie są blokowane przez serwer API, lecz treść odpowiedzi nie jest możliwa do odczytania, w wyniku czego jedyna możliwa interakcja z serwerem z innej domeny to rejestrowanie nowych węzłów.
+Pozostałe zapytania realizowane w ramach węzłów obliczeniowych są niemożliwe do wykonania ze względu na konieczność wysyłania danych identyfikujących węzeł, których nie da się uzyskać podczas rejestracji z innej domeny.
+
+
 Formularze wysyłane z innych domen, niż domena, na której uruchomiony jest serwer API wyślą żądania do serwera API, ale ciasteczka ze względu na ich konfigurację zostaną dołączone jedynie w przypadku wysłania formularza metodą \textit{GET}.
 Wszystkie zapytania \textit{GET} obsługiwane przez serwer API pozwalają jedynie na odczyt danych, a w przypadku formularza uzyskana odpowiedź nie jest możliwa do przechwycenia.
 
