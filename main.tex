@@ -318,7 +318,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Poniższy rozdział opisuje kluczowe założenia projektu, istnienie podobnych rozwiązań w momencie realizacji projektu oraz wymagania funkcjonalne i niefunkcjonalne, które powinny być spełniane przez tworzony system.
 
     \section{Cel projektu}
-        Celem projektu jest zaprojektowanie oraz zaimplementowanie systemu, który pozwoli na realizowanie obliczeń rozproszonych na wielu urządzeniach, na których dostępna jest jedynie przeglądarka internetowa.
+        Celem projektu jest zaprojektowanie oraz zaimplementowanie systemu, który pozwoli na realizowanie obliczeń rozproszonych na wielu urządzeniach, na których wymagana jest jedynie przeglądarka internetowa.
         Tak utworzony system obliczeń rozproszonych powinien zagwarantować bardzo prostą konfigurację oraz szeroką wieloplatformowość.
         Aby rozwiązanie było konkurencyjne pod względem wydajności zdecydowano, że obliczenia w przeglądarce powinny być wykonywane w technologii \textit{WebAssembly} \cite{webassembly}.
         Projekt przewiduje również przygotowanie biblioteki w języku C\# ułatwiającej tworzenie nowych projektów uruchamianych w ramach systemu obliczeń rozproszonych. 
@@ -333,7 +333,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     
     \section{Opis istniejących rozwiązań}
         Istnieją podobne rozwiązania, które spełniają część założonych wymagań.
-        W momencie, gdy projekt nie wymaga umożliwienia implementacji algorytmów w przystępnym języku, a jedynie dostarczenia plików działających już w \textit{WebAssembly}, to można odnaleźć w sieci systemy, które również starają się rozwiązać ten problem.
+        Można odnaleźć w sieci systemy, które pozwalają na wykonanie w sposób rozproszony algorytmów  zaimplementowanych w \textit{WebAssembly}, natomiast zgodnie z naszą wiedzą żaden nie umożliwia uruchamiania projektów C\# w \textit{WebAssembly}.
         Zgodnie z posiadaną przez nas wiedzą nie istnieje żaden system, który wyszedłby poza fazę testową i w pełni wspierał wykonywanie obliczeń rozproszonych zgodnie z założeniami projektu.
         Poniżej zostały przedstawione znalezione przez nas projekty zajmujące się podobnym problemem:
         
