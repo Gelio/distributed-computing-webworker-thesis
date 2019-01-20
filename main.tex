@@ -339,10 +339,10 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Najkorzystniej byłoby, gdyby obliczenia wykonywane przez różne węzły były jak najbardziej niezależne od siebie.
     Nie jest potrzebna wtedy komunikacja podczas trwania obliczenia, dzięki czemu nie występuje narzut komunikacyjny.
     
-    Jednym z konkretnych modeli wykorzystujących obliczenia rozproszone jest przygotowanie klastra obliczeniowego.
+    Jednym z konkretnych modeli wykorzystujących obliczenia rozproszone jest model klastra obliczeniowego.
     Jest to grupa połączonych ze sobą komputerów, często o podobnych parametrach, umiejscowionych zazwyczaj w tym samym budynku.
     Często takie rozwiązania są stosowane do celów naukowych.
-    Taki klaster jest dostępny dla naukowców do uruchamiania na nim algorytmów rozproszonych.
+    Taki klaster jest dostępny dla naukowców do uruchamiania na nim algorytmów rozproszonych, czyli algorytmów równoległych dostosowanych do obliczeń rozproszonych.
     
     Przykładem klastra obliczeniowego jest DEGIMA~\cite{DEGIMA} (\textit{\selectlanguage{english}DEstination for Gpu Intensive Machine}).
     Jest to zbiór 144 komputerów o takich samych parametrach działający w Centrum Obliczeń Zaawansowanych Uniwersytetu w Nagasaki.
@@ -351,7 +351,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Obliczenia rozproszone działają również w modelu klient-serwer.
     Centralny serwer nasłuchuje na połączenia od węzłów, a następnie przydziela im zadania oraz odbiera wyniki obliczeń.
     Nie jest wtedy dostępna komunikacja między węzłami, zatem dostają one niezależne zadania do wykonania.
-    To serwer jest odpowiedzialny za ewentualną agregację wyników wielu rozdzielonych zadań.
+    To serwer jest odpowiedzialny za ewentualną agregację wyników rozdzielanych zadań.
     
     Ze względu na niezależność oraz niewrażliwość na różną wydajność węzłów istnieją projekty
     pozwalające dowolnym użytkownikom Internetu na użyczenie swojej mocy obliczeniowej.
@@ -365,7 +365,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     
     % Może tą sekcję wyrzucić, skoro opisałem już GIMPS
     Projektem o podobnym założeniu jest SETI@home~\cite{SETI} (\textit{\selectlanguage{english}\textit{Search for Extraterrestial Intelligence}}).
-    Węzły podłączone do tego systemu otrzymują próbki sygnału z radioteleskopu i starają się znaleźć w nich sygnału od pozaziemskich cywilizacji.
+    Węzły podłączone do tego systemu otrzymują próbki sygnału z radioteleskopu i starają się znaleźć w nich sygnał od pozaziemskich cywilizacji.
     
     Dołączając do niektórych projektów wykorzystujących obliczenia rozproszone użytkownicy mają szansę wzbogacić się.
     Tak jest w przypadku procesu \textit{kopania kryptowalut}.
@@ -395,7 +395,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     adresu w przeglądarce internetowej i zezwoleniem na rozpoczęcie obliczeń.
     Jest to procedura prostsza od instalacji dodatkowej aplikacji na urządzeniu.
     
-    Problemem może okazać się wydajność. Kod uruchamiany najczęściej w przeglądarce napisany
+    Problemem może okazać się wydajność. Kod uruchamiany w przeglądarce najczęściej napisany
     jest w języku {\selectlanguage{english}Javascript}, który jest językiem interpretowanym i nie jest najlepszym wyborem
     jeżeli chodzi o obliczenia, w których liczy się wydajność. Na pomoc w tej sytuacji przychodzi
     eksperymentalna technologia \textit{\selectlanguage{english}WebAssembly}~\cite{webassembly-goals}.
@@ -423,12 +423,12 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     błędów (o ile wystąpiły podczas obliczeń) oraz pobranie wyników.
     Dla nieautoryzowanych użytkowników pozostaje funkcjonalność uczestniczenia w obliczeniach jako węzeł obliczeniowy.
 
-    Jako język do implementacji algorytmów rozwiązujących problemu został wybrany język C\#.
+    Jako język do implementacji algorytmów wykonywanych w sposób rozproszony został wybrany język C\#.
     Posiada on dużą ilość pakietów pomocnych przy implementacji operacji matematycznych,
     a także jest statycznie typowanym językiem wysokiego poziomu,
     zatem powinien być przystępny dla użytkowników tworzonego systemu.
-    Zbudowane z kodu biblioteki DLL są przetwarzane do postaci możliwej do uruchomienia w
-    WebAssembly za pomocą narzędzia \textit{mono-wasm}.
+    Zbudowane z kodu biblioteki DLL są przetwarzane przez narzędzie \textit{mono-wasm}
+    do postaci możliwej do uruchomienia w przeglądarce za pomocą \textit{WebAssembly}.
     
     Poza bazową funkcjonalnością jaką jest kontrolowanie obliczeń, stworzony system zawiera
     środki bezpieczeństwa, które utrudnią bądź zapobiegną szkodliwym akcjom, które mogą chcieć
