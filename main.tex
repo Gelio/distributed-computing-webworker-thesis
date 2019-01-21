@@ -275,7 +275,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyeirmod t
 Oświadczenie
 \end{center}
 
-\indent Oświadczam, że moją część pracy \type kiej (zgodnie z podziałem zadań opisanym w pkt TODO) pod
+\indent Oświadczam, że moją część pracy \type kiej (zgodnie z podziałem zadań opisanym w pkt \ref{podzial-prac}) pod
 tytułem ,,\tytul '', której promotorem jest \supervisor , wykonałem
 samodzielnie, co poświadczam własnoręcznym podpisem.
 \vspace{2cm}
@@ -978,6 +978,22 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     Takie podejście pozwoliło ponadto na zmniejszenie ilości poprawek do projektu na etapie jego
     akceptacji przez promotora.
 
+\section{Podział prac}
+    \label{podzial-prac}
+
+    Podczas tworzenia projektu Przemysław Proszewski odpowiedzialny był za integrację serwera aplikacyjnego
+    z bazą danych oraz \textit{mono-wasm}, a także przygotowanie formularzy po stronie panelu administracyjnego
+    oraz stworzenie biblioteki C\# do implementacji algorytmów.
+    
+    Grzegorz Rozdzialik zajął się przygotowaniem API serwera aplikacyjnego, integracją interfejsu użytkownika z API
+    oraz prezentacji danych w formacie tabelarycznym, stworzeniem panelu węzła obliczeniowego, a także
+    opracowaniem konfiguracji wdrożeniowej projektu.
+    
+    Pisząc ten dokument Przemysław Proszewski przygotował następujące rozdziały i sekcje: Analiza problemu, Zabezpieczenia,
+    Opis aplikacji, Własności rozwiązania, Możliwości na rozwój.
+    
+    Grzegorz Rozdzialik opisał następujące rozdziały i sekcje: Wstęp, Projekt modułów, Szczegółowy opis implementacji,
+    Problemy implementacyjne, wnioski z projektu.
 
 \chapter{Opis aplikacji}
     Poniższy rozdział opisuje przygotowane rozwiązanie. Na potrzeby tego rozdziału zostały utworzone: lista wykorzystywanych bibliotek wraz z ich licencjami, instrukcje przydatne podczas pracy z opisywanym systemem oraz lista testów akceptacyjnych wraz z ich rezultatami.
