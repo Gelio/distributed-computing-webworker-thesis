@@ -29,6 +29,7 @@
 %--------------------------- Tabele -----------------------------
 \usepackage{longtable}
 \usepackage{makecell}
+\usepackage{calc}
 \renewcommand{\tablename}{Tabela}
 
 
@@ -79,6 +80,8 @@
   {\normalfont \bfseries}
   {\thesubsection.}{1ex}{}
 
+% Dodawanie pdfów
+\usepackage{pdfpages}
 
 % Dodawanie pdfów
 \usepackage{pdfpages}
@@ -311,19 +314,181 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Opis czego będzie dotyczyła praca inżynierska
 
 \chapter{Analiza problemu}
+
+    Poniższy rozdział opisuje kluczowe założenia projektu, istnienie podobnych rozwiązań w momencie realizacji projektu oraz wymagania funkcjonalne i niefunkcjonalne, które powinny być spełniane przez tworzony system.
+
     \section{Cel projektu}
-        Opisanie, że aktualnie nie ma na rynku rozwiązań pozwalających na obliczenia rozproszone w przeglądarce.
+        Celem projektu jest zaprojektowanie oraz zaimplementowanie systemu, który pozwoli na realizowanie obliczeń rozproszonych na wielu urządzeniach, na których wymagana jest jedynie przeglądarka internetowa.
+        Tak utworzony system obliczeń rozproszonych powinien zagwarantować bardzo prostą konfigurację oraz szeroką wieloplatformowość.
+        Aby rozwiązanie było konkurencyjne pod względem wydajności zdecydowano, że obliczenia w przeglądarce powinny być wykonywane w technologii \textit{WebAssembly} \cite{webassembly}.
+        Projekt przewiduje również przygotowanie biblioteki w języku C\# ułatwiającej tworzenie nowych projektów uruchamianych w ramach systemu obliczeń rozproszonych. 
+        Motywacją do tworzenia biblioteki w języku C\# była chęć umożliwienia tworzenia projektów w dojrzałym, statycznie typowanym oraz obiektowym języku, który pozwala na identyfikację błędów już na etapie kompilacji kodu. 
+        Wykrywanie błędów na wczesnym etapie jest szczególnie ważne dla projektów uruchamianych w ramach utworzonej platformy.
+        W przypadku wykrycia błędów dopiero podczas obliczeń konieczne są dodatkowe iteracje dodawania projektu na serwer, co prowadzi do niezadowolenia oraz straty czasu użytkownika.
+        W celu utworzenia nowego projektu zgodnego z zaplanowaną platformą konieczne będzie jedynie zaimportowanie biblioteki, a następnie utworzenie klasy implementującej wskazany interfejs.
+        Dzięki takiemu rozwiązaniu programista będzie wiedział co musi zaimplementować, aby projekt był zgodny z zaprojektowanym rozwiązaniem, a dokumentacja dołączona do biblioteki pomoże w razie wątpliwości.
+        Przygotowany system powinien także reagować na odłączanie się węzłów obliczeniowych w trakcie wykonywania zadań oraz umożliwiać wielokrotnie przeprowadzenie tych samych obliczeń w celu wybrania najbardziej wiarygodnego wyniku w razie rozbieżności.
+        W momencie otrzymania różnych wyników dla tego samego podzadania platforma powinna wybierać rozwiązanie zaproponowane przez najbardziej zaufaną grupę węzłów.
+        Część systemu działająca w przeglądarce internetowej powinna umożliwiać węzłom obliczeniowym delegowanie wielu wątków do wykonywania obliczeń.
     
     \section{Opis istniejących rozwiązań}
-        Blazor, Bridge.NET, JSIL, inne frameworki do obliczeń rozproszonych
-        Zaznaczenie, że my spinamy te rzeczy w jedno
+        Istnieją podobne rozwiązania, które spełniają część założonych wymagań.
+        Można odnaleźć w sieci systemy, które pozwalają na wykonanie w sposób rozproszony algorytmów  zaimplementowanych w \textit{WebAssembly}, natomiast zgodnie z naszą wiedzą żaden nie umożliwia uruchamiania projektów C\# w \textit{WebAssembly}.
+        Zgodnie z posiadaną przez nas wiedzą nie istnieje żaden system, który wyszedłby poza fazę testową i w pełni wspierał wykonywanie obliczeń rozproszonych zgodnie z założeniami projektu.
+        Poniżej zostały przedstawione znalezione przez nas projekty zajmujące się podobnym problemem:
         
-    \section{Wymagania funkcjonalne}
-        Jak na dokumentacji z PZ
+        \begin{description}
+            \item[Distributed Compute Labs~\cite{distributed-compute-labs}] --- rozwiązanie pozwalające na uruchamianie obliczeń rozproszonych w przeglądarce w technologiach \textit{WebAssembly} oraz \textit{WebGL}. Na stronie rozwiązania brakuje informacji o formacie dostarczanych do wykonania zadań i znajduje się ono w fazie testów. W ramach zachęty do obliczeń autorzy udostępniają gry, w których konto użytkownika rozwija się na skutek wykonywania obliczeń rozproszonych.
+            \item[dis.io~\cite{dis-io}] --- platforma pozwalająca na uruchomienie obliczeń rozproszonych w przeglądarce w technologii \textit{Javascript}. Projekt wygląda na porzucony, ostatnie zmiany w kodzie źródłowym miały miejsce kilka lat temu.
+            \item[Distri.js~\cite{distri-js}] --- projekt pozwala na uruchamianie obliczeń rozproszonych w przeglądarce w technologii \textit{Javascript}, prawdopodobnie jest porzucony.
+        \end{description}
         
-    \section{Wymagania niefunkcjonalne}
-        Jak na dokumentacji z PZ
-    
+        
+        W chwili powstawania pracy inżynierskiej jedynie biblioteka \textit{mono-wasm} umożliwiała uruchamianie kodu napisanego w języku C\# w \textit{WebAssembly}.
+        Ze względu na wczesną fazę rozwoju tej biblioteki kompilacja C\# do \textit{WebAssembly} nie była możliwa, lecz \textit{mono-wasm} udostępniało interpreter C\# działający w \textit{WebAssembly}.
+        
+		\section{Wymagania funkcjonalne i niefunkcjonalne}
+                
+            Na rysunku~\ref{use-cases-diagram} przedstawiono w postaci diagramu UML zbiór przypadków użycia systemu dla aktora będącego administratorem zaprojektowanego systemu oraz dla aktora będącego węzłem obliczeniowym. Opisy przypadków użycia zostały przedstawione w tabeli~\ref{wymagania-funkcjonalne}. Wymagania niefunkcjonalne pogrupowane w poszczególne kategorie URPS są umieszczone w tabeli ~\ref{wymagania-niefunkcjonalne}.
+            
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/use-cases.pdf}
+                \caption{Diagram przypadków użycia}
+                \label{use-cases-diagram}
+            \end{figure}
+        
+            \begin{longtable}{| p{.20\textwidth-2\tabcolsep} | p{.20\textwidth-2\tabcolsep} | p{.30\textwidth-2\tabcolsep} | p{.30\textwidth-2\tabcolsep} |}
+                \caption{Wymagania funkcjonalne}
+                \label{wymagania-funkcjonalne} \\
+                \hline
+                Aktor & Nazwa & Opis & Odpowiedź systemu \\ \hline
+                \endfirsthead
+                \multicolumn{4}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+                \hline
+                Aktor & Nazwa & Opis & Odpowiedź systemu \\ \hline
+                \endhead
+                
+                Użytkownik
+                & Dodaj definicję zadania
+                & Dodanie nowej definicji zadania zawierającej dane opisowe oraz wymagane assembly.
+                & Informacje o dodanej definicji zadania. \\ \cline{2-4} 
+                
+                & Dodaj zadanie
+                & Dodanie nowego zadanie na podstawie istniejącej już definicji. Dane wejściowe muszą zostać dostarczone jako plik.
+                & Informacje o utworzonym zadaniu. \\ \cline{2-4} 
+                
+                & Zobacz informacje o zadaniu
+                & Sprawdzenie informacji o zadaniu.
+                & Informacje o zadaniu wraz z postępem wykonywania przez węzły obliczeniowe. \\ \cline{2-4} 
+
+                & Zobacz listę zdefiniowanych zadań
+                & Wyświetlenie skrótu informacji o dodanych definicjach zadań.
+                & Lista zawierająca definicje zadań zawierająca nazwę, opis oraz odnośnik do listy zadań utworzonych z każdej definicji. \\ \cline{2-4} 
+                
+                & Zobacz listę wykonywanych zadań   
+                & Wyświetlenie informacji o zadaniach, które są obecnie wykonywane.                             
+                & Lista zawierająca obecnie wykonywane zadania wraz z informacjami o postępie. \\ \cline{2-4} 
+                
+                & Zobacz listę zakończonych zadań  
+                & Wyświetlenie informacji o zadaniach, których wykonanie jest już zakończone.
+                & Lista zawierająca zakończone zadania. \\ \cline{2-4} 
+                
+                & Usuń zadanie
+                & Usunięcie zadania.
+                & Informacja, czy udało się usunąć zadanie. \\ \cline{2-4} 
+                
+                & Usuń definicję zadania
+                & Usunięcie definicji zadania wraz z wszystkimi zadaniami utworzonymi na jej podstawie.
+                & Informacja, czy udało się usunąć definicję zadania wraz z zadaniami utworzonymi na jej podstawie. \\ \cline{1-4} 
+                
+                Użytkownik
+                & Pobierz wyniki
+                & Pobranie wyników zakończonego zadania.
+                & Dane binarne zawierające obliczone zadanie. \\ \cline{2-4} 
+                
+                & Pobierz dane wejściowe zadania
+                & Pobranie danych wejściowych zadania.
+                & Dane binarne zawierające plik wejściowy zadania. \\ \cline{2-4} 
+                
+                & Edytuj zadanie                 
+                & Edycja zadania.
+                & Informacje o zmodyfikowanym zadaniu. \\ \cline{2-4} 
+                
+                & Edytuj definicję zadania
+                & Edycja definicji zadania.
+                & Informacje o zmodyfikowanej definicji zadania. \\ \hline
+                
+                Węzeł obliczeniowy
+                & Pobierz nowe zadanie
+                & Pobranie nowego zadania oczekującego na obliczenie.
+                & Adres do plików zadania. \\ \cline{2-4} 
+                
+                & Dołącz do systemu
+                & Zarejestrowanie się do listy węzłów obliczeniowych.
+                & Unikalny token węzła obliczeniowego. \\ \cline{2-4} 
+                
+                & Zwróć wynik zadania
+                & Wyślij wynik obliczonego zadania.
+                & Adres do plików kolejnego zadania. \\ \hline
+                
+            \end{longtable}
+                        
+            \begin{longtable}{| p{.20\textwidth-2\tabcolsep} | p{.20\textwidth-2\tabcolsep} | p{.60\textwidth-2\tabcolsep} |}
+                \caption{Wymagania niefunkcjonalne}
+                \label{wymagania-niefunkcjonalne}
+                \\
+                \hline
+                Obszar wymagań & Nr wymagania & Opis \\ \hline
+                \endfirsthead
+                \multicolumn{3}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+                \hline
+                Obszar wymagań & Nr wymagania & Opis \\ \hline
+                \endhead
+                \newcounter{WymaganiaNiefunkcjonalne}
+                \setcounter{WymaganiaNiefunkcjonalne}{0}
+                
+                \makecell[l]{Użyteczność \\ (\textit{Usability})}
+                & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                & Wszystkie operacje użytkownika powinny być łatwo dostępne w przeglądarce udostępniającej widok posiadający co najmniej 200 znaków szerokości oraz 40 wierszy tekstu. \\ \cline{2-3}
+                
+                & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                & Panel użytkownika powinien być dostępny bez użycia myszki. \\ \cline{2-3}
+                
+                & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                & Część aplikacji dla węzłów obliczeniowych powinna być responsywna i dostosowywać się do wymiarów ekranu. \\ \hline
+                
+                \makecell[l]{Niezawodność \\ (\textit{Reliability})}
+                & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                & Aplikacja powinna być odporna na błędy pochodzące z programów od użytkownika, zarówno wykonywanych po stronie serwera, jak i węzłów obliczeniowych. \\ \cline{2-3}
+                
+                & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                & Serwer po ponownym uruchomieniu nie powinien utracić dodanych wcześniej danych i kontynuować rozdzielanie zadań.  \\ \cline{2-3}                
+                
+                & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                & Aplikacja powinna wykrywać rozbieżne wyniki podzadania zwrócone przez kilka węzłów obliczeniowych i zwracać wynik obliczony przez najbardziej zaufane węzły. \\ \hline
+                
+                \makecell[l]{Wydajność \\ (\textit{Performance})}
+                & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                & Aplikacja powinna obsługiwać każde zapytanie przez mniej niż 5 sekund przy specyfikacji serwera:
+                
+                \begin{itemize}
+                    \item Procesor Intel i5-6600, 4 rdzenie, 3.3 GHz
+                    \item 8 GB pamięci RAM
+                \end{itemize}
+                
+                
+                \\ \hline
+                
+                \makecell[l]{Utrzymanie \\ (\textit{Supportability})}
+                & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                & W razie wydania nowego standardu definicji zadań, aplikacja powinna nadal wspierać poprzednio dodane definicje. \\ \cline{2-3}
+                
+                & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
+                & Aplikacja powinna umożliwiać utworzenie oraz przywrócenie kopii zapasowej. \\ \hline
+                
+            \end{longtable}
+ 
 \chapter{Architektura systemu}
  Zaprojektowany system składa się z trzech modułów:
 
@@ -1119,7 +1284,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
 % Dla ambitnych - można skorzystać z BibTeX-a
 
 
-\begin{thebibliography}{25}%jak ktoś ma więcej książek, to niech wpisze większą liczbę
+\begin{thebibliography}{35}%jak ktoś ma więcej książek, to niech wpisze większą liczbę
     % \bibitem[numerek]{referencja} Autor, \emph{Tytuł}, Wydawnictwo, rok, strony
     % cytowanie: \cite{referencja1, referencja 2,...}
     \bibitem[1]{jsonapi} Dokumentacja \emph{JSON API} \url{https://jsonapi.org/}.
@@ -1151,6 +1316,9 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     \bibitem[27]{cypress} Dokumentacja biblioteki do testów end-to-end \emph{Cypress} \url{https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell}.
     \bibitem[28]{same-origin-policy} Dokumentacja \emph{Same--Origin Policy} \url{https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy}
     \bibitem[29]{rfc-7231} Dokumentacja HTTP, opis metod HTTP uważanych za bezpieczne \url{https://tools.ietf.org/html/rfc7231#section-4.2.1}.
+    \bibitem[30]{distributed-compute-labs} Strona \emph{Distributed Compute Labs} \url{https://distributed.computer}
+    \bibitem[31]{dis-io} Repozytorium projektu \emph{dis.io} \url{https://github.com/tomgco/dis.io}
+    \bibitem[32]{distri-js} Strona projektu \emph{Distri.js} \url{https://distri.js.org/}
 \end{thebibliography}
 
 \thispagestyle{empty}
