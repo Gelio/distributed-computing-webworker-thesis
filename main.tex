@@ -980,20 +980,53 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
 
 \section{Podział prac}
     \label{podzial-prac}
-
-    Podczas tworzenia projektu Przemysław Proszewski odpowiedzialny był za integrację serwera aplikacyjnego
-    z bazą danych oraz \textit{mono-wasm}, a także przygotowanie formularzy po stronie panelu administracyjnego
-    oraz stworzenie biblioteki C\# do implementacji algorytmów.
     
-    Grzegorz Rozdzialik zajął się przygotowaniem API serwera aplikacyjnego, integracją interfejsu użytkownika z API
-    oraz prezentacji danych w formacie tabelarycznym, stworzeniem panelu węzła obliczeniowego, a także
-    opracowaniem konfiguracji wdrożeniowej projektu.
+    W tabelach~\ref{podzial-prac-implementacja}~i~\ref{podzial-prac-tekst-pracy} został przedstawiony
+    podział prac podczas tworzenia tej pracy inżynierskiej z rozróżnieniem na implementację projektu
+    oraz pisanie tekstu pracy inżynierskiej.
     
-    Pisząc ten dokument Przemysław Proszewski przygotował następujące rozdziały i sekcje: Analiza problemu, Zabezpieczenia,
-    Opis aplikacji, Własności rozwiązania, Możliwości na rozwój.
+    \begin{center}
+        \begin{longtable}{| p{.30\textwidth-2\tabcolsep} | p{.70\textwidth-2\tabcolsep} |}
+            \caption{Podział prac przy implementacji projektu}
+            \label{podzial-prac-implementacja} \\
+            \hline
+            Imię i nazwisko członka zespołu & Wykonane części projektu \\ \hline
+            \endfirsthead
+            \multicolumn{2}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+            \hline
+            Imię i nazwisko członka zespołu & Wykonane części projektu \\ \hline
+            \endhead
+            
+            Przemysław Proszewski &
+            Integracja serwera aplikacyjnego z bazą danych oraz \textit{mono-wasm}, przygotowanie formularzy
+            po stronie panelu administracyjnego, stworzenie biblioteki C\# do implementacji algorytmów. \\ \hline
+            
+            Grzegorz Rozdzialik &
+            Przygotowanie API serwera aplikacyjnego, integracja interfejsu użytkownika z API,
+            prezentacja danych w formacie tabelarycznym, stworzenie panelu węzła obliczeniowego,
+            opracowanie konfiguracji wdrożeniowej projektu. \\ \hline
+        \end{longtable}
+    \end{center}
     
-    Grzegorz Rozdzialik opisał następujące rozdziały i sekcje: Wstęp, Projekt modułów, Szczegółowy opis implementacji,
-    Problemy implementacyjne, wnioski z projektu.
+    \begin{center}
+        \begin{longtable}{| p{.30\textwidth-2\tabcolsep} | p{.70\textwidth-2\tabcolsep} |}
+            \caption{Podział prac przy pisaniu tekstu pracy inżynierskiej}
+            \label{podzial-prac-tekst-pracy} \\
+            \hline
+            Imię i nazwisko członka zespołu & Stworzone rozdziały i sekcje tekstu pracy inżynierskiej \\ \hline
+            \endfirsthead
+            \multicolumn{2}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+            \hline
+            Imię i nazwisko członka zespołu & Stworzone rozdziały i sekcje tekstu pracy inżynierskiej \\ \hline
+            \endhead
+            
+            Przemysław Proszewski &
+            Analiza problemu, Zabezpieczenia, Opis aplikacji, Własności rozwiązania, Możliwości na rozwój. \\ \hline
+            
+            Grzegorz Rozdzialik &
+            Wstęp, Projekt modułów, Szczegółowy opis implementacji, Problemy implementacyjne, Wnioski z projektu. \\ \hline
+        \end{longtable}
+    \end{center}
 
 \chapter{Opis aplikacji}
     Poniższy rozdział opisuje przygotowane rozwiązanie. Na potrzeby tego rozdziału zostały utworzone: lista wykorzystywanych bibliotek wraz z ich licencjami, instrukcje przydatne podczas pracy z opisywanym systemem oraz lista testów akceptacyjnych wraz z ich rezultatami.
