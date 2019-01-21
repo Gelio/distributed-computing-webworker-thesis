@@ -408,9 +408,12 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Dodatkowo, WebAssembly pozwala osiągnąć wydajność zbliżoną do natywnej ze względu na wykorzystanie
     niskopoziomowych operacji.
     
-    Za wykonanie kodu WebAssembly odpowiedzialna jest wirtualna maszyna stosowa.
-    Instrukcje wykonywane sekwencyjnie mogą modyfikować szczyt stosu, usuwać lub dodawać elementy.
-    Istnieją też instrukcje kontrolne pozwalające na skok w inne miejsce w kodzie.
+    Za wykonanie kodu WebAssembly odpowiedzialna jest wirtualna maszyna stosowa~\cite{webassembly-semantics}.
+    Posiada ona stos, na którym zapisywane są dane, oraz licznik instrukcji, który wskazuje
+    na aktualnie wykonywaną instrukcję.
+    Kod składa się z bloków instrukcji wykonywanych sekwencyjnie.
+    Mogą one modyfikować szczyt stosu, usuwać lub dodawać elementy.
+    Istnieją też instrukcje kontrolne pozwalające na skok w inne miejsce w kodzie (zmianę licznika instrukcji).
     Poza stosem dostępna jest także pamięć liniowa (ang. \textit{\selectlanguage{english}linear memory}).
     Pozwala ona na odczyt oraz zapis danych na dowolnej pozycji.
     Wszystkie instrukcje operujące na danych muszą jawnie podać typ tych danych.
@@ -1452,6 +1455,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     \bibitem[36]{MersennePrimes} Wpis na Wikipedii dotyczący \emph{liczb pierwszych Mersenne'a} \url{https://pl.wikipedia.org/wiki/Liczby_Mersenne%E2%80%99a}
     \bibitem[37]{SETI} Strona internetowa z informacjami o \emph{SETI@home} \url{https://setiathome.berkeley.edu/sah_about.php}
     \bibitem[38]{webassembly-goals} Dokumentacja celów formatu \emph{WebAssembly} \url{https://webassembly.org/docs/high-level-goals/}
+    \bibitem[39]{webassembly-semantics} Dokumentacja wirtualnej maszyny stosowej formatu \emph{WebAssembly} \url{https://webassembly.org/docs/semantics/}
 \end{thebibliography}
 
 \thispagestyle{empty}
