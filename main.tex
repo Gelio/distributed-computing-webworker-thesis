@@ -311,7 +311,137 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 \setcounter{page}{11} % JEŻELI Z POWODU DUŻEJ ILOŚCI STRON W SPISIE TREŚCI SIĘ NIE ZGADZA, TRZEBA ZMODYFIKOWAĆ RĘCZNIE
 
 \chapter{Wstęp}
-    Opis czego będzie dotyczyła praca inżynierska
+
+    Obliczenia równoległe to metoda obliczeń pozwalająca na pracę wielu wątków nad tym samym problemem w celu zdobycia wyników w krótszym czasie, niż jakby dane zadanie było wykonywane w sposób sekwencyjny przez jeden wątek.
+    Równoległe współdziałanie wielu wątków pozwala na osiągnięcie dużo lepszej wydajności
+    kosztem synchronizacji obliczeń i skomplikowania algorytmów.
+    Obliczenia równoległe wymagają stosowania wyspecjalizowanych algorytmów, które często okazują się
+    trudniejsze w implementacji z uwagi na współdzielenie zasobów --- danych wejściowych lub
+    wyników pośrednich obliczeń.
+    Poza tym, w niektórych problemach nietrywialne staje się wymyślenie sposobu na
+    zminimalizowanie potrzeby synchronizacji wątków w trakcie obliczeń
+    oraz komunikacji między wątkami. Im obliczenia są mniej zależne od siebie,
+    tym mniejsza potrzeba wymiany informacji między jednostkami obliczeniowymi, a co za tym idzie lepsza wydajność.
+    
+    Wykorzystanie wielu wątków do obliczeń jest szczególnie ważne w dzisiejszych czasach.
+    Wykładnicze wzrostu częstotliwości taksowania procesorów było
+    opisywane w poprzednich latach przez prawo Moore'a~\cite{prawo-moorea}.
+    Ostatnio daje się zauważyć spadek tego tempa, przez co należy szukać innych metod na wykonanie obliczeń w krótszym czasie.
+    Czas wykonania algorytmów można zmniejszyć w znacznym stopniu jedynie poprzez zlecenie ich wykonywania równolegle,
+    przez co można wykonać dużo większą liczbę operacji w danej jednostce czasu,
+    niż w przypadku pojedynczego wątku.
+
+    Szczególnym przypadkiem obliczeń równoległych są obliczenia rozproszone.
+    Wyróżniają się one tym, że we wspólnych obliczeniach biorą udział różne urządzenia, często w różnych lokalizacjach geograficznych.
+    W tej sytuacji można osiągnąć teoretycznie nieograniczoną ilość jednostek obliczeniowych,
+    ponieważ można użyć bardzo dużej liczby niezależnych urządzeń.
+    
+    Obliczenia rozproszone wykorzystywane są w klastrach obliczeniowych.
+    Są to grupy połączonych ze sobą komputerów, często o podobnych parametrach, umiejscowionych zazwyczaj w tym samym budynku.
+    Często takie rozwiązania są stosowane do celów naukowych.
+    Taki klaster jest dostępny dla naukowców do uruchamiania na nim algorytmów rozproszonych, czyli algorytmów równoległych dostosowanych do obliczeń rozproszonych.
+    
+    Przykładem klastra obliczeniowego jest DEGIMA~\cite{DEGIMA} (\textit{\selectlanguage{english}DEstination for Gpu Intensive Machine}).
+    Jest to zbiór 144 komputerów o takich samych parametrach działający w Centrum Obliczeń Zaawansowanych Uniwersytetu w Nagasaki.
+    Jest wykorzystywany do symulacji fizycznych.
+    
+    Do komunikacji pomiędzy węzłami uczestniczącymi w obliczeniach rozproszonych można również użyć sieci Internet.
+    Pozwala to na łatwe skomunikowanie nawet odległych urządzeń, ale wprowadza dodatkowy narzut w przypadku synchronizacji.
+    Najkorzystniej byłoby, gdyby obliczenia wykonywane przez różne węzły były jak najbardziej niezależne od siebie.
+    Nie jest potrzebna wtedy komunikacja podczas trwania obliczenia, dzięki czemu nie występuje narzut komunikacyjny.
+    
+    Obliczenia rozproszone mogą działać w modelu klient-serwer.
+    Centralny serwer nasłuchuje na połączenia od węzłów, a następnie przydziela im zadania oraz odbiera wyniki obliczeń.
+    Nie jest wtedy dostępna komunikacja między węzłami, zatem dostają one niezależne zadania do wykonania.
+    To serwer jest odpowiedzialny za ewentualną agregację wyników rozdzielanych zadań.
+    
+    Ze względu na niezależność oraz niewrażliwość na różną wydajność węzłów istnieją projekty
+    pozwalające dowolnym użytkownikom Internetu na użyczenie swojej mocy obliczeniowej.
+    Zazwyczaj wymagane jest wtedy pobranie aplikacji klienckiej, która pozwoli urządzeniu na komunikację
+    z serwerem.
+    
+    Jednym z takich projektów jest GIMPS~\cite{GIMPS} (\textit{\selectlanguage{english}Great Internet Mersenne Prime Search}).
+    Jego celem jest szukanie liczb pierwszych Mersenne'a~\cite{MersennePrimes}.
+    Węzłom z uruchomionym programem klienckim przydzielane są zadania odpowiednio do ich wydajności.
+    Do projektu mogą dołączyć komputery z systemem Windows, Linux, a także Mac OS.
+    
+    Projektem o podobnym założeniu jest SETI@home~\cite{SETI} (\textit{\selectlanguage{english}\textit{Search for Extraterrestial Intelligence}}).
+    Węzły podłączone do tego systemu otrzymują próbki sygnału z radioteleskopu i starają się znaleźć w nich sygnał od pozaziemskich cywilizacji.
+    
+    Dołączając do niektórych projektów wykorzystujących obliczenia rozproszone użytkownicy mają szansę wzbogacić się.
+    Tak jest w przypadku procesu \textit{kopania kryptowalut}.
+    Węzły obliczeniowe próbują dodać nowy blok do tzw. \textit{\selectlanguage{english}blockchain}.
+    Jeżeli im się to uda, właściciel systemu dostaje wynagrodzenie.
+    Za użyczenie wolnej mocy obliczeniowej swojego urządzenia jego właściciel może liczyć na rekompensatę w postaci ułamka jednostki danej kryptowaluty.
+    Ma to służyć jako zachęta do dołączenia do systemu.
+    
+    \subsection{Motywacja}
+    
+    Najczęściej aby dołączyć jako węzeł obliczeniowy do systemu obliczeń rozproszonych wymagane są
+    pobranie i instalacja aplikacji klienckiej na danym systemie.
+    Możliwa jest sytuacja, gdy aplikacja kliencka nie będzie dostępna na daną architekturę procesora
+    lub na konkretny system operacyjny.
+    Tak jest zazwyczaj w przypadku telefonów komórkowych, które często zostają pominięte i aplikacja
+    kliencka nie jest na nich dostępna.
+    Sprawia to, że część urządzeń z wolną mocą obliczeniową nie daje się wykorzystać do obliczeń
+    rozproszonych.
+    
+    Rozwiązaniem w tej sytuacji byłoby stworzenie systemu, który działałby na dużej ilości urządzeń
+    bez względu na system operacyjny czy architekturę procesora.
+    W celu uniknięcia potrzeby udostępniania aplikacji klienta na wiele platform można zaimplementować
+    klienta jako aplikacja internetowa uruchamiana w przeglądarce. Środowisko to jest przenośne
+    między różnymi platformami. Wymagana wtedy jest jedynie instalacja przeglądarki internetowej,
+    która i tak często dostępna jest domyślnie na wielu urządzeniach.
+    Dodanie nowych węzłów do systemu wiązałoby się w takiej sytuacji z otworzeniem odpowiedniego
+    adresu w przeglądarce internetowej i zezwoleniem na rozpoczęcie obliczeń.
+    Jest to procedura prostsza od instalacji dodatkowej aplikacji na urządzeniu.
+    
+    Problemem może okazać się wydajność. Kod uruchamiany w przeglądarce najczęściej napisany
+    jest w języku {\selectlanguage{english}Javascript}, który ze względu na swoją dynamiczność nie jest najlepszym wyborem
+    jeżeli chodzi o obliczenia, w których liczy się wydajność. Na pomoc w tej sytuacji przychodzi
+    eksperymentalna technologia \textit{\selectlanguage{english}WebAssembly}~\cite{webassembly-goals}.
+    Jest to binarny format instrukcji dla wirtualnej maszyny stosowej.
+    Został zaprojektowany jako cel kompilacji dla wysokopoziomowych języków programowania
+    w taki sposób, żeby dał się uruchomić w przeglądarkach internetowych.
+    Format plików uruchamianych przez WebAssembly nadaje się do wydajnego przesyłania przez sieć
+    oraz ładowania w przeglądarce.
+    Dodatkowo, WebAssembly pozwala osiągnąć wydajność zbliżoną do natywnej ze względu na wykorzystanie
+    niskopoziomowych operacji.
+    
+    Za wykonanie kodu WebAssembly odpowiedzialna jest wirtualna maszyna stosowa~\cite{webassembly-semantics}.
+    Posiada ona stos, na którym zapisywane są dane, oraz licznik instrukcji, który wskazuje
+    na aktualnie wykonywaną instrukcję.
+    Kod składa się z bloków instrukcji wykonywanych sekwencyjnie.
+    Mogą one modyfikować szczyt stosu, usuwać lub dodawać elementy.
+    Istnieją też instrukcje kontrolne pozwalające na skok w inne miejsce w kodzie (zmianę licznika instrukcji).
+    Poza stosem dostępna jest także pamięć liniowa (ang. \textit{\selectlanguage{english}linear memory}).
+    Pozwala ona na odczyt oraz zapis danych na dowolnej pozycji.
+    Wszystkie instrukcje operujące na danych muszą jawnie podać typ tych danych.
+    Dzięki jawności typów instrukcje mogą zostać bezpośrednio przetłumaczone na natywne instrukcje
+    sprzętowe
+    i nie jest potrzebna niejawna konwersja typów lub przetrzymywanie przez środowisko wykonawcze
+    dodatkowych informacji o typach zmiennych.
+    
+    W ramach tej pracy inżynierskiej stworzony został system do obliczeń rozproszonych pozwalający
+    administratorowi na dodanie nowego zadania, śledzenie postępu w obliczeniach, inspekcję
+    błędów (o ile wystąpiły podczas obliczeń) oraz pobranie wyników.
+    Dla nieautoryzowanych użytkowników pozostaje funkcjonalność uczestniczenia w obliczeniach jako węzeł obliczeniowy.
+
+    Jako język do implementacji algorytmów wykonywanych w sposób rozproszony został wybrany język C\#.
+    Posiada on dużą ilość pakietów ułatwiających tworzenie algorytmów,
+    a także jest statycznie typowanym językiem wysokiego poziomu,
+    zatem powinien być przystępny dla użytkowników tworzonego systemu.
+    Zbudowane z kodu biblioteki DLL są przetwarzane przez narzędzie \textit{mono-wasm}
+    do postaci możliwej do uruchomienia w przeglądarce za pomocą \textit{WebAssembly}.
+    
+    Poza bazową funkcjonalnością jaką jest kontrolowanie obliczeń, stworzony system zawiera
+    mechanizmy, które utrudnią bądź zapobiegną szkodliwym akcjom, które mogą chcieć
+    podjąć osoby trzecie, takie jak przesyłanie błędnych wyników obliczeń.
+    
+    Dalsze części tego dokumentu szczegółowo opisują projekt wraz z przedstawieniem istniejących
+    rozwiązań oraz wymaganiami funkcjonalnymi i niefunkcjonalnymi stworzonego systemu.
+    Następnie omówiona jest architektura systemu włączając w to wykorzystane biblioteki oraz zaimplementowane zabezpieczenia.
+    W podsumowaniu opisane są własności stworzonego projektu oraz możliwości na jego dalszy rozwój, a także napotkane problemy implementacyjne oraz wyciągnięte wnioski.
 
 \chapter{Analiza problemu}
 
@@ -1319,6 +1449,13 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     \bibitem[30]{distributed-compute-labs} Strona \emph{Distributed Compute Labs} \url{https://distributed.computer}
     \bibitem[31]{dis-io} Repozytorium projektu \emph{dis.io} \url{https://github.com/tomgco/dis.io}
     \bibitem[32]{distri-js} Strona projektu \emph{Distri.js} \url{https://distri.js.org/}
+    \bibitem[33]{prawo-moorea} Wpis na Wikipedii dotyczący \emph{prawa Moore'a} \url{https://pl.wikipedia.org/wiki/Prawo_Moore%E2%80%99a}
+    \bibitem[34]{DEGIMA} Wpis na Wikipedii dotyczący klastra \emph{DEGIMA} \url{https://en.wikipedia.org/wiki/DEGIMA}
+    \bibitem[35]{GIMPS} Strona opisująca działanie projektu \emph{GIMPS} \url{https://www.mersenne.org/various/works.php}
+    \bibitem[36]{MersennePrimes} Wpis na Wikipedii dotyczący \emph{liczb pierwszych Mersenne'a} \url{https://pl.wikipedia.org/wiki/Liczby_Mersenne%E2%80%99a}
+    \bibitem[37]{SETI} Strona internetowa z informacjami o \emph{SETI@home} \url{https://setiathome.berkeley.edu/sah_about.php}
+    \bibitem[38]{webassembly-goals} Dokumentacja celów formatu \emph{WebAssembly} \url{https://webassembly.org/docs/high-level-goals/}
+    \bibitem[39]{webassembly-semantics} Dokumentacja wirtualnej maszyny stosowej formatu \emph{WebAssembly} \url{https://webassembly.org/docs/semantics/}
 \end{thebibliography}
 
 \thispagestyle{empty}
