@@ -312,10 +312,10 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 
 \chapter{Wstęp}
 
-    Obliczenia równoległe to model obliczeń pozwalający na pracę wielu wątków nad tym samym problemem w celu zdobycia wyników w krótszym czasie, niż jakby dane zadanie było wykonywane w sposób sekwencyjny przez jeden wątek.
+    Obliczenia równoległe to metoda obliczeń pozwalająca na pracę wielu wątków nad tym samym problemem w celu zdobycia wyników w krótszym czasie, niż jakby dane zadanie było wykonywane w sposób sekwencyjny przez jeden wątek.
     Równoległe współdziałanie wielu wątków pozwala na osiągnięcie dużo lepszej wydajności
     kosztem synchronizacji obliczeń i skomplikowania algorytmów.
-    Do obliczeń równoległych należy stosować algorytmy równoległe, które często okazują się
+    Obliczenia równoległe wymagają stosowania wyspecjalizowanych algorytmów, które często okazują się
     trudniejsze w implementacji z uwagi na współdzielenie zasobów --- danych wejściowych lub
     wyników pośrednich obliczeń.
     Poza tym, w niektórych problemach nietrywialne staje się wymyślenie sposobu na
@@ -323,9 +323,11 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     oraz komunikacji między wątkami. Im obliczenia są mniej zależne od siebie,
     tym mniejsza potrzeba wymiany informacji między jednostkami obliczeniowymi, a co za tym idzie lepsza wydajność.
     
-    Wykorzystanie wielu wątków do obliczeń jest szczególnie ważne w dzisiejszych czasach, gdy częstotliwość taktowania procesorów nie wzrasta w tempie wykładniczym,
-    jak było to w poprzednich latach i co jest opisane przez prawo Moore'a~\cite{prawo-moorea}.
-    Wydajność algorytmów można zwiększyć w znacznym stopniu jedynie poprzez zlecenie ich wykonywania równolegle,
+    Wykorzystanie wielu wątków do obliczeń jest szczególnie ważne w dzisiejszych czasach.
+    Wykładnicze wzrostu częstotliwości taksowania procesorów było
+    opisywane w poprzednich latach przez prawo Moore'a~\cite{prawo-moorea}.
+    Ostatnio daje się zauważyć spadek tego tempa, przez co należy szukać innych metod na wykonanie obliczeń w krótszym czasie.
+    Czas wykonania algorytmów można zmniejszyć w znacznym stopniu jedynie poprzez zlecenie ich wykonywania równolegle,
     przez co można wykonać dużo większą liczbę operacji w danej jednostce czasu,
     niż w przypadku pojedynczego wątku.
 
@@ -333,11 +335,6 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Wyróżniają się one tym, że we wspólnych obliczeniach biorą udział różne urządzenia, często w różnych lokalizacjach geograficznych.
     W tej sytuacji można osiągnąć teoretycznie nieograniczoną ilość jednostek obliczeniowych,
     ponieważ można użyć bardzo dużej liczby niezależnych urządzeń.
-    
-    Często do komunikacji pomiędzy węzłami uczestniczącymi w obliczeniach rozproszonych używa się sieci Internet.
-    Pozwala to na łatwe skomunikowanie nawet odległych urządzeń, ale wprowadza dodatkowy narzut w przypadku synchronizacji.
-    Najkorzystniej byłoby, gdyby obliczenia wykonywane przez różne węzły były jak najbardziej niezależne od siebie.
-    Nie jest potrzebna wtedy komunikacja podczas trwania obliczenia, dzięki czemu nie występuje narzut komunikacyjny.
     
     Jednym z konkretnych modeli wykorzystujących obliczenia rozproszone jest model klastra obliczeniowego.
     Jest to grupa połączonych ze sobą komputerów, często o podobnych parametrach, umiejscowionych zazwyczaj w tym samym budynku.
@@ -348,7 +345,12 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Jest to zbiór 144 komputerów o takich samych parametrach działający w Centrum Obliczeń Zaawansowanych Uniwersytetu w Nagasaki.
     Jest wykorzystywany do symulacji fizycznych.
     
-    Obliczenia rozproszone działają również w modelu klient-serwer.
+    Do komunikacji pomiędzy węzłami uczestniczącymi w obliczeniach rozproszonych można również użyć sieci Internet.
+    Pozwala to na łatwe skomunikowanie nawet odległych urządzeń, ale wprowadza dodatkowy narzut w przypadku synchronizacji.
+    Najkorzystniej byłoby, gdyby obliczenia wykonywane przez różne węzły były jak najbardziej niezależne od siebie.
+    Nie jest potrzebna wtedy komunikacja podczas trwania obliczenia, dzięki czemu nie występuje narzut komunikacyjny.
+    
+    Obliczenia rozproszone mogą działać w modelu klient-serwer.
     Centralny serwer nasłuchuje na połączenia od węzłów, a następnie przydziela im zadania oraz odbiera wyniki obliczeń.
     Nie jest wtedy dostępna komunikacja między węzłami, zatem dostają one niezależne zadania do wykonania.
     To serwer jest odpowiedzialny za ewentualną agregację wyników rozdzielanych zadań.
@@ -363,7 +365,6 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Węzłom z uruchomionym programem klienckim przydzielane są zadania odpowiednio do ich wydajności.
     Do projektu mogą dołączyć komputery z systemem Windows, Linux, a także Mac OS.
     
-    % Może tą sekcję wyrzucić, skoro opisałem już GIMPS
     Projektem o podobnym założeniu jest SETI@home~\cite{SETI} (\textit{\selectlanguage{english}\textit{Search for Extraterrestial Intelligence}}).
     Węzły podłączone do tego systemu otrzymują próbki sygnału z radioteleskopu i starają się znaleźć w nich sygnał od pozaziemskich cywilizacji.
     
@@ -374,7 +375,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Za użyczenie wolnej mocy obliczeniowej swojego urządzenia jego właściciel może liczyć na rekompensatę w postaci ułamka jednostki danej kryptowaluty.
     Ma to służyć jako zachęta do dołączenia do systemu.
     
-    % Tu zaczyna się motywacja. Czy to powinno być osobną sekcją?
+    \subsection{Motywacja}
     
     Najczęściej aby dołączyć jako węzeł obliczeniowy do systemu obliczeń rozproszonych wymagane są
     pobranie i instalacja aplikacji klienckiej na danym systemie.
@@ -396,7 +397,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Jest to procedura prostsza od instalacji dodatkowej aplikacji na urządzeniu.
     
     Problemem może okazać się wydajność. Kod uruchamiany w przeglądarce najczęściej napisany
-    jest w języku {\selectlanguage{english}Javascript}, który jest językiem interpretowanym i nie jest najlepszym wyborem
+    jest w języku {\selectlanguage{english}Javascript}, który ze względu na swoją dynamiczność nie jest najlepszym wyborem
     jeżeli chodzi o obliczenia, w których liczy się wydajność. Na pomoc w tej sytuacji przychodzi
     eksperymentalna technologia \textit{\selectlanguage{english}WebAssembly}~\cite{webassembly-goals}.
     Jest to binarny format instrukcji dla wirtualnej maszyny stosowej.
@@ -418,20 +419,20 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     i nie jest potrzebna niejawna konwersja typów lub przetrzymywanie przez środowisko wykonawcze
     dodatkowych informacji o typach zmiennych.
     
-    W ramach pracy inżynierskiej stworzony został system do obliczeń rozproszonych pozwalający
+    W ramach tej pracy inżynierskiej stworzony został system do obliczeń rozproszonych pozwalający
     administratorowi na dodanie nowego zadania, śledzenie postępu w obliczeniach, inspekcję
     błędów (o ile wystąpiły podczas obliczeń) oraz pobranie wyników.
     Dla nieautoryzowanych użytkowników pozostaje funkcjonalność uczestniczenia w obliczeniach jako węzeł obliczeniowy.
 
     Jako język do implementacji algorytmów wykonywanych w sposób rozproszony został wybrany język C\#.
-    Posiada on dużą ilość pakietów pomocnych przy implementacji operacji matematycznych,
+    Posiada on dużą ilość pakietów ułatwiających tworzenie algorytmów,
     a także jest statycznie typowanym językiem wysokiego poziomu,
     zatem powinien być przystępny dla użytkowników tworzonego systemu.
     Zbudowane z kodu biblioteki DLL są przetwarzane przez narzędzie \textit{mono-wasm}
     do postaci możliwej do uruchomienia w przeglądarce za pomocą \textit{WebAssembly}.
     
     Poza bazową funkcjonalnością jaką jest kontrolowanie obliczeń, stworzony system zawiera
-    środki bezpieczeństwa, które utrudnią bądź zapobiegną szkodliwym akcjom, które mogą chcieć
+    mechanizmy, które utrudnią bądź zapobiegną szkodliwym akcjom, które mogą chcieć
     podjąć osoby trzecie, takie jak przesyłanie błędnych wyników obliczeń.
     
     Dalsze części tego dokumentu szczegółowo opisują projekt wraz z przedstawieniem istniejących
