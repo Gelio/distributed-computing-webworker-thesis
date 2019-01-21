@@ -619,7 +619,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
                 
             \end{longtable}
  
-\chapter{Architektura systemu}
+\chapter{Aspekty techniczne systemu}
  Zaprojektowany system składa się z trzech modułów:
 
 \begin{itemize}
@@ -935,6 +935,49 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         C     & 5     & 2               \\ \hline
     \end{tabular}
 \end{table}
+
+\section{Metoda wytwórcza}
+    Podczas tworzenia projektu zastosowany był kaskadowy model wytwarzania oprogramowania (ang. \textit{\selectlanguage{english}waterfall model}).
+    Na początku zakres projektu został ustalony z promotorem oraz zebrane zostały wymagania, które następnie przeanalizowaliśmy.
+    Na ich podstawie przygotowany został harmonogram projektu zawierający kolejne etapy wytwarzania elementów systemu
+    wraz z oszacowaniami terminów ukończeń każdego z nich.
+    
+    W związku z interakcją z nieznanymi nam wcześniej oraz eksperymentalnymi technologiami przygotowany został prototyp
+    sprawdzający możliwości techniczne potencjalnego rozwiązania.
+    Po stworzeniu działającego prototypu rozpoczęła się faza projektowania i implementacji, zaczynając od części serwera aplikacyjnego,
+    a następnie przechodząc do części interfejsu użytkownika.
+    Podczas tworzenia interfejsu użytkownika używany był bezpośrednio serwer aplikacyjny, co pozwoliło na zweryfikowanie
+    poprawności jego działania.
+    Dzięki temu nie była potrzebna oddzielna faza integracji, która byłaby wymagana w przypadku wytwarzania
+    równolegle dwóch osobnych systemów.
+    
+    Później odbyła się faza testowania.
+    Stworzone zostały testy jednostkowe serwera API, które w izolacji sprawdzały poprawność działania klas serwera.
+    Następnie przetestowane zostały elementy interfejsu użytkownika, w szczególności klasy używane przez węzeł obliczeniowy.
+    Na końcu przygotowano testy integracyjne całego systemu (ang. \textit{\selectlanguage{english}end-to-end tests}),
+    które pozwoliły zautomatyzować wykonywanie manualnych testów sprawdzających najbardziej typowe przypadki
+    użycia aplikacji.
+    W pozostałych scenariuszach użycia wykonane były testy manualne.
+    Tak było w przypadku testów akceptacyjnych.
+    
+    Przez cały czas trwania projektu postęp w wykonywaniu zadań zapisywany był w narzędziu Trello.
+    W tej wirtualnej tablicy zapisane były aktualnie wykonywane zadania, kto je wykonuje, a także
+    widać było zadania już wykonane oraz te, które powinny być wykonane w niedalekiej przyszłości.
+    
+    Kod współdzielony był w repozytorium w serwisie GitHub.
+    Po zakończeniu wykonywania każdego zadania autor wystawiał prośbę o akceptację kodu do dołączenia
+    do głównej gałęzi repozytorium (ang. \textit{\selectlanguage{english}pull request}).
+    Drugi z członków zespołu przeglądał wtedy postępy i mógł napisać na ich temat komentarze lub sugestie.
+    W przypadku akceptacji zmian były one dołączane do głównej gałęzi repozytorium, a zadanie uznawane było
+    za zakończone.
+    
+    W razie niejasności w specyfikacji lub wymaganiach kontaktowaliśmy się z promotorem w celu
+    weryfikacji naszych założeń.
+    Dzięki temu udało nam się zniwelować ilość problemów związanych z różnicą w interpretacji wymagań,
+    ponieważ wszelkie wątpliwości były rozwiązywane w krótkim czasie.
+    Takie podejście pozwoliło ponadto na zmniejszenie ilości poprawek do projektu na etapie jego
+    akceptacji przez promotora.
+
 
 \chapter{Opis aplikacji}
     Poniższy rozdział opisuje przygotowane rozwiązanie. Na potrzeby tego rozdziału zostały utworzone: lista wykorzystywanych bibliotek wraz z ich licencjami, instrukcje przydatne podczas pracy z opisywanym systemem oraz lista testów akceptacyjnych wraz z ich rezultatami.
@@ -1265,6 +1308,10 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         Wszystkie testy akceptacyjne zostały zakończone sukcesem.
 
 \chapter{Podsumowanie}
+
+    W tym rozdziale opisane zostaną własności rozwiązania, możliwości na dalszy rozwój aplikacji,
+    napotkane problemy implementacyjne oraz wnioski wyciągnięte z wykonywania projektu.
+
     \section{Własności rozwiązania}
         Poniższa sekcja opisuje kwestie wydajności, wieloplatformowości, prostoty obsługi oraz bezpieczeństwa utworzonego systemu.
         
