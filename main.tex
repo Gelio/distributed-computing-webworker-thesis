@@ -449,7 +449,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Poniższy rozdział opisuje kluczowe założenia projektu, istnienie podobnych rozwiązań w momencie realizacji projektu oraz wymagania funkcjonalne i niefunkcjonalne, które powinny być spełniane przez tworzony system.
 
     \section{Cel projektu}
-        Celem projektu jest zaprojektowanie oraz zaimplementowanie systemu, który pozwoli na realizowanie obliczeń rozproszonych na wielu urządzeniach, na których wymagana jest jedynie przeglądarka internetowa.
+        Celem projektu jest zaprojektowanie oraz zaimplementowanie systemu, który pozwoli na realizowanie obliczeń rozproszonych na wielu urządzeniach, na których dostępna jest przeglądarka internetowa.
         Tak utworzony system obliczeń rozproszonych powinien zagwarantować bardzo prostą konfigurację oraz szeroką wieloplatformowość.
         Aby rozwiązanie było konkurencyjne pod względem wydajności zdecydowano, że obliczenia w przeglądarce powinny być wykonywane w technologii \textit{WebAssembly} \cite{webassembly}.
         Projekt przewiduje również przygotowanie biblioteki w języku C\# ułatwiającej tworzenie nowych projektów uruchamianych w ramach systemu obliczeń rozproszonych. 
@@ -1415,7 +1415,9 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         W obecnie przygotowanym systemie część operacji z bibliotek dostarczanych przez użytkowników uruchamiana jest na serwerze odpowiedzialnym za obsługę zapytań z API. Powyższe operacje mogą być potencjalnie obciążające i ograniczać wydajność serwera API. W celu zabezpieczenia wydajności serwera można przenieść wykonywanie wszystkich operacji z bibliotek użytkowników poza serwer API. W tym celu należałoby przygotować serwer, który wykonywałby operacje żądane przez serwer API i zwracał stosowne wyniki.
         
         \paragraph{Udostępnienie DistributedComputingLibrary w menadżerze pakietów.}
-        W celu ułatwienia dodawania do projektów przygotowanej w ramach projektu biblioteki do obliczeń rozproszonych można opublikować ją w menadżerze pakietów \textit{NuGet}~\cite{nuget}. Po opublikowaniu biblioteki w ramach repozytorium \textit{NuGet} będzie ona dostępna do instalacji z poziomu linii poleceń lub interfejsu graficznego udostępnianego przez \textit{Visual Studio}~\cite{visual-studio}. Dzięki takiemu postępowaniu administrator systemu nie musiałby przechowywać na swoim komputerze kopii biblioteki DLL, a mógłby w każdym nowo utworzonym projekcie jedynie odnieść się do łatwo dostępnego pakietu.
+        W celu ułatwienia dodawania do projektów przygotowanej w ramach projektu biblioteki do obliczeń rozproszonych można opublikować ją w menadżerze pakietów \textit{NuGet}~\cite{nuget}. Po opublikowaniu biblioteki w ramach repozytorium \textit{NuGet} będzie ona dostępna do instalacji z poziomu linii poleceń lub interfejsu graficznego udostępnianego przez \textit{Visual Studio}~\cite{visual-studio}.
+        Dzięki takiemu postępowaniu administrator systemu nie musiałby przechowywać na swoim komputerze kopii biblioteki DLL, a mógłby w każdym nowo utworzonym projekcie jedynie odnieść się do łatwo dostępnego pakietu.
+        Powodem nieopublikowania biblioteki w menadżerze pakietów do momentu zakończenia pracy inżynierskiej są ograniczenia wynikające z regulaminu zarządzania prawami autorskimi na Politechnice Warszawskiej~\cite{uchwala-prawa-autorskie}.
         
         \paragraph{Dodanie poleceń interfejsu wiersza poleceń.}
         Kolejnym możliwym ułatwieniem dla programistów jest dodanie zestawu poleceń interfejsu wiersza poleceń (ang. \textit{CLI}) ułatwiających zarządzanie utworzonymi projektami wykorzystującymi bibliotekę \textit{DistributedComputingLibrary}. Poniżej znajdują się przykładowe funkcje, które mogłoby udostępniać takie narzędzie:
@@ -1575,6 +1577,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     \bibitem[37]{SETI} Strona internetowa z informacjami o \emph{SETI@home} \url{https://setiathome.berkeley.edu/sah_about.php}
     \bibitem[38]{webassembly-goals} Dokumentacja celów formatu \emph{WebAssembly} \url{https://webassembly.org/docs/high-level-goals/}
     \bibitem[39]{webassembly-semantics} Dokumentacja wirtualnej maszyny stosowej formatu \emph{WebAssembly} \url{https://webassembly.org/docs/semantics/}
+    \bibitem[40]{uchwala-prawa-autorskie} Regulamin zarządzania prawami autorskimi obowiązujący na Politechnice Warszawskiej \url{https://www.bip.pw.edu.pl/Wewnetrzne-akty-prawne/Regulaminy/Regulamin-zarzadzania-prawami-autorskimi-i-prawami-pokrewnymi-oraz-prawami-wlasnosci-przemyslowej-oraz-zasad-komercjalizacji}/
 \end{thebibliography}
 
 \thispagestyle{empty}
