@@ -83,8 +83,7 @@
 % Dodawanie pdfów
 \usepackage{pdfpages}
 
-% Dodawanie pdfów
-\usepackage{pdfpages}
+\usepackage{nameref}
 
 % ----------------------- Spis treści ---------------------------
 \def\cleardoublepage{\clearpage\if@twoside
@@ -275,7 +274,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyeirmod t
 Oświadczenie
 \end{center}
 
-\indent Oświadczam, że moją część pracy \type kiej (zgodnie z podziałem zadań opisanym w pkt TODO) pod
+\indent Oświadczam, że moją część pracy \type kiej (zgodnie z podziałem zadań opisanym w~pkt~\ref{podzial-prac}) pod
 tytułem ,,\tytul '', której promotorem jest \supervisor , wykonałem
 samodzielnie, co poświadczam własnoręcznym podpisem.
 \vspace{2cm}
@@ -311,6 +310,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 \setcounter{page}{11} % JEŻELI Z POWODU DUŻEJ ILOŚCI STRON W SPISIE TREŚCI SIĘ NIE ZGADZA, TRZEBA ZMODYFIKOWAĆ RĘCZNIE
 
 \chapter{Wstęp}
+    \label{wstep}
 
     Obliczenia równoległe to metoda obliczeń pozwalająca na pracę wielu wątków nad tym samym problemem w celu zdobycia wyników w krótszym czasie, niż jakby dane zadanie było wykonywane w sposób sekwencyjny przez jeden wątek.
     Równoległe współdziałanie wielu wątków pozwala na osiągnięcie dużo lepszej wydajności
@@ -375,7 +375,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Za użyczenie wolnej mocy obliczeniowej swojego urządzenia jego właściciel może liczyć na rekompensatę w postaci ułamka jednostki danej kryptowaluty.
     Ma to służyć jako zachęta do dołączenia do systemu.
     
-    \subsection{Motywacja}
+    \section{Motywacja}
     
     Najczęściej aby dołączyć jako węzeł obliczeniowy do systemu obliczeń rozproszonych wymagane są
     pobranie i instalacja aplikacji klienckiej na danym systemie.
@@ -444,6 +444,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     W podsumowaniu opisane są własności stworzonego projektu oraz możliwości na jego dalszy rozwój, a także napotkane problemy implementacyjne oraz wyciągnięte wnioski.
 
 \chapter{Analiza problemu}
+    \label{analiza-problemu}
 
     Poniższy rozdział opisuje kluczowe założenia projektu, istnienie podobnych rozwiązań w momencie realizacji projektu oraz wymagania funkcjonalne i niefunkcjonalne, które powinny być spełniane przez tworzony system.
 
@@ -620,7 +621,8 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
             \end{longtable}
  
 \chapter{Aspekty techniczne systemu}
- Zaprojektowany system składa się z trzech modułów:
+\label{aspekty-techniczne-systemu}
+Zaprojektowany system składa się z trzech modułów:
 
 \begin{itemize}
     \item Serwera
@@ -638,6 +640,7 @@ Na rysunku~\ref{project-model} znajdują się wyodrębnione moduły wraz z urzą
 \end{figure}
 
 \section{Projekt modułów}
+\label{projekt-modulow}
 
 W tej sekcji znajdują się opisy poszczególnych modułów wraz z ich podziałem na składowe.
 
@@ -679,6 +682,7 @@ Podział węzłów obliczeniowych na moduły znajduje się na rysunku~\ref{node-
 
 
 \section{Szczegółowy opis implementacji}
+\label{szczegolowy-opis-implementacji}
 
 Poniższa sekcja zawiera szczegółowy opis implementacji z podziałem na poszczególne komponenty systemu.
 
@@ -875,6 +879,7 @@ Testy jednostkowe zostały napisane z wykorzystaniem biblioteki \textit{jest}~\c
 
 
 \section{Zabezpieczenia}
+\label{zabezpieczenia}
 
 Poniższa sekcja opisuje zabezpieczenia wykorzystywane w projekcie.
 
@@ -937,6 +942,8 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
 \end{table}
 
 \section{Metoda wytwórcza}
+    \label{metoda-wytworcza}
+    
     Podczas tworzenia projektu zastosowany był kaskadowy model wytwarzania oprogramowania (ang. \textit{\selectlanguage{english}waterfall model}).
     Na początku zakres projektu został ustalony z promotorem oraz zebrane zostały wymagania, które następnie przeanalizowaliśmy.
     Na ich podstawie przygotowany został harmonogram projektu zawierający kolejne etapy wytwarzania elementów systemu
@@ -978,8 +985,67 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     Takie podejście pozwoliło ponadto na zmniejszenie ilości poprawek do projektu na etapie jego
     akceptacji przez promotora.
 
+\section{Podział prac}
+    \label{podzial-prac}
+    
+    W tabelach~\ref{podzial-prac-implementacja}~i~\ref{podzial-prac-tekst-pracy} został przedstawiony
+    podział prac podczas tworzenia tej pracy inżynierskiej z rozróżnieniem na implementację projektu
+    oraz pisanie tekstu pracy inżynierskiej.
+    
+    \begin{center}
+        \begin{longtable}{| p{.30\textwidth-2\tabcolsep} | p{.70\textwidth-2\tabcolsep} |}
+            \caption{Podział prac przy implementacji projektu}
+            \label{podzial-prac-implementacja} \\
+            \hline
+            Imię i nazwisko członka zespołu & Wykonane części projektu \\ \hline
+            \endfirsthead
+            \multicolumn{2}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+            \hline
+            Imię i nazwisko członka zespołu & Wykonane części projektu \\ \hline
+            \endhead
+            
+            Przemysław Proszewski &
+            Integracja serwera aplikacyjnego z bazą danych oraz \textit{mono-wasm}, przygotowanie formularzy
+            po stronie panelu administracyjnego, stworzenie biblioteki C\# do implementacji algorytmów. \\ \hline
+            
+            Grzegorz Rozdzialik &
+            Przygotowanie API serwera aplikacyjnego, integracja interfejsu użytkownika z API,
+            prezentacja danych w formacie tabelarycznym, stworzenie panelu węzła obliczeniowego,
+            opracowanie konfiguracji wdrożeniowej projektu. \\ \hline
+        \end{longtable}
+    \end{center}
+    
+    \begin{center}
+        \begin{longtable}{| p{.30\textwidth-2\tabcolsep} | p{.70\textwidth-2\tabcolsep} |}
+            \caption{Podział prac przy pisaniu tekstu pracy inżynierskiej}
+            \label{podzial-prac-tekst-pracy} \\
+            \hline
+            Imię i nazwisko członka zespołu & Stworzone rozdziały i sekcje tekstu pracy inżynierskiej \\ \hline
+            \endfirsthead
+            \multicolumn{2}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+            \hline
+            Imię i nazwisko członka zespołu & Stworzone rozdziały i sekcje tekstu pracy inżynierskiej \\ \hline
+            \endhead
+            
+            Przemysław Proszewski &
+            \ref{analiza-problemu}.~\nameref{analiza-problemu},
+            \ref{zabezpieczenia}.~\nameref{zabezpieczenia},
+            \ref{opis-aplikacji}.~\nameref{opis-aplikacji},
+            \ref{wlasnosci-rozwiazania}.~\nameref{wlasnosci-rozwiazania},
+            \ref{mozliwosci-na-rozwoj-aplikacji}.~\nameref{mozliwosci-na-rozwoj-aplikacji}. \\ \hline
+            
+            Grzegorz Rozdzialik &
+            \ref{wstep}.~\nameref{wstep},
+            \ref{projekt-modulow}.~\nameref{projekt-modulow},
+            \ref{szczegolowy-opis-implementacji}.~\nameref{szczegolowy-opis-implementacji},
+            \ref{metoda-wytworcza}.~\nameref{metoda-wytworcza},
+            \ref{problemy-implementacyjne}.~\nameref{problemy-implementacyjne},
+            \ref{wnioski-z-projektu}.~\nameref{wnioski-z-projektu}. \\ \hline
+        \end{longtable}
+    \end{center}
 
 \chapter{Opis aplikacji}
+    \label{opis-aplikacji}
     Poniższy rozdział opisuje przygotowane rozwiązanie. Na potrzeby tego rozdziału zostały utworzone: lista wykorzystywanych bibliotek wraz z ich licencjami, instrukcje przydatne podczas pracy z opisywanym systemem oraz lista testów akceptacyjnych wraz z ich rezultatami.
     
     \section{Wykorzystane biblioteki}
@@ -1313,6 +1379,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     napotkane problemy implementacyjne oraz wnioski wyciągnięte z wykonywania projektu.
 
     \section{Własności rozwiązania}
+        \label{wlasnosci-rozwiazania}
         Poniższa sekcja opisuje kwestie wydajności, wieloplatformowości, prostoty obsługi oraz bezpieczeństwa utworzonego systemu.
         
         \subsection{Wydajność}
@@ -1338,6 +1405,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
             Sekcja TODO szczegółowo opisuje zabezpieczenia wykorzystane w systemie, a w akapicie TODO opisano możliwe dalsze usprawnienia polityki bezpieczeństwa tak, aby utrudnić negatywne oddziaływanie na serwer API nawet osobie mającej uprawnienia administratora.
     
     \section{Możliwości na rozwój aplikacji}
+        \label{mozliwosci-na-rozwoj-aplikacji}
         Poniższa sekcja opisuje możliwości dalszego rozwoju aplikacji.
     
         \paragraph{Poprawienie wydajności węzłów obliczeniowych.}
@@ -1384,6 +1452,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         Taka zmiana wymagałaby modyfikacji zarówno po stronie serwera API, jak i biblioteki do obliczeń rozproszonych, ale korzystnie wpłynęłaby na obciążenie systemu.
         
     \section{Problemy implementacyjne}
+        \label{problemy-implementacyjne}
         Poniższa sekcja opisuje problemy implementacyjne napotkane podczas tworzenia aplikacji.
         
         \paragraph{Izolacja kodu użytkownika.}
@@ -1411,6 +1480,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     
     
     \section{Wnioski z projektu}
+        \label{wnioski-z-projektu}
         W tej sekcji zostaną przedstawione wnioski wyciągnięte z implementacji projektu.
         
         \subsection{Współpraca z eksperymentalnymi technologiami}
