@@ -249,10 +249,16 @@ Dodatkowo, dzięki takiemu rozwiązaniu można wykorzystać więcej urządzeń j
 fakt, że urządzenia takie jak telewizory \textit{SmartTV} czy telefony komórkowe również mogą wykonywać zadania,
 o ile ich przeglądarka internetowa spełnia wymagania systemowe.
 
-W tym dokumencie opisano cel projektu, przeanalizowano istniejące rozwiązania realizujące obliczenia rozproszone,
-podano wymagania funkcjonalne i niefunkcjonalne systemu, przedstawiono architekturę utworzonego rozwiązania
-wraz z użytymi technologiami, opisano instrukcję wdrożenia i utrzymania systemu, a na końcu przedstawiono
-wyciągnięte wnioski oraz możliwości dalszego rozwoju systemu.
+Celem projektu było stworzenie rozwiązania, które zapewni łatwe wykorzystanie modułów napisanych i kompilowanych
+w języku C\#. Węzły obliczeniowe uruchamiałyby program działający w technologii \textit{\selectlanguage{english}WebAssembly}
+i komunikowałyby się z centralnym serwerem rozdzielającym zadania i scalającym wyniki. Dodatkowo udostępniony byłby
+panel administracyjny pozwalający na zarządzanie systemem.
+Projekt zakończył się pomyślnie.
+Osiągnięta została założona wieloplatformowość węzłów obliczeniowych --- do systemu udało się podłączyć
+komputery z różnymi systemami operacyjnymi, telefony, a także elektroniczny czytnik książek.
+Wydajność stworzonego rozwiązania okazała się gorsza od natywnej z powodu wykorzystania interpretera
+języka C\# działającego w \textit{\selectlanguage{english}WebAssembly}.
+
 
 
 \noindent \textbf{Słowa kluczowe:} obliczenia rozproszone, WebAssembly, aplikacja internetowa, wydajność, równoległość, przeglądarka internetowa, Internet
