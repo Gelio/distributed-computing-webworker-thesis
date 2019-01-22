@@ -318,7 +318,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Obliczenia równoległe wymagają stosowania wyspecjalizowanych algorytmów, które często okazują się
     trudniejsze w implementacji z uwagi na współdzielenie zasobów --- danych wejściowych lub
     wyników pośrednich obliczeń.
-    Poza tym, w niektórych problemach nietrywialne staje się wymyślenie sposobu na
+    Poza tym, w niektórych problemach nietrywialne staje się opracowanie sposobu na
     zminimalizowanie potrzeby synchronizacji wątków w trakcie obliczeń
     oraz komunikacji między wątkami. Im obliczenia są mniej zależne od siebie,
     tym mniejsza potrzeba wymiany informacji między jednostkami obliczeniowymi, a co za tym idzie lepsza wydajność.
@@ -935,7 +935,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     \begin{tabular}{|l|l|l|}
         \hline
         Węzeł & Wynik & Poziom zaufania \\ \hline
-        A     & 1     & 2.5             \\ \hline
+        A     & 1     & 2,5             \\ \hline
         B     & 1     & 1               \\ \hline
         C     & 5     & 2               \\ \hline
     \end{tabular}
@@ -1402,7 +1402,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         
         \subsection{Bezpieczeństwo}
             Podczas opracowywania systemu tworzonego w ramach tej pracy inżynierskiej dużo czasu zostało poświęcone przemyśleniu kwestii bezpieczeństwa tak, aby zminimalizować ryzyko wykonania akcji w panelu administracyjnym przez nieautoryzowaną osobę.
-            Sekcja TODO szczegółowo opisuje zabezpieczenia wykorzystane w systemie, a w akapicie TODO opisano możliwe dalsze usprawnienia polityki bezpieczeństwa tak, aby utrudnić negatywne oddziaływanie na serwer API nawet osobie mającej uprawnienia administratora.
+            Sekcja~\ref{zabezpieczenia} szczegółowo opisuje zabezpieczenia wykorzystane w systemie, a w akapicie~\ref{uruchamianie-w-srodowisku-izolowanym} opisano możliwe dalsze usprawnienia polityki bezpieczeństwa tak, aby utrudnić negatywne oddziaływanie na serwer API nawet osobie mającej uprawnienia administratora.
     
     \section{Możliwości na rozwój aplikacji}
         \label{mozliwosci-na-rozwoj-aplikacji}
@@ -1438,8 +1438,9 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         Z uwagi na potencjalnie długi czas wykonywania obliczeń ciężko jest oszacować kiedy należy sprawdzić dostępność wyników, dlatego wysyłanie użytkownikom powiadomień w postaci wiadomości e--mail oszczędziłoby im konieczności odwiedzania interfejsu użytkownika w celu sprawdzenia stanu zleconego zadania.
         
         \paragraph{Uruchamianie kodu użytkowników w środowisku izolowanym.}
+        \label{uruchamianie-w-srodowisku-izolowanym}
         Z uwagi na istniejące ryzyko znalezienia się złośliwego kodu w kodzie użytkownika warto rozważyć uruchamianie kodu użytkownika w środowisku izolowanym. Kod użytkownika uruchamiany na węzłach obliczeniowych jest już uruchamiany w środowisku izolowanym, jednakże metody zaimplementowane w ramach bibliotek użytkownika uruchamiane na serwerze nadal stanowią ryzyko.
-        W sekcji %TODO: uzupełnić \ref{label}
+        W sekcji~\ref{problemy-izolacja-kodu-uzytkownika}
         opisano problemy napotkane podczas próby wprowadzenia uruchamiania kodu użytkownika działającego w ramach serwera w środowisku izolowanym. 
         Zalecanym sposobem na zarządzanie uprawnieniami obcego kodu uruchamianego w ramach naszego systemu jest uruchamianie go w osobnym procesie z uprawnieniami ograniczonymi przez system operacyjny.
         
@@ -1456,6 +1457,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         Poniższa sekcja opisuje problemy implementacyjne napotkane podczas tworzenia aplikacji.
         
         \paragraph{Izolacja kodu użytkownika.}
+            \label{problemy-izolacja-kodu-uzytkownika}
             Podczas wykonywania aplikacji zapadła decyzja o rezygnacji z izolacji kodu użytkownika uruchamianego po stronie serwera API. Mechanizm \textit{AppDomain} pozwalający na zarządzanie uprawnieniami wykonywanego kodu nie jest wspierany przez środowisko .NET Core 2.2, w którym został utworzony serwer aplikacyjny. 
             
             Z uwagi na fakt uruchamiania serwera aplikacyjnego w oddzielnym kontenerze programu Docker, kod użytkownika nie jest w stanie wyrządzić szkód w głównym systemie plików, a jedynie wewnątrz kontenera.
