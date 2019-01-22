@@ -8,7 +8,6 @@
 \usepackage[T1]{fontenc}
 \usepackage[english,polish]{babel}
 
-
 \usepackage{amsmath, amsfonts, amsthm, latexsym} % głównie symbole matematyczne, środowiska twierdzeń
 
 \usepackage[final]{pdfpages} % inputowanie pdfa
@@ -30,8 +29,11 @@
 \usepackage{longtable}
 \usepackage{makecell}
 \usepackage{calc}
-\renewcommand{\tablename}{Tabela}
+\usepackage{caption}
 
+\captionsetup{%
+    tablename=Tabela
+}
 
 
 %--------------------------- ŻYWA PAGINA ------------------------
