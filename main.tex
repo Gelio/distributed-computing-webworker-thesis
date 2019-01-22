@@ -312,24 +312,21 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 \chapter{Wstęp}
     \label{wstep}
 
-    Obliczenia równoległe to metoda obliczeń pozwalająca na pracę wielu wątków nad tym samym problemem w celu zdobycia wyników w krótszym czasie, niż jakby dane zadanie było wykonywane w sposób sekwencyjny przez jeden wątek.
-    Równoległe współdziałanie wielu wątków pozwala na osiągnięcie dużo lepszej wydajności
+    Obliczenia równoległe pozwalają na użycie do rozwiązania pojedynczego problemu wielu jednostek obliczeniowych w celu uzyskania wyników w krótszym czasie, niż jakby dane zadanie było wykonywane w sposób sekwencyjny przez jeden procesor.
+    Równoległe współdziałanie wielu jednostek obliczeniowych pozwala na osiągnięcie dużo lepszej wydajności
     kosztem synchronizacji obliczeń i skomplikowania algorytmów.
     Obliczenia równoległe wymagają stosowania wyspecjalizowanych algorytmów, które często okazują się
-    trudniejsze w implementacji z uwagi na współdzielenie zasobów --- danych wejściowych lub
-    wyników pośrednich obliczeń.
-    Poza tym, w niektórych problemach nietrywialne staje się opracowanie sposobu na
-    zminimalizowanie potrzeby synchronizacji wątków w trakcie obliczeń
-    oraz komunikacji między wątkami. Im obliczenia są mniej zależne od siebie,
+    trudniejsze w implementacji z uwagi na konieczność synchronizacji lub wymiany komunikatów pomiędzy jednostkami obliczeniowymi.
+    Im obliczenia są mniej zależne od siebie,
     tym mniejsza potrzeba wymiany informacji między jednostkami obliczeniowymi, a co za tym idzie lepsza wydajność.
     
-    Wykorzystanie wielu wątków do obliczeń jest szczególnie ważne w dzisiejszych czasach.
+    Wykorzystanie wielu jednostek obliczeniowych do obliczeń jest szczególnie ważne w dzisiejszych czasach.
     Wykładnicze wzrostu częstotliwości taksowania procesorów było
     opisywane w poprzednich latach przez prawo Moore'a~\cite{prawo-moorea}.
     Ostatnio daje się zauważyć spadek tego tempa, przez co należy szukać innych metod na wykonanie obliczeń w krótszym czasie.
     Czas wykonania algorytmów można zmniejszyć w znacznym stopniu jedynie poprzez zlecenie ich wykonywania równolegle,
     przez co można wykonać dużo większą liczbę operacji w danej jednostce czasu,
-    niż w przypadku pojedynczego wątku.
+    niż w przypadku pojedynczej jednostki obliczeniowej.
 
     Szczególnym przypadkiem obliczeń równoległych są obliczenia rozproszone.
     Wyróżniają się one tym, że we wspólnych obliczeniach biorą udział różne urządzenia, często w różnych lokalizacjach geograficznych.
