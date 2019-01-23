@@ -254,11 +254,12 @@ o ile ich przeglądarka internetowa spełnia wymagania systemowe.
 
 Utworzone rozwiązanie zapewnia łatwe wykorzystanie modułów napisanych i kompilowanych
 w języku C\#. Węzły obliczeniowe uruchamiają program działający w technologii \textit{\selectlanguage{english}WebAssembly}
-i komunikują się z centralnym serwerem rozdzielającym zadania i scalającym wyniki. Dodatkowo udostępniony został
+i komunikują się z centralnym serwerem rozdzielającym zadania i scalającym wyniki kiedy już zostaną odesłane.
+Dodatkowo udostępniony został
 panel administracyjny pozwalający na zarządzanie systemem.
 Osiągnięta została założona wieloplatformowość węzłów obliczeniowych.
 System pozwala na podłączenie komputerów z różnymi systemami operacyjnymi,
-telefonów komórkowych oraz elektronicznego czytnika książek jako 
+telefonów komórkowych oraz elektronicznych czytników książek jako 
 węzły obliczeniowe.
 Wydajność stworzonego rozwiązania jest gorsza od natywnej z powodu wykorzystania interpretera
 języka C\# działającego w \textit{\selectlanguage{english}WebAssembly}.
@@ -280,16 +281,16 @@ To ograniczenie prawdopodobnie zniknie w przyszłych wersjach
 \title
 \end{center}
 
-The scope of this thesis was to design and develop a solution for distributed computing
+In this thesis we present a system for distributed computing
 with nodes running in a web browser.
 Distributed computing is a way to solve potentially complex problems by dividing them into
-smaller ones and solving each of them in parallel using multiple machines.
-In the past, adding new machines as distributed nodes was done by installing a native client
+smaller parts and solving each of them in parallel using multiple machines.
+Typically, adding new machines as distributed nodes was done by installing a native client
 application responsible for communicating with a server that assigned the tasks.
 
-Using the web browser as the client application simplified the process of adding new nodes
+Using a web browser as a client application simplified the process of adding new nodes
 to~the network --- it is not necessary to install any operating system-level applications.
-Additionally, thanks to such a solution more devices can join the network as computing nodes.
+Additionally, thanks the proposed solution more devices can join the network as computing nodes.
 That is~due to the fact that devices such as \textit{SmartTVs} or mobile phones can also
 compute tasks, given that their web browser meets the requirements.
 
@@ -299,9 +300,9 @@ with the server that assigns tasks to them and joins the results once they arriv
 Moreover, an administrator's panel has been developed to manage the system.
 The planned cross-platform functionality has been achieved.
 The system supports connecting PCs with various operating systems, smartphones,
-as~well~as~an~e-book reader as computing nodes.
-The performance of the web client is worse than a native one due to using
-a C\# interpreter running in \textit{WebAssembly}.
+as~well~as~e-book readers as computing nodes.
+A C\# interpreter was used to run the code in \textit{WebAssembly}.
+This resulted in achieving worse performance than running the same code natively.
 This limitation is~likely to~be solved in the future versions of \textit{mono-wasm}. \\
 
 \noindent \textbf{Keywords:} distributed computing, WebAssembly, web application, performance, parallel computing, web browser, Internet
