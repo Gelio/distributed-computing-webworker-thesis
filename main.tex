@@ -237,9 +237,33 @@ podpis promotora & \hspace*{100pt} & podpis autora
 \tytul
 \end{center}
 
-Streszczam.
+W ramach tej pracy inżynierskiej stworzono system umożliwiający realizację obliczeń rozproszonych
+z węzłami działającymi w przeglądarce internetowej.
+Obliczenia rozproszone są metodą na rozwiązanie potencjalnie skomplikowanych problemów dzieląc je na mniejsze
+i rozwiązując każdy z nich równolegle na oddzielnych maszynach. Tradycyjnie dołączenie nowych urządzeń jako
+węzły sieci obliczeń rozproszonych odbywało się poprzez instalację specjalnego oprogramowania klienckiego,
+które komunikowało się z centralnym serwerem rozdzielającym zadania.
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elit, sed diam nonumyeirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamvoluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\\
+Uruchamianie węzłów obliczeniowych w przeglądarce internetowej uprościło proces dołączania nowych urządzeń
+do sieci --- nie trzeba instalować oprogramowania węzła działającego bezpośrednio w systemie operacyjnym.
+Dodatkowo, dzięki takiemu rozwiązaniu można wykorzystać więcej urządzeń jako węzły obliczeniowe z uwagi na
+fakt, że urządzenia takie jak telewizory \textit{SmartTV} czy telefony komórkowe również mogą wykonywać zadania,
+o ile ich przeglądarka internetowa spełnia wymagania systemowe.
+
+Utworzone rozwiązanie zapewnia łatwe wykorzystanie modułów napisanych i kompilowanych
+w języku C\#. Węzły obliczeniowe uruchamiają program działający w technologii \textit{\selectlanguage{english}WebAssembly}
+i komunikują się z centralnym serwerem rozdzielającym zadania i scalającym wyniki. Dodatkowo udostępniony został
+panel administracyjny pozwalający na zarządzanie systemem.
+Osiągnięta została założona wieloplatformowość węzłów obliczeniowych.
+System pozwala na podłączenie komputerów z różnymi systemami operacyjnymi,
+telefonów komórkowych oraz elektronicznego czytnika książek jako 
+węzły obliczeniowe.
+Wydajność stworzonego rozwiązania jest gorsza od natywnej z powodu wykorzystania interpretera
+języka C\# działającego w \textit{\selectlanguage{english}WebAssembly}.
+To ograniczenie prawdopodobnie zniknie w przyszłych wersjach
+\textit{\selectlanguage{english}mono-wasm}.
+
+
 
 \noindent \textbf{Słowa kluczowe:} obliczenia rozproszone, WebAssembly, aplikacja internetowa, wydajność, obliczenia równoległe, przeglądarka internetowa, Internet
 \end{abstract}
