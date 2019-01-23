@@ -12,6 +12,7 @@
 
 \usepackage[final]{pdfpages} % inputowanie pdfa
 \usepackage{url}
+\def\UrlBreaks{\do\/\do-}
 
 % ---------------- Marginesy, akapity, interlinia ------------------
 
@@ -35,8 +36,6 @@
 }
 
 % Bibliografia
-\usepackage[backend=bibtex, style=numeric]{biblatex}
-\bibliography{bibliography}
 %--------------------------- ŻYWA PAGINA ------------------------
 
 \usepackage{fancyhdr}
@@ -1550,8 +1549,9 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
 % Bibliografia leksykograficznie wg nazwisk autorów
 % Dla ambitnych - można skorzystać z BibTeX-a
 
-\printbibliography
-\newpage
+
+\bibliography{bibliography}
+\bibliographystyle{plplain}
 
 \pagenumbering{gobble}
 
