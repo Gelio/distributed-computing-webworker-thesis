@@ -314,24 +314,21 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 \chapter{Wstęp}
     \label{wstep}
 
-    Obliczenia równoległe to metoda obliczeń pozwalająca na pracę wielu wątków nad tym samym problemem w celu zdobycia wyników w krótszym czasie, niż jakby dane zadanie było wykonywane w sposób sekwencyjny przez jeden wątek.
-    Równoległe współdziałanie wielu wątków pozwala na osiągnięcie dużo lepszej wydajności
+    Obliczenia równoległe pozwalają na użycie wielu jednostek obliczeniowych do rozwiązania pojedynczego problemu w celu uzyskania wyników w krótszym czasie, niż jakby dane zadanie było wykonywane w sposób sekwencyjny przez jeden procesor.
+    Równoległe współdziałanie wielu jednostek obliczeniowych pozwala na osiągnięcie dużo lepszej wydajności
     kosztem synchronizacji obliczeń i skomplikowania algorytmów.
     Obliczenia równoległe wymagają stosowania wyspecjalizowanych algorytmów, które często okazują się
-    trudniejsze w implementacji z uwagi na współdzielenie zasobów --- danych wejściowych lub
-    wyników pośrednich obliczeń.
-    Poza tym, w niektórych problemach nietrywialne staje się wymyślenie sposobu na
-    zminimalizowanie potrzeby synchronizacji wątków w trakcie obliczeń
-    oraz komunikacji między wątkami. Im obliczenia są mniej zależne od siebie,
+    trudniejsze w implementacji z uwagi na konieczność synchronizacji lub wymiany komunikatów pomiędzy jednostkami obliczeniowymi.
+    Im obliczenia są mniej zależne od siebie,
     tym mniejsza potrzeba wymiany informacji między jednostkami obliczeniowymi, a co za tym idzie lepsza wydajność.
     
-    Wykorzystanie wielu wątków do obliczeń jest szczególnie ważne w dzisiejszych czasach.
+    Wykorzystanie wielu jednostek obliczeniowych do obliczeń jest szczególnie ważne w dzisiejszych czasach.
     Wykładnicze wzrostu częstotliwości taksowania procesorów było
     opisywane w poprzednich latach przez prawo Moore'a~\cite{prawo-moorea}.
     Ostatnio daje się zauważyć spadek tego tempa, przez co należy szukać innych metod na wykonanie obliczeń w krótszym czasie.
     Czas wykonania algorytmów można zmniejszyć w znacznym stopniu jedynie poprzez zlecenie ich wykonywania równolegle,
     przez co można wykonać dużo większą liczbę operacji w danej jednostce czasu,
-    niż w przypadku pojedynczego wątku.
+    niż w przypadku pojedynczej jednostki obliczeniowej.
 
     Szczególnym przypadkiem obliczeń równoległych są obliczenia rozproszone.
     Wyróżniają się one tym, że we wspólnych obliczeniach biorą udział różne urządzenia, często w różnych lokalizacjach geograficznych.
@@ -357,16 +354,14 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Nie jest wtedy dostępna komunikacja między węzłami, zatem dostają one niezależne zadania do wykonania.
     To serwer jest odpowiedzialny za ewentualną agregację wyników rozdzielanych zadań.
     
-    Ze względu na niezależność oraz niewrażliwość na różną wydajność węzłów istnieją projekty
-    pozwalające dowolnym użytkownikom Internetu na użyczenie swojej mocy obliczeniowej.
-    Zazwyczaj wymagane jest wtedy pobranie aplikacji klienckiej, która pozwoli urządzeniu na komunikację
-    z serwerem.
+    Istnieją projekty, które można wykonywać niezależnie na wielu urządzeniach i są niewrażliwe na różną wydajność maszyn na których są obliczane.
+    Takie projekty mogą korzystać z wsparcia użytkowników Internetu, którzy mogą użyczyć swojej mocy obliczeniowej.
+    Zazwyczaj chęć pomocy wiąże się z pobraniem aplikacji klienckiej, która pozwoli urządzeniu na komunikację z serwerem i wykonywanie obliczeń w ramach projektu.
     
     Jednym z takich projektów jest GIMPS~\cite{GIMPS} (\textit{\selectlanguage{english}Great Internet Mersenne Prime Search}).
     Jego celem jest szukanie liczb pierwszych Mersenne'a~\cite{MersennePrimes}.
     Węzłom z uruchomionym programem klienckim przydzielane są zadania odpowiednio do ich wydajności.
     Do projektu mogą dołączyć komputery z systemem Windows, Linux, a także Mac OS.
-    
     Projektem o podobnym założeniu jest SETI@home~\cite{SETI} (\textit{\selectlanguage{english}\textit{Search for Extraterrestial Intelligence}}).
     Węzły podłączone do tego systemu otrzymują próbki sygnału z radioteleskopu i starają się znaleźć w nich sygnał od pozaziemskich cywilizacji.
     
@@ -451,7 +446,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Poniższy rozdział opisuje kluczowe założenia projektu, istnienie podobnych rozwiązań w momencie realizacji projektu oraz wymagania funkcjonalne i niefunkcjonalne, które powinny być spełniane przez tworzony system.
 
     \section{Cel projektu}
-        Celem projektu jest zaprojektowanie oraz zaimplementowanie systemu, który pozwoli na realizowanie obliczeń rozproszonych na wielu urządzeniach, na których wymagana jest jedynie przeglądarka internetowa.
+        Celem projektu jest zaprojektowanie oraz zaimplementowanie systemu, który pozwoli na realizowanie obliczeń rozproszonych na wielu urządzeniach, na których dostępna jest przeglądarka internetowa.
         Tak utworzony system obliczeń rozproszonych powinien zagwarantować bardzo prostą konfigurację oraz szeroką wieloplatformowość.
         Aby rozwiązanie było konkurencyjne pod względem wydajności zdecydowano, że obliczenia w przeglądarce powinny być wykonywane w technologii \textit{WebAssembly} \cite{webassembly}.
         Projekt przewiduje również przygotowanie biblioteki w języku C\# ułatwiającej tworzenie nowych projektów uruchamianych w ramach systemu obliczeń rozproszonych. 
@@ -875,7 +870,7 @@ Panel administracyjny, podobnie do węzłów obliczeniowych, został zaimplement
 Do elementów interfejsu użytkownika poza wspomnianą poprzednio biblioteką \textit{evergreen}~\cite{evergreen} wykorzystano bibliotekę \textit{react-table}~\cite{react-table} do wyświetlania tabel oraz bibliotekę \textit{formik}~\cite{formik} do wyświetlania i zarządzania formularzami. Biblioteki \textit{formik} oraz \textit{react-table} zostały wybrane ze względu na ilość dostępnych funkcjonalności oraz prostotę użycia.
 
 Aby ułatwić pracę ze standardem \textit{JSON API} wykorzystano bibliotekę \textit{kitsu}~\cite{kitsu}.
-Dzięki wykorzystaniu biblioteki, która pokrywa wymagania stawiane przez \textit{JSON API}, nie musieliśmy zawierać w projekcie kodu związanego z przetwarzaniem danych przesyłanych i odbieranych z API.
+Dzięki wykorzystaniu biblioteki, która pokrywa wymagania stawiane przez \textit{JSON API}, projekt nie zawiera kodu związanego z przetwarzaniem danych przesyłanych i odbieranych z API.
 
 Testy jednostkowe zostały napisane z wykorzystaniem biblioteki \textit{jest}~\cite{jest}.
 
@@ -937,7 +932,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     \begin{tabular}{|l|l|l|}
         \hline
         Węzeł & Wynik & Poziom zaufania \\ \hline
-        A     & 1     & 2.5             \\ \hline
+        A     & 1     & 2,5             \\ \hline
         B     & 1     & 1               \\ \hline
         C     & 5     & 2               \\ \hline
     \end{tabular}
@@ -947,11 +942,11 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     \label{metoda-wytworcza}
     
     Podczas tworzenia projektu zastosowany był kaskadowy model wytwarzania oprogramowania (ang. \textit{\selectlanguage{english}waterfall model}).
-    Na początku zakres projektu został ustalony z promotorem oraz zebrane zostały wymagania, które następnie przeanalizowaliśmy.
+    Na początku zakres projektu został ustalony z promotorem oraz zebrane zostały wymagania, które następnie zostały przeanalizowane.
     Na ich podstawie przygotowany został harmonogram projektu zawierający kolejne etapy wytwarzania elementów systemu
     wraz z oszacowaniami terminów ukończeń każdego z nich.
     
-    W związku z interakcją z nieznanymi nam wcześniej oraz eksperymentalnymi technologiami przygotowany został prototyp
+    W związku z interakcją z eksperymentalnymi technologiami przygotowany został prototyp
     sprawdzający możliwości techniczne potencjalnego rozwiązania.
     Po stworzeniu działającego prototypu rozpoczęła się faza projektowania i implementacji, zaczynając od części serwera aplikacyjnego,
     a następnie przechodząc do części interfejsu użytkownika.
@@ -980,9 +975,9 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     W przypadku akceptacji zmian były one dołączane do głównej gałęzi repozytorium, a zadanie uznawane było
     za zakończone.
     
-    W razie niejasności w specyfikacji lub wymaganiach kontaktowaliśmy się z promotorem w celu
+    W razie niejasności w specyfikacji lub wymaganiach następował kontakt z promotorem w celu
     weryfikacji naszych założeń.
-    Dzięki temu udało nam się zniwelować ilość problemów związanych z różnicą w interpretacji wymagań,
+    Dzięki temu zniwelowana została ilość problemów związanych z różnicą w interpretacji wymagań,
     ponieważ wszelkie wątpliwości były rozwiązywane w krótkim czasie.
     Takie podejście pozwoliło ponadto na zmniejszenie ilości poprawek do projektu na etapie jego
     akceptacji przez promotora.
@@ -1240,7 +1235,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         \label{distributed-task-add-guide}
         
         Aby dodać nowe zadanie należy przejść do zakładki \texttt{Distributed Task Definitions}, a następnie kliknąć w przycisk z napisem \texttt{See details} przy wybranej definicji zadania.
-        Z tej strony możemy zlecić obliczenia nowych danych wejściowych.
+        Z tej strony możliwe jest zlecenie obliczenia nowych danych wejściowych.
         W tym celu należy kliknąć na ikonę plusa na zielonym tle znajdującego się nad tabelą z zadaniami.
         W celu zlecenia wykonania zadania należy wypełnić widoczny formularz.
         
@@ -1392,11 +1387,11 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         \subsection{Prostota obsługi}
             Interfejs graficzny udostępniany użytkownikom jest intuicyjny i pozwala na korzystanie z systemu bez zastanawiania się jaki powinien być kolejny krok.
             Na prostotę postawiono w szczególności w części interfejsu odpowiedzialnej za węzły obliczeniowe, aby rozpocząć obliczenia należy jedynie wejść na odpowiednią stronę i kliknąć w jeden przycisk.
-            Podczas wątpliwości przy tworzeniu elementów interfejsu graficznego kierowaliśmy się zaleceniami zaproponowanymi na stronie z dobrymi wzorcami do wykorzystania w interfejsie użytkownika --- \textit{Material Design}~\cite{material-design}.
+            Podczas wątpliwości przy tworzeniu elementów interfejsu graficznego kierowano się zaleceniami zaproponowanymi na stronie z dobrymi wzorcami do wykorzystania w interfejsie użytkownika --- \textit{Material Design}~\cite{material-design}.
         
         \subsection{Bezpieczeństwo}
             Podczas opracowywania systemu tworzonego w ramach tej pracy inżynierskiej dużo czasu zostało poświęcone przemyśleniu kwestii bezpieczeństwa tak, aby zminimalizować ryzyko wykonania akcji w panelu administracyjnym przez nieautoryzowaną osobę.
-            Sekcja TODO szczegółowo opisuje zabezpieczenia wykorzystane w systemie, a w akapicie TODO opisano możliwe dalsze usprawnienia polityki bezpieczeństwa tak, aby utrudnić negatywne oddziaływanie na serwer API nawet osobie mającej uprawnienia administratora.
+            Sekcja~\ref{zabezpieczenia} szczegółowo opisuje zabezpieczenia wykorzystane w systemie, a w akapicie~\ref{uruchamianie-w-srodowisku-izolowanym} opisano możliwe dalsze usprawnienia polityki bezpieczeństwa tak, aby utrudnić negatywne oddziaływanie na serwer API nawet osobie mającej uprawnienia administratora.
     
     \section{Możliwości na rozwój aplikacji}
         \label{mozliwosci-na-rozwoj-aplikacji}
@@ -1409,7 +1404,9 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         W obecnie przygotowanym systemie część operacji z bibliotek dostarczanych przez użytkowników uruchamiana jest na serwerze odpowiedzialnym za obsługę zapytań z API. Powyższe operacje mogą być potencjalnie obciążające i ograniczać wydajność serwera API. W celu zabezpieczenia wydajności serwera można przenieść wykonywanie wszystkich operacji z bibliotek użytkowników poza serwer API. W tym celu należałoby przygotować serwer, który wykonywałby operacje żądane przez serwer API i zwracał stosowne wyniki.
         
         \paragraph{Udostępnienie DistributedComputingLibrary w menadżerze pakietów.}
-        W celu ułatwienia dodawania do projektów przygotowanej w ramach projektu biblioteki do obliczeń rozproszonych można opublikować ją w menadżerze pakietów \textit{NuGet}~\cite{nuget}. Po opublikowaniu biblioteki w ramach repozytorium \textit{NuGet} będzie ona dostępna do instalacji z poziomu linii poleceń lub interfejsu graficznego udostępnianego przez \textit{Visual Studio}~\cite{visual-studio}. Dzięki takiemu postępowaniu administrator systemu nie musiałby przechowywać na swoim komputerze kopii biblioteki DLL, a mógłby w każdym nowo utworzonym projekcie jedynie odnieść się do łatwo dostępnego pakietu.
+        W celu ułatwienia dodawania do projektów przygotowanej w ramach projektu biblioteki do obliczeń rozproszonych można opublikować ją w menadżerze pakietów \textit{NuGet}~\cite{nuget}. Po opublikowaniu biblioteki w ramach repozytorium \textit{NuGet} będzie ona dostępna do instalacji z poziomu linii poleceń lub interfejsu graficznego udostępnianego przez \textit{Visual Studio}~\cite{visual-studio}.
+        Dzięki takiemu postępowaniu administrator systemu nie musiałby przechowywać na swoim komputerze kopii biblioteki DLL, a mógłby w każdym nowo utworzonym projekcie jedynie odnieść się do łatwo dostępnego pakietu.
+        Powodem nieopublikowania biblioteki w menadżerze pakietów do momentu zakończenia pracy inżynierskiej są ograniczenia wynikające z regulaminu zarządzania prawami autorskimi na Politechnice Warszawskiej~\cite{uchwala-prawa-autorskie}.
         
         \paragraph{Dodanie poleceń interfejsu wiersza poleceń.}
         Kolejnym możliwym ułatwieniem dla programistów jest dodanie zestawu poleceń interfejsu wiersza poleceń (ang. \textit{CLI}) ułatwiających zarządzanie utworzonymi projektami wykorzystującymi bibliotekę \textit{DistributedComputingLibrary}. Poniżej znajdują się przykładowe funkcje, które mogłoby udostępniać takie narzędzie:
@@ -1432,8 +1429,9 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         Z uwagi na potencjalnie długi czas wykonywania obliczeń ciężko jest oszacować kiedy należy sprawdzić dostępność wyników, dlatego wysyłanie użytkownikom powiadomień w postaci wiadomości e--mail oszczędziłoby im konieczności odwiedzania interfejsu użytkownika w celu sprawdzenia stanu zleconego zadania.
         
         \paragraph{Uruchamianie kodu użytkowników w środowisku izolowanym.}
+        \label{uruchamianie-w-srodowisku-izolowanym}
         Z uwagi na istniejące ryzyko znalezienia się złośliwego kodu w kodzie użytkownika warto rozważyć uruchamianie kodu użytkownika w środowisku izolowanym. Kod użytkownika uruchamiany na węzłach obliczeniowych jest już uruchamiany w środowisku izolowanym, jednakże metody zaimplementowane w ramach bibliotek użytkownika uruchamiane na serwerze nadal stanowią ryzyko.
-        W sekcji %TODO: uzupełnić \ref{label}
+        W sekcji~\ref{problemy-izolacja-kodu-uzytkownika}
         opisano problemy napotkane podczas próby wprowadzenia uruchamiania kodu użytkownika działającego w ramach serwera w środowisku izolowanym. 
         Zalecanym sposobem na zarządzanie uprawnieniami obcego kodu uruchamianego w ramach naszego systemu jest uruchamianie go w osobnym procesie z uprawnieniami ograniczonymi przez system operacyjny.
         
@@ -1450,6 +1448,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         Poniższa sekcja opisuje problemy implementacyjne napotkane podczas tworzenia aplikacji.
         
         \paragraph{Izolacja kodu użytkownika.}
+            \label{problemy-izolacja-kodu-uzytkownika}
             Podczas wykonywania aplikacji zapadła decyzja o rezygnacji z izolacji kodu użytkownika uruchamianego po stronie serwera API. Mechanizm \textit{AppDomain} pozwalający na zarządzanie uprawnieniami wykonywanego kodu nie jest wspierany przez środowisko .NET Core 2.2, w którym został utworzony serwer aplikacyjny. 
             
             Z uwagi na fakt uruchamiania serwera aplikacyjnego w oddzielnym kontenerze programu Docker, kod użytkownika nie jest w stanie wyrządzić szkód w głównym systemie plików, a jedynie wewnątrz kontenera.
@@ -1459,7 +1458,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         \paragraph{Korzystanie z mono-wasm.}     
             W czasie przygotowywania systemu biblioteka \textit{mono-wasm} znajdowała się w eksperymentalnej fazie rozwoju, co przyczyniło się do problemów podczas implementacji systemu.
             
-            Przygotowany przez nas prototyp sprawdzający działanie biblioteki okazał się niewystarczający, w wyniku czego na późnym etapie projektu spotkaliśmy się z brakiem możliwości wywoływania funkcji C\# z poziomu przeglądarki z parametrami bardziej skomplikowanymi niż typy proste. Biblioteka \textit{mono-wasm} udostępniła brakujące wymaganie podczas trwania projektu, jednakże powyższy problem wprowadził opóźnienie.
+            Przygotowany przez nas prototyp sprawdzający działanie biblioteki okazał się niewystarczający, w wyniku czego na późnym etapie projektu pojawił się problem braku możliwości wywoływania funkcji C\# z poziomu przeglądarki z parametrami bardziej skomplikowanymi niż typy proste. Biblioteka \textit{mono-wasm} udostępniła brakujące wymaganie podczas trwania projektu, jednakże powyższy problem wprowadził opóźnienie.
             
             Podczas tworzenia projektu biblioteka \textit{mono-wasm} nie oferowała żadnej dokumentacji oraz testów, a jedyny udostępniony przykład użycia obejmował tylko wywołanie bezparametrowej funkcji z biblioteki napisanej w języku C\# z poziomu przeglądarki. W wyniku powyższych braków konieczna była analiza kodu źródłowego biblioteki w celu zapoznania się z możliwymi przypadkami użycia.
         
@@ -1470,7 +1469,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
             
         \paragraph{Brakujące ciasteczka.}
             Podczas przeprowadzania testów przygotowanego systemu okazało się, że niektóre przeglądarki internetowe nie wysyłają ciasteczek pomimo otrzymania ich po zalogowaniu.
-            Konsekwencją nieprzesyłania ciasteczek do serwera API jest brak dostępu do panelu administracyjnego. Po analizie problemu okazało się, że w przeszłości funkcja \textit{fetch}, pozwalająca na wysyłanie zapytań sieciowych, domyślnie nie wysyłała ciasteczek. W celu zadbania o kompatybilność ze starszymi przeglądarkami zdecydowaliśmy się na dodanie odpowiednich parametrów do komponentów odpowiedzialnych za komunikację sieciową.
+            Konsekwencją nieprzesyłania ciasteczek do serwera API jest brak dostępu do panelu administracyjnego. Po analizie problemu okazało się, że w przeszłości funkcja \textit{fetch}, pozwalająca na wysyłanie zapytań sieciowych, domyślnie nie wysyłała ciasteczek. W celu zadbania o kompatybilność ze starszymi przeglądarkami podjęto decyzję o dodaniu odpowiednich parametrów do komponentów odpowiedzialnych za komunikację sieciową.
     
     
     \section{Wnioski z projektu}
@@ -1479,42 +1478,44 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         
         \subsection{Współpraca z eksperymentalnymi technologiami}
             Z uwagi na eksperymentalną naturę projektu \textit{mono-wasm}, jego dokumentacja była niewielka. Dostępny był jeden przykład wykorzystania przedstawiający uruchomienie metody z biblioteki DLL zbudowanej z kodu C\#, która zwracała wynik dodawania dwóch liczb podanych jako parametry.
-            Wywoływana metoda była statyczna i nie było jasne jak dokładnie utworzyć instancję obiektu, a także jak przekazywać bardziej złożone parametry do wywołań oraz jak odbierać wyniki. Brakujących informacji początkowo szukaliśmy w otwartym kodzie źródłowym projektu \textit{mono-wasm}, a gdy to się nie powiodło, skontaktowaliśmy się z osobami pracującymi nad tym projektem. Z ich odpowiedzi wynikało, że wymagane jest użycie metod statycznych zwracających instancje obiektów.
+            Wywoływana metoda była statyczna i nie było jasne jak dokładnie utworzyć instancję obiektu, a także jak przekazywać bardziej złożone parametry do wywołań oraz jak odbierać wyniki.
+            Brakujące informacje początkowo były poszukiwane w otwartym kodzie źródłowym projektu \textit{mono-wasm}, a gdy to się nie powiodło, nastąpił kontakt z osobami pracującymi nad tym projektem.
+            Z ich odpowiedzi wynikało, że wymagane jest użycie metod statycznych zwracających instancje obiektów.
             Ponowne wątpliwości pojawiły się w momencie przesyłania zserializowanych danych wejściowych podzadania (\texttt{TSubtask}) oraz odbierania wyników (\texttt{TSubtaskResult}). Obsługa tablic bajtów jako parametry pojawiła się w \textit{mono-wasm} dopiero w październiku 2018 roku, zatem już podczas tworzenia pracy inżynierskiej.
-            Gdyby ta funkcjonalność nie została dodana, to musielibyśmy wybrać inny sposób przesyłu danych, co mogłoby wprowadzić opóźnienia oraz skomplikować działanie systemu.
+            Gdyby ta funkcjonalność nie została dodana, to konieczne byłoby wybranie innego sposobu przesyłu danych, co mogłoby wprowadzić opóźnienia oraz skomplikować działanie systemu.
             
-            Sam interfejs do komunikacji z assembly C\# udostępniany przez projekt \textit{mono-wasm} wydał nam się skomplikowany. Przede wszystkim narzucał on definiowanie globalnych funkcji typu \textit{callback}, które wywoływane były podczas działania aplikacji. Ponadto, nazwy funkcji służących do wywoływania metod z kodu C\# były dość długie (na przykład \texttt{Module.BINDING.call\_static\_method}). Nazwy statycznych metod, które chcemy wywołać należało przekazywać w ściśle ustalonym formacie tekstowym, który początkowo nie był dla nas do końca jasny.
+            Sam interfejs do komunikacji z assembly C\# udostępniany przez projekt \textit{mono-wasm} wydał nam się skomplikowany. Przede wszystkim narzucał on definiowanie globalnych funkcji typu \textit{callback}, które wywoływane były podczas działania aplikacji. Ponadto, nazwy funkcji służących do wywoływania metod z kodu C\# były dość długie (na przykład \texttt{Module.BINDING.call\_static\_method}). Nazwy statycznych metod, które chciano wywołać należało przekazywać w ściśle ustalonym formacie tekstowym, który początkowo nie był dla nas do końca jasny.
             
-            W tym projekcie wydajność obliczeń wykonywanych w węzłach nie była jednym z wymagań, ale gdyby tak było, to należałoby ją zweryfikować na początku projektu, aby uniknąć niespodzianek w przyszłości. W aktualnym stanie nie moglibyśmy znacznie przyśpieszyć obliczeń w przeglądarce ze względu na wykorzystanie do tego zewnętrznej biblioteki. Wtedy należałoby rozważyć skorzystanie z innych rozwiązań pozwalających na kompilację kodu C\# do postaci dającej się wykonać w przeglądarce.
+            W tym projekcie wydajność obliczeń wykonywanych w węzłach nie była jednym z wymagań, ale gdyby tak było, to należałoby ją zweryfikować na początku projektu, aby uniknąć niespodzianek w przyszłości. W aktualnym stanie niemożliwe jest znaczne przyśpieszenie obliczeń w przeglądarce ze względu na wykorzystanie do tego zewnętrznej biblioteki. Gdyby wydajność była wymaganiem, to należałoby rozważyć skorzystanie z innych rozwiązań pozwalających na kompilację kodu C\# do postaci dającej się wykonać w przeglądarce.
             
-            Brak dokumentacji i większej ilości przykładów sprawił, że nad wykorzystaniem biblioteki \textit{mono-wasm} spędziliśmy więcej czasu, niż początkowo planowaliśmy.
+            Brak dokumentacji i większej ilości przykładów sprawił, że wykorzystanie biblioteki \textit{mono-wasm} zajęło więcej czasu, niż początkowo zostało na to zaplanowane.
             W przyszłości wykorzystując eksperymentalne biblioteki warto już na samym starcie dokładnie sprawdzić dokumentację oraz przykłady użycia do tego stopnia, żeby zweryfikować czy wszystkie wymagania projektu będą możliwe do zrealizowania. W razie wątpliwości należy na początku skontaktować się z twórcami czy poszukać informacji na Internecie zamiast robić to podczas prób implementacji.
             Jeżeli wydajność programu jest jednym z wymagań, należy na początku przeprowadzić eksperymenty zbliżone do warunków wdrożeniowych aby w razie potrzeb móc zmodyfikować lub przedyskutować ponownie wymagania dotyczące wydajności.
         
         \subsection{Tworzenie interfejsu użytkownika}
             Tworząc interfejs użytkownika warto wykorzystać gotowe komponenty stworzone i udostępnione w ramach zasad wolnego oprogramowania, które zazwyczaj przy okazji wyglądają estetycznie i spójnie. Wybierając takie rozwiązanie często unikamy problemu implementowania części logiki samemu oraz problemów związanych z dostosowaniem danego elementu w zakresie dostępności oraz szeroko pojętego zadowolenia użytkownika (ang. {\selectlanguage{english}\textit{User Experience})}.
             
-            Ponadto, w tym projekcie sprawdziło się podejście, w którym na początku zidentyfikowaliśmy powtarzalne elementy interfejsu, a następnie zaprojektowaliśmy i zaimplementowaliśmy ogólne, konfigurowalne wersje tych komponentów, które później mogliśmy wykorzystać w ramach konkretnych funkcjonalności dostosowując jedynie konfigurację takiego elementu.
+            Ponadto, w tym projekcie sprawdziło się podejście, w którym na początku identyfikowane były powtarzalne elementy interfejsu, a następnie była faza projektowania oraz implementacji ogólnych, konfigurowalnych wersji tych komponentów, które później można było wykorzystać w ramach konkretnych funkcjonalności dostosowując jedynie konfigurację takiego elementu.
             Przykładowymi powtarzalnymi częściami zidentyfikowanymi przez nas na początku były tabela oraz formularz. Dodatkowo, chcąc zmienić wygląd czy działanie takiego komponentu zmiany należy wprowadzić jedynie w jednym miejscu, a nie w każdej funkcjonalności oddzielnie.
         
-            Planując harmonogram projektu na początku tworzenia pracy inżynierskiej nie wzięliśmy pod uwagę, że część dotycząca interfejsu użytkownika będzie tak czasochłonna, jak okazała się w rzeczywistości.
-            Oprócz tworzenia estetycznie wyglądającej strony internetowej musieliśmy sprawdzać różne przypadki jej uruchomienia i działania, także na innych urządzeniach, takich jak telefony komórkowe, oraz różnych przeglądarkach i wielkościach ekranu. To sprawiło, że czas potrzebny na zaimplementowanie funkcjonalności panelu administracyjnego oraz panelu dla węzła obliczeniowego wydłużył się.
+            Planując harmonogram projektu na początku tworzenia pracy inżynierskiej nie zostało uwzględnione, że część dotycząca interfejsu użytkownika będzie tak czasochłonna, jak okazała się w rzeczywistości.
+            Oprócz tworzenia estetycznie wyglądającej strony internetowej konieczne było sprawdzanie różnych przypadków jej uruchomienia i działania, także na innych urządzeniach, takich jak telefony komórkowe, oraz różnych przeglądarkach i wielkościach ekranu. To sprawiło, że czas potrzebny na zaimplementowanie funkcjonalności panelu administracyjnego oraz panelu dla węzła obliczeniowego wydłużył się.
             
             Nietrywialne okazało się testowanie wizualne wytwarzanych komponentów. W przeciwieństwie do logiki aplikacji dającej się zweryfikować przy użyciu testów jednostkowych, aspekty estetyczne nie były tak łatwe. Nie pomagał również fakt, że komponenty były zależne od siebie i czasem dobry wygląd jednego z nich był warunkowany poprawnym wyświetleniem się innego.
-            Z tych powodów zdecydowaliśmy się na skorzystanie z narzędzia, za pomocą którego byliśmy stanie sprawdzić wygląd poszczególnych komponentów w izolacji. Taka weryfikacja musiała być wykonywana manualnie, natomiast okazała się łatwiejsza od sprawdzania właściwości elementów działającej strony.
+            Z tych powodów zdecydowano się na skorzystanie z narzędzia, za pomocą którego można było sprawdzić wygląd poszczególnych komponentów w izolacji. Taka weryfikacja musiała być wykonywana manualnie, natomiast okazała się łatwiejsza od sprawdzania właściwości elementów działającej strony.
             
             Podsumowując, praktyki takie jak wykorzystanie gotowych komponentów, stworzenie ogólnych i konfigurowalnych elementów interfejsu użytkownika, a także testowanie ich w izolacji znacznie przyśpieszyło proces wytwarzania pracy inżynierskiej.
-            Stojąc w przyszłości przed zadaniem stworzenia aplikacji internetowej ponownie skorzystalibyśmy z podobnych kroków w celu uzyskania spójnego i łatwego w rozszerzeniu oraz modyfikacji systemu.
+            Naszym zdaniem stojąc w przyszłości przed zadaniem stworzenia aplikacji internetowej warto skorzystać z podobnych kroków w celu uzyskania spójnego i łatwego w rozszerzeniu oraz modyfikacji systemu.
         
         \subsection{Integracja w środowisku wdrożeniowym}
-            Podczas uruchomienia projektu w środowisku wdrożeniowym mogą pojawić się niespodziewane problemy. Tak było w przypadku tej pracy inżynierskiej. Z uwagi na fakt, że integrację w środowisku wdrożeniowym rozpoczęliśmy na miesiąc przed oddaniem projektu, problemy te można było rozwiązać w spokoju i zgodnie z dobrymi praktykami.
+            Podczas uruchomienia projektu w środowisku wdrożeniowym mogą pojawić się niespodziewane problemy. Tak było w przypadku tej pracy inżynierskiej. Z uwagi na fakt, że integracja w środowisku wdrożeniowym została rozpoczęta na miesiąc przed oddaniem projektu, problemy te można było rozwiązać w spokoju i zgodnie z dobrymi praktykami.
             Próbując uruchomić system po raz pierwszy w środowisku wdrożeniowym niedługo przed oddaniem projektu mogłoby się okazać, że powstałych problemów nie da się rozwiązać w krótkim czasie, więc oddanie projektu by się opóźniło.
             Warto zatem próbować uruchomić system na jak największej ilości środowisk docelowych jak najwcześniej.
             
         \subsection{Dokładna weryfikacja wymagań}
             Jednym z początkowych wymagań było uruchamianie kodu użytkownika w środowisku izolowanym na serwerze tak, aby nie mógł wyrządzić on niepożądanych działań w systemie ani nie mógł odczytać plików systemowych.
-            Zweryfikowaliśmy na początku projektu, że taka funkcjonalność jest dostępna {\selectlanguage{english}\textit{.NET Standard 2.0}} z użyciem klasy {\selectlanguage{english}\texttt{AppDomain}}. Wykorzystując {\selectlanguage{english}\textit{.NET Core 2.2}}, który implementuje {\selectlanguage{english}\textit{.NET Standard 2.0}} wywnioskowaliśmy, że będziemy mogli z niego skorzystać w naszym projekcie.
-            Ku naszemu zdziwieniu okazało się jednak, że mimo, że takie rozwiązanie ({\selectlanguage{english}\texttt{AppDomain}}) jest w teorii w {\selectlanguage{english}\textit{.NET Standard 2.0}}, to nie jest wspierane w {\selectlanguage{english}\textit{.NET Core}}, zatem musieliśmy zrezygnować z tego wymagania.
+            Na początku projektu ustalono, że taka funkcjonalność jest dostępna w {\selectlanguage{english}\textit{.NET Standard 2.0}} z użyciem klasy {\selectlanguage{english}\texttt{AppDomain}}. Wykorzystując {\selectlanguage{english}\textit{.NET Core 2.2}}, który implementuje {\selectlanguage{english}\textit{.NET Standard 2.0}} oczekiwane było, że wymagana funkcjonalność będzie dostępna w naszym projekcie.
+            Ku naszemu zdziwieniu okazało się jednak, że mimo, że takie rozwiązanie ({\selectlanguage{english}\texttt{AppDomain}}) jest w teorii w {\selectlanguage{english}\textit{.NET Standard 2.0}}, to nie jest wspierane w {\selectlanguage{english}\textit{.NET Core}}, zatem konieczna była rezygnacja z tego wymagania.
             
             Na przyszłość warto pamiętać, aby w pełni zweryfikować wymagania na wstępie, szczególnie jeżeli będzie się wykorzystywało mechanizmy, z którymi nie ma się do czynienia na porządku dziennym. Dyskusja o zmianie wymagań jest zdecydowanie bardziej mile widziana na początku projektu, w porównaniu z propozycjami zmian w momencie, gdy projekt ma kilka miesięcy.
         
@@ -1567,6 +1568,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     \bibitem[37]{SETI} Strona internetowa z informacjami o \emph{SETI@home} \url{https://setiathome.berkeley.edu/sah_about.php}
     \bibitem[38]{webassembly-goals} Dokumentacja celów formatu \emph{WebAssembly} \url{https://webassembly.org/docs/high-level-goals/}
     \bibitem[39]{webassembly-semantics} Dokumentacja wirtualnej maszyny stosowej formatu \emph{WebAssembly} \url{https://webassembly.org/docs/semantics/}
+    \bibitem[40]{uchwala-prawa-autorskie} Regulamin zarządzania prawami autorskimi obowiązujący na Politechnice Warszawskiej, załącznik do uchwały nr 261/XLVIII/2015 \url{https://www.bip.pw.edu.pl/Wewnetrzne-akty-prawne/Regulaminy/Regulamin-zarzadzania-prawami-autorskimi-i-prawami-pokrewnymi-oraz-prawami-wlasnosci-przemyslowej-oraz-zasad-komercjalizacji}
 \end{thebibliography}
 
 \thispagestyle{empty}
