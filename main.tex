@@ -350,7 +350,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     
     Wykorzystanie wielu jednostek obliczeniowych do obliczeń jest szczególnie ważne w dzisiejszych czasach.
     Wykładnicze wzrostu częstotliwości taksowania procesorów było
-    opisywane w poprzednich latach przez prawo Moore'a~\cite{prawo-moorea}.
+    opisywane w~poprzednich latach przez prawo Moore'a~\cite{prawo-moorea}.
     Ostatnio daje się zauważyć spadek tego tempa, przez co należy szukać innych metod na wykonanie obliczeń w krótszym czasie.
     Czas wykonania algorytmów można zmniejszyć w znacznym stopniu jedynie poprzez zlecenie ich wykonywania równolegle,
     przez co można wykonać dużo większą liczbę operacji w danej jednostce czasu,
@@ -382,7 +382,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     
     Istnieją projekty, które można wykonywać niezależnie na wielu urządzeniach i są niewrażliwe na różną wydajność maszyn na których są obliczane.
     Takie projekty mogą korzystać z wsparcia użytkowników Internetu, którzy mogą użyczyć swojej mocy obliczeniowej.
-    Zazwyczaj chęć pomocy wiąże się z pobraniem aplikacji klienckiej, która pozwoli urządzeniu na komunikację z serwerem i wykonywanie obliczeń w ramach projektu.
+    Zazwyczaj chęć pomocy wiąże się z pobraniem aplikacji klienckiej, która pozwoli urządzeniu na komunikację z~serwerem i wykonywanie obliczeń w ramach projektu.
     
     Jednym z takich projektów jest GIMPS~\cite{GIMPS} (\textit{\selectlanguage{english}Great Internet Mersenne Prime Search}).
     Jego celem jest szukanie liczb pierwszych Mersenne'a~\cite{MersennePrimes}.
@@ -481,7 +481,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         W przypadku wykrycia błędów dopiero podczas obliczeń konieczne są dodatkowe iteracje dodawania projektu na serwer, co prowadzi do niezadowolenia oraz straty czasu użytkownika.
         W celu utworzenia nowego projektu zgodnego z zaplanowaną platformą konieczne będzie jedynie zaimportowanie biblioteki, a~następnie utworzenie klasy implementującej wskazany interfejs.
         Dzięki takiemu rozwiązaniu programista będzie wiedział co musi zaimplementować, aby projekt był zgodny z zaprojektowanym rozwiązaniem, a dokumentacja dołączona do biblioteki pomoże w razie wątpliwości.
-        Przygotowany system powinien także reagować na odłączanie się węzłów obliczeniowych w trakcie wykonywania zadań oraz umożliwiać wielokrotnie przeprowadzenie tych samych obliczeń w celu wybrania najbardziej wiarygodnego wyniku w razie rozbieżności.
+        Przygotowany system powinien także reagować na odłączanie się węzłów obliczeniowych w trakcie wykonywania zadań oraz umożliwiać wielokrotnie przeprowadzenie tych samych obliczeń w~celu wybrania najbardziej wiarygodnego wyniku w razie rozbieżności.
         W momencie otrzymania różnych wyników dla tego samego podzadania platforma powinna wybierać rozwiązanie zaproponowane przez najbardziej zaufaną grupę węzłów.
         Część systemu działająca w przeglądarce internetowej powinna umożliwiać węzłom obliczeniowym delegowanie wielu wątków do wykonywania obliczeń.
     
@@ -657,7 +657,7 @@ Na rysunku~\ref{project-model} znajdują się wyodrębnione moduły wraz z urzą
 Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet.
 Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym interfejs użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych, jak i administratora).
 Proxy akceptuje jedynie protokół HTTP (port 80).
-Protokół HTTPS (port 443) nie jest zapewniany w~ramach przygotowanego systemu, gdyż zakładamy, że jest on dostarczany przez infrastrukturę w~ramach której uruchamiany jest utworzony system.
+Protokół HTTPS (port 443) nie jest zapewniany w~ramach przygotowanego systemu. Zakładamy, że jest on dostarczany przez infrastrukturę w~ramach której uruchamiany jest utworzony system.
 
 
 \begin{figure} \centering{
@@ -841,7 +841,7 @@ Interfejs \texttt{IProblemPlugin} wymaga implementacji:
 
 Dane serializowane i deserializowane są w następujący sposób. Po przesłaniu pliku zawierającego zserializowane zadanie \texttt{TTask}, zadanie to zostaje zdeserializowane na serwerze i za pomocą metody \texttt{DivideTask} podzielone na podzadania \texttt{TSubtask}, po czym podzadania te zostają zserializowane i zapisane w bazie danych.
 
-Następnie po przydzieleniu podzadania do konkretnego węzła i pobraniu tego zserializowanego podzadania, węzeł deserializuje to podzadanie, po czym oblicza jego wynik metodą \texttt{Compute}. Wynik \texttt{TSubtaskResult} jest serializowany i przesyłany na serwer, który umieszcza wynik~w bazie danych.
+Następnie po przydzieleniu podzadania do konkretnego węzła i pobraniu tego zserializowanego podzadania, węzeł deserializuje to podzadanie, po czym oblicza jego wynik metodą \texttt{Compute}. Wynik \texttt{TSubtaskResult} jest serializowany i przesyłany na serwer, który umieszcza wynik w~bazie danych.
 
 W momencie, gdy ostatnie podzadanie zostaje ukończone, wyniki wszystkich podzadań \texttt{TSubtaskResult} są pobierane przez serwer z bazy danych, następnie uruchamiana jest metoda \texttt{JoinSubtaskResults}, po czym wynik zadania \texttt{TTaskResult} jest zapisywany przez serwer w bazie danych.
 
@@ -953,7 +953,7 @@ Podzadanie zostanie zakończone, ponieważ suma poziomów zaufania jest większa
 
 \[2,5 + 1 + 2 = 5,5 > 5\]
 
-Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez węzły o sumarycznym poziomie zaufania 3,5, podczas gdy wynik 5 został zwrócony przez węzły o~sumarycznym poziomie zaufania 2.
+Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez węzły o~sumarycznym poziomie zaufania 3,5, podczas gdy wynik 5 został zwrócony przez węzły o~sumarycznym poziomie zaufania 2.
 
 \begin{table}
     \centering
