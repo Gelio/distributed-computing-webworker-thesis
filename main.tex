@@ -29,10 +29,12 @@
 \usepackage{longtable}
 \usepackage{makecell}
 \usepackage{calc}
-\usepackage{caption}
+\usepackage[font=footnotesize]{caption}
 
-\captionsetup{%
-    tablename=Tabela
+\captionsetup{
+    tablename=Tabela,
+    justification=raggedright,
+    singlelinecheck=false
 }
 
 
@@ -516,7 +518,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
                 \hline
                 Aktor & Nazwa & Opis & Odpowiedź systemu \\ \hline
                 \endfirsthead
-                \multicolumn{4}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+                \multicolumn{4}{l}{\footnotesize \tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
                 \hline
                 Aktor & Nazwa & Opis & Odpowiedź systemu \\ \hline
                 \endhead
@@ -593,7 +595,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
                 \hline
                 Obszar wymagań & Nr wymagania & Opis \\ \hline
                 \endfirsthead
-                \multicolumn{3}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+                \multicolumn{3}{l}{\footnotesize \tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
                 \hline
                 Obszar wymagań & Nr wymagania & Opis \\ \hline
                 \endhead
@@ -1019,7 +1021,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         \hline
         Imię i nazwisko członka zespołu & Wykonane części projektu \\ \hline
         \endfirsthead
-        \multicolumn{2}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+        \multicolumn{2}{l}{\footnotesize \tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
         \hline
         Imię i nazwisko członka zespołu & Wykonane części projektu \\ \hline
         \endhead
@@ -1040,7 +1042,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         \hline
         Imię i nazwisko członka zespołu & Stworzone rozdziały i sekcje tekstu pracy inżynierskiej \\ \hline
         \endfirsthead
-        \multicolumn{2}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+        \multicolumn{2}{l}{\footnotesize \tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
         \hline
         Imię i nazwisko członka zespołu & Stworzone rozdziały i sekcje tekstu pracy inżynierskiej \\ \hline
         \endhead
@@ -1077,7 +1079,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         \hline
         nr. & Nazwa i wersja & Opis & Licencja \\ \hline
         \endfirsthead
-        \multicolumn{4}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+        \multicolumn{4}{l}{\footnotesize \tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
         \hline
         nr. & Nazwa i wersja & Opis & Licencja \\ \hline
         \endhead
@@ -1101,7 +1103,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
             \hline
             nr. & Nazwa i wersja & Opis & Licencja \\ \hline
             \endfirsthead
-            \multicolumn{4}{c}{\tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
+            \multicolumn{4}{l}{\footnotesize \tablename\ \thetable\ -- \textit{Kontynuowane z poprzedniej strony}} \\
             \hline
             nr. & Nazwa i wersja & Opis & Licencja \\ \hline
             \endhead
