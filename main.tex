@@ -241,8 +241,8 @@ podpis promotora & \hspace*{100pt} & podpis autora
 
 W ramach tej pracy inżynierskiej stworzono system umożliwiający realizację obliczeń rozproszonych
 z węzłami działającymi w przeglądarce internetowej.
-Obliczenia rozproszone są metodą na rozwiązanie potencjalnie skomplikowanych problemów dzieląc je na mniejsze
-i rozwiązując każdy z nich równolegle na oddzielnych maszynach. Tradycyjnie dołączenie nowych urządzeń jako
+Obliczenia rozproszone są metodą na rozwiązanie potencjalnie skomplikowanych problemów poprzez podział na mniejsze
+i rozwiązywanie każdego z nich równolegle na oddzielnych maszynach. Zwykle dołączenie nowych urządzeń jako
 węzły sieci obliczeń rozproszonych odbywało się poprzez instalację specjalnego oprogramowania klienckiego,
 które komunikowało się z centralnym serwerem rozdzielającym zadania.
 
@@ -379,7 +379,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
 
     Szczególnym przypadkiem obliczeń równoległych są obliczenia rozproszone.
     Wyróżniają się one tym, że we wspólnych obliczeniach biorą udział różne urządzenia, często w różnych lokalizacjach geograficznych.
-    W tej sytuacji można osiągnąć teoretycznie nieograniczoną ilość jednostek obliczeniowych,
+    W tej sytuacji można osiągnąć teoretycznie nieograniczoną liczbę jednostek obliczeniowych,
     ponieważ można użyć bardzo dużej liczby niezależnych urządzeń.
     
     Obliczenia rozproszone wykorzystywane są w klastrach obliczeniowych.
@@ -396,7 +396,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Najkorzystniej byłoby, gdyby obliczenia wykonywane przez różne węzły były jak najbardziej niezależne od siebie.
     Nie jest potrzebna wtedy komunikacja podczas trwania obliczenia, dzięki czemu nie występuje narzut komunikacyjny.
     
-    Obliczenia rozproszone mogą działać w modelu klient-serwer.
+    Obliczenia rozproszone mogą działać w modelu klient--serwer.
     Centralny serwer nasłuchuje na połączenia od węzłów, a następnie przydziela im zadania oraz odbiera wyniki obliczeń.
     Nie jest wtedy dostępna komunikacja między węzłami, zatem dostają one niezależne zadania do wykonania.
     To serwer jest odpowiedzialny za ewentualną agregację wyników rozdzielanych zadań.
@@ -430,10 +430,10 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Sprawia to, że część urządzeń z wolną mocą obliczeniową nie daje się wykorzystać do obliczeń
     rozproszonych.
     
-    Rozwiązaniem w tej sytuacji byłoby stworzenie systemu, który działałby na dużej ilości urządzeń
+    Rozwiązaniem w tej sytuacji byłoby stworzenie systemu, który działałby na dużej liczby urządzeń
     bez względu na system operacyjny czy architekturę procesora.
     W celu uniknięcia potrzeby udostępniania aplikacji klienta na wiele platform można zaimplementować
-    klienta jako aplikacja internetowa uruchamiana w przeglądarce. Środowisko to jest przenośne
+    klienta jako aplikację internetową uruchamianą w przeglądarce. Środowisko to jest przenośne
     między różnymi platformami. Wymagana wtedy jest jedynie instalacja przeglądarki internetowej,
     która i tak często dostępna jest domyślnie na wielu urządzeniach.
     Dodanie nowych węzłów do systemu wiązałoby się w takiej sytuacji z otworzeniem odpowiedniego
@@ -472,7 +472,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     Dla nieautoryzowanych użytkowników pozostaje funkcjonalność uczestniczenia w obliczeniach jako węzeł obliczeniowy.
 
     Jako język do implementacji algorytmów wykonywanych w sposób rozproszony został wybrany język C\#.
-    Posiada on dużą ilość pakietów ułatwiających tworzenie algorytmów,
+    Posiada on dużą liczbę pakietów ułatwiających tworzenie algorytmów,
     a także jest statycznie typowanym językiem wysokiego poziomu,
     zatem powinien być przystępny dla użytkowników tworzonego systemu.
     Zbudowane z kodu biblioteki DLL są przetwarzane przez narzędzie \textit{mono-wasm}
@@ -898,7 +898,7 @@ Ponadto, właściciel węzła może skonfigurować ile zadań może być jednocz
 Węzły obliczeniowe zostały zaimplementowane w języku \textit{Typescript}~\cite{typescript} wykorzystując framework \textit{React}~\cite{react} we wzorcu MVVM (\textit{Model, View, ViewModel})~\cite{mvvm}.
 Wzorzec ten zakłada, że dane (\textit{Model}) i ich prezentacja (\textit{View}) są od siebie oddzielone, a warstwą komunikującą jest \textit{ViewModel}, który jest również oddzielnym komponentem.
 Wykorzystanie wzorca MVVM zapewnia niezależność logiki od interfejsu użytkownika oraz pozwala na łatwe przeprowadzanie testów jednostkowych.
-Framework \textit{React} został wybrany ze względu na popularność, która przekłada się na ilość dostępnych komponentów interfejsu użytkownika.
+Framework \textit{React} został wybrany ze względu na popularność, która przekłada się na liczbę dostępnych komponentów interfejsu użytkownika.
 Podczas realizacji interfejsu użytkownika węzła obliczeniowego zostały wykorzystane komponenty dostarczane przez bibliotekę \textit{evergreen}~\cite{evergreen}.
 Motywacją do wybrania języka \textit{Typescript} podczas pisania kodu źródłowego części klienckiej jest oferowane przez niego statyczne typowanie oraz wykrywanie błędów już na etapie kompilacji.
 
@@ -918,7 +918,7 @@ Podczas implementacji panelu administracyjnego wielokrotnie wykorzystany został
 \subsubsection{Wykorzystane technologie}
 Panel administracyjny, podobnie do węzłów obliczeniowych, został zaimplementowany w języku \textit{Typescript}~\cite{typescript} z użyciem frameworka \textit{React}~\cite{react} oraz \textit{next.js}~\cite{next.js} zapewniającego generowanie kodu HTML po stronie serwera. Wykorzystany został wzorzec MVVM~\cite{mvvm}.
 
-Do elementów interfejsu użytkownika poza wspomnianą poprzednio biblioteką \textit{evergreen}~\cite{evergreen} wykorzystano bibliotekę \textit{react-table}~\cite{react-table} do wyświetlania tabel oraz bibliotekę \textit{formik}~\cite{formik} do wyświetlania i zarządzania formularzami. Biblioteki \textit{formik} oraz \textit{react-table} zostały wybrane ze względu na ilość dostępnych funkcjonalności oraz prostotę użycia.
+Do elementów interfejsu użytkownika poza wspomnianą poprzednio biblioteką \textit{evergreen}~\cite{evergreen} wykorzystano bibliotekę \textit{react-table}~\cite{react-table} do wyświetlania tabel oraz bibliotekę \textit{formik}~\cite{formik} do wyświetlania i zarządzania formularzami. Biblioteki \textit{formik} oraz \textit{react-table} zostały wybrane ze względu na liczbę dostępnych funkcjonalności oraz prostotę użycia.
 
 Aby ułatwić pracę ze standardem \textit{JSON API} wykorzystano bibliotekę \textit{kitsu}~\cite{kitsu}.
 Dzięki wykorzystaniu biblioteki, która pokrywa wymagania stawiane przez \textit{JSON API}, projekt nie zawiera kodu związanego z przetwarzaniem danych przesyłanych i odbieranych z API.
@@ -1028,9 +1028,9 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     
     W razie niejasności w specyfikacji lub wymaganiach następował kontakt z~promotorem w~celu
     weryfikacji naszych założeń.
-    Dzięki temu zniwelowana została ilość problemów związanych z~różnicą w interpretacji wymagań,
+    Dzięki temu zniwelowana została liczba problemów związanych z~różnicą w interpretacji wymagań,
     ponieważ wszelkie wątpliwości były rozwiązywane w krótkim czasie.
-    Takie podejście pozwoliło ponadto na zmniejszenie ilości poprawek do projektu na etapie jego
+    Takie podejście pozwoliło ponadto na zmniejszenie liczby poprawek do projektu na etapie jego
     akceptacji przez promotora.
 
 \section{Podział prac}
@@ -1300,7 +1300,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         
         Aby obliczenia się rozpoczęły do systemu musi dołączyć co najmniej jeden węzeł obliczeniowy. Aby urządzenie chcące zostać węzłem obliczeniowym dołączyło do systemu, musi ono wejść do zakładki \texttt{Worker} dostępnej w pasku bocznym, a następnie kliknąć przycisk \texttt{Start the worker}.
         Po kliknięciu przycisk urządzenie zaczynie odpytywać o nowe zadania.
-        Węzły sieciowe mogą w każdym momencie przerwać obliczenia przez kliknięcie przycisk \texttt{Stop the worker} oraz dowolnie konfigurować ilość udostępnianych wątków. 
+        Węzły sieciowe mogą w każdym momencie przerwać obliczenia przez kliknięcie przycisk \texttt{Stop the worker} oraz dowolnie konfigurować liczbę udostępnianych wątków. 
         
         
         Stan węzła obliczeniowego jest dostępny w sekcji \textit{Worker information}, a status użyczonych wątków jest udostępniony do wglądu w tabeli \textit{Individual thread statuses}. W momencie, gdy stan węzła zawiera informację o braku dostępnych zadań do obliczenia wiemy, że nasze zadanie zostało wykonane.
@@ -1337,15 +1337,15 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     
                 W celu zatrzymania węzła obliczeniowego należy po uprzednim uruchomieniu go kliknąć przycisk \texttt{Stop the worker}.
                 
-            \paragraph{Zwiększenie ilości wątków.}   
+            \paragraph{Zwiększenie liczby wątków.}   
                 \noindent Węzeł obliczeniowy do obliczania zadań będzie używał o jednego wątku więcej niż poprzednio. 
 
-                Aby zwiększyć ilość wątków dostępnych do wykonywania obliczeń należy po uprzednim uruchomieniu węzła obliczeniowego kliknąć przycisk z ikoną plusa.
+                Aby zwiększyć liczbę wątków dostępnych do wykonywania obliczeń należy po uprzednim uruchomieniu węzła obliczeniowego kliknąć przycisk z ikoną plusa.
 
-            \paragraph{Zmniejszenie ilości wątków.}   
+            \paragraph{Zmniejszenie liczby wątków.}   
                 \noindent Jeśli usuwany wątek wykonywał obliczenie, to system zgłasza do serwera jego anulowanie. Węzeł obliczeniowy do obliczania zadań będzie teraz używał o jednego wątku mniej niż poprzednio (chyba, że poprzednio używał tylko 1 wątku).
 
-                Aby zmniejszyć ilość wątków dostępnych do wykonywania obliczeń należy po uprzednim uruchomieniu węzła obliczeniowego oraz zwiększeniu liczby używanych wątków kliknąć przycisk z~ikoną minusa.
+                Aby zmniejszyć liczbę wątków dostępnych do wykonywania obliczeń należy po uprzednim uruchomieniu węzła obliczeniowego oraz zwiększeniu liczby używanych wątków kliknąć przycisk z~ikoną minusa.
 
         \subsection{Administrator}
             Poniższe testy są wykonywane z poziomem uprawnień administratora.
@@ -1539,7 +1539,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
             
             W tym projekcie wydajność obliczeń wykonywanych w węzłach nie była jednym z wymagań, ale gdyby tak było, to należałoby ją zweryfikować na początku projektu, aby uniknąć niespodzianek w przyszłości. W aktualnym stanie niemożliwe jest znaczne przyśpieszenie obliczeń w~przeglądarce ze względu na wykorzystanie do tego zewnętrznej biblioteki. Gdyby wydajność była wymaganiem, to należałoby rozważyć skorzystanie z innych rozwiązań pozwalających na kompilację kodu C\# do postaci dającej się wykonać w przeglądarce.
             
-            Brak dokumentacji i większej ilości przykładów sprawił, że wykorzystanie biblioteki \textit{mono-wasm} zajęło więcej czasu, niż początkowo zostało na to zaplanowane.
+            Brak dokumentacji i większej liczby przykładów sprawił, że wykorzystanie biblioteki \textit{mono-wasm} zajęło więcej czasu, niż początkowo zostało na to zaplanowane.
             W przyszłości wykorzystując eksperymentalne biblioteki warto już na samym starcie dokładnie sprawdzić dokumentację oraz przykłady użycia do tego stopnia, żeby zweryfikować czy wszystkie wymagania projektu będą możliwe do zrealizowania. W razie wątpliwości należy na początku skontaktować się z twórcami czy poszukać informacji na Internecie zamiast robić to podczas prób implementacji.
             Jeżeli wydajność programu jest jednym z wymagań, należy na początku przeprowadzić eksperymenty zbliżone do warunków wdrożeniowych aby w razie potrzeb móc zmodyfikować lub przedyskutować ponownie wymagania dotyczące wydajności.
         
@@ -1561,7 +1561,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         \subsection{Integracja w środowisku wdrożeniowym}
             Podczas uruchomienia projektu w środowisku wdrożeniowym mogą pojawić się niespodziewane problemy. Tak było w przypadku tej pracy inżynierskiej. Z uwagi na fakt, że integracja w~środowisku wdrożeniowym została rozpoczęta na miesiąc przed oddaniem projektu, problemy te można było rozwiązać w spokoju i zgodnie z dobrymi praktykami.
             Próbując uruchomić system po raz pierwszy w środowisku wdrożeniowym niedługo przed oddaniem projektu mogłoby się okazać, że powstałych problemów nie da się rozwiązać w krótkim czasie, więc oddanie projektu by się opóźniło.
-            Warto zatem próbować uruchomić system na jak największej ilości środowisk docelowych jak najwcześniej.
+            Warto zatem próbować uruchomić system na jak największej liczby środowisk docelowych jak najwcześniej.
             
         \subsection{Dokładna weryfikacja wymagań}
             Jednym z początkowych wymagań było uruchamianie kodu użytkownika w środowisku izolowanym na serwerze tak, aby nie mógł wyrządzić on niepożądanych działań w systemie ani nie mógł odczytać plików systemowych.
