@@ -350,7 +350,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     
     Wykorzystanie wielu jednostek obliczeniowych do obliczeń jest szczególnie ważne w dzisiejszych czasach.
     Wykładnicze wzrostu częstotliwości taksowania procesorów było
-    opisywane w poprzednich latach przez prawo Moore'a~\cite{prawo-moorea}.
+    opisywane w~poprzednich latach przez prawo Moore'a~\cite{prawo-moorea}.
     Ostatnio daje się zauważyć spadek tego tempa, przez co należy szukać innych metod na wykonanie obliczeń w krótszym czasie.
     Czas wykonania algorytmów można zmniejszyć w znacznym stopniu jedynie poprzez zlecenie ich wykonywania równolegle,
     przez co można wykonać dużo większą liczbę operacji w danej jednostce czasu,
@@ -382,7 +382,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
     
     Istnieją projekty, które można wykonywać niezależnie na wielu urządzeniach i są niewrażliwe na różną wydajność maszyn na których są obliczane.
     Takie projekty mogą korzystać z wsparcia użytkowników Internetu, którzy mogą użyczyć swojej mocy obliczeniowej.
-    Zazwyczaj chęć pomocy wiąże się z pobraniem aplikacji klienckiej, która pozwoli urządzeniu na komunikację z serwerem i wykonywanie obliczeń w ramach projektu.
+    Zazwyczaj chęć pomocy wiąże się z pobraniem aplikacji klienckiej, która pozwoli urządzeniu na komunikację z~serwerem i wykonywanie obliczeń w ramach projektu.
     
     Jednym z takich projektów jest GIMPS~\cite{GIMPS} (\textit{\selectlanguage{english}Great Internet Mersenne Prime Search}).
     Jego celem jest szukanie liczb pierwszych Mersenne'a~\cite{MersennePrimes}.
@@ -479,21 +479,21 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
         Motywacją do tworzenia biblioteki w języku C\# była chęć umożliwienia tworzenia projektów w dojrzałym, statycznie typowanym oraz obiektowym języku, który pozwala na identyfikację błędów już na etapie kompilacji kodu. 
         Wykrywanie błędów na wczesnym etapie jest szczególnie ważne dla projektów uruchamianych w ramach utworzonej platformy.
         W przypadku wykrycia błędów dopiero podczas obliczeń konieczne są dodatkowe iteracje dodawania projektu na serwer, co prowadzi do niezadowolenia oraz straty czasu użytkownika.
-        W celu utworzenia nowego projektu zgodnego z zaplanowaną platformą konieczne będzie jedynie zaimportowanie biblioteki, a następnie utworzenie klasy implementującej wskazany interfejs.
+        W celu utworzenia nowego projektu zgodnego z zaplanowaną platformą konieczne będzie jedynie zaimportowanie biblioteki, a~następnie utworzenie klasy implementującej wskazany interfejs.
         Dzięki takiemu rozwiązaniu programista będzie wiedział co musi zaimplementować, aby projekt był zgodny z zaprojektowanym rozwiązaniem, a dokumentacja dołączona do biblioteki pomoże w razie wątpliwości.
-        Przygotowany system powinien także reagować na odłączanie się węzłów obliczeniowych w trakcie wykonywania zadań oraz umożliwiać wielokrotnie przeprowadzenie tych samych obliczeń w celu wybrania najbardziej wiarygodnego wyniku w razie rozbieżności.
+        Przygotowany system powinien także reagować na odłączanie się węzłów obliczeniowych w trakcie wykonywania zadań oraz umożliwiać wielokrotnie przeprowadzenie tych samych obliczeń w~celu wybrania najbardziej wiarygodnego wyniku w razie rozbieżności.
         W momencie otrzymania różnych wyników dla tego samego podzadania platforma powinna wybierać rozwiązanie zaproponowane przez najbardziej zaufaną grupę węzłów.
         Część systemu działająca w przeglądarce internetowej powinna umożliwiać węzłom obliczeniowym delegowanie wielu wątków do wykonywania obliczeń.
     
     \section{Opis istniejących rozwiązań}
         Istnieją podobne rozwiązania, które spełniają część założonych wymagań.
-        Można odnaleźć w sieci systemy, które pozwalają na wykonanie w sposób rozproszony algorytmów  zaimplementowanych w \textit{WebAssembly}, natomiast zgodnie z naszą wiedzą żaden nie umożliwia uruchamiania projektów C\# w \textit{WebAssembly}.
+        Można odnaleźć w~sieci systemy, które pozwalają na wykonanie w sposób rozproszony algorytmów  zaimplementowanych w \textit{WebAssembly}, natomiast zgodnie z naszą wiedzą żaden nie umożliwia uruchamiania projektów C\# w \textit{WebAssembly}.
         Zgodnie z posiadaną przez nas wiedzą nie istnieje żaden system, który wyszedłby poza fazę testową i w pełni wspierał wykonywanie obliczeń rozproszonych zgodnie z założeniami projektu.
         Poniżej zostały przedstawione znalezione przez nas projekty zajmujące się podobnym problemem:
         
         \begin{description}
             \item[Distributed Compute Labs~\cite{distributed-compute-labs}] --- rozwiązanie pozwalające na uruchamianie obliczeń rozproszonych w przeglądarce w technologiach \textit{WebAssembly} oraz \textit{WebGL}. Na stronie rozwiązania brakuje informacji o formacie dostarczanych do wykonania zadań i znajduje się ono w fazie testów. W ramach zachęty do obliczeń autorzy udostępniają gry, w których konto użytkownika rozwija się na skutek wykonywania obliczeń rozproszonych.
-            \item[dis.io~\cite{dis-io}] --- platforma pozwalająca na uruchomienie obliczeń rozproszonych w przeglądarce w technologii \textit{Javascript}. Projekt wygląda na porzucony, ostatnie zmiany w kodzie źródłowym miały miejsce kilka lat temu.
+            \item[dis.io~\cite{dis-io}] --- platforma pozwalająca na uruchomienie obliczeń rozproszonych w przeglądarce w~technologii \textit{Javascript}. Projekt wygląda na porzucony, ostatnie zmiany w kodzie źródłowym miały miejsce kilka lat temu.
             \item[Distri.js~\cite{distri-js}] --- projekt pozwala na uruchamianie obliczeń rozproszonych w przeglądarce w technologii \textit{Javascript}, prawdopodobnie jest porzucony.
         \end{description}
         
@@ -620,7 +620,7 @@ samodzielnie, co poświadczam własnoręcznym podpisem.
                 & Serwer po ponownym uruchomieniu nie powinien utracić dodanych wcześniej danych i kontynuować rozdzielanie zadań.  \\ \cline{2-3}                
                 
                 & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
-                & Aplikacja powinna wykrywać rozbieżne wyniki podzadania zwrócone przez kilka węzłów obliczeniowych i zwracać wynik obliczony przez najbardziej zaufane węzły. \\ \hline
+                & Aplikacja powinna wykrywać rozbieżne wyniki podzadania zwrócone przez kilka węzłów obliczeniowych i~zwracać wynik obliczony przez najbardziej zaufane węzły. \\ \hline
                 
                 \makecell[l]{Wydajność \\ (\textit{Performance})}
                 & \stepcounter{WymaganiaNiefunkcjonalne} \arabic{WymaganiaNiefunkcjonalne}
@@ -653,7 +653,11 @@ Zaprojektowany system składa się z trzech modułów:
     \item Interfejsu dla węzłów obliczeniowych
 \end{itemize}
 
-Na rysunku~\ref{project-model} znajdują się wyodrębnione moduły wraz z urządzeniami podłączonymi do systemu. Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet. Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym interfejs użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych, jak i administratora). Proxy akceptuje jedynie protokół HTTP (port 80). Protokół HTTPS (port 443) nie jest zapewniany w ramach przygotowanego systemu.
+Na rysunku~\ref{project-model} znajdują się wyodrębnione moduły wraz z urządzeniami podłączonymi do systemu.
+Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet.
+Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym interfejs użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych, jak i administratora).
+Proxy akceptuje jedynie protokół HTTP (port 80).
+Protokół HTTPS (port 443) nie jest zapewniany w~ramach przygotowanego systemu. Zakładamy, że jest on dostarczany przez infrastrukturę w~ramach której uruchamiany jest utworzony system.
 
 
 \begin{figure} \centering{
@@ -669,7 +673,7 @@ W tej sekcji znajdują się opisy poszczególnych modułów wraz z ich podziałe
 
 \paragraph{Serwer}
 
-stanowi główny komponent całego systemu obliczeń rozproszonych. Do jego zadań należy między innymi zarządzanie encjami w bazie danych, przygotowanie bibliotek utworzonych w \textit{.NET Standard 2.0}~\cite{dotnet-standard} do uruchomienia w \textit{WebAssembly}~\cite{webassembly} oraz dystrybucja zadań pomiędzy węzłami obliczeniowymi. Serwer udostępnia także API zgodne ze standardem \textit{JSON API}~\cite{jsonapi}.
+stanowi główny komponent całego systemu obliczeń rozproszonych. Do jego zadań należy między innymi zarządzanie encjami w bazie danych, przygotowanie bibliotek utworzonych w~\textit{.NET Standard 2.0}~\cite{dotnet-standard} do uruchomienia w \textit{WebAssembly}~\cite{webassembly} oraz dystrybucja zadań pomiędzy węzłami obliczeniowymi. Serwer udostępnia także API zgodne ze standardem \textit{JSON API}~\cite{jsonapi}.
 
 Komponenty składowe serwera zostały przedstawione na rysunku~\ref{server-model}.
 
@@ -715,14 +719,14 @@ Poniższa sekcja zawiera szczegółowy opis implementacji z podziałem na poszcz
 Serwer składa się z kontrolerów API działających w oparciu o \textit{ASP.NET Core 2.2}~\cite{aspnet-core}.
 Obsługują one zapytania dotyczące wszystkich encji na serwerze i wywołują odpowiednie metody serwisów odpowiadających encji.
 Serwisy pośredniczące w akcjach wywoływanych przez kontrolery są odpowiedzialne za wywoływanie dodatkowej logiki umieszczonej pomiędzy kontrolerami, a warstwą dostępu do danych.
-Każdy z tych serwisów implementuje \texttt{EntityResourceService} i pozwala zarówno na wpłynięcie na odpowiedź kontrolera po otrzymaniu zapytania \textit{HTTP}, jak i uruchamianie dodatkowej, całkowicie niepowiązanej z kontrolerami logiki.
+Każdy z tych serwisów implementuje \texttt{EntityResourceService} i~pozwala zarówno na wpłynięcie na odpowiedź kontrolera po otrzymaniu zapytania \textit{HTTP}, jak i uruchamianie dodatkowej, całkowicie niepowiązanej z kontrolerami logiki.
 Przykładem logiki wykonywanej w opisanych serwisach jest weryfikacja unikalności nazwy dodawanego zadania.
 
 Podczas działania serwera konieczne jest uruchamianie metod użytkownika z klasy implementującej interfejs \texttt{IProblemPlugin} (opisanej w sekcji~\ref{biblioteka-szczegoly}) aby móc uzyskać ostateczny wynik obliczeń lub podzielić zadanie na podzadania na podstawie danych wejściowych.
 Aby uprościć logikę związaną z wykonywaniem opisanych akcji wykorzystany został wzorzec projektowy --- fasada.
 Realizacja wzorca odbyła się przez utworzenie klasy \texttt{ProblemPluginFacade}, która udostępnia jedynie metody wymagane do podzielenia zadania oraz scalenia wyników, a sama wykonuje logikę związaną z konwersją danych oraz wywoływaniem odpowiednich metod zaimplementowanych przez użytkownika.
 Aby utworzyć instancję \texttt{ProblemPluginFacade} konieczne jest wykorzystanie refleksji oraz aplikowanie typów generycznych nieznanych na etapie kompilacji.
-Z uwagi na brak możliwości rzutowania na typy nieznane na etapie kompilacji podczas tego procesu zostaje utworzona instancja klasy \texttt{ProblemPluginFacade}, a następnie jest ona rzutowana na interfejs odpowiadający tej klasie, lecz nie zawierający generycznych parametrów.
+Z~uwagi na brak możliwości rzutowania na typy nieznane na etapie kompilacji podczas tego procesu zostaje utworzona instancja klasy \texttt{ProblemPluginFacade}, a następnie jest ona rzutowana na interfejs odpowiadający tej klasie, lecz nie zawierający generycznych parametrów.
 Z tego powodu został wykorzystany wzorzec fabryki.
 Klasa \texttt{ProblemPluginFacadeFactory} jest odpowiedzialna za utworzenie instancji \texttt{ProblemPluginFacade} na podstawie assembly dostarczonego przez użytkownika.
 
@@ -786,7 +790,7 @@ Zadanie (\texttt{DistributedTask}) początkowo znajduje się w stanie \textit{W 
     \label{task-state-diagram}
 \end{figure}
 
-Rysunek~\ref{subtask-state-diagram} przedstawia diagram stanów dla podzadań. Podzadanie po utworzeniu oczekuje na wykonanie przez węzły. Gdy zadanie zostaje przydzielone węzłowi, przechodzi one do stanu \textit{W trakcie obliczeń}. Z uwagi na poziomy zaufania węzłów (opisane w sekcji~\ref{poziom-zaufania-wezlow}) podzadanie może zostać wykonane przez kilka węzłów. Do zamodelowania obliczania danego podzadania przez konkretny węzeł służy klasa \texttt{SubtaskInProgress}. W trakcie obliczania wyniku przez węzeł może pojawić się błąd. W takim przypadku w zależności od tego czy limit prób został już wyczerpany czy nie, podzadanie odpowiednio przechodzi do stanu \textit{Zakończone błędem} lub pozostaje w stanie \textit{W trakcie obliczeń}. Jeżeli obliczenie przebiegnie bezbłędnie, zadanie przechodzi do stanu \textit{Wykonane}. Wynik podzadania zostanie zapisany w bazie danych.
+Rysunek~\ref{subtask-state-diagram} przedstawia diagram stanów dla podzadań. Podzadanie po utworzeniu oczekuje na wykonanie przez węzły. Gdy zadanie zostaje przydzielone węzłowi, przechodzi one do stanu \textit{W trakcie obliczeń}. Z uwagi na poziomy zaufania węzłów (opisane w sekcji~\ref{poziom-zaufania-wezlow}) podzadanie może zostać wykonane przez kilka węzłów. Do zamodelowania obliczania danego podzadania przez konkretny węzeł służy klasa \texttt{SubtaskInProgress}. W trakcie obliczania wyniku przez węzeł może pojawić się błąd. W takim przypadku w zależności od tego czy limit prób został już wyczerpany czy nie, podzadanie odpowiednio przechodzi do stanu \textit{Zakończone błędem} lub pozostaje w~stanie \textit{W trakcie obliczeń}. Jeżeli obliczenie przebiegnie bezbłędnie, zadanie przechodzi do stanu \textit{Wykonane}. Wynik podzadania zostanie zapisany w bazie danych.
 
 \begin{figure} \centering{
         \includegraphics[scale=0.60]{images/subtask-state-diagram.pdf}}
@@ -795,7 +799,7 @@ Rysunek~\ref{subtask-state-diagram} przedstawia diagram stanów dla podzadań. P
 \end{figure}
 
 
-Na rysunku~\ref{task-definition-sequence-diagram} został przedstawiony diagram sekwencji dodawania nowej definicji zadania z wykorzystaniem API udostępnianego przez serwer. 
+Na rysunku~\ref{task-definition-sequence-diagram} został przedstawiony diagram sekwencji dodawania nowej definicji zadania z~wykorzystaniem API udostępnianego przez serwer. 
 Na początku użytkownik przesyła assembly, w którym istnieje klasa implementująca wspomniany już interfejs \texttt{IProblemPlugin}.
 Dodatkowo użytkownik powinien załączyć pozostałe biblioteki DLL wykorzystywane w projekcie.
 Po przesłaniu tych plików na serwer zostają one zapisane na dysku, po czym assembly zawierające implementację interfejsu \texttt{IProblemPlugin} zostaje wczytane i przeanalizowane pod kątem poprawności.
@@ -837,7 +841,7 @@ Interfejs \texttt{IProblemPlugin} wymaga implementacji:
 
 Dane serializowane i deserializowane są w następujący sposób. Po przesłaniu pliku zawierającego zserializowane zadanie \texttt{TTask}, zadanie to zostaje zdeserializowane na serwerze i za pomocą metody \texttt{DivideTask} podzielone na podzadania \texttt{TSubtask}, po czym podzadania te zostają zserializowane i zapisane w bazie danych.
 
-Następnie po przydzieleniu podzadania do konkretnego węzła i pobraniu tego zserializowanego podzadania, węzeł deserializuje to podzadanie, po czym oblicza jego wynik metodą \texttt{Compute}. Wynik \texttt{TSubtaskResult} jest serializowany i przesyłany na serwer, który umieszcza wynik w bazie danych.
+Następnie po przydzieleniu podzadania do konkretnego węzła i pobraniu tego zserializowanego podzadania, węzeł deserializuje to podzadanie, po czym oblicza jego wynik metodą \texttt{Compute}. Wynik \texttt{TSubtaskResult} jest serializowany i przesyłany na serwer, który umieszcza wynik w~bazie danych.
 
 W momencie, gdy ostatnie podzadanie zostaje ukończone, wyniki wszystkich podzadań \texttt{TSubtaskResult} są pobierane przez serwer z bazy danych, następnie uruchamiana jest metoda \texttt{JoinSubtaskResults}, po czym wynik zadania \texttt{TTaskResult} jest zapisywany przez serwer w bazie danych.
 
@@ -848,7 +852,7 @@ W momencie, gdy ostatnie podzadanie zostaje ukończone, wyniki wszystkich podzad
 \end{figure}
 
 \subsubsection{Wykorzystane technologie}
-Biblioteka do implementacji algorytmów rozproszonych została zaimplementowana w języku C\# w technologii \textit{.NET Standard 2.0}~\cite{dotnet-standard}. Wybór technologii wynika z jej kompatybilności z platformami \textit{.NET Core} oraz \textit{.NET Framework}.
+Biblioteka do implementacji algorytmów rozproszonych została zaimplementowana w języku C\# w technologii \textit{.NET Standard 2.0}~\cite{dotnet-standard}. Wybór technologii wynika z jej kompatybilności z~platformami \textit{.NET Core} oraz \textit{.NET Framework}.
 
 \subsection{Węzły obliczeniowe}
 
@@ -912,8 +916,8 @@ Konfiguracja ciasteczek wysyłanych do przeglądarki sprawia, że przeglądarka 
 Zostało to zrealizowane za pomocą parametru ciasteczek --- \textit{SameSite} ustawionego na wartość \textit{lax}.
 
 Ponadto, serwer API nie dołącza do odpowiedzi nagłówków modyfikujących politykę \textit{Same--Origin Policy}~\cite{same-origin-policy}. W rezultacie wszelkie próby wysłania zapytań z ciasteczkami podczas znajdowania się na innej domenie, niż domena, na której pracuje serwer API, zostaną zablokowane przez przeglądarkę. 
-Zapytania nie zawierające ciasteczek nie są blokowane przez serwer API, lecz treść odpowiedzi nie jest możliwa do odczytania, w wyniku czego jedyna możliwa interakcja z serwerem z innej domeny to rejestrowanie nowych węzłów.
-Pozostałe zapytania realizowane w ramach węzłów obliczeniowych są niemożliwe do wykonania ze względu na konieczność wysyłania danych identyfikujących węzeł, których nie da się uzyskać podczas rejestracji z innej domeny.
+Zapytania nie zawierające ciasteczek nie są blokowane przez serwer API, lecz treść odpowiedzi nie jest możliwa do odczytania, w wyniku czego jedyna możliwa interakcja z~serwerem z innej domeny to rejestrowanie nowych węzłów.
+Pozostałe zapytania realizowane w~ramach węzłów obliczeniowych są niemożliwe do wykonania ze względu na konieczność wysyłania danych identyfikujących węzeł, których nie da się uzyskać podczas rejestracji z innej domeny.
 
 
 Formularze wysyłane z innych domen, niż domena, na której uruchomiony jest serwer API wyślą żądania do serwera API, ale ciasteczka ze względu na ich konfigurację zostaną dołączone jedynie w przypadku wysłania formularza metodą \textit{GET}.
@@ -940,7 +944,7 @@ Powyższe zabezpieczenie sprawia, że węzły nie są w stanie manipulować rezu
 \label{poziom-zaufania-wezlow}
 
 Może zdarzyć się taka sytuacja, że jako węzły obliczeniowe dołączą urządzenia, które celowo będą wysyłały niepoprawne wyniki obliczeń. 
-Aby nie zakłóciło to natychmiast pracy systemu z każdym węzłem obliczeniowym jest powiązany jego \textit{poziom zaufania}. Tworząc nowe zadanie z konkretnymi danymi wejściowymi administrator ustawi wymagany poziom zaufania do zakończenia obliczeń podzadań.
+Aby nie zakłóciło to natychmiast pracy systemu z każdym węzłem obliczeniowym jest powiązany jego \textit{poziom zaufania}. Tworząc nowe zadanie z~konkretnymi danymi wejściowymi administrator ustawi wymagany poziom zaufania do zakończenia obliczeń podzadań.
 Każde z podzadań utworzonych na podstawie zadania będzie uznawane za zakończone, gdy suma poziomów zaufania węzłów, które zwróciły wyniki przekroczy wymagany poziom zaufania zadania.
 Wynikiem każdego z podzadań będzie wynik, dla którego suma poziomów zaufania węzłów, które go zwróciły, była maksymalna.
 
@@ -949,7 +953,7 @@ Podzadanie zostanie zakończone, ponieważ suma poziomów zaufania jest większa
 
 \[2,5 + 1 + 2 = 5,5 > 5\]
 
-Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez węzły o sumarycznym poziomie zaufania 3,5, podczas gdy wynik 5 został zwrócony przez węzły o sumarycznym poziomie zaufania 2.
+Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez węzły o~sumarycznym poziomie zaufania 3,5, podczas gdy wynik 5 został zwrócony przez węzły o~sumarycznym poziomie zaufania 2.
 
 \begin{table}
     \centering
@@ -982,13 +986,13 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     równolegle dwóch osobnych systemów.
     
     Później odbyła się faza testowania.
-    Stworzone zostały testy jednostkowe serwera API, które w izolacji sprawdzały poprawność działania klas serwera.
+    Stworzone zostały testy jednostkowe serwera API, które w~izolacji sprawdzały poprawność działania klas serwera.
     Następnie przetestowane zostały elementy interfejsu użytkownika, w szczególności klasy używane przez węzeł obliczeniowy.
     Na końcu przygotowano testy integracyjne całego systemu (ang. \textit{\selectlanguage{english}end-to-end tests}),
     które pozwoliły zautomatyzować wykonywanie manualnych testów sprawdzających najbardziej typowe przypadki
     użycia aplikacji.
     W pozostałych scenariuszach użycia wykonane były testy manualne.
-    Tak było w przypadku testów akceptacyjnych.
+    Tak było w~przypadku testów akceptacyjnych.
     
     Przez cały czas trwania projektu postęp w wykonywaniu zadań zapisywany był w narzędziu Trello.
     W tej wirtualnej tablicy zapisane były aktualnie wykonywane zadania, kto je wykonuje, a także
@@ -1001,9 +1005,9 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     W przypadku akceptacji zmian były one dołączane do głównej gałęzi repozytorium, a zadanie uznawane było
     za zakończone.
     
-    W razie niejasności w specyfikacji lub wymaganiach następował kontakt z promotorem w celu
+    W razie niejasności w specyfikacji lub wymaganiach następował kontakt z~promotorem w~celu
     weryfikacji naszych założeń.
-    Dzięki temu zniwelowana została ilość problemów związanych z różnicą w interpretacji wymagań,
+    Dzięki temu zniwelowana została ilość problemów związanych z~różnicą w interpretacji wymagań,
     ponieważ wszelkie wątpliwości były rozwiązywane w krótkim czasie.
     Takie podejście pozwoliło ponadto na zmniejszenie ilości poprawek do projektu na etapie jego
     akceptacji przez promotora.
@@ -1164,7 +1168,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
     
         Jeśli projekt jest uruchamiany na serwerze, który nie posiada ograniczeń w dostępie do sieci, to można przejść do podpunktu \ref{start-system}. W przeciwnym wypadku należy zbudować obrazy \textit{Docker} na maszynie z dostępem do sieci, a następnie skopiować przygotowane obrazy na maszynę docelową, na której system ma być uruchomiony.
         
-        Zakładamy, że katalog zawierający kod źródłowy projektu nazwany jest \texttt{distributed-computing-webworker}. Jeżeli będzie nazwany w inny sposób, poniższe komendy powinny zostać zmodyfikowane, zamieniając \texttt{distributed-computing-webworker} w nazwach obrazów na nazwę katalogu, w którym znajduje się kod źródłowy projektu. 
+        Zakładamy, że katalog zawierający kod źródłowy projektu nazwany jest \texttt{distributed-computing-webworker}. Jeżeli będzie nazwany w inny sposób, poniższe komendy powinny zostać zmodyfikowane, zamieniając \texttt{distributed-computing-webworker} w~nazwach obrazów na nazwę katalogu, w którym znajduje się kod źródłowy projektu. 
         W celu zbudowania obrazów \textit{Docker} należy wywołać następujące komendy na maszynie budującej:
 
         \begin{verbatim}
@@ -1260,7 +1264,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         \subsubsection{Dodanie nowego zadania}
         \label{distributed-task-add-guide}
         
-        Aby dodać nowe zadanie należy przejść do zakładki \texttt{Distributed Task Definitions}, a następnie kliknąć w przycisk z napisem \texttt{See details} przy wybranej definicji zadania.
+        Aby dodać nowe zadanie należy przejść do zakładki \texttt{Distributed Task Definitions}, a następnie kliknąć przycisk z napisem \texttt{See details} przy wybranej definicji zadania.
         Z tej strony możliwe jest zlecenie obliczenia nowych danych wejściowych.
         W tym celu należy kliknąć na ikonę plusa na zielonym tle znajdującego się nad tabelą z zadaniami.
         W celu zlecenia wykonania zadania należy wypełnić widoczny formularz.
@@ -1268,14 +1272,14 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         Pole \textit{Priority} określa priorytet zadania, im jest wyższy, tym szybciej zostanie ono przekazane do wykonania.
         Pole \textit{Trust level to complete} określa wymaganą sumę poziomów zaufania węzłów obliczeniowych wykonujących każde z podzadań, aby móc je zakończyć. 
         W polu \textit{Task input} należy umieścić plik zawierający dane wejściowe.
-        Po wypełnieniu wszystkich pól należy wysłać formularz klikając w przycisk \texttt{Submit}. Po kliknięciu nastąpi przekierowanie do detali utworzonego zadania. 
+        Po wypełnieniu wszystkich pól należy wysłać formularz klikając przycisk \texttt{Submit}. Po kliknięciu nastąpi przekierowanie do detali utworzonego zadania. 
         W skład detali wchodzą informacje o utworzonym zadaniu oraz status poszczególnych podzadań. W górnej części widocznej strony znajdują się również przyciski pozwalające na zarządzanie zadaniem oraz pobranie danych wejściowych.
         
         \subsubsection{Rozpoczęcie obliczeń}
         
-        Aby obliczenia się rozpoczęły do systemu musi dołączyć co najmniej jeden węzeł obliczeniowy. Aby urządzenie chcące zostać węzłem obliczeniowym dołączyło do systemu, musi ono wejść do zakładki \texttt{Worker} dostępnej w pasku bocznym, a następnie kliknąć na przycisk \texttt{Start the worker}.
-        Po kliknięciu w przycisk urządzenie zaczynie odpytywać o nowe zadania.
-        Węzły sieciowe mogą w każdym momencie przerwać obliczenia przez kliknięcie w przycisk \texttt{Stop the worker} oraz dowolnie konfigurować ilość udostępnianych wątków. 
+        Aby obliczenia się rozpoczęły do systemu musi dołączyć co najmniej jeden węzeł obliczeniowy. Aby urządzenie chcące zostać węzłem obliczeniowym dołączyło do systemu, musi ono wejść do zakładki \texttt{Worker} dostępnej w pasku bocznym, a następnie kliknąć przycisk \texttt{Start the worker}.
+        Po kliknięciu przycisk urządzenie zaczynie odpytywać o nowe zadania.
+        Węzły sieciowe mogą w każdym momencie przerwać obliczenia przez kliknięcie przycisk \texttt{Stop the worker} oraz dowolnie konfigurować ilość udostępnianych wątków. 
         
         
         Stan węzła obliczeniowego jest dostępny w sekcji \textit{Worker information}, a status użyczonych wątków jest udostępniony do wglądu w tabeli \textit{Individual thread statuses}. W momencie, gdy stan węzła zawiera informację o braku dostępnych zadań do obliczenia wiemy, że nasze zadanie zostało wykonane.
@@ -1285,8 +1289,8 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         
         Aby sprawdzić rezultat zleconego zadania należy wybrać opcję \texttt{Distributed Tasks} w panelu bocznym.
         Strona ta zawiera zadania znajdujące się w systemie.
-        Aby sprawdzić wynik dodanego wcześniej zadania należy kliknąć w przycisk \texttt{See details} w wierszu zawierającym to zadanie.
-        Po przekierowaniu do strony zawierającej detale zadania można pobrać plik wynikowy klikając na przycisk \texttt{Download results}.
+        Aby sprawdzić wynik dodanego wcześniej zadania należy kliknąć przycisk \texttt{See details} w wierszu zawierającym to zadanie.
+        Po przekierowaniu do strony zawierającej detale zadania można pobrać plik wynikowy klikając przycisk \texttt{Download results}.
 
     
     \section{Testy akceptacyjne}
@@ -1305,35 +1309,35 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
             \paragraph{Uruchomienie węzła obliczeniowego.} 
                 \noindent Użytkownik zostaje zarejestrowany jako węzeł obliczeniowy i zaczyna odpytywać serwer.
                 
-                W celu uruchomienia węzła obliczeniowego należy przejść do panelu węzła obliczeniowego, a następnie kliknąć w przycisk \texttt{Start the worker}. 
+                W celu uruchomienia węzła obliczeniowego należy przejść do panelu węzła obliczeniowego, a~następnie kliknąć przycisk \texttt{Start the worker}. 
                 
             \paragraph{Zatrzymanie węzła obliczeniowego.}  
                 \noindent Wykonywanie obliczeń zostaje anulowane, a użytkownik może swobodnie opuścić stronę węzła obliczeniowego.
     
-                W celu zatrzymania węzła obliczeniowego należy po uprzednim uruchomieniu go kliknąć w przycisk \texttt{Stop the worker}.
+                W celu zatrzymania węzła obliczeniowego należy po uprzednim uruchomieniu go kliknąć przycisk \texttt{Stop the worker}.
                 
             \paragraph{Zwiększenie ilości wątków.}   
                 \noindent Węzeł obliczeniowy do obliczania zadań będzie używał o jednego wątku więcej niż poprzednio. 
 
-                Aby zwiększyć ilość wątków dostępnych do wykonywania obliczeń należy po uprzednim uruchomieniu węzła obliczeniowego kliknąć w przycisk z ikoną plusa.
+                Aby zwiększyć ilość wątków dostępnych do wykonywania obliczeń należy po uprzednim uruchomieniu węzła obliczeniowego kliknąć przycisk z ikoną plusa.
 
             \paragraph{Zmniejszenie ilości wątków.}   
                 \noindent Jeśli usuwany wątek wykonywał obliczenie, to system zgłasza do serwera jego anulowanie. Węzeł obliczeniowy do obliczania zadań będzie teraz używał o jednego wątku mniej niż poprzednio (chyba, że poprzednio używał tylko 1 wątku).
 
-                Aby zmniejszyć ilość wątków dostępnych do wykonywania obliczeń należy po uprzednim uruchomieniu węzła obliczeniowego oraz zwiększeniu liczby używanych wątków kliknąć w przycisk z ikoną minusa.
+                Aby zmniejszyć ilość wątków dostępnych do wykonywania obliczeń należy po uprzednim uruchomieniu węzła obliczeniowego oraz zwiększeniu liczby używanych wątków kliknąć przycisk z~ikoną minusa.
 
         \subsection{Administrator}
             Poniższe testy są wykonywane z poziomem uprawnień administratora.
 
             \paragraph{Dodanie definicji zadania.}   
-                \noindent Zadanie zostaje zapisane w systemie i jest widoczne w tabeli z zadaniami. 
+                \noindent Zadanie zostaje zapisane w systemie i jest widoczne w tabeli z~zadaniami. 
 
-                Aby dodać nową definicję zadania do systemu należy przejść do strony zawierającej tabelę z definicjami zadań. Kolejnym krokiem jest kliknięcie w ikonę plusa, która przekieruje użytkownika do formularza dodawania nowego zadania. Formularz należy wypełnić zgodnie z \ref{distributed-task-definition-add-guide}, a następnie wysłać.
+                Aby dodać nową definicję zadania do systemu należy przejść do strony zawierającej tabelę z~definicjami zadań. Kolejnym krokiem jest kliknięcie w ikonę plusa, która przekieruje użytkownika do formularza dodawania nowego zadania. Formularz należy wypełnić zgodnie z \ref{distributed-task-definition-add-guide}, a~następnie wysłać.
 
             \paragraph{Informacje o zadaniu.}    
                 \noindent Wyświetlona strona zawiera informacje o zadaniu wraz z postępem wykonywania przez węzły obliczeniowe. 
                 
-                Aby wyświetlić szczegółowe informacje o zadaniu należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk \texttt{See details} przy dowolnym zadaniu.
+                Aby wyświetlić szczegółowe informacje o zadaniu należy przejść do tabeli zawierającej zadania, a następnie kliknąć przycisk \texttt{See details} przy dowolnym zadaniu.
                 
             \paragraph{Lista definicji zadań.}  
                 \noindent Wyświetlona strona zawiera listę definicji zadań wraz z ich nazwą oraz odnośnikiem do szczegółowych informacji o każdej z definicji.
@@ -1343,43 +1347,43 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
             \paragraph{Lista dodanych zadań.}   
                 \noindent Wyświetlona strona zawiera listę zadań wraz z ich nazwą, odnośnikiem do definicji zadania oraz odnośnikiem do szczegółów zadania.
                 
-                Aby wyświetlić stronę zawierającą listę zadań należy wybrać opcję \texttt{Distributed Tasks} z panelu bocznego.
+                Aby wyświetlić stronę zawierającą listę zadań należy wybrać opcję \texttt{Distributed Tasks} z~panelu bocznego.
 
             \paragraph{Usunięcie zadania.}  
                 \noindent Zadanie wraz z podzadaniami zostają usunięte z systemu.
                 
-                Aby usunąć zadanie należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk \texttt{Delete} przy wybranym zadaniu.
+                Aby usunąć zadanie należy przejść do tabeli zawierającej zadania, a następnie kliknąć przycisk \texttt{Delete} przy wybranym zadaniu.
 
             \paragraph{Usunięcie definicji zadania.}    
                 \noindent Definicja zadania wraz z zadaniami i podzadaniami zostają usunięte z systemu.
                 
-                Aby usunąć definicję zadania należy przejść do tabeli zawierającej definicje zadania, a następnie kliknąć w przycisk \texttt{Delete} przy wybranej definicji zadania. 
+                Aby usunąć definicję zadania należy przejść do tabeli zawierającej definicje zadania, a następnie kliknąć przycisk \texttt{Delete} przy wybranej definicji zadania. 
 
             \paragraph{Pobieranie wyników.} 
-                \noindent Po kliknięciu w przycisk zostaje pobrany plik zawierający
+                \noindent Po kliknięciu przycisk zostaje pobrany plik zawierający
                 wynik zadania.
                 
-                Aby pobrać wyniki zadania należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk \texttt{See details} przy zadaniu o statusie \textit{Done}. Po przekierowaniu na stronę z detalami zadania należy kliknąć w przycisk \texttt{Download results}.
+                Aby pobrać wyniki zadania należy przejść do tabeli zawierającej zadania, a następnie kliknąć przycisk \texttt{See details} przy zadaniu o statusie \textit{Done}. Po przekierowaniu na stronę z detalami zadania należy kliknąć przycisk \texttt{Download results}.
 
             \paragraph{Pobieranie danych wejściowych.}  
-                \noindent Po kliknięciu w przycisk zostaje pobrany plik zawierający dane wejściowe zadania.
+                \noindent Po kliknięciu przycisk zostaje pobrany plik zawierający dane wejściowe zadania.
                 
-                Aby pobrać dane wejściowe zadania należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk \texttt{See details} przy dowolnym zadaniu. Po przekierowaniu na stronę z detalami zadania należy kliknąć w przycisk \texttt{Download input data}.
+                Aby pobrać dane wejściowe zadania należy przejść do tabeli zawierającej zadania, a następnie kliknąć przycisk \texttt{See details} przy dowolnym zadaniu. Po przekierowaniu na stronę z detalami zadania należy kliknąć przycisk \texttt{Download input data}.
 
             \paragraph{Edycja zadania.}  
                 \noindent Informacje o zadaniu zostają zmienione.
                 
-                Aby edytować zadanie należy przejść do tabeli zawierającej zadania, a następnie kliknąć w przycisk \texttt{Edit} przy dowolnym zadaniu. Po przekierowaniu należy wypełnić formularz, a następnie go wysłać.
+                Aby edytować zadanie należy przejść do tabeli zawierającej zadania, a następnie kliknąć przycisk \texttt{Edit} przy dowolnym zadaniu. Po przekierowaniu należy wypełnić formularz, a następnie go wysłać.
 
             \paragraph{Edycja definicji zadania.}    
                 \noindent Informacje o definicji zadania zostają zmienione.
                 
-                Aby edytować definicję zadania należy przejść do tabeli zawierającej definicje zadań, a następnie kliknąć w przycisk \texttt{Edit} przy dowolnej definicji zadania. Po przekierowaniu należy wypełnić formularz, a następnie go wysłać.
+                Aby edytować definicję zadania należy przejść do tabeli zawierającej definicje zadań, a następnie kliknąć przycisk \texttt{Edit} przy dowolnej definicji zadania. Po przekierowaniu należy wypełnić formularz, a następnie go wysłać.
 
             \paragraph{Wylogowanie.}
                 \noindent Użytkownik zostaje wylogowany i przestaje mieć status administratora.
 
-                W celu wylogowania należy kliknąć w przycisk \texttt{Logout} z panelu bocznego
+                W celu wylogowania należy kliknąć przycisk \texttt{Logout} z panelu bocznego
 
 
             \subsubsection{}    
@@ -1406,13 +1410,13 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         \subsection{Wieloplatformowość}
             Dowolne urządzenie wyposażone w przeglądarkę internetową obsługującą \textit{WebAssembly} może zostać węzłem obliczeniowym.
             W momencie tworzenia powyższego dokumentu zgodnie z danymi pobranymi ze strony \textit{Can I use?}~\cite{can-i-use} $80,76\%$ użytkowników sieci Internet korzysta z przeglądarek posiadających w pełni działającą implementację \textit{WebAssembly}.
-            Podczas testów przygotowanego rozwiązania węzły obliczeniowe zostały z powodzeniem uruchomione na komputerach pracujących z systemami operacyjnymi \textit{Windows 10} oraz \textit{Ubuntu}, telefonach komórkowych działających z systemami \textit{Android} oraz \textit{iOS}, a także na czytniku książek elektronicznych --- \textit{PocketBook 2HD Touch}.
+            Podczas testów przygotowanego rozwiązania węzły obliczeniowe zostały z powodzeniem uruchomione na komputerach pracujących z systemami operacyjnymi \textit{Windows 10} oraz \textit{Ubuntu}, telefonach komórkowych działających z~systemami \textit{Android} oraz \textit{iOS}, a także na czytniku książek elektronicznych --- \textit{PocketBook 2HD Touch}.
             
             Dzięki zastosowaniu kontenerów \textit{Docker} do uruchamiania aplikacji przygotowany system może zostać wdrożony na dowolnym systemie operacyjnym posiadającym wsparcie dla aplikacji \textit{Docker} oraz \textit{docker-compose}.
         
         \subsection{Prostota obsługi}
             Interfejs graficzny udostępniany użytkownikom jest intuicyjny i pozwala na korzystanie z systemu bez zastanawiania się jaki powinien być kolejny krok.
-            Na prostotę postawiono w szczególności w części interfejsu odpowiedzialnej za węzły obliczeniowe, aby rozpocząć obliczenia należy jedynie wejść na odpowiednią stronę i kliknąć w jeden przycisk.
+            Na prostotę postawiono w szczególności w części interfejsu odpowiedzialnej za węzły obliczeniowe, aby rozpocząć obliczenia należy jedynie wejść na odpowiednią stronę i kliknąć przycisk.
             Podczas wątpliwości przy tworzeniu elementów interfejsu graficznego kierowano się zaleceniami zaproponowanymi na stronie z dobrymi wzorcami do wykorzystania w interfejsie użytkownika --- \textit{Material Design}~\cite{material-design}.
         
         \subsection{Bezpieczeństwo}
@@ -1424,14 +1428,14 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         Poniższa sekcja opisuje możliwości dalszego rozwoju aplikacji.
     
         \paragraph{Poprawienie wydajności węzłów obliczeniowych.}
-        W ramach dalszego rozwoju utworzonej aplikacji należałoby wykorzystywać kompilację \textit{C\#} do \textit{WebAssembly}, aby zagwarantować wyższą wydajność wykonywanych obliczeń oraz ograniczyć ilość danych przesyłanych do węzłów obliczeń. Kompilacja z wyprzedzeniem (ang. \textit{Ahead-Of-Time compilation}) jest jednak zależna od dalszego rozwoju biblioteki \textit{mono-wasm}. Dopiero w momencie, gdy taki rodzaj kompilacji będzie wspierany przez \textit{mono-wasm}, ten projekt będzie mógł z niej skorzystać.
+        W ramach dalszego rozwoju utworzonej aplikacji należałoby wykorzystywać kompilację \textit{C\#} do \textit{WebAssembly}, aby zagwarantować wyższą wydajność wykonywanych obliczeń oraz ograniczyć ilość danych przesyłanych do węzłów obliczeń. Kompilacja z wyprzedzeniem (ang. \textit{ahead-of-time compilation}) jest jednak zależna od dalszego rozwoju biblioteki \textit{mono-wasm}. Dopiero w momencie, gdy taki rodzaj kompilacji będzie wspierany przez \textit{mono-wasm}, ten projekt będzie mógł z niej skorzystać.
         
         \paragraph{Zmniejszenie obciążenia serwera API.}
         W obecnie przygotowanym systemie część operacji z bibliotek dostarczanych przez użytkowników uruchamiana jest na serwerze odpowiedzialnym za obsługę zapytań z API. Powyższe operacje mogą być potencjalnie obciążające i ograniczać wydajność serwera API. W celu zabezpieczenia wydajności serwera można przenieść wykonywanie wszystkich operacji z bibliotek użytkowników poza serwer API. W tym celu należałoby przygotować serwer, który wykonywałby operacje żądane przez serwer API i zwracał stosowne wyniki.
         
         \paragraph{Udostępnienie DistributedComputingLibrary w menadżerze pakietów.}
         W celu ułatwienia dodawania do projektów przygotowanej w ramach projektu biblioteki do obliczeń rozproszonych można opublikować ją w menadżerze pakietów \textit{NuGet}~\cite{nuget}. Po opublikowaniu biblioteki w ramach repozytorium \textit{NuGet} będzie ona dostępna do instalacji z poziomu linii poleceń lub interfejsu graficznego udostępnianego przez \textit{Visual Studio}~\cite{visual-studio}.
-        Dzięki takiemu postępowaniu administrator systemu nie musiałby przechowywać na swoim komputerze kopii biblioteki DLL, a mógłby w każdym nowo utworzonym projekcie jedynie odnieść się do łatwo dostępnego pakietu.
+        Dzięki takiemu postępowaniu administrator systemu nie musiałby przechowywać na swoim komputerze kopii biblioteki DLL, a~mógłby w każdym nowo utworzonym projekcie jedynie odnieść się do łatwo dostępnego pakietu.
         Powodem nieopublikowania biblioteki w menadżerze pakietów do momentu zakończenia pracy inżynierskiej są ograniczenia wynikające z regulaminu zarządzania prawami autorskimi na Politechnice Warszawskiej~\cite{uchwala-prawa-autorskie}.
         
         \paragraph{Dodanie poleceń interfejsu wiersza poleceń.}
@@ -1512,7 +1516,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
             
             Sam interfejs do komunikacji z assembly C\# udostępniany przez projekt \textit{mono-wasm} wydał nam się skomplikowany. Przede wszystkim narzucał on definiowanie globalnych funkcji typu \textit{callback}, które wywoływane były podczas działania aplikacji. Ponadto, nazwy funkcji służących do wywoływania metod z kodu C\# były dość długie (na przykład \texttt{Module.BINDING.call\_static\_method}). Nazwy statycznych metod, które chciano wywołać należało przekazywać w ściśle ustalonym formacie tekstowym, który początkowo nie był dla nas do końca jasny.
             
-            W tym projekcie wydajność obliczeń wykonywanych w węzłach nie była jednym z wymagań, ale gdyby tak było, to należałoby ją zweryfikować na początku projektu, aby uniknąć niespodzianek w przyszłości. W aktualnym stanie niemożliwe jest znaczne przyśpieszenie obliczeń w przeglądarce ze względu na wykorzystanie do tego zewnętrznej biblioteki. Gdyby wydajność była wymaganiem, to należałoby rozważyć skorzystanie z innych rozwiązań pozwalających na kompilację kodu C\# do postaci dającej się wykonać w przeglądarce.
+            W tym projekcie wydajność obliczeń wykonywanych w węzłach nie była jednym z wymagań, ale gdyby tak było, to należałoby ją zweryfikować na początku projektu, aby uniknąć niespodzianek w przyszłości. W aktualnym stanie niemożliwe jest znaczne przyśpieszenie obliczeń w~przeglądarce ze względu na wykorzystanie do tego zewnętrznej biblioteki. Gdyby wydajność była wymaganiem, to należałoby rozważyć skorzystanie z innych rozwiązań pozwalających na kompilację kodu C\# do postaci dającej się wykonać w przeglądarce.
             
             Brak dokumentacji i większej ilości przykładów sprawił, że wykorzystanie biblioteki \textit{mono-wasm} zajęło więcej czasu, niż początkowo zostało na to zaplanowane.
             W przyszłości wykorzystując eksperymentalne biblioteki warto już na samym starcie dokładnie sprawdzić dokumentację oraz przykłady użycia do tego stopnia, żeby zweryfikować czy wszystkie wymagania projektu będą możliwe do zrealizowania. W razie wątpliwości należy na początku skontaktować się z twórcami czy poszukać informacji na Internecie zamiast robić to podczas prób implementacji.
@@ -1521,7 +1525,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
         \subsection{Tworzenie interfejsu użytkownika}
             Tworząc interfejs użytkownika warto wykorzystać gotowe komponenty stworzone i udostępnione w ramach zasad wolnego oprogramowania, które zazwyczaj przy okazji wyglądają estetycznie i spójnie. Wybierając takie rozwiązanie często unikamy problemu implementowania części logiki samemu oraz problemów związanych z dostosowaniem danego elementu w zakresie dostępności oraz szeroko pojętego zadowolenia użytkownika (ang. {\selectlanguage{english}\textit{User Experience})}.
             
-            Ponadto, w tym projekcie sprawdziło się podejście, w którym na początku identyfikowane były powtarzalne elementy interfejsu, a następnie była faza projektowania oraz implementacji ogólnych, konfigurowalnych wersji tych komponentów, które później można było wykorzystać w ramach konkretnych funkcjonalności dostosowując jedynie konfigurację takiego elementu.
+            Ponadto, w tym projekcie sprawdziło się podejście, w którym na początku identyfikowane były powtarzalne elementy interfejsu, a następnie była faza projektowania oraz implementacji ogólnych, konfigurowalnych wersji tych komponentów, które później można było wykorzystać w~ramach konkretnych funkcjonalności dostosowując jedynie konfigurację takiego elementu.
             Przykładowymi powtarzalnymi częściami zidentyfikowanymi przez nas na początku były tabela oraz formularz. Dodatkowo, chcąc zmienić wygląd czy działanie takiego komponentu zmiany należy wprowadzić jedynie w jednym miejscu, a nie w każdej funkcjonalności oddzielnie.
         
             Planując harmonogram projektu na początku tworzenia pracy inżynierskiej nie zostało uwzględnione, że część dotycząca interfejsu użytkownika będzie tak czasochłonna, jak okazała się w rzeczywistości.
@@ -1534,7 +1538,7 @@ Ponadto, wynikiem zadania będzie 1, ponieważ wynik ten został zwrócony przez
             Naszym zdaniem stojąc w przyszłości przed zadaniem stworzenia aplikacji internetowej warto skorzystać z podobnych kroków w celu uzyskania spójnego i łatwego w rozszerzeniu oraz modyfikacji systemu.
         
         \subsection{Integracja w środowisku wdrożeniowym}
-            Podczas uruchomienia projektu w środowisku wdrożeniowym mogą pojawić się niespodziewane problemy. Tak było w przypadku tej pracy inżynierskiej. Z uwagi na fakt, że integracja w środowisku wdrożeniowym została rozpoczęta na miesiąc przed oddaniem projektu, problemy te można było rozwiązać w spokoju i zgodnie z dobrymi praktykami.
+            Podczas uruchomienia projektu w środowisku wdrożeniowym mogą pojawić się niespodziewane problemy. Tak było w przypadku tej pracy inżynierskiej. Z uwagi na fakt, że integracja w~środowisku wdrożeniowym została rozpoczęta na miesiąc przed oddaniem projektu, problemy te można było rozwiązać w spokoju i zgodnie z dobrymi praktykami.
             Próbując uruchomić system po raz pierwszy w środowisku wdrożeniowym niedługo przed oddaniem projektu mogłoby się okazać, że powstałych problemów nie da się rozwiązać w krótkim czasie, więc oddanie projektu by się opóźniło.
             Warto zatem próbować uruchomić system na jak największej ilości środowisk docelowych jak najwcześniej.
             
