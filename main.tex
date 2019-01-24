@@ -651,7 +651,11 @@ Zaprojektowany system składa się z trzech modułów:
     \item Interfejsu dla węzłów obliczeniowych
 \end{itemize}
 
-Na rysunku~\ref{project-model} znajdują się wyodrębnione moduły wraz z urządzeniami podłączonymi do systemu. Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet. Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym interfejs użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych, jak i administratora). Proxy akceptuje jedynie protokół HTTP (port 80). Protokół HTTPS (port 443) nie jest zapewniany w ramach przygotowanego systemu.
+Na rysunku~\ref{project-model} znajdują się wyodrębnione moduły wraz z urządzeniami podłączonymi do systemu.
+Wszelkie interakcje pomiędzy modułami odbywają się z wykorzystaniem sieci Internet.
+Proxy rozdziela ruch między serwerem aplikacyjnym oraz serwerem udostępniającym interfejs użytkownika w przeglądarce (zarówno dla węzłów obliczeniowych, jak i administratora).
+Proxy akceptuje jedynie protokół HTTP (port 80).
+Protokół HTTPS (port 443) nie jest zapewniany w ramach przygotowanego systemu, gdyż zakładamy, że jest on zapewniany przez infrastrukturę w ramach której uruchamiany jest utworzony system.
 
 
 \begin{figure} \centering{
